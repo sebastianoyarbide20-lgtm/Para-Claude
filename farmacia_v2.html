@@ -79,6 +79,7 @@
         *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
         html { scroll-behavior: smooth; scroll-padding-top: calc(var(--header-h) + 72px); }
+        :root { --header-full: calc(var(--header-h) + 57px); }
 
         body {
             font-family: var(--font-body);
@@ -119,7 +120,6 @@
         .global-header {
             position: sticky;
             top: 0;
-            height: var(--header-h);
             background: rgba(246, 244, 236, .9);
             -webkit-backdrop-filter: saturate(180%) blur(16px);
                     backdrop-filter: saturate(180%) blur(16px);
@@ -129,9 +129,42 @@
         }
         .global-header.scrolled { background: rgba(255, 255, 255, .94); border-bottom-color: var(--line); }
 
+        /* Fila de categorías debajo de la barra */
+        .header-cats { border-top: 1px solid var(--line); }
+        .header-cats ul {
+            max-width: var(--max-w); margin: 0 auto;
+            display: flex; gap: 4px;
+            overflow-x: auto; scrollbar-width: none;
+            padding: 6px var(--gutter);
+            list-style: none;
+        }
+        .header-cats ul::-webkit-scrollbar { display: none; }
+        .cat-top {
+            display: inline-flex; align-items: center; gap: 8px;
+            min-height: 44px; padding: 0 14px 0 6px;
+            border-radius: var(--r-pill);
+            font-size: var(--t-14); font-weight: 600; color: var(--ink-2);
+            white-space: nowrap;
+            transition: background .2s ease, color .2s ease;
+        }
+        .cat-top .cat-ico {
+            width: 32px; height: 32px; border-radius: 50%;
+            display: grid; place-items: center;
+            background: var(--forest-50); color: var(--forest-700);
+            transition: background .2s ease, color .2s ease;
+        }
+        .cat-top .cat-ico .icon { width: 17px; height: 17px; }
+        .cat-top:hover { background: rgba(16, 38, 31, .05); color: var(--ink); }
+        .cat-top[aria-pressed="true"] { background: var(--forest-800); color: #fff; }
+        .cat-top[aria-pressed="true"] .cat-ico { background: rgba(255,255,255,.14); color: var(--lime); }
+        .cat-top.is-sale .cat-ico { background: var(--sale-soft); color: var(--sale); }
+        .cat-top.is-sale { color: var(--sale); }
+        .cat-top.is-sale[aria-pressed="true"] { background: var(--sale); color: #fff; }
+        .cat-top.is-sale[aria-pressed="true"] .cat-ico { background: rgba(255,255,255,.2); color: #fff; }
+
         .header-inner {
             max-width: var(--max-w);
-            height: 100%;
+            height: var(--header-h);
             margin: 0 auto;
             padding: 0 var(--gutter);
             display: flex;
@@ -264,6 +297,101 @@
         }
         .hero-cta:hover { background: var(--sun-deep); transform: translateY(-2px); }
         .hero-cta .icon { width: 18px; height: 18px; }
+        .hero-tags { display: flex; flex-wrap: wrap; gap: 6px; list-style: none; margin-bottom: 18px; }
+        .hero-tags li {
+            display: inline-flex; align-items: center; gap: 6px;
+            font-size: var(--t-12); font-weight: 600;
+            padding: 6px 10px; border-radius: var(--r-pill);
+            background: rgba(255,255,255,.12); border: 1px solid rgba(255,255,255,.18);
+        }
+        .hero-tags .icon { width: 14px; height: 14px; color: var(--lime); }
+        .hero-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 16px; }
+        .hero-link {
+            min-height: 44px; color: #fff; font-weight: 600; font-size: var(--t-14);
+            text-decoration: underline; text-underline-offset: 4px; text-decoration-color: rgba(255,255,255,.5);
+        }
+        .hero-link:hover { text-decoration-color: #fff; }
+
+        /* Tarjeta de precio flotante sobre los packshots */
+        .hero-deal {
+            position: absolute; z-index: 3;
+            right: 0; top: 4px;
+            background: #fff; color: var(--ink);
+            border-radius: var(--r-md);
+            padding: 10px 12px 10px;
+            box-shadow: 0 16px 36px rgba(0,0,0,.28);
+            min-width: 140px;
+            transform: rotate(3deg);
+        }
+        .hero-deal-off {
+            position: absolute; top: -12px; left: -10px;
+            background: var(--sale); color: #fff;
+            font-family: var(--font-display); font-weight: 800; font-size: var(--t-14);
+            padding: 5px 9px; border-radius: var(--r-pill);
+            transform: rotate(-8deg);
+            box-shadow: 0 6px 14px rgba(196, 48, 43, .4);
+        }
+        .hero-deal-name { font-size: var(--t-12); font-weight: 600; color: var(--ink-2); margin: 4px 0 2px; max-width: 16ch; line-height: 1.25; }
+        .hero-deal-old { font-size: var(--t-12); color: var(--ink-3); text-decoration: line-through; text-decoration-color: var(--sale); }
+        .hero-deal-price { font-family: var(--font-display); font-weight: 800; font-size: var(--t-20); color: var(--sale); line-height: 1.1; font-variant-numeric: tabular-nums; }
+        .hero-deal-save {
+            display: inline-block; margin-top: 4px;
+            font-size: var(--t-12); font-weight: 700;
+            color: var(--forest-700); background: var(--forest-50);
+            padding: 2px 8px; border-radius: var(--r-pill);
+        }
+
+        /* Banners secundarios */
+        .promo-row {
+            display: grid; gap: 10px;
+            grid-template-columns: minmax(0, 1fr);
+            margin-bottom: 14px;
+        }
+        .promo {
+            position: relative; overflow: hidden;
+            display: flex; align-items: center; justify-content: space-between; gap: 10px;
+            border-radius: var(--r-lg);
+            padding: 18px 16px 18px 20px;
+            min-height: 150px;
+            isolation: isolate;
+        }
+        .promo::before {
+            content: ''; position: absolute; z-index: -1;
+            width: 180px; height: 180px; border-radius: 50%;
+            right: -40px; bottom: -60px;
+            background: rgba(255,255,255,.35);
+        }
+        .promo-text { display: grid; gap: 6px; align-content: start; min-width: 0; }
+        .promo-kicker { font-size: var(--t-12); font-weight: 700; text-transform: uppercase; letter-spacing: .06em; opacity: .85; }
+        .promo-title { font-family: var(--font-display); font-size: var(--t-20); font-weight: 800; letter-spacing: -.02em; line-height: 1.1; text-wrap: balance; }
+        .promo-prices { display: flex; align-items: baseline; gap: 8px; flex-wrap: wrap; }
+        .promo-old { font-size: var(--t-14); text-decoration: line-through; text-decoration-color: var(--sale); opacity: .75; }
+        .promo-from { font-size: var(--t-12); font-weight: 600; opacity: .8; }
+        .promo-new { font-family: var(--font-display); font-size: var(--t-28); font-weight: 800; color: var(--sale); letter-spacing: -.02em; line-height: 1; }
+        .promo-note { font-size: var(--t-14); opacity: .85; max-width: 30ch; }
+        .promo-cta {
+            justify-self: start;
+            display: inline-flex; align-items: center; gap: 6px;
+            min-height: 44px; padding: 0 16px; margin-top: 4px;
+            border-radius: var(--r-pill);
+            background: var(--forest-900); color: #fff;
+            font-size: var(--t-14); font-weight: 700;
+            transition: transform .2s var(--ease-out);
+        }
+        .promo-cta:hover { transform: translateX(3px); }
+        .promo-cta .icon { width: 16px; height: 16px; }
+        .promo-img { width: 118px; height: 118px; object-fit: contain; flex-shrink: 0; mix-blend-mode: multiply; }
+        .promo-baby { background: linear-gradient(135deg, #FFF4C7 0%, #FFE08A 100%); color: var(--forest-900); }
+        .promo-hair { background: linear-gradient(135deg, #FDECEA 0%, #F9CFC9 100%); color: var(--forest-900); }
+        .promo-ship { background: linear-gradient(135deg, var(--forest-800) 0%, var(--forest-700) 100%); color: #fff; }
+        .promo-ship::before { background: rgba(184, 240, 74, .14); }
+        .promo-ship .promo-cta { background: var(--sun); color: var(--forest-900); }
+        .promo-ico {
+            width: 76px; height: 76px; border-radius: 22px; flex-shrink: 0;
+            display: grid; place-items: center;
+            background: rgba(255,255,255,.12); color: var(--lime);
+        }
+        .promo-ico .icon { width: 38px; height: 38px; }
 
         .hero-visual {
             position: relative;
@@ -403,10 +531,9 @@
         .carousel-arrow:disabled { opacity: 0; pointer-events: none; }
 
         /* ── CATEGORÍAS (sticky, junto al catálogo) ── */
-        .catalog { scroll-margin-top: var(--header-h); }
+        .catalog { scroll-margin-top: calc(var(--header-full) + 8px); }
         .category-bar {
-            position: sticky;
-            top: var(--header-h);
+            position: relative;
             z-index: 100;
             background: var(--bg);
             margin: 0 calc(var(--gutter) * -1) 14px;
@@ -517,15 +644,45 @@
         .card-rating { display: flex; align-items: center; gap: 4px; font-size: var(--t-12); color: var(--ink-3); }
         .card-rating .icon { width: 14px; height: 14px; fill: var(--star); stroke: none; }
         .card-rating b { color: var(--ink); font-weight: 600; }
-        .card-price-block { margin-top: auto; }
-        .card-price-old { font-size: var(--t-12); color: var(--ink-3); text-decoration: line-through; min-height: 1.2em; }
+        .card-price-block { margin-top: auto; display: grid; gap: 3px; }
+        .card-price-old {
+            font-size: var(--t-12); color: var(--ink-3);
+            text-decoration: line-through; text-decoration-color: var(--sale); text-decoration-thickness: 1.5px;
+            min-height: 1.2em;
+        }
+        .card-price-row { display: flex; align-items: center; gap: 6px; flex-wrap: wrap; }
         .card-price {
             font-family: var(--font-display);
-            font-size: var(--t-20); font-weight: 800;
-            letter-spacing: -.02em; line-height: 1.1;
+            font-size: 1.375rem; font-weight: 800;
+            letter-spacing: -.02em; line-height: 1.05;
             font-variant-numeric: tabular-nums;
         }
         .card-price.on-sale { color: var(--sale); }
+        .card-off {
+            font-size: var(--t-12); font-weight: 800;
+            background: var(--sale); color: #fff;
+            padding: 3px 7px; border-radius: 6px;
+            font-variant-numeric: tabular-nums;
+        }
+        .card-save {
+            justify-self: start;
+            display: inline-flex; align-items: center; gap: 4px;
+            font-size: var(--t-12); font-weight: 700;
+            color: var(--forest-700); background: var(--forest-50);
+            padding: 2px 8px; border-radius: var(--r-pill);
+        }
+        .card-save .icon { width: 12px; height: 12px; stroke-width: 2.6; }
+        .card-save-empty { min-height: 1.5em; }
+        .product-card.is-deal { border-color: rgba(196, 48, 43, .28); }
+        .price-drop {
+            position: absolute; top: 8px; right: 8px; z-index: 2;
+            display: inline-flex; align-items: center; gap: 4px;
+            font-size: var(--t-12); font-weight: 700;
+            background: rgba(255,255,255,.94); color: var(--sale);
+            padding: 4px 8px; border-radius: var(--r-pill);
+            box-shadow: var(--shadow-xs);
+        }
+        .price-drop .icon { width: 13px; height: 13px; stroke-width: 2.6; }
         .card-shipping { display: flex; align-items: center; gap: 4px; font-size: var(--t-12); font-weight: 600; color: var(--forest-700); min-height: 1.3em; }
         .card-shipping .icon { width: 14px; height: 14px; }
 
@@ -719,7 +876,9 @@
             display: flex; align-items: center; justify-content: space-between; gap: 12px;
             padding: 14px 0; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line);
         }
-        .dialog-price-old { font-size: var(--t-14); color: var(--ink-3); text-decoration: line-through; }
+        .dialog-price-old { font-size: var(--t-14); color: var(--ink-3); }
+        .dialog-price-old s { text-decoration-color: var(--sale); text-decoration-thickness: 1.5px; }
+        .dialog-price-old b { color: var(--forest-700); background: var(--forest-50); padding: 1px 8px; border-radius: var(--r-pill); margin-left: 6px; font-size: var(--t-12); }
         .dialog-price { font-family: var(--font-display); font-size: var(--t-28); font-weight: 800; letter-spacing: -.02em; font-variant-numeric: tabular-nums; }
         .dialog-price.on-sale { color: var(--sale); }
         .qty-selector { display: flex; align-items: center; gap: 6px; background: var(--bg); border-radius: var(--r-pill); padding: 3px; }
@@ -810,6 +969,14 @@
             .hero-visual .pack-2 { width: 144px; height: 200px; }
         }
 
+        @media (max-width: 639px) {
+            .hero-deal { top: auto; bottom: 18px; right: -2px; transform: rotate(3deg) scale(.9); transform-origin: right bottom; }
+        }
+
+        @media (min-width: 900px) {
+            .promo-row { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; margin-bottom: 18px; }
+        }
+
         @media (min-width: 768px) {
             :root { --gutter: 24px; }
             .product-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; }
@@ -836,6 +1003,8 @@
             .hero-visual { height: 300px; }
             .hero-visual .pack-1, .hero-visual .pack-3 { width: 150px; height: 210px; }
             .hero-visual .pack-2 { width: 176px; height: 244px; }
+            .hero-deal { right: 10px; top: 20px; min-width: 170px; padding: 12px 16px; }
+            .hero-deal-price { font-size: var(--t-28); }
             .carousel-arrow { display: grid; }
             .flash-carousel > li { flex-basis: 204px; }
             .site-footer { padding: 56px 56px 40px; }
@@ -877,6 +1046,8 @@
         <symbol id="i-leaf" viewBox="0 0 24 24"><path d="M5 19c0-8 5-13 15-14-1 10-6 15-14 15"/><path d="M5 19c3-4 6-6 9-7.5"/></symbol>
         <symbol id="i-home" viewBox="0 0 24 24"><path d="m3 11 9-7 9 7v9a1 1 0 0 1-1 1h-5v-6h-6v6H4a1 1 0 0 1-1-1z"/></symbol>
         <symbol id="i-user" viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/></symbol>
+        <symbol id="i-down" viewBox="0 0 24 24"><path d="M12 5v14M6 13l6 6 6-6"/></symbol>
+        <symbol id="i-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></symbol>
         <symbol id="i-undo" viewBox="0 0 24 24"><path d="M9 14 4 9l5-5"/><path d="M4 9h11a5 5 0 0 1 0 10h-3"/></symbol>
     </svg>
 
@@ -904,6 +1075,17 @@
                 <span class="count-badge" data-cart-count hidden>0</span>
             </button>
         </div>
+        <nav class="header-cats" aria-label="Categorías">
+            <ul>
+                <li><button class="cat-chip cat-top" type="button" data-cat="todos" aria-pressed="true"><span class="cat-ico"><svg class="icon" aria-hidden="true"><use href="#i-grid"/></svg></span>Todo</button></li>
+                <li><button class="cat-chip cat-top is-sale" type="button" data-cat="ofertas" aria-pressed="false"><span class="cat-ico"><svg class="icon" aria-hidden="true"><use href="#i-tag"/></svg></span>Ofertas</button></li>
+                <li><button class="cat-chip cat-top" type="button" data-cat="dermocosmetica" aria-pressed="false"><span class="cat-ico"><svg class="icon" aria-hidden="true"><use href="#i-sparkle"/></svg></span>Dermocosmética</button></li>
+                <li><button class="cat-chip cat-top" type="button" data-cat="cuidado" aria-pressed="false"><span class="cat-ico"><svg class="icon" aria-hidden="true"><use href="#i-drop"/></svg></span>Cuidado personal</button></li>
+                <li><button class="cat-chip cat-top" type="button" data-cat="farmacia" aria-pressed="false"><span class="cat-ico"><svg class="icon" aria-hidden="true"><use href="#i-pill"/></svg></span>Farmacia</button></li>
+                <li><button class="cat-chip cat-top" type="button" data-cat="bebes" aria-pressed="false"><span class="cat-ico"><svg class="icon" aria-hidden="true"><use href="#i-baby"/></svg></span>Bebés</button></li>
+                <li><button class="cat-chip cat-top" type="button" data-cat="nutricion" aria-pressed="false"><span class="cat-ico"><svg class="icon" aria-hidden="true"><use href="#i-leaf"/></svg></span>Nutrición</button></li>
+            </ul>
+        </nav>
     </header>
 
     <main class="main-content" id="main">
@@ -913,14 +1095,60 @@
             <div class="hero-content">
                 <p class="hero-eyebrow"><svg class="icon" aria-hidden="true" style="width:14px;height:14px"><use href="#i-sparkle"/></svg> Dermocosmética</p>
                 <h1 class="hero-title" id="hero-title">Hasta 30 % off en <em>cuidado facial</em></h1>
-                <p class="hero-subtitle">Dermaglós, Caviahue, Klorane y más. Envío en 2 horas, gratis desde $15.000.</p>
-                <a class="hero-cta" href="#ofertas">Ver ofertas <svg class="icon" aria-hidden="true"><use href="#i-arrow"/></svg></a>
+                <p class="hero-subtitle">Sérums, limpiadores y shampoos dermatológicos de Dermaglós, Caviahue y Klorane, con precios rebajados toda la semana.</p>
+                <ul class="hero-tags">
+                    <li><svg class="icon" aria-hidden="true"><use href="#i-truck"/></svg>Envío en 2 h</li>
+                    <li><svg class="icon" aria-hidden="true"><use href="#i-card"/></svg>3 cuotas sin interés</li>
+                    <li><svg class="icon" aria-hidden="true"><use href="#i-clock"/></svg>Hasta el 31/10</li>
+                </ul>
+                <div class="hero-actions">
+                    <a class="hero-cta" href="#ofertas">Ver ofertas <svg class="icon" aria-hidden="true"><use href="#i-arrow"/></svg></a>
+                    <button class="hero-link" type="button" data-go-cat="dermocosmetica">Toda la dermocosmética</button>
+                </div>
             </div>
             <div class="hero-visual" aria-hidden="true">
                 <div class="pack pack-1"><img src="https://farmaciasdelpueblo.vtexassets.com/arquivos/ids/163629-800-800" alt="" referrerpolicy="no-referrer"></div>
                 <div class="pack pack-2"><img src="https://www.dermaglos.com/portals/0/Images/ecommerce/webp/7793742007125-3.webp" alt="" referrerpolicy="no-referrer"></div>
                 <div class="pack pack-3"><img src="https://farmacityar.vtexassets.com/arquivos/ids/234504-800-auto" alt="" referrerpolicy="no-referrer"></div>
+                <div class="hero-deal">
+                    <span class="hero-deal-off">−30 %</span>
+                    <p class="hero-deal-name">Dermaglós sérum niacinamida</p>
+                    <p class="hero-deal-old">Antes $ 41.119</p>
+                    <p class="hero-deal-price">$ 28.783</p>
+                    <p class="hero-deal-save">Ahorrás $ 12.336</p>
+                </div>
             </div>
+        </section>
+
+        <!-- BANNERS SECUNDARIOS -->
+        <section class="promo-row" aria-label="Promociones">
+            <article class="promo promo-baby">
+                <div class="promo-text">
+                    <p class="promo-kicker">Bebés · 2x1</p>
+                    <h2 class="promo-title">Llevá 2 latas de Nido 3 y pagá 1</h2>
+                    <p class="promo-prices"><span class="promo-old">$ 57.800</span><span class="promo-new">$ 28.900</span></p>
+                    <button class="promo-cta" type="button" data-go-cat="bebes">Ver promo <svg class="icon" aria-hidden="true"><use href="#i-arrow"/></svg></button>
+                </div>
+                <img class="promo-img" src="https://www.mundonuevo.com.ar/wp-content/uploads/2023/08/NIDO3_800g-removebg-preview-600x600.png" alt="" loading="lazy" referrerpolicy="no-referrer" width="160" height="160">
+            </article>
+            <article class="promo promo-hair">
+                <div class="promo-text">
+                    <p class="promo-kicker">Cuidado capilar</p>
+                    <h2 class="promo-title">Hasta 25 % off en shampoos y máscaras</h2>
+                    <p class="promo-prices"><span class="promo-from">desde</span><span class="promo-new">$ 7.280</span></p>
+                    <button class="promo-cta" type="button" data-go-cat="cuidado">Ver productos <svg class="icon" aria-hidden="true"><use href="#i-arrow"/></svg></button>
+                </div>
+                <img class="promo-img" src="https://farmacityar.vtexassets.com/arquivos/ids/234504-800-auto" alt="" loading="lazy" referrerpolicy="no-referrer" width="160" height="160">
+            </article>
+            <article class="promo promo-ship">
+                <div class="promo-text">
+                    <p class="promo-kicker">Beneficio</p>
+                    <h2 class="promo-title">Envío gratis desde $ 15.000</h2>
+                    <p class="promo-note">Recibilo en 2 horas en CABA y GBA. Y pagá en 3 cuotas sin interés.</p>
+                    <button class="promo-cta" type="button" data-go-cat="todos">Empezar a comprar <svg class="icon" aria-hidden="true"><use href="#i-arrow"/></svg></button>
+                </div>
+                <span class="promo-ico" aria-hidden="true"><svg class="icon"><use href="#i-truck"/></svg></span>
+            </article>
         </section>
 
         <!-- TRUST STRIP -->
@@ -975,17 +1203,6 @@
                 <p class="item-count" id="item-count" aria-live="polite"></p>
             </div>
 
-            <div class="category-bar" id="category-bar">
-                <ul class="category-strip" aria-label="Filtrar por categoría">
-                    <li><button class="cat-chip" type="button" data-cat="todos" aria-pressed="true"><svg class="icon" aria-hidden="true"><use href="#i-grid"/></svg>Todo</button></li>
-                    <li><button class="cat-chip" type="button" data-cat="ofertas" aria-pressed="false"><svg class="icon" aria-hidden="true"><use href="#i-tag"/></svg>Ofertas</button></li>
-                    <li><button class="cat-chip" type="button" data-cat="dermocosmetica" aria-pressed="false"><svg class="icon" aria-hidden="true"><use href="#i-sparkle"/></svg>Dermocosmética</button></li>
-                    <li><button class="cat-chip" type="button" data-cat="cuidado" aria-pressed="false"><svg class="icon" aria-hidden="true"><use href="#i-drop"/></svg>Cuidado personal</button></li>
-                    <li><button class="cat-chip" type="button" data-cat="farmacia" aria-pressed="false"><svg class="icon" aria-hidden="true"><use href="#i-pill"/></svg>Farmacia</button></li>
-                    <li><button class="cat-chip" type="button" data-cat="bebes" aria-pressed="false"><svg class="icon" aria-hidden="true"><use href="#i-baby"/></svg>Bebés</button></li>
-                    <li><button class="cat-chip" type="button" data-cat="nutricion" aria-pressed="false"><svg class="icon" aria-hidden="true"><use href="#i-leaf"/></svg>Nutrición</button></li>
-                </ul>
-            </div>
 
             <ul class="product-grid" id="products-container"></ul>
         </section>
@@ -1125,16 +1342,17 @@
         function badgeHTML(p) {
             const d = discountOf(p);
             if (p.badge) return `<span class="card-badge ${p.badgeType === 'new' ? 'badge-new' : d > 0 ? 'badge-sale' : 'badge-info'}">${esc(p.badge)}</span>`;
-            if (d > 0) return `<span class="card-badge badge-sale">−${d} %</span>`;
+            if (d >= 20) return '<span class="card-badge badge-sale">Oferta</span>';
             return '';
         }
 
         function cardHTML(p) {
             const d = discountOf(p);
             return `
-            <article class="product-card">
+            <article class="product-card${d > 0 ? ' is-deal' : ''}">
                 <div class="card-img-wrap">
                     ${badgeHTML(p)}
+                    ${d > 0 ? '<span class="price-drop"><svg class="icon" aria-hidden="true"><use href="#i-down"/></svg>Bajó</span>' : ''}
                     <img src="${esc(p.img)}" alt="" loading="lazy" referrerpolicy="no-referrer" width="200" height="200">
                     <button class="card-add" type="button" data-add="${p.id}" aria-label="Agregar ${esc(p.name)} al carrito">
                         <svg class="icon" aria-hidden="true"><use href="#i-plus"/></svg>
@@ -1145,7 +1363,8 @@
                     <p class="card-rating"><svg class="icon" aria-hidden="true"><use href="#i-star"/></svg><b>${p.rating.toFixed(1).replace('.', ',')}</b><span>(${p.reviews})</span><span class="sr-only"> reseñas</span></p>
                     <div class="card-price-block">
                         <p class="card-price-old">${d > 0 ? `<span class="sr-only">Antes </span>${fmt(p.listPrice)}` : ''}</p>
-                        <p class="card-price${d > 0 ? ' on-sale' : ''}">${fmt(p.price)}</p>
+                        <p class="card-price-row"><span class="card-price${d > 0 ? ' on-sale' : ''}">${fmt(p.price)}</span>${d > 0 ? `<span class="card-off">−${d} %</span>` : ''}</p>
+                        ${d > 0 ? `<p class="card-save">Ahorrás ${fmt(p.listPrice - p.price)}</p>` : '<p class="card-save-empty"></p>'}
                     </div>
                     <p class="card-shipping">${freeShipping(p) ? '<svg class="icon" aria-hidden="true"><use href="#i-truck"/></svg>Envío gratis' : ''}</p>
                 </div>
@@ -1223,7 +1442,7 @@
                 `<dt>Marca</dt><dd>${esc(p.brand)}</dd>` +
                 `<dt>Condición de venta</dt><dd>${esc(p.sale)}</dd>` +
                 `<dt>Envío</dt><dd>${freeShipping(p) ? 'Gratis, en 2 horas' : `En 2 horas · gratis desde ${fmt(FREE_SHIPPING_FROM)}`}</dd>`;
-            document.getElementById('dialog-price-old').textContent = d > 0 ? fmt(p.listPrice) : '';
+            document.getElementById('dialog-price-old').innerHTML = d > 0 ? `<s><span class="sr-only">Antes </span>${fmt(p.listPrice)}</s><b>Ahorrás ${fmt(p.listPrice - p.price)}</b>` : '';
             const price = document.getElementById('dialog-price');
             price.textContent = fmt(p.price);
             price.classList.toggle('on-sale', d > 0);
@@ -1286,6 +1505,7 @@
         }
 
         chips.forEach(chip => chip.addEventListener('click', () => { setCategory(chip.dataset.cat); revealResults(); }));
+        document.querySelectorAll('[data-go-cat]').forEach(b => b.addEventListener('click', () => { setCategory(b.dataset.goCat); catalog.scrollIntoView({ behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth' }); }));
 
         let searchScrolled = false;
         searchInput.addEventListener('input', () => {
@@ -1302,11 +1522,9 @@
         filterProducts();
 
         // Borde de la barra de categorías cuando queda fija
-        const catBar = document.getElementById('category-bar');
         const header = document.querySelector('.global-header');
         const onScroll = () => {
             header.classList.toggle('scrolled', window.scrollY > 8);
-            catBar.classList.toggle('stuck', catBar.getBoundingClientRect().top <= header.offsetHeight + 1 && window.scrollY > 0);
         };
         window.addEventListener('scroll', onScroll, { passive: true });
         onScroll();
