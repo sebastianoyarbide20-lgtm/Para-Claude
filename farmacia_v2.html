@@ -147,20 +147,31 @@
             white-space: nowrap;
             transition: background .2s ease, color .2s ease;
         }
-        .cat-top .cat-ico {
-            width: 32px; height: 32px; border-radius: 50%;
-            display: grid; place-items: center;
-            background: var(--forest-50); color: var(--forest-700);
-            transition: background .2s ease, color .2s ease;
+        /* Contenedor 3D para íconos duotono */
+        .duo { width: 22px; height: 22px; display: block; filter: drop-shadow(0 2px 2px rgba(16, 38, 31, .18)); }
+        .ico-tile {
+            display: grid; place-items: center; flex-shrink: 0;
+            border-radius: 12px;
+            background:
+                radial-gradient(120% 80% at 30% 0%, rgba(255,255,255,.95) 0%, rgba(255,255,255,0) 60%),
+                linear-gradient(160deg, #FFFFFF 0%, #EEF1EA 100%);
+            box-shadow:
+                inset 0 1px 0 rgba(255,255,255,.9),
+                inset 0 -2px 4px rgba(16, 38, 31, .06),
+                0 1px 2px rgba(16, 38, 31, .08),
+                0 4px 10px rgba(16, 38, 31, .08);
+            border: 1px solid rgba(16, 38, 31, .06);
+            transition: transform .25s var(--ease-out), box-shadow .25s ease;
         }
-        .cat-top .cat-ico .icon { width: 17px; height: 17px; }
+        .cat-top .cat-ico { width: 34px; height: 34px; border-radius: 11px; }
+        .cat-top:hover .cat-ico { transform: translateY(-2px) rotate(-4deg); }
         .cat-top:hover { background: rgba(16, 38, 31, .05); color: var(--ink); }
         .cat-top[aria-pressed="true"] { background: var(--forest-800); color: #fff; }
-        .cat-top[aria-pressed="true"] .cat-ico { background: rgba(255,255,255,.14); color: var(--lime); }
-        .cat-top.is-sale .cat-ico { background: var(--sale-soft); color: var(--sale); }
+        .cat-top[aria-pressed="true"] .cat-ico { box-shadow: 0 0 0 2px var(--lime), 0 6px 14px rgba(0,0,0,.25); }
+        .cat-top.is-sale .cat-ico { background: radial-gradient(120% 80% at 30% 0%, #fff 0%, rgba(255,255,255,0) 60%), linear-gradient(160deg, #FFF3F1 0%, #FFD9D3 100%); }
         .cat-top.is-sale { color: var(--sale); }
         .cat-top.is-sale[aria-pressed="true"] { background: var(--sale); color: #fff; }
-        .cat-top.is-sale[aria-pressed="true"] .cat-ico { background: rgba(255,255,255,.2); color: #fff; }
+        .cat-top.is-sale[aria-pressed="true"] .cat-ico { box-shadow: 0 0 0 2px #fff, 0 6px 14px rgba(0,0,0,.25); }
 
         .header-inner {
             max-width: var(--max-w);
@@ -421,11 +432,18 @@
         .promo-vit .promo-cta { background: var(--sun); color: var(--forest-900); }
         .promo-hyg { background: linear-gradient(135deg, var(--forest-50) 0%, var(--forest-100) 100%); color: var(--forest-900); }
         .promo-ico {
-            width: 76px; height: 76px; border-radius: 22px; flex-shrink: 0;
+            width: 88px; height: 88px; border-radius: 26px; flex-shrink: 0;
             display: grid; place-items: center;
-            background: rgba(255,255,255,.12); color: var(--lime);
+            background:
+                radial-gradient(120% 80% at 30% 0%, rgba(255,255,255,.4) 0%, rgba(255,255,255,0) 60%),
+                rgba(255,255,255,.1);
+            border: 1px solid rgba(255,255,255,.22);
+            box-shadow: inset 0 1px 0 rgba(255,255,255,.35), 0 12px 28px rgba(0,0,0,.22);
+            -webkit-backdrop-filter: blur(6px); backdrop-filter: blur(6px);
+            transform: rotate(-6deg);
         }
-        .promo-ico .icon { width: 38px; height: 38px; }
+        .promo-ico .duo { width: 52px; height: 52px; filter: drop-shadow(0 6px 8px rgba(0,0,0,.25)); }
+        .promo:hover .promo-ico { transform: rotate(0deg) scale(1.04); transition: transform .35s var(--ease-out); }
 
         .hero-visual {
             position: relative;
@@ -477,13 +495,62 @@
             padding: 10px 14px 10px 10px;
             scroll-snap-align: start;
         }
-        .trust-ico {
-            width: 36px; height: 36px; flex-shrink: 0; border-radius: 10px;
-            display: grid; place-items: center;
-            background: var(--forest-50); color: var(--forest-700);
-        }
+        .trust-ico { width: 44px; height: 44px; border-radius: 14px; }
+        .trust-ico .duo { width: 26px; height: 26px; }
+        .trust-item:hover .trust-ico { transform: translateY(-2px) rotate(-4deg); }
         .trust-item strong { display: block; font-size: var(--t-14); font-weight: 700; line-height: 1.2; white-space: nowrap; }
         .trust-item span { display: block; font-size: var(--t-12); color: var(--ink-3); white-space: nowrap; }
+
+        /* ── CAPAS DECORATIVAS ── */
+        body {
+            background-image:
+                radial-gradient(900px 500px at 100% -10%, rgba(184, 240, 74, .16), transparent 60%),
+                radial-gradient(700px 500px at -10% 30%, rgba(19, 154, 107, .10), transparent 60%),
+                radial-gradient(800px 600px at 110% 80%, rgba(255, 210, 63, .12), transparent 60%),
+                radial-gradient(rgba(16, 38, 31, .07) 1px, transparent 1.2px);
+            background-size: auto, auto, auto, 22px 22px;
+            background-attachment: fixed;
+        }
+        .hero::after {
+            content: ''; position: absolute; inset: 0; z-index: -1; pointer-events: none;
+            background-image: radial-gradient(rgba(255,255,255,.14) 1px, transparent 1.3px);
+            background-size: 16px 16px;
+            -webkit-mask-image: linear-gradient(115deg, transparent 35%, #000 75%);
+                    mask-image: linear-gradient(115deg, transparent 35%, #000 75%);
+        }
+        .hero-rings {
+            position: absolute; z-index: -1; pointer-events: none;
+            right: -120px; top: -140px; width: 520px; height: 520px;
+            border-radius: 50%;
+            border: 1px solid rgba(255,255,255,.1);
+            box-shadow: 0 0 0 60px rgba(255,255,255,.03), 0 0 0 120px rgba(255,255,255,.025), inset 0 0 0 60px rgba(255,255,255,.02);
+        }
+        .product-card::before {
+            content: ''; position: absolute; inset: 0; border-radius: inherit; padding: 1.5px; z-index: 0;
+            background: linear-gradient(135deg, rgba(19,154,107,.55), rgba(255,210,63,.45), rgba(196,48,43,.4));
+            -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+            -webkit-mask-composite: xor; mask-composite: exclude;
+            opacity: 0; transition: opacity .3s ease; pointer-events: none;
+        }
+        .product-card:hover::before { opacity: 1; }
+        .section-title { position: relative; }
+        .section-title::after {
+            content: ''; display: block; width: 72px; height: 6px; margin-top: 8px; border-radius: 99px;
+            background: linear-gradient(90deg, var(--forest-500), var(--lime), var(--sun));
+        }
+        .trust-item {
+            background: linear-gradient(180deg, rgba(255,255,255,.95), rgba(255,255,255,.75)) !important;
+            -webkit-backdrop-filter: blur(8px); backdrop-filter: blur(8px);
+            box-shadow: 0 1px 2px rgba(16,38,31,.04), 0 8px 20px rgba(16,38,31,.05);
+        }
+        .promo { box-shadow: inset 0 1px 0 rgba(255,255,255,.35), 0 10px 24px rgba(16,38,31,.08); }
+        .promo::after {
+            content: ''; position: absolute; inset: 0; z-index: -1; pointer-events: none;
+            background-image: radial-gradient(rgba(255,255,255,.35) 1px, transparent 1.3px);
+            background-size: 14px 14px;
+            -webkit-mask-image: linear-gradient(90deg, transparent 40%, #000);
+                    mask-image: linear-gradient(90deg, transparent 40%, #000);
+        }
 
         /* ── SECTION HEADER ── */
         .section-header {
@@ -1059,6 +1126,86 @@
     </style>
 </head>
 <body>
+    <!-- Íconos duotono (degradé + brillo), set propio -->
+    <svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+        <defs>
+            <linearGradient id="gd-green" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#5FE0A8"/><stop offset="1" stop-color="#0B7A55"/></linearGradient>
+            <linearGradient id="gd-lime" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#E2FF8F"/><stop offset="1" stop-color="#6FC21F"/></linearGradient>
+            <linearGradient id="gd-coral" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#FF9A7A"/><stop offset="1" stop-color="#D62F2A"/></linearGradient>
+            <linearGradient id="gd-sun" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#FFE680"/><stop offset="1" stop-color="#F29A00"/></linearGradient>
+            <linearGradient id="gd-sky" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#8FD3FF"/><stop offset="1" stop-color="#2F6FE0"/></linearGradient>
+            <linearGradient id="gd-violet" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#C6A8FF"/><stop offset="1" stop-color="#6A3FD6"/></linearGradient>
+            <linearGradient id="gd-pink" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#FFB8D9"/><stop offset="1" stop-color="#E04A8C"/></linearGradient>
+            <linearGradient id="gd-shine" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#fff" stop-opacity=".85"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></linearGradient>
+        </defs>
+        <symbol id="d-grid" viewBox="0 0 48 48">
+            <rect x="6" y="6" width="16" height="16" rx="5" fill="url(#gd-green)"/><rect x="26" y="6" width="16" height="16" rx="5" fill="url(#gd-sun)"/>
+            <rect x="6" y="26" width="16" height="16" rx="5" fill="url(#gd-sky)"/><rect x="26" y="26" width="16" height="16" rx="8" fill="url(#gd-coral)"/>
+            <rect x="9" y="9" width="10" height="4" rx="2" fill="url(#gd-shine)"/><rect x="29" y="9" width="10" height="4" rx="2" fill="url(#gd-shine)"/>
+        </symbol>
+        <symbol id="d-tag" viewBox="0 0 48 48">
+            <path d="M6 10a4 4 0 0 1 4-4h14.3a4 4 0 0 1 2.8 1.2l14.2 14.2a4 4 0 0 1 0 5.7L27 41.4a4 4 0 0 1-5.7 0L7.2 27.1A4 4 0 0 1 6 24.3z" fill="url(#gd-coral)"/>
+            <path d="M10 9h13l-6 6H10z" fill="url(#gd-shine)" opacity=".7"/>
+            <circle cx="16" cy="16" r="4" fill="#fff"/><circle cx="16" cy="16" r="1.8" fill="#D62F2A"/>
+            <path d="M22 31l9-9M24 24h.01M29 29h.01" stroke="#fff" stroke-width="3" stroke-linecap="round"/>
+        </symbol>
+        <symbol id="d-sparkle" viewBox="0 0 48 48">
+            <path d="M22 4c1.4 9.6 5.4 13.6 15 15-9.6 1.4-13.6 5.4-15 15-1.4-9.6-5.4-13.6-15-15 9.6-1.4 13.6-5.4 15-15z" fill="url(#gd-violet)"/>
+            <path d="M38 28c.7 4.3 2.4 6 6 6.7-3.6.7-5.3 2.4-6 6.7-.7-4.3-2.4-6-6-6.7 3.6-.7 5.3-2.4 6-6.7z" fill="url(#gd-pink)"/>
+            <path d="M22 10c.8 4.5 2.4 6.6 6 8" stroke="#fff" stroke-opacity=".8" stroke-width="2" stroke-linecap="round" fill="none"/>
+        </symbol>
+        <symbol id="d-drop" viewBox="0 0 48 48">
+            <path d="M24 4s15 15.5 15 26a15 15 0 0 1-30 0C9 19.5 24 4 24 4z" fill="url(#gd-sky)"/>
+            <ellipse cx="18" cy="28" rx="4" ry="7" fill="url(#gd-shine)" transform="rotate(-15 18 28)"/>
+            <path d="M29 34a7 7 0 0 1-5 4" stroke="#fff" stroke-width="2.5" stroke-linecap="round" fill="none" opacity=".8"/>
+        </symbol>
+        <symbol id="d-pill" viewBox="0 0 48 48">
+            <g transform="rotate(-45 24 24)">
+                <rect x="5" y="15" width="38" height="18" rx="9" fill="#fff"/>
+                <path d="M24 15h10a9 9 0 0 1 0 18H24z" fill="url(#gd-coral)"/>
+                <path d="M24 15H14a9 9 0 0 0 0 18h10z" fill="url(#gd-green)"/>
+                <rect x="10" y="18" width="28" height="4" rx="2" fill="url(#gd-shine)"/>
+            </g>
+        </symbol>
+        <symbol id="d-baby" viewBox="0 0 48 48">
+            <path d="M20 3h8l1.5 7h-11z" fill="url(#gd-sun)"/>
+            <rect x="15" y="10" width="18" height="6" rx="3" fill="url(#gd-pink)"/>
+            <rect x="13" y="16" width="22" height="29" rx="9" fill="url(#gd-sky)"/>
+            <rect x="16" y="30" width="16" height="12" rx="5" fill="#fff" opacity=".45"/>
+            <path d="M29 22v4M29 30v3" stroke="#fff" stroke-width="2" stroke-linecap="round"/>
+            <rect x="16" y="19" width="4" height="20" rx="2" fill="url(#gd-shine)"/>
+        </symbol>
+        <symbol id="d-leaf" viewBox="0 0 48 48">
+            <path d="M8 40C8 20 20 8 42 6c-1 22-13 34-34 34z" fill="url(#gd-lime)"/>
+            <path d="M8 40c8-10 16-18 26-24" stroke="#fff" stroke-width="2.5" stroke-linecap="round" fill="none" opacity=".85"/>
+            <path d="M18 29l-2-8M24 23l-1-8M24 23l8 1M18 29l8 2" stroke="#fff" stroke-width="1.8" stroke-linecap="round" opacity=".6"/>
+        </symbol>
+        <symbol id="d-truck" viewBox="0 0 48 48">
+            <rect x="3" y="11" width="27" height="22" rx="4" fill="url(#gd-green)"/>
+            <path d="M30 18h8.5a3 3 0 0 1 2.4 1.2L45 25v6a2 2 0 0 1-2 2H30z" fill="url(#gd-lime)"/>
+            <rect x="6" y="14" width="21" height="4" rx="2" fill="url(#gd-shine)"/>
+            <path d="M34 21h4l3 4h-7z" fill="#fff" opacity=".7"/>
+            <circle cx="12" cy="35" r="5" fill="#10261F"/><circle cx="12" cy="35" r="2" fill="#fff"/>
+            <circle cx="36" cy="35" r="5" fill="#10261F"/><circle cx="36" cy="35" r="2" fill="#fff"/>
+        </symbol>
+        <symbol id="d-shield" viewBox="0 0 48 48">
+            <path d="M24 3 7 9v12c0 11 7.3 18.6 17 22 9.7-3.4 17-11 17-22V9z" fill="url(#gd-green)"/>
+            <path d="M24 3v40c-9.7-3.4-17-11-17-22V9z" fill="#fff" opacity=".14"/>
+            <path d="M16 23l6 6 11-12" stroke="#fff" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+        </symbol>
+        <symbol id="d-card" viewBox="0 0 48 48">
+            <rect x="4" y="12" width="36" height="24" rx="5" fill="url(#gd-violet)" transform="rotate(-8 22 24)"/>
+            <rect x="8" y="14" width="36" height="24" rx="5" fill="url(#gd-sky)"/>
+            <rect x="8" y="19" width="36" height="5" fill="#10261F" opacity=".35"/>
+            <rect x="13" y="28" width="8" height="6" rx="1.5" fill="url(#gd-sun)"/>
+            <rect x="10" y="15.5" width="24" height="2.5" rx="1.25" fill="url(#gd-shine)"/>
+        </symbol>
+        <symbol id="d-chat" viewBox="0 0 48 48">
+            <path d="M6 12a6 6 0 0 1 6-6h24a6 6 0 0 1 6 6v14a6 6 0 0 1-6 6H18l-9 8v-8.5A6 6 0 0 1 6 26z" fill="url(#gd-sun)"/>
+            <path d="M10 10h26" stroke="url(#gd-shine)" stroke-width="3" stroke-linecap="round"/>
+            <circle cx="16" cy="19" r="2.5" fill="#fff"/><circle cx="24" cy="19" r="2.5" fill="#fff"/><circle cx="32" cy="19" r="2.5" fill="#fff"/>
+        </symbol>
+    </svg>
     <!-- Íconos (un solo set de trazo, estilo Lucide) -->
     <svg width="0" height="0" style="position:absolute" aria-hidden="true">
         <symbol id="i-cross" viewBox="0 0 24 24"><path d="M9 3h6v6h6v6h-6v6H9v-6H3V9h6z"/></symbol>
@@ -1116,13 +1263,13 @@
         </div>
         <nav class="header-cats" aria-label="Categorías">
             <ul>
-                <li><button class="cat-chip cat-top" type="button" data-cat="todos" aria-pressed="true"><span class="cat-ico"><svg class="icon" aria-hidden="true"><use href="#i-grid"/></svg></span>Todo</button></li>
-                <li><button class="cat-chip cat-top is-sale" type="button" data-cat="ofertas" aria-pressed="false"><span class="cat-ico"><svg class="icon" aria-hidden="true"><use href="#i-tag"/></svg></span>Ofertas</button></li>
-                <li><button class="cat-chip cat-top" type="button" data-cat="dermocosmetica" aria-pressed="false"><span class="cat-ico"><svg class="icon" aria-hidden="true"><use href="#i-sparkle"/></svg></span>Dermocosmética</button></li>
-                <li><button class="cat-chip cat-top" type="button" data-cat="cuidado" aria-pressed="false"><span class="cat-ico"><svg class="icon" aria-hidden="true"><use href="#i-drop"/></svg></span>Cuidado personal</button></li>
-                <li><button class="cat-chip cat-top" type="button" data-cat="farmacia" aria-pressed="false"><span class="cat-ico"><svg class="icon" aria-hidden="true"><use href="#i-pill"/></svg></span>Farmacia</button></li>
-                <li><button class="cat-chip cat-top" type="button" data-cat="bebes" aria-pressed="false"><span class="cat-ico"><svg class="icon" aria-hidden="true"><use href="#i-baby"/></svg></span>Bebés</button></li>
-                <li><button class="cat-chip cat-top" type="button" data-cat="nutricion" aria-pressed="false"><span class="cat-ico"><svg class="icon" aria-hidden="true"><use href="#i-leaf"/></svg></span>Nutrición</button></li>
+                <li><button class="cat-chip cat-top" type="button" data-cat="todos" aria-pressed="true"><span class="cat-ico ico-tile"><svg class="duo" aria-hidden="true"><use href="#d-grid"/></svg></span>Todo</button></li>
+                <li><button class="cat-chip cat-top is-sale" type="button" data-cat="ofertas" aria-pressed="false"><span class="cat-ico ico-tile"><svg class="duo" aria-hidden="true"><use href="#d-tag"/></svg></span>Ofertas</button></li>
+                <li><button class="cat-chip cat-top" type="button" data-cat="dermocosmetica" aria-pressed="false"><span class="cat-ico ico-tile"><svg class="duo" aria-hidden="true"><use href="#d-sparkle"/></svg></span>Dermocosmética</button></li>
+                <li><button class="cat-chip cat-top" type="button" data-cat="cuidado" aria-pressed="false"><span class="cat-ico ico-tile"><svg class="duo" aria-hidden="true"><use href="#d-drop"/></svg></span>Cuidado personal</button></li>
+                <li><button class="cat-chip cat-top" type="button" data-cat="farmacia" aria-pressed="false"><span class="cat-ico ico-tile"><svg class="duo" aria-hidden="true"><use href="#d-pill"/></svg></span>Farmacia</button></li>
+                <li><button class="cat-chip cat-top" type="button" data-cat="bebes" aria-pressed="false"><span class="cat-ico ico-tile"><svg class="duo" aria-hidden="true"><use href="#d-baby"/></svg></span>Bebés</button></li>
+                <li><button class="cat-chip cat-top" type="button" data-cat="nutricion" aria-pressed="false"><span class="cat-ico ico-tile"><svg class="duo" aria-hidden="true"><use href="#d-leaf"/></svg></span>Nutrición</button></li>
             </ul>
         </nav>
     </header>
@@ -1131,6 +1278,7 @@
 
         <!-- HERO: una sola oferta, verificable en el catálogo -->
         <section class="hero" aria-labelledby="hero-title">
+            <span class="hero-rings" aria-hidden="true"></span>
             <div class="hero-content">
                 <p class="hero-eyebrow"><svg class="icon" aria-hidden="true" style="width:14px;height:14px"><use href="#i-sparkle"/></svg> Dermocosmética</p>
                 <h1 class="hero-title" id="hero-title">Hasta 30 % off en <em>cuidado facial</em></h1>
@@ -1187,7 +1335,7 @@
                     <p class="promo-note">Recibilo en 2 horas en CABA y GBA. Y pagá en 3 cuotas sin interés.</p>
                     <button class="promo-cta" type="button" data-go-cat="todos">Empezar a comprar <svg class="icon" aria-hidden="true"><use href="#i-arrow"/></svg></button>
                 </div>
-                <span class="promo-ico" aria-hidden="true"><svg class="icon"><use href="#i-truck"/></svg></span>
+                <span class="promo-ico" aria-hidden="true"><svg class="duo"><use href="#d-truck"/></svg></span>
             </article>
             <article class="promo promo-face">
                 <div class="promo-text">
@@ -1205,7 +1353,7 @@
                     <p class="promo-prices"><span class="promo-from">Supradyn x30</span><span class="promo-new">$ 17.950</span></p>
                     <button class="promo-cta" type="button" data-go-cat="nutricion">Ver vitaminas <svg class="icon" aria-hidden="true"><use href="#i-arrow"/></svg></button>
                 </div>
-                <span class="promo-ico" aria-hidden="true"><svg class="icon"><use href="#i-leaf"/></svg></span>
+                <span class="promo-ico" aria-hidden="true"><svg class="duo"><use href="#d-pill"/></svg></span>
             </article>
             <article class="promo promo-hyg">
                 <div class="promo-text">
@@ -1230,19 +1378,19 @@
         <!-- TRUST STRIP -->
         <ul class="trust-strip" aria-label="Beneficios">
             <li class="trust-item">
-                <span class="trust-ico"><svg class="icon" aria-hidden="true"><use href="#i-truck"/></svg></span>
+                <span class="trust-ico ico-tile"><svg class="duo" aria-hidden="true"><use href="#d-truck"/></svg></span>
                 <div><strong>Envío en 2 horas</strong><span>Gratis desde $15.000</span></div>
             </li>
             <li class="trust-item">
-                <span class="trust-ico"><svg class="icon" aria-hidden="true"><use href="#i-shield"/></svg></span>
+                <span class="trust-ico ico-tile"><svg class="duo" aria-hidden="true"><use href="#d-shield"/></svg></span>
                 <div><strong>Farmacia habilitada</strong><span>Productos originales</span></div>
             </li>
             <li class="trust-item">
-                <span class="trust-ico"><svg class="icon" aria-hidden="true"><use href="#i-card"/></svg></span>
+                <span class="trust-ico ico-tile"><svg class="duo" aria-hidden="true"><use href="#d-card"/></svg></span>
                 <div><strong>3 cuotas sin interés</strong><span>Con todas las tarjetas</span></div>
             </li>
             <li class="trust-item">
-                <span class="trust-ico"><svg class="icon" aria-hidden="true"><use href="#i-chat"/></svg></span>
+                <span class="trust-ico ico-tile"><svg class="duo" aria-hidden="true"><use href="#d-chat"/></svg></span>
                 <div><strong>Farmacéutico online</strong><span>Consultas de 8 a 22 h</span></div>
             </li>
         </ul>
