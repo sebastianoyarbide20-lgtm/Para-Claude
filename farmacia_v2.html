@@ -431,6 +431,7 @@
         .promo-vit .promo-new { color: var(--sun); }
         .promo-vit .promo-cta { background: var(--sun); color: var(--forest-900); }
         .promo-hyg { background: linear-gradient(135deg, var(--forest-50) 0%, var(--forest-100) 100%); color: var(--forest-900); }
+        .promo-derma { background: linear-gradient(135deg, #F4EEFF 0%, #DED0FF 100%); color: var(--forest-900); }
         .promo-ico {
             width: 88px; height: 88px; border-radius: 26px; flex-shrink: 0;
             display: grid; place-items: center;
@@ -1397,11 +1398,34 @@
             background: var(--surface) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%230B5D45' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E") no-repeat right 12px center / 16px;
         }
         .sort-field select:focus-visible { outline: 2.5px solid var(--forest-500); outline-offset: 2px; }
+        /* En el celular el texto "Ordenar por" queda solo para lectores de pantalla */
+        @media (max-width: 767px) {
+            .sort-field > span { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+        }
         .text-btn, .tools-reset {
             min-height: 44px; padding: 0 2px;
             font-size: var(--t-14); font-weight: 700; color: var(--forest-700);
             text-decoration: underline; text-underline-offset: 3px;
         }
+
+        /* ── MOSTRAR MÁS ── */
+        .product-grid:has(+ .catalog-more:not([hidden])) { margin-bottom: 20px; }
+        .catalog-more { display: grid; justify-items: center; gap: 10px; margin-bottom: 40px; text-align: center; }
+        .catalog-more-info { font-size: var(--t-14); color: var(--ink-2); font-variant-numeric: tabular-nums; }
+        .catalog-more-bar { width: min(240px, 70%); height: 4px; border-radius: 99px; background: var(--line); overflow: hidden; }
+        .catalog-more-bar span { display: block; height: 100%; border-radius: inherit; background: var(--forest-700); transition: width .4s var(--ease-out); }
+        .catalog-more-btn {
+            min-height: 48px; padding: 0 26px; border-radius: var(--r-pill);
+            border: 1.5px solid var(--forest-800); color: var(--forest-800); background: var(--surface);
+            font-weight: 700; transition: background .2s ease, color .2s ease;
+        }
+        .catalog-more-btn:hover { background: var(--forest-800); color: #fff; }
+
+        /* ── MARCA EN LA TARJETA ── */
+        .card-rating { min-width: 0; }
+        .card-brand { min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font-weight: 600; color: var(--ink-2); }
+        .card-stars { display: inline-flex; align-items: center; gap: 4px; flex-shrink: 0; }
+        .card-brand + .card-stars::before { content: '·'; margin-right: 2px; }
 
         /* ── VISTOS RECIENTEMENTE ── */
         .recent { margin-bottom: 36px; }
@@ -1917,6 +1941,15 @@
                 </div>
                 <img class="promo-img" src="https://farmaciasdelpueblo.vtexassets.com/arquivos/ids/163629-800-800" alt="" loading="lazy" referrerpolicy="no-referrer" width="160" height="160">
             </article>
+            <article class="promo promo-derma">
+                <div class="promo-text">
+                    <p class="promo-kicker" id="promo-derma-kicker">Semana dermo</p>
+                    <h2 class="promo-title">Ofertas en CeraVe, La Roche-Posay y Vichy</h2>
+                    <p class="promo-prices"><span class="promo-from">desde</span><span class="promo-new" id="promo-derma-price"></span></p>
+                    <button class="promo-cta" type="button" data-go-cat="dermocosmetica">Ver ofertas <svg class="icon" aria-hidden="true"><use href="#i-arrow"/></svg></button>
+                </div>
+                <img class="promo-img" id="promo-derma-img" src="" alt="" loading="lazy" referrerpolicy="no-referrer" width="160" height="160">
+            </article>
             <article class="promo promo-vit">
                 <div class="promo-text">
                     <p class="promo-kicker">Nutrición y vitaminas</p>
@@ -2065,6 +2098,11 @@
             </div>
 
             <ul class="product-grid" id="products-container"></ul>
+            <div class="catalog-more" id="catalog-more" hidden>
+                <p class="catalog-more-info" id="catalog-more-info"></p>
+                <div class="catalog-more-bar" aria-hidden="true"><span id="catalog-more-bar"></span></div>
+                <button class="catalog-more-btn" type="button" id="catalog-more-btn">Mostrar más productos</button>
+            </div>
         </section>
 
         <!-- VISTOS RECIENTEMENTE -->
@@ -2322,6 +2360,7 @@
 
     <button class="to-top" type="button" id="to-top" aria-label="Volver arriba"><svg class="icon" aria-hidden="true"><use href="#i-up"/></svg></button>
 
+    <script src="productos-reales.js"></script>
     <script src="fg-shop.js"></script>
     <script>
         // ── CONFIGURACIÓN ──
@@ -2341,6 +2380,8 @@
             { id: 9, name: 'TRESemmé acondicionador Liso Efecto Botox (250 ml)', brand: 'TRESemmé', listPrice: 7070, price: 7070, badge: 'Nuevo', badgeType: 'new', cat: 'Cuidado capilar', categories: ['cuidado'], rating: 4.4, reviews: 156, sale: 'Venta libre', desc: 'Acondicionador de uso diario para controlar el frizz.', img: 'https://farmacityar.vtexassets.com/arquivos/ids/259996/230625_acondicionador-tresemme-liso-efecto-botox-x-250-ml_imagen--1.jpg' },
             { id: 10, name: 'Supradyn comprimidos (30 u.)', brand: 'Supradyn', listPrice: 17950, price: 17950, cat: 'Nutrición y vitaminas', categories: ['nutricion', 'farmacia'], rating: 4.6, reviews: 98, sale: 'Venta libre (suplemento dietario)', desc: 'Suplemento multivitamínico con minerales.', img: 'https://www.supradyn.com.ar/sites/g/files/vrxlpx49556/files/2026-01/080-1277_Mockup-Supradyn-COMPx30%20%281%29%20%281%29.png' },
         ];
+        // Productos reales de farmacia y cosmética (productos-reales.js): precios e imágenes de Farmacity
+        PRODUCTS.push(...(window.FG_REAL_PRODUCTS || []));
         const byId = new Map(PRODUCTS.map(p => [p.id, p]));
 
         // ── FARMACIAS (prototipo) ──
@@ -2381,7 +2422,7 @@
         }
         // Cada producto del catálogo se despacha desde una farmacia de la red
         const PRODUCT_PHARMACY = { 1: 'parque', 2: 'centro', 3: 'plaza', 4: 'centro', 5: 'norte', 6: 'parque', 7: 'plaza', 8: 'centro', 9: 'norte', 10: 'plaza' };
-        PRODUCTS.forEach(p => { p.pharmacy = PRODUCT_PHARMACY[p.id]; });
+        PRODUCTS.forEach(p => { p.pharmacy = p.pharmacy || PRODUCT_PHARMACY[p.id]; });
 
         // Packshot ilustrado (SVG) con los colores de cada farmacia, para la línea propia del prototipo
         function packshot(kind, f, label) {
@@ -2490,7 +2531,7 @@
                 <div class="card-body">
                     <div class="card-pharm" data-pharm-for="${p.id}">${pharmHTML(p)}</div>
                     <h3 class="card-title"><a class="card-link" href="#producto-${p.id}" data-open="${p.id}">${esc(p.name)}</a></h3>
-                    <p class="card-rating"><svg class="icon" aria-hidden="true"><use href="#i-star"/></svg><b>${p.rating.toFixed(1).replace('.', ',')}</b><span>(${p.reviews})</span><span class="sr-only"> reseñas</span></p>
+                    <p class="card-rating"><span class="card-brand">${esc(p.brand)}</span>${p.rating ? `<span class="card-stars"><svg class="icon" aria-hidden="true"><use href="#i-star"/></svg><b>${p.rating.toFixed(1).replace('.', ',')}</b><span>(${p.reviews})</span><span class="sr-only"> reseñas</span></span>` : ''}</p>
                     <div class="card-price-block">
                         <p class="card-price-old">${d > 0 ? `<span class="sr-only">Antes </span>${fmt(p.listPrice)}` : ''}</p>
                         <p class="card-price-row"><span class="card-price${d > 0 ? ' on-sale' : ''}">${fmt(p.price)}</span>${d > 0 ? `<span class="card-off">−${d} %</span>` : ''}</p>
@@ -2500,6 +2541,17 @@
                 </div>
             </article>`;
         }
+
+        // ── BANNER DERMO: precios calculados con los productos reales ──
+        (() => {
+            const dermo = PRODUCTS.filter(p => ['CeraVe', 'La Roche-Posay', 'Vichy'].includes(p.brand));
+            if (!dermo.length) { document.querySelector('.promo-derma').remove(); return; }
+            const cheapest = dermo.reduce((a, b) => (a.price <= b.price ? a : b));
+            const maxOff = Math.max(...dermo.map(p => Math.round((1 - p.price / p.listPrice) * 100)));
+            document.getElementById('promo-derma-kicker').textContent = maxOff > 0 ? `Semana dermo · hasta ${maxOff} % off` : 'Semana dermo';
+            document.getElementById('promo-derma-price').textContent = money.format(cheapest.price);
+            document.getElementById('promo-derma-img').src = cheapest.img;
+        })();
 
         // ── RENDER ──
         const grid = document.getElementById('products-container');
@@ -2642,15 +2694,26 @@
                 && (!toggles.favs || FGShop.fav.has(p.id));
         }
 
+        // De a una página por vez; cualquier cambio de filtro, búsqueda u orden vuelve a la primera
+        const pageSize = () => matchMedia('(min-width: 1024px)').matches ? 15 : 12;
+        const moreBox = document.getElementById('catalog-more');
+        let shown = pageSize(), lastFilter = '';
         function filterProducts() {
+            const signature = JSON.stringify([activeCat, query, toggles, sortSelect.value]);
+            if (signature !== lastFilter) { shown = pageSize(); lastFilter = signature; }
             let count = 0;
             grid.querySelectorAll('li[data-id]').forEach(li => {
                 const show = matches(byId.get(Number(li.dataset.id)));
-                li.hidden = !show;
                 if (show) count++;
+                li.hidden = !show || count > shown;
             });
             noResults.hidden = count > 0;
             itemCount.textContent = `${count} ${count === 1 ? 'producto' : 'productos'}`;
+            const visible = Math.min(count, shown);
+            moreBox.hidden = count <= shown;
+            document.getElementById('catalog-more-info').textContent = `Estás viendo ${visible} de ${count} productos`;
+            document.getElementById('catalog-more-bar').style.width = `${count ? Math.round(visible / count * 100) : 0}%`;
+            document.getElementById('catalog-more-btn').textContent = `Mostrar ${Math.min(pageSize(), count - visible)} productos más`;
             toolsReset.hidden = !(Object.values(toggles).some(Boolean) || activeCat !== 'todos' || query || sortSelect.value !== 'relevancia');
         }
 
@@ -2658,7 +2721,7 @@
             'precio-asc': (a, b) => a.price - b.price,
             'precio-desc': (a, b) => b.price - a.price,
             'descuento': (a, b) => discountOf(b) - discountOf(a) || a.price - b.price,
-            'valoracion': (a, b) => b.rating - a.rating || b.reviews - a.reviews,
+            'valoracion': (a, b) => (b.rating || 0) - (a.rating || 0) || (b.reviews || 0) - (a.reviews || 0),
         };
         function sortProducts() {
             const items = new Map([...grid.querySelectorAll('li[data-id]')].map(li => [Number(li.dataset.id), li]));
@@ -2667,6 +2730,14 @@
             order.forEach(p => grid.insertBefore(items.get(p.id), noResults));
         }
         sortSelect.addEventListener('change', () => { sortProducts(); filterProducts(); });
+        document.getElementById('catalog-more-btn').addEventListener('click', () => {
+            const before = shown;
+            shown += pageSize();
+            filterProducts();
+            // El foco pasa al primer producto nuevo para seguir navegando con teclado
+            const next = [...grid.querySelectorAll('li[data-id]:not([hidden])')][before];
+            if (next) next.querySelector('.card-link').focus({ preventScroll: true });
+        });
 
         toggleBtns.forEach(b => b.addEventListener('click', () => {
             const k = b.dataset.toggle;
@@ -2712,7 +2783,7 @@
         // ── BÚSQUEDA: filtra el catálogo y sugiere productos, categorías y farmacias ──
         const suggestBox = document.getElementById('search-suggest');
         const CATEGORIES = { dermocosmetica: 'Dermocosmética', cuidado: 'Cuidado personal', farmacia: 'Farmacia y botiquín', bebes: 'Bebés', nutricion: 'Nutrición', ofertas: 'Ofertas' };
-        const POPULAR = ['Shampoo', 'Sérum', 'Protector solar', 'Vitaminas', 'Bebés'];
+        const POPULAR = ['Protector solar', 'CeraVe', 'Sérum', 'Repelente', 'Magnesio'];
         const recentSearches = {
             get() { try { return JSON.parse(localStorage.getItem('fg-searches')) || []; } catch { return []; } },
             add(q) { const v = [q, ...this.get().filter(x => normalize(x) !== normalize(q))].slice(0, 5); try { localStorage.setItem('fg-searches', JSON.stringify(v)); } catch {} },
