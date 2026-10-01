@@ -14,6 +14,8 @@
         :root {
             --cobalt: #1F4FD8; --deep: #1739A8; --night: #0B1B3F; --orange: #FF7A2E; --orange-hi: #FFB27A; --ice: #EEF3FF; --sale: #C2410C;
             --display: 'Barlow Condensed', 'Arial Narrow', sans-serif; --sans: 'Inter', system-ui, sans-serif;
+            /* Carrito y checkout (fg-shop.js) en cobalto Norte */
+            --fgs-accent: #1F4FD8; --fgs-accent-2: #1739A8; --fgs-sale: #C2410C; --fgs-display: var(--display);
         }
         * { box-sizing: border-box; margin: 0; padding: 0; }
         [hidden] { display: none !important; }
@@ -31,7 +33,7 @@
         .bar { display: flex; align-items: center; justify-content: space-between; gap: 12px; min-height: 64px; }
         .brand { display: flex; align-items: center; gap: 10px; font-size: 22px; text-decoration: none; }
         .links { display: flex; gap: 6px; }
-        .links a, .links span { display: inline-flex; align-items: center; gap: 6px; min-height: 44px; padding: 0 12px; font-weight: 700; font-size: 14px; text-decoration: none; }
+        .links a, .links button { display: inline-flex; align-items: center; gap: 6px; min-height: 44px; padding: 0 12px; font-weight: 700; font-size: 14px; text-decoration: none; }
         .links b { background: var(--orange); color: var(--night); min-width: 22px; height: 22px; border-radius: 4px; display: grid; place-items: center; font-size: 12px; padding: 0 6px; }
         .hero-grid { display: grid; gap: 20px; align-items: center; padding-top: 28px; }
         .tag { display: inline-block; background: var(--orange); color: var(--night); padding: 4px 10px; font-size: 13px; transform: skewX(-10deg); }
@@ -84,7 +86,12 @@
         .plan li::before { content: '→ '; color: var(--cobalt); }
 
         footer { background: var(--night); color: rgba(255,255,255,.8); padding: 28px 0; font-size: 14px; }
-        footer .wrap { display: flex; flex-wrap: wrap; gap: 8px 24px; justify-content: space-between; }
+        footer .wrap { display: flex; flex-wrap: wrap; align-items: center; gap: 4px 24px; justify-content: space-between; }
+        footer a, footer button { min-height: 44px; display: inline-flex; align-items: center; color: #fff; font-weight: 700; text-underline-offset: 3px; text-decoration: underline; }
+        .stats .now { display: inline-flex; align-items: center; gap: 6px; }
+        .stats .now::before { content: ''; width: 8px; height: 8px; border-radius: 50%; background: #9AA3B8; }
+        .stats .now.on { color: #17733F; }
+        .stats .now.on::before { background: #22A55A; box-shadow: 0 0 0 3px rgba(34,165,90,.2); }
 
         @media (min-width: 820px) {
             .hero-grid { grid-template-columns: 1.3fr 1fr; }
@@ -100,7 +107,7 @@
             <div class="bar">
                 <a class="brand up" href="#" id="brand">Belgrano Norte</a>
                 <nav class="links" aria-label="Accesos">
-                    <span aria-live="polite">Carrito <b data-cart-count hidden>0</b></span>
+                    <button type="button" data-cart-open>Carrito <b data-cart-count hidden>0</b></button>
                     <a href="farmacia_v2.html#farmacias">← FarmaGlass</a>
                 </nav>
             </div>
@@ -117,7 +124,7 @@
 
     <main class="wrap">
         <section class="stats up" aria-label="La farmacia en números">
-            <div><b>7–23 h</b><span>Abierta todos los días</span></div>
+            <div><b>7–23 h</b><span id="st-now" class="now">Todos los días</span></div>
             <div><b>12 min</b><span>Para retirar en el local</span></div>
             <div><b>★ 4,6</b><span>Valoración de clientes</span></div>
             <div><b>6</b><span>Productos Norte Active</span></div>
@@ -146,6 +153,7 @@
 
     <footer><div class="wrap" id="foot"></div></footer>
 
+    <script src="fg-shop.js"></script>
     <script src="farmacias-red.js"></script>
     <script>
         const s = FG.store('norte');
@@ -164,7 +172,12 @@
                 </div>
             </li>`;
         }).join('');
-        document.getElementById('foot').innerHTML = `<span>${s.street}</span><span>${s.hours}</span><span>Tel. ${s.phone}</span><span>Parte de la red FarmaGlass · Prototipo</span>`;
+        const st = FG.status('norte');
+        const now = document.getElementById('st-now');
+        now.textContent = st.text; now.classList.toggle('on', st.open);
+        document.getElementById('foot').innerHTML = `<a href="${FG.mapsUrl(s)}" target="_blank" rel="noopener">${FG.esc(s.street)} · Cómo llegar ↗</a>
+            <span>${s.hours}</span><a href="${FG.telUrl(s)}">Tel. ${s.phone}</a>
+            <button type="button" data-account-open="orders">Mis pedidos</button><span>Parte de la red FarmaGlass · Prototipo</span>`;
     </script>
 </body>
 </html>

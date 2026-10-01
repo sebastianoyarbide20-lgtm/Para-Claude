@@ -14,6 +14,8 @@
         :root {
             --sage: #4E6B3D; --deep: #3A5230; --terra: #B5532A; --peach: #F7C9A8; --leaf: #CFE3B8; --cream: #F8F1E4; --ink: #2E3326; --muted: #5C6352;
             --display: 'Fredoka', 'Nunito', sans-serif; --sans: 'Inter', system-ui, sans-serif;
+            /* Carrito y checkout (fg-shop.js) en salvia Parque */
+            --fgs-accent: #4E6B3D; --fgs-accent-2: #3A5230; --fgs-sale: #B5532A; --fgs-display: var(--display);
         }
         * { box-sizing: border-box; margin: 0; padding: 0; }
         [hidden] { display: none !important; }
@@ -83,6 +85,15 @@
         .visit dt { color: var(--muted); }
         .visit dd { font-weight: 600; }
         .map { border-radius: 24px; overflow: hidden; }
+        .visit dd a { color: var(--deep); text-underline-offset: 3px; }
+        .now { display: inline-flex; align-items: center; gap: 6px; color: var(--muted); }
+        .now::before { content: ''; width: 8px; height: 8px; border-radius: 50%; background: #A9A28F; }
+        .now.on { color: #2F6B2A; }
+        .now.on::before { background: #4CA03F; box-shadow: 0 0 0 3px rgba(76,160,63,.2); }
+        .visit-actions { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 16px; }
+        .visit-actions a { display: inline-flex; align-items: center; min-height: 44px; padding: 0 18px; border-radius: 999px; background: var(--sage); color: #fff; font-weight: 700; text-decoration: none; }
+        .visit-actions a + a { background: var(--leaf); color: var(--deep); }
+        .foot-link { min-height: 44px; font-weight: 700; color: var(--deep); text-decoration: underline; text-underline-offset: 3px; }
         footer { text-align: center; font-size: 13px; color: var(--muted); padding: 0 16px 40px; }
 
         @media (min-width: 800px) {
@@ -100,7 +111,7 @@
     <header class="top"><div class="wrap">
         <a class="brand" href="#" id="brand">Parque Caballito</a>
         <div style="display:flex;gap:8px">
-            <span class="soft" aria-live="polite">Carrito <b data-cart-count hidden>0</b></span>
+            <button class="soft" type="button" data-cart-open>Carrito <b data-cart-count hidden>0</b></button>
             <a class="soft" href="farmacia_v2.html#farmacias">← FarmaGlass</a>
         </div>
     </div></header>
@@ -143,6 +154,7 @@
             <div>
                 <h2 id="visit-title">Te esperamos frente al parque</h2>
                 <dl id="visit"></dl>
+                <div class="visit-actions" id="visit-actions"></div>
             </div>
             <div class="map" aria-hidden="true">
                 <svg viewBox="0 0 400 220" width="100%">
@@ -157,8 +169,9 @@
         </section>
     </main>
 
-    <footer>Farmacia Parque Caballito forma parte de la red FarmaGlass · Prototipo: datos ilustrativos</footer>
+    <footer>Farmacia Parque Caballito forma parte de la red FarmaGlass · <button class="foot-link" type="button" data-account-open="orders">Mis pedidos</button> · Prototipo: datos ilustrativos</footer>
 
+    <script src="fg-shop.js"></script>
     <script src="farmacias-red.js"></script>
     <script>
         const s = FG.store('parque');
@@ -191,7 +204,11 @@
             render(b.dataset.for);
         }));
         render('todos');
-        document.getElementById('visit').innerHTML = `<dt>Dirección</dt><dd>${s.street}</dd><dt>Horario</dt><dd>${s.hours}</dd><dt>Teléfono</dt><dd>${s.phone}</dd><dt>Valoración</dt><dd>★ ${String(s.rating).replace('.', ',')}</dd>`;
+        const st = FG.status('parque');
+        document.getElementById('visit').innerHTML = `<dt>Dirección</dt><dd>${s.street}</dd><dt>Horario</dt><dd>${s.hours}</dd>
+            <dt>Ahora</dt><dd><span class="now${st.open ? ' on' : ''}">${st.text}</span></dd>
+            <dt>Teléfono</dt><dd><a href="${FG.telUrl(s)}">${s.phone}</a></dd><dt>Valoración</dt><dd>★ ${String(s.rating).replace('.', ',')}</dd>`;
+        document.getElementById('visit-actions').innerHTML = `<a href="${FG.mapsUrl(s)}" target="_blank" rel="noopener">Cómo llegar ↗</a><a href="${FG.telUrl(s)}">Llamar</a>`;
     </script>
 </body>
 </html>

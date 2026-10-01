@@ -14,6 +14,8 @@
         :root {
             --plum: #2B1240; --night: #1C0A2B; --magenta: #C2185B; --magenta-hi: #FF5FA2; --yellow: #FFD23F; --lilac: #B79CFF;
             --pink: #FFF0F6; --display: 'Unbounded', 'Arial Black', sans-serif; --sans: 'Inter', system-ui, sans-serif;
+            /* Carrito y checkout (fg-shop.js) en magenta Plaza */
+            --fgs-accent: #C2185B; --fgs-accent-2: #8E1145; --fgs-sale: #C2185B; --fgs-display: var(--display);
         }
         * { box-sizing: border-box; margin: 0; padding: 0; }
         [hidden] { display: none !important; }
@@ -90,7 +92,11 @@
         .steps span { color: rgba(255,255,255,.78); font-size: 14px; }
 
         .info { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 40px; }
-        .info span { padding: 10px 16px; border-radius: 999px; background: rgba(255,255,255,.08); font-size: 14px; }
+        .info span, .info a { display: inline-flex; align-items: center; gap: 6px; min-height: 44px; padding: 0 16px; border-radius: 999px; background: rgba(255,255,255,.08); font-size: 14px; text-decoration: none; }
+        .info a { background: rgba(255,255,255,.14); font-weight: 700; }
+        .info a:hover { background: rgba(255,255,255,.22); }
+        .info .now::before { content: ''; width: 8px; height: 8px; border-radius: 50%; background: #3BE08C; box-shadow: 0 0 0 3px rgba(59,224,140,.25); }
+        .foot-link { min-height: 44px; font-weight: 700; color: #fff; text-decoration: underline; text-underline-offset: 3px; }
         footer { text-align: center; font-size: 13px; color: rgba(255,255,255,.6); padding: 24px 16px 40px; }
 
         @media (min-width: 820px) {
@@ -107,7 +113,7 @@
     <nav class="nav" aria-label="Farmacia Plaza Palermo"><div class="wrap">
         <a class="brand" href="#" id="brand">Plaza Palermo</a>
         <div style="display:flex;gap:8px">
-            <span class="pill" aria-live="polite">Carrito <b data-cart-count hidden>0</b></span>
+            <button class="pill" type="button" data-cart-open>Carrito <b data-cart-count hidden>0</b></button>
             <a class="pill" href="farmacia_v2.html#farmacias">← FarmaGlass</a>
         </div>
     </div></nav>
@@ -145,8 +151,9 @@
         <div class="info" id="info"></div>
     </main>
 
-    <footer>Farmacia Plaza Palermo forma parte de la red FarmaGlass · Prototipo: datos ilustrativos</footer>
+    <footer>Farmacia Plaza Palermo forma parte de la red FarmaGlass · <button class="foot-link" type="button" data-account-open="orders">Mis pedidos</button> · Prototipo: datos ilustrativos</footer>
 
+    <script src="fg-shop.js"></script>
     <script src="farmacias-red.js"></script>
     <script>
         const s = FG.store('plaza');
@@ -165,7 +172,10 @@
                 <button class="add" type="button" data-add="${p.id}" data-name="${FG.esc(p.name)}" aria-label="Agregar ${FG.esc(p.name)} al carrito">+</button></div>
             </li>`;
         }).join('');
-        document.getElementById('info').innerHTML = [s.street, s.hours, 'Tel. ' + s.phone, '★ ' + String(s.rating).replace('.', ',')].map(t => `<span>${t}</span>`).join('');
+        document.getElementById('info').innerHTML = `<span class="now">${FG.status('plaza').text}</span>
+            <a href="${FG.mapsUrl(s)}" target="_blank" rel="noopener">${FG.esc(s.street)} · Cómo llegar ↗</a>
+            <a href="${FG.telUrl(s)}">Llamar al ${s.phone}</a>
+            <span>★ ${String(s.rating).replace('.', ',')}</span>`;
     </script>
 </body>
 </html>
