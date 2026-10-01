@@ -744,6 +744,7 @@
         .store-line-head h3 { font-family: var(--st-font); font-weight: var(--st-weight); text-transform: var(--st-case); font-size: calc(22px * var(--st-size)); }
         .store-line-head p { font-size: var(--t-14); color: color-mix(in srgb, var(--st-ink) 75%, transparent); }
         .store-grid { margin-bottom: 0; }
+        .store-line-head a { font-size: var(--t-14); font-weight: 700; color: var(--st-ink); text-underline-offset: 3px; }
 
         /* Tarjetas dentro de cada farmacia: mismos componentes, colores de la marca */
         .store-panel .product-card { border-color: color-mix(in srgb, var(--st-primary) 22%, transparent); }
@@ -3070,6 +3071,8 @@
             const d = discountOf(feat);
             const km = distanceKm(f);
             const line = PRODUCTS.filter(p => p.storeOnly && p.pharmacy === f.id);
+            // Productos reales (productos-reales.js) que despacha esta farmacia, primero los de mayor descuento
+            const brands = PRODUCTS.filter(p => p.fcId && p.pharmacy === f.id).sort((a, b) => discountOf(b) - discountOf(a));
             const alsoCount = CATALOG.filter(p => p.pharmacy === f.id).length;
             storePanel.dataset.theme = f.id;
             storePanel.setAttribute('aria-labelledby', 'tab-' + f.id);
@@ -3098,6 +3101,11 @@
                         <li><svg class="icon" aria-hidden="true"><use href="#i-truck"/></svg>${km != null ? `${kmText(km)} · llega en ~${Math.round(25 + km * 12)} min` : 'Ingresá tu dirección para ver el tiempo de entrega'}</li>
                     </ul>
                 </div>
+                ${brands.length ? `<div class="store-line-head">
+                    <h3>Marcas en ${esc(f.name)}</h3>
+                    <a href="farmacia-${f.id}.html#marcas">Ver los ${brands.length} productos en la farmacia →</a>
+                </div>
+                <ul class="product-grid store-grid">${brands.slice(0, 4).map(p => `<li>${cardHTML(p)}</li>`).join('')}</ul>` : ''}
                 <div class="store-line-head" id="store-line">
                     <h3>Línea ${esc(f.line)}</h3>
                     <p>${line.length} productos exclusivos · también despacha ${alsoCount} productos del catálogo</p>
