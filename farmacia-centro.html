@@ -78,6 +78,25 @@
         .add { min-height: 36px; min-width: 44px; padding: 0 12px; border: 1px solid var(--navy); border-radius: 4px; font-size: 13px; font-weight: 700; color: var(--navy); }
         .add:hover { background: var(--navy); color: #fff; }
 
+        .sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+        /* Vitrina: marcas del catálogo, con la forma de arco de la botica */
+        .shelf { margin-top: 56px; }
+        .shelf-grid { list-style: none; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; }
+        .jar { display: flex; flex-direction: column; align-items: center; gap: 4px; text-align: center; padding: 10px 10px 14px; background: var(--paper); border: 1px solid var(--line); border-radius: 999px 999px 14px 14px; }
+        .jar-art { position: relative; width: 100%; aspect-ratio: 1; display: grid; place-items: center; margin-bottom: 8px; border-radius: 999px 999px 10px 10px; background: linear-gradient(180deg, #fff, #F2E9D2); }
+        .jar-art img { width: 72%; height: 72%; object-fit: contain; mix-blend-mode: multiply; }
+        .jar-off { position: absolute; top: 14%; right: 4px; background: var(--sale); color: #fff; font-size: 12px; font-weight: 700; padding: 2px 8px; border-radius: 4px; }
+        .jar-brand { font-size: 12px; letter-spacing: .14em; text-transform: uppercase; color: var(--brass-text); font-weight: 700; }
+        .jar-name { font-family: var(--serif); font-weight: 400; font-size: 1.15rem; line-height: 1.15; color: var(--navy); }
+        .jar-size { font-size: 13px; color: var(--muted); }
+        .jar-price { display: flex; align-items: baseline; justify-content: center; flex-wrap: wrap; gap: 2px 8px; margin: 6px 0 8px; margin-top: auto; padding-top: 6px; }
+        .jar-price s { font-size: 12px; color: var(--muted); }
+        .jar-price b { font-family: var(--serif); font-weight: 400; font-size: 1.35rem; color: var(--navy); }
+        .jar-price b.sale { color: var(--sale); }
+        .jar .add { min-height: 44px; width: 100%; }
+        .shelf-note { text-align: center; color: var(--muted); font-size: 14px; margin-top: 18px; }
+        .shelf-note a { color: var(--navy); font-weight: 700; text-underline-offset: 3px; }
+
         /* Historia */
         .history { display: grid; gap: 16px; margin: 56px 0; }
         .year { padding: 22px; border-top: 3px solid var(--brass); background: var(--paper); border-radius: 0 0 12px 12px; }
@@ -106,6 +125,7 @@
         @media (min-width: 760px) {
             .feature { grid-template-columns: 1fr 1.1fr; }
             .pricelist { grid-template-columns: 1fr 1fr; }
+            .shelf-grid { grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 18px; }
             .history { grid-template-columns: repeat(3, 1fr); }
             .promo { grid-template-columns: 1fr auto; padding: 40px 48px; }
             .visit { grid-template-columns: repeat(3, 1fr); }
@@ -145,6 +165,13 @@
             <ul class="pricelist" id="pricelist"></ul>
         </section>
 
+        <section class="shelf" id="vitrina" aria-labelledby="vitrina-title">
+            <h2 class="section-title" id="vitrina-title">En nuestra vitrina</h2>
+            <p class="section-sub">Dermocosmética, cuidado diario y botiquín de las marcas que recomendamos</p>
+            <ul class="shelf-grid" id="shelf"></ul>
+            <p class="shelf-note">Precios del catálogo de FarmaGlass · <a href="farmacia_v2.html#catalogo">Ver todo el catálogo</a></p>
+        </section>
+
         <section class="history" aria-label="Nuestra historia">
             <div class="year"><b>1962</b><p>Don Ernesto abre la botica en la esquina de Callao, con un mostrador de roble que todavía usamos.</p></div>
             <div class="year"><b>1988</b><p>Sumamos el laboratorio de fórmulas propias: nace la línea Botica del Centro.</p></div>
@@ -168,6 +195,7 @@
 
     <footer>Farmacia del Centro forma parte de la red FarmaGlass · <button class="foot-link" type="button" data-account-open="orders">Mis pedidos</button> · Prototipo: datos ilustrativos</footer>
 
+    <script src="productos-reales.js"></script>
     <script src="fg-shop.js"></script>
     <script src="farmacias-red.js"></script>
     <script>
@@ -185,6 +213,19 @@
                     <button class="add" type="button" data-add="${p.id}" data-name="${FG.esc(p.name)}" aria-label="Agregar ${FG.esc(p.name)} al carrito">Agregar</button>
                 </div>
             </li>`).join('');
+        const shelf = FG.brands('centro');
+        document.getElementById('vitrina').hidden = !shelf.length;
+        document.getElementById('shelf').innerHTML = shelf.map(p => {
+            const d = FG.off(p);
+            return `<li class="jar">
+                <div class="jar-art">${d > 0 ? `<span class="jar-off">−${d} %</span>` : ''}${FG.photo(p, 160)}</div>
+                <p class="jar-brand">${FG.esc(p.brand)}</p>
+                <h3 class="jar-name">${FG.esc(p.name)}</h3>
+                ${p.size ? `<p class="jar-size">${FG.esc(p.size)}</p>` : ''}
+                <div class="jar-price">${d > 0 ? `<s><span class="sr">Antes </span>${FG.fmt(p.list)}</s>` : ''}<b class="${d > 0 ? 'sale' : ''}">${FG.fmt(p.price)}</b></div>
+                <button class="add" type="button" data-add="${p.id}" aria-label="Agregar ${FG.esc(p.fullName)} al carrito">Agregar</button>
+            </li>`;
+        }).join('');
         const st = FG.status('centro');
         document.getElementById('v-street').innerHTML = `${FG.esc(s.street)}<br><a href="${FG.mapsUrl(s)}" target="_blank" rel="noopener">Cómo llegar ↗</a>`;
         document.getElementById('v-hours').innerHTML = `${FG.esc(s.hours)}<br><span class="now${st.open ? ' on' : ''}">${st.text}</span>`;

@@ -82,6 +82,15 @@
         .tile.big .add { background: var(--yellow); color: var(--plum); }
         .tile .badge { position: absolute; top: 12px; left: 12px; transform: rotate(-8deg); background: var(--yellow); color: var(--plum); font-weight: 800; font-size: 12px; padding: 4px 10px; border-radius: 999px; }
 
+        /* Marcas que amamos: mismas tiles pastel del bento */
+        .brands-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; list-style: none; }
+        .brands-grid .tile .art { aspect-ratio: auto; height: clamp(130px, 28vw, 210px); }
+        .tile .art img.photo { mix-blend-mode: multiply; width: 74%; }
+        .brands-grid .price s { display: block; margin: 0 0 2px; }
+        .tile .brand { font-size: 12px; font-weight: 800; letter-spacing: .08em; text-transform: uppercase; color: var(--magenta); }
+        .brands-note { margin-top: 16px; color: rgba(255,255,255,.75); font-size: 14px; }
+        .brands-note a { color: var(--yellow); font-weight: 700; text-underline-offset: 3px; }
+
         /* Rutina */
         .routine { margin: 48px 0; padding: 28px 20px; border-radius: 28px; background: rgba(255,255,255,.06); border: 1px solid rgba(255,255,255,.12); }
         .routine h2 { font-family: var(--display); font-weight: 800; font-size: 1.6rem; margin-bottom: 18px; }
@@ -102,6 +111,7 @@
         @media (min-width: 820px) {
             .hero-grid { grid-template-columns: 1.4fr 1fr; }
             .bento { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+            .brands-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; }
             .tile.big { grid-column: span 2; grid-row: span 2; }
             .tile.big .art { height: auto; flex: 1; }
             .steps { grid-template-columns: repeat(3, 1fr); }
@@ -139,6 +149,13 @@
         <p class="bento-sub">Fórmulas livianas para tu rutina de noche.</p>
         <ul class="bento" id="bento"></ul>
 
+        <section id="marcas" aria-labelledby="marcas-title">
+            <h2 class="bento-title" id="marcas-title">Marcas que amamos</h2>
+            <p class="bento-sub">Dermocosmética de farmacia para tu rutina, a cualquier hora.</p>
+            <ul class="brands-grid" id="brands"></ul>
+            <p class="brands-note">Precios del catálogo de FarmaGlass · <a href="farmacia_v2.html#catalogo">Ver todo el catálogo</a></p>
+        </section>
+
         <section class="routine" aria-labelledby="routine-title">
             <h2 id="routine-title">Tu rutina de noche en 3 pasos</h2>
             <ol class="steps">
@@ -153,6 +170,7 @@
 
     <footer>Farmacia Plaza Palermo forma parte de la red FarmaGlass · <button class="foot-link" type="button" data-account-open="orders">Mis pedidos</button> · Prototipo: datos ilustrativos</footer>
 
+    <script src="productos-reales.js"></script>
     <script src="fg-shop.js"></script>
     <script src="farmacias-red.js"></script>
     <script>
@@ -170,6 +188,19 @@
                 <h3>${FG.esc(p.name)}</h3><span class="size">${p.size}${i === 0 ? ' · ' + FG.esc(p.desc) : ''}</span>
                 <div class="row"><span class="price">${d > 0 ? `<s>${FG.fmt(p.list)}</s>` : ''}${FG.fmt(p.price)}</span>
                 <button class="add" type="button" data-add="${p.id}" data-name="${FG.esc(p.name)}" aria-label="Agregar ${FG.esc(p.name)} al carrito">+</button></div>
+            </li>`;
+        }).join('');
+        const brands = FG.brands('plaza');
+        document.getElementById('marcas').hidden = !brands.length;
+        document.getElementById('brands').innerHTML = brands.map(p => {
+            const d = FG.off(p);
+            return `<li class="tile">
+                ${d > 0 ? `<span class="badge">−${d} %</span>` : ''}
+                <div class="art">${FG.photo(p, 200).replace('<img', '<img class="photo"')}</div>
+                <span class="brand">${FG.esc(p.brand)}</span>
+                <h3>${FG.esc(p.name)}</h3>${p.size ? `<span class="size">${FG.esc(p.size)}</span>` : ''}
+                <div class="row"><span class="price">${d > 0 ? `<s>${FG.fmt(p.list)}</s>` : ''}${FG.fmt(p.price)}</span>
+                <button class="add" type="button" data-add="${p.id}" aria-label="Agregar ${FG.esc(p.fullName)} al carrito">+</button></div>
             </li>`;
         }).join('');
         document.getElementById('info').innerHTML = `<span class="now">${FG.status('plaza').text}</span>

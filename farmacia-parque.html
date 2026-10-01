@@ -69,6 +69,14 @@
         .add { min-height: 44px; padding: 0 18px; border-radius: 999px; background: var(--sage); color: #fff; font-weight: 700; }
         .add:hover { background: var(--deep); }
 
+        /* Marcas que elegimos: mismas tarjetas grandes, con la marca en lugar de "para quién" */
+        .brands { margin-top: 40px; }
+        .brands h2 { color: var(--deep); font-size: 1.6rem; }
+        .brands > p { color: var(--muted); margin: 4px 0 16px; }
+        .card .art img.photo { width: 76%; mix-blend-mode: multiply; }
+        .brands-note { margin-top: 14px; font-size: 14px; color: var(--muted); }
+        .brands-note a { color: var(--deep); font-weight: 700; text-underline-offset: 3px; }
+
         /* Consejos */
         .tips { display: grid; gap: 14px; margin: 48px 0; }
         .tip { border-radius: 28px; padding: 22px; background: #fff; position: relative; overflow: hidden; }
@@ -139,10 +147,17 @@
 
         <div class="filters" role="group" aria-label="Filtrar productos">
             <button type="button" data-for="todos" aria-pressed="true">Todo</button>
-            <button type="button" data-for="bebe" aria-pressed="false">Para el bebé</button>
+            <button type="button" data-for="bebe" aria-pressed="false">Bebés y chicos</button>
             <button type="button" data-for="familia" aria-pressed="false">Para la familia</button>
         </div>
         <ul class="grid" id="grid"></ul>
+
+        <section class="brands" id="marcas" aria-labelledby="marcas-title">
+            <h2 id="marcas-title">Marcas que elegimos para la familia</h2>
+            <p>Las que tenemos siempre en el local, con los precios del catálogo de FarmaGlass.</p>
+            <ul class="grid" id="brands"></ul>
+            <p class="brands-note"><a href="farmacia_v2.html#catalogo">Ver todo el catálogo de FarmaGlass</a></p>
+        </section>
 
         <section class="tips" aria-label="Consejos del farmacéutico">
             <article class="tip"><h3>Cambio de pañal</h3><p>Limpiá con óleo calcáreo, dejá secar y aplicá una capa fina de crema.</p></article>
@@ -171,6 +186,7 @@
 
     <footer>Farmacia Parque Caballito forma parte de la red FarmaGlass · <button class="foot-link" type="button" data-account-open="orders">Mis pedidos</button> · Prototipo: datos ilustrativos</footer>
 
+    <script src="productos-reales.js"></script>
     <script src="fg-shop.js"></script>
     <script src="farmacias-red.js"></script>
     <script>
@@ -181,8 +197,10 @@
         const feat = byId(114);
         document.getElementById('deal').innerHTML = `<span>${feat.name} ${feat.size}</span><s>${FG.fmt(feat.list)}</s><b>${FG.fmt(feat.price)}</b><em>−${FG.off(feat)} %</em>
             <button class="add" type="button" data-add="${feat.id}" data-name="${feat.name}">Agregar</button>`;
-        // Para quién es cada producto
-        const FOR = { 113: 'bebe', 114: 'bebe', 115: 'bebe', 116: 'bebe', 123: 'familia', 124: 'familia' };
+        // Para quién es cada producto (línea propia y marcas del catálogo)
+        const FOR = { 113: 'bebe', 114: 'bebe', 115: 'bebe', 116: 'bebe', 123: 'familia', 124: 'familia',
+            22: 'bebe', 31: 'bebe', 33: 'bebe', 34: 'bebe', 41: 'bebe', 23: 'familia', 25: 'familia', 28: 'familia', 29: 'familia' };
+        const brands = FG.brands('parque');
         function render(filter) {
             document.getElementById('grid').innerHTML = s.items.filter(p => filter === 'todos' || FOR[p.id] === filter).map(p => {
                 const d = FG.off(p);
@@ -194,6 +212,22 @@
                         <div class="foot">
                             <span>${d > 0 ? `<s>${FG.fmt(p.list)}</s>` : ''}<span class="price${d > 0 ? ' sale' : ''}">${FG.fmt(p.price)}</span></span>
                             <button class="add" type="button" data-add="${p.id}" data-name="${FG.esc(p.name)}" aria-label="Agregar ${FG.esc(p.name)} al carrito">Agregar</button>
+                        </div>
+                    </div>
+                </li>`;
+            }).join('');
+            const shown = brands.filter(p => filter === 'todos' || (FOR[p.id] || 'familia') === filter);
+            document.getElementById('marcas').hidden = !shown.length;
+            document.getElementById('brands').innerHTML = shown.map(p => {
+                const d = FG.off(p);
+                return `<li class="card">
+                    <div class="art">${FG.photo(p, 150).replace('<img', '<img class="photo"')}</div>
+                    <div>
+                        <span class="for">${FG.esc(p.brand)}</span>
+                        <h3>${FG.esc(p.name)}</h3><p>${[p.size, FG.esc(p.desc)].filter(Boolean).join(' · ')}</p>
+                        <div class="foot">
+                            <span>${d > 0 ? `<s>${FG.fmt(p.list)}</s>` : ''}<span class="price${d > 0 ? ' sale' : ''}">${FG.fmt(p.price)}</span></span>
+                            <button class="add" type="button" data-add="${p.id}" aria-label="Agregar ${FG.esc(p.fullName)} al carrito">Agregar</button>
                         </div>
                     </div>
                 </li>`;
