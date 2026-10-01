@@ -3,187 +3,337 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Farmacia Parque Caballito · Parque Familia</title>
-    <meta name="description" content="Farmacia Parque Caballito: cuidado para bebés y toda la familia, frente al parque. Línea Parque Familia.">
+    <title>Farmacia Parque Caballito · Un día en el parque</title>
+    <meta name="description" content="Farmacia Parque Caballito: cuidado para bebés, chicos y toda la familia, frente a Parque Rivadavia. Armá la mochila para el parque.">
     <meta name="theme-color" content="#4E6B3D">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Caveat:wght@600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
-        /* Parque Caballito · familiar y natural: salvia, terracota y crema */
+        /* ================================================================
+         *  FARMACIA PARQUE CABALLITO · "Un día en el parque"
+         *  Un libro ilustrado: escena del parque con barrilete y picnic,
+         *  un selector con dibujos, productos colgados de un tendedero,
+         *  la mochila para el parque y notas del farmacéutico con cinta.
+         * ================================================================ */
         :root {
-            --sage: #4E6B3D; --deep: #3A5230; --terra: #B5532A; --peach: #F7C9A8; --leaf: #CFE3B8; --cream: #F8F1E4; --ink: #2E3326; --muted: #5C6352;
-            --display: 'Fredoka', 'Nunito', sans-serif; --sans: 'Inter', system-ui, sans-serif;
-            /* Carrito y checkout (fg-shop.js) en salvia Parque */
+            --sage: #4E6B3D; --deep: #3A5230; --terra: #B5532A; --terra-dk: #8F3E1D; --peach: #F7C9A8; --leaf: #CFE3B8;
+            --cream: #F8F1E4; --paper: #FFFCF5; --ink: #2E3326; --muted: #5C6352; --sky: #D5ECF2; --sun: #F6C760;
+            --display: 'Fredoka', 'Nunito', sans-serif; --hand: 'Caveat', cursive; --sans: 'Inter', system-ui, sans-serif;
             --fgs-accent: #4E6B3D; --fgs-accent-2: #3A5230; --fgs-sale: #B5532A; --fgs-display: var(--display);
         }
         * { box-sizing: border-box; margin: 0; padding: 0; }
         [hidden] { display: none !important; }
-        body { font-family: var(--sans); background: var(--cream); color: var(--ink); line-height: 1.55; -webkit-font-smoothing: antialiased; }
+        html { scroll-behavior: smooth; }
+        body { font-family: var(--sans); background: var(--cream); color: var(--ink); line-height: 1.55; -webkit-font-smoothing: antialiased; overflow-x: hidden; }
         img { display: block; max-width: 100%; }
         a { color: inherit; }
         button { font: inherit; cursor: pointer; border: 0; background: none; color: inherit; }
-        :focus-visible { outline: 3px solid var(--terra); outline-offset: 3px; border-radius: 10px; }
-        .wrap { max-width: 1100px; margin: 0 auto; padding: 0 16px; }
+        :focus-visible { outline: 3px solid var(--terra); outline-offset: 3px; border-radius: 12px; }
+        .wrap { max-width: 1120px; margin: 0 auto; padding: 0 16px; }
+        .sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
         h1, h2, h3 { font-family: var(--display); font-weight: 700; line-height: 1.1; }
+        .hand { font-family: var(--hand); font-weight: 700; }
+        .sec-head { margin: 64px 0 20px; }
+        .sec-head .hand { font-size: 26px; color: var(--terra); line-height: 1; }
+        .sec-head h2 { font-size: clamp(1.9rem, 5vw, 2.8rem); color: var(--deep); }
+        .sec-head p:not(.hand) { color: var(--muted); max-width: 52ch; margin-top: 6px; }
+        section { scroll-margin-top: 16px; }
 
         header.top .wrap { display: flex; align-items: center; justify-content: space-between; gap: 10px; min-height: 72px; }
-        .brand { display: flex; align-items: center; gap: 10px; font-family: var(--display); font-weight: 700; font-size: 20px; text-decoration: none; color: var(--deep); }
-        .soft { display: inline-flex; align-items: center; gap: 8px; min-height: 44px; padding: 0 16px; border-radius: 999px; background: #fff; font-weight: 600; font-size: 14px; text-decoration: none; box-shadow: 0 2px 8px rgba(46,51,38,.08); }
+        .brand { display: flex; align-items: center; gap: 10px; font-family: var(--display); font-weight: 700; font-size: 20px; text-decoration: none; color: var(--deep); white-space: nowrap; }
+        .brand span { display: none; }
+        .soft { display: inline-flex; align-items: center; justify-content: center; gap: 8px; min-height: 44px; min-width: 44px; padding: 0 16px; border-radius: 999px; background: #fff; font-weight: 600; font-size: 14px; text-decoration: none; box-shadow: 0 2px 8px rgba(46,51,38,.08); white-space: nowrap; }
         .soft b { background: var(--terra); color: #fff; border-radius: 999px; min-width: 22px; height: 22px; display: grid; place-items: center; font-size: 12px; padding: 0 6px; }
+        .soft .long { display: none; }
 
-        /* Banner ilustrado: primero la imagen, después el texto */
-        .hero { position: relative; overflow: hidden; border-radius: 40px; background: var(--sage); color: #fff; display: grid; margin-top: 8px; isolation: isolate; }
-        .scene { position: relative; min-height: 240px; background: linear-gradient(180deg, #DDEBC9 0%, var(--leaf) 100%); }
-        .scene svg.leaves { position: absolute; inset: 0; width: 100%; height: 100%; }
-        .packs { position: absolute; left: 50%; bottom: 10px; transform: translateX(-50%); display: flex; align-items: end; gap: 4px; }
-        .packs img { width: 104px; background: #fff; border-radius: 18px; padding: 8px; box-shadow: 0 12px 20px rgba(46,51,38,.22); }
-        .packs img:nth-child(2) { width: 136px; }
-        .hero-text { padding: 26px 24px 30px; }
-        .hero-text .kicker { display: inline-block; background: rgba(255,255,255,.16); padding: 4px 12px; border-radius: 999px; font-size: 13px; font-weight: 600; }
-        .hero-text h1 { font-size: clamp(2.2rem, 6vw, 3.6rem); margin: 12px 0 10px; }
-        .hero-text h1 span { color: var(--peach); }
-        .hero-text p { color: rgba(255,255,255,.9); max-width: 44ch; }
-        .deal { display: inline-flex; flex-wrap: wrap; align-items: center; gap: 10px; margin-top: 18px; background: #fff; color: var(--ink); padding: 10px 16px; border-radius: 20px; }
+        /* ── Escena del parque ── */
+        .scene { position: relative; border-radius: 40px; overflow: hidden; isolation: isolate; background: linear-gradient(180deg, var(--sky) 0%, #E9F3E6 55%, var(--leaf) 100%); }
+        .scene-art { position: relative; height: 330px; }
+        .scene-art svg { position: absolute; inset: 0; width: 100%; height: 100%; }
+        .cloud { animation: drift 40s linear infinite; }
+        .cloud.c2 { animation-duration: 60s; animation-delay: -20s; }
+        @keyframes drift { from { transform: translateX(-160px); } to { transform: translateX(1300px); } }
+        .kite { animation: float 6s ease-in-out infinite; transform-origin: 900px 100px; }
+        @keyframes float { 50% { transform: translate(-10px, 12px) rotate(-6deg); } }
+        .picnic { position: absolute; left: 50%; bottom: 52px; transform: translateX(-50%); display: flex; align-items: flex-end; gap: 8px; }
+        .picnic .frame { background: #fff; border-radius: 20px; padding: 8px; box-shadow: 0 14px 22px rgba(46, 51, 38, .2); }
+        .picnic .frame img { width: 76px; height: 76px; object-fit: contain; }
+        .picnic .frame:nth-child(2) img { width: 100px; height: 100px; }
+        .picnic .frame:nth-child(1) { transform: rotate(-6deg); }
+        .picnic .frame:nth-child(3) { transform: rotate(5deg); }
+        .story { position: relative; margin: -36px 12px 12px; padding: 22px 20px 22px; background: var(--paper); border-radius: 28px; box-shadow: 0 18px 40px rgba(46,51,38,.12); }
+        .story .kicker { display: inline-block; background: var(--leaf); color: var(--deep); padding: 4px 12px; border-radius: 999px; font-size: 13px; font-weight: 700; }
+        .story h1 { font-size: clamp(2.2rem, 7vw, 3.8rem); color: var(--deep); margin: 12px 0 10px; }
+        .scribble { position: relative; color: var(--terra); white-space: nowrap; }
+        .scribble svg { position: absolute; left: 0; bottom: -10px; width: 100%; height: 14px; }
+        .story p { color: var(--muted); max-width: 44ch; }
+        .deal { display: flex; flex-wrap: wrap; align-items: center; gap: 10px 14px; margin-top: 18px; padding: 12px 14px; border-radius: 20px; background: #fff; border: 2px dashed #E6D3B8; }
+        .deal .t { font-weight: 600; font-size: 14px; flex-basis: 100%; }
         .deal s { color: var(--muted); font-size: 14px; }
-        .deal b { font-family: var(--display); font-size: 1.8rem; color: var(--terra); line-height: 1; }
+        .deal b { font-family: var(--display); font-size: 1.9rem; color: var(--terra); line-height: 1; }
         .deal em { font-style: normal; background: var(--terra); color: #fff; padding: 2px 10px; border-radius: 999px; font-size: 13px; font-weight: 700; }
+        .add { min-height: 44px; padding: 0 18px; border-radius: 999px; background: var(--sage); color: #fff; font-weight: 700; transition: background .2s ease, transform .15s ease; }
+        .add:hover { background: var(--deep); transform: translateY(-1px); }
 
-        /* Filtros */
-        .filters { display: flex; gap: 8px; flex-wrap: wrap; margin: 36px 0 16px; }
-        .filters button { min-height: 44px; padding: 0 18px; border-radius: 999px; background: #fff; font-weight: 600; border: 2px solid transparent; }
-        .filters button[aria-pressed="true"] { border-color: var(--sage); background: var(--leaf); color: var(--deep); }
+        /* ── ¿Para quién buscás? ── */
+        .who { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; }
+        .who button { display: grid; justify-items: center; gap: 6px; padding: 14px 8px 12px; border-radius: 26px; background: #fff; border: 3px solid transparent; font-family: var(--display); font-weight: 600; font-size: 15px; color: var(--deep); box-shadow: 0 6px 16px rgba(46,51,38,.06); transition: transform .2s ease, border-color .2s ease; }
+        .who button:hover { transform: translateY(-3px); }
+        .who button[aria-pressed="true"] { border-color: var(--sage); background: var(--leaf); }
+        .who svg { width: 64px; height: 64px; }
 
-        /* Productos en tarjetas grandes */
-        .grid { list-style: none; display: grid; gap: 14px; }
-        .card { display: grid; grid-template-columns: 120px 1fr; gap: 14px; align-items: center; background: #fff; border-radius: 28px; padding: 12px; box-shadow: 0 6px 20px rgba(46,51,38,.06); }
-        .card .art { aspect-ratio: 1; border-radius: 22px; background: radial-gradient(circle at 50% 70%, var(--leaf), #F2F7EA 70%); display: grid; place-items: center; }
-        .card .art img { width: 80%; mix-blend-mode: multiply; }
-        .card h3 { font-size: 1.25rem; color: var(--deep); }
-        .card p { font-size: 13px; color: var(--muted); }
+        /* ── Productos como etiquetas cosidas ── */
+        .grid { list-style: none; display: grid; gap: 14px; margin-top: 18px; }
+        .card { position: relative; display: grid; grid-template-columns: 120px 1fr; gap: 14px; align-items: center; background: #fff; border-radius: 28px; padding: 14px; box-shadow: 0 6px 20px rgba(46,51,38,.06); }
+        .card::after { content: ''; position: absolute; inset: 6px; border: 2px dashed #E3D5BE; border-radius: 22px; pointer-events: none; }
+        .card .art { position: relative; aspect-ratio: 1; border-radius: 22px; background: radial-gradient(circle at 50% 70%, var(--leaf), #F2F7EA 70%); display: grid; place-items: center; }
+        .card .art img { width: 80%; height: 80%; object-fit: contain; mix-blend-mode: multiply; }
         .card .for { display: inline-block; font-size: 12px; font-weight: 700; color: var(--terra); margin-bottom: 2px; }
-        .card .foot { display: flex; align-items: center; justify-content: space-between; gap: 10px; margin-top: 10px; flex-wrap: wrap; }
-        .card .price { font-family: var(--display); font-weight: 700; font-size: 1.5rem; line-height: 1; }
-        .card .price.sale { color: var(--terra); }
-        .card s { font-size: 13px; color: var(--muted); margin-right: 6px; }
-        .add { min-height: 44px; padding: 0 18px; border-radius: 999px; background: var(--sage); color: #fff; font-weight: 700; }
-        .add:hover { background: var(--deep); }
+        .card h3 { font-size: 1.2rem; color: var(--deep); }
+        .card p { font-size: 13px; color: var(--muted); }
+        .card .foot { position: relative; z-index: 1; display: flex; align-items: center; justify-content: space-between; gap: 10px; margin-top: 10px; flex-wrap: wrap; }
+        .bubble { display: inline-grid; place-items: center; min-width: 92px; padding: 4px 12px; border-radius: 50% 46% 52% 48% / 55% 50% 50% 45%; background: var(--peach); color: var(--terra-dk); font-family: var(--hand); font-size: 26px; line-height: 1.05; transform: rotate(-4deg); }
+        .bubble s { font-family: var(--sans); font-size: 12px; color: var(--muted); }
+        .off-badge { position: absolute; top: 6px; left: 6px; background: var(--terra); color: #fff; font-size: 12px; font-weight: 700; padding: 2px 9px; border-radius: 999px; }
 
-        /* Marcas que elegimos: mismas tarjetas grandes, con la marca en lugar de "para quién" */
-        .brands { margin-top: 40px; }
-        .brands h2 { color: var(--deep); font-size: 1.6rem; }
-        .brands > p { color: var(--muted); margin: 4px 0 16px; }
-        .card .art img.photo { width: 76%; mix-blend-mode: multiply; }
-        .brands-note { margin-top: 14px; font-size: 14px; color: var(--muted); }
-        .brands-note a { color: var(--deep); font-weight: 700; text-underline-offset: 3px; }
+        /* ── El tendedero ── */
+        .line-wrap { position: relative; padding-top: 30px; }
+        .line-wrap > svg { position: absolute; top: 0; left: 0; width: 100%; height: 60px; }
+        .clothes { list-style: none; display: grid; grid-auto-flow: column; grid-auto-columns: 210px; gap: 18px; overflow-x: auto; scroll-snap-type: x mandatory; padding: 14px 6px 22px; scrollbar-width: thin; }
+        .shirt { position: relative; scroll-snap-align: start; background: var(--paper); border-radius: 18px; padding: 22px 12px 14px; text-align: center; box-shadow: 0 14px 26px rgba(46,51,38,.12); transform: rotate(-2deg); transform-origin: top center; transition: transform .3s ease; }
+        .shirt:nth-child(even) { transform: rotate(2.5deg); }
+        .shirt:hover, .shirt:focus-within { transform: rotate(0); }
+        .shirt::before { /* broche de madera */ content: ''; position: absolute; top: -16px; left: 50%; width: 14px; height: 30px; margin-left: -7px; border-radius: 4px; background: linear-gradient(90deg, #C99A62, #E6BE88 50%, #B9864E); box-shadow: 0 2px 4px rgba(0,0,0,.2); }
+        .shirt .art { height: 130px; display: grid; place-items: center; }
+        .shirt .art img { max-height: 120px; width: auto; max-width: 80%; object-fit: contain; mix-blend-mode: multiply; }
+        .shirt .brand { font-family: var(--hand); font-size: 22px; color: var(--terra); line-height: 1; margin-top: 6px; }
+        .shirt h3 { font-size: 1rem; color: var(--deep); margin: 2px 0; }
+        .shirt .size { font-size: 12px; color: var(--muted); }
+        .shirt .row { display: flex; align-items: center; justify-content: center; gap: 10px; margin-top: 8px; flex-wrap: wrap; }
+        .shirt .price { font-family: var(--display); font-weight: 700; font-size: 1.3rem; color: var(--ink); }
+        .shirt .price.sale { color: var(--terra); }
+        .shirt s { display: block; font-size: 12px; color: var(--muted); }
+        .shirt .off-badge { top: 12px; left: 12px; }
+        .note { color: var(--muted); font-size: 14px; }
+        .note a { color: var(--deep); font-weight: 700; text-underline-offset: 3px; }
 
-        /* Consejos */
-        .tips { display: grid; gap: 14px; margin: 48px 0; }
-        .tip { border-radius: 28px; padding: 22px; background: #fff; position: relative; overflow: hidden; }
-        .tip::after { content: ''; position: absolute; right: -30px; bottom: -30px; width: 110px; height: 110px; border-radius: 50% 0; background: var(--leaf); opacity: .6; }
-        .tip h3 { font-size: 1.2rem; color: var(--deep); margin-bottom: 6px; position: relative; }
-        .tip p { font-size: 14px; color: var(--muted); position: relative; max-width: 34ch; }
-        .tip.warm { background: var(--peach); }
-        .tip.warm::after { background: #fff; }
+        /* ── La mochila para el parque ── */
+        .bag { display: grid; gap: 20px; align-items: center; background: #fff; border-radius: 36px; padding: 22px 18px; box-shadow: 0 10px 30px rgba(46,51,38,.07); }
+        .bag-art { position: relative; justify-self: center; width: 180px; }
+        .bag-count { position: absolute; top: 20px; right: 4px; min-width: 48px; height: 48px; border-radius: 50%; display: grid; place-items: center; background: var(--terra); color: #fff; font-family: var(--display); font-weight: 700; font-size: 22px; box-shadow: 0 6px 14px rgba(181,83,42,.35); }
+        .checklist { list-style: none; display: grid; gap: 8px; }
+        .check-head { font-family: var(--hand); font-size: 22px; color: var(--terra); margin: 0 0 4px 4px; }
+        .check { display: grid; grid-template-columns: auto 52px minmax(0, 1fr) auto; gap: 10px; align-items: center; padding: 8px 12px 8px 8px; border-radius: 18px; background: var(--cream); cursor: pointer; }
+        .check input { width: 24px; height: 24px; accent-color: var(--sage); margin-left: 6px; cursor: pointer; }
+        .check .ph { width: 52px; height: 52px; border-radius: 14px; background: #fff; display: grid; place-items: center; }
+        .check .ph img { width: 82%; height: 82%; object-fit: contain; mix-blend-mode: multiply; }
+        .check b { display: block; font-family: var(--display); font-size: 16px; color: var(--deep); }
+        .check small { color: var(--muted); font-size: 12px; }
+        .check .p { font-weight: 700; font-size: 14px; white-space: nowrap; }
+        .check:has(input:checked) { background: #EEF5E6; }
+        .check:has(input:checked) b, .check:has(input:checked) .p { text-decoration: line-through; color: var(--muted); }
+        .bag-go { margin-top: 14px; width: 100%; min-height: 54px; border-radius: 999px; background: var(--terra); color: #fff; font-family: var(--display); font-weight: 700; font-size: 18px; }
+        .bag-go:hover { background: var(--terra-dk); }
+        .bag-go:disabled { background: #C9C2B3; cursor: default; }
 
-        /* Visita con mapa ilustrado */
-        .visit { display: grid; gap: 16px; align-items: center; background: #fff; border-radius: 32px; padding: 20px; margin-bottom: 40px; }
+        /* ── Notas del farmacéutico ── */
+        .tips { display: grid; gap: 22px; margin-top: 20px; }
+        .tip { position: relative; border-radius: 6px 22px 6px 22px; padding: 26px 22px 22px; background: #FFFDF2; box-shadow: 0 10px 22px rgba(46,51,38,.08); transform: rotate(-1deg); }
+        .tip:nth-child(2) { background: #FFF1E8; transform: rotate(1.2deg); }
+        .tip:nth-child(3) { background: #EEF6E7; transform: rotate(-.6deg); }
+        .tip::before { content: ''; position: absolute; top: -12px; left: 50%; width: 90px; height: 24px; margin-left: -45px; background: rgba(207, 227, 184, .85); transform: rotate(-4deg); }
+        .tip:nth-child(2)::before { background: rgba(247, 201, 168, .9); transform: rotate(3deg); }
+        .tip h3 { font-family: var(--hand); font-size: 30px; color: var(--deep); line-height: 1; margin-bottom: 6px; }
+        .tip p { font-size: 15px; color: var(--muted); }
+
+        /* ── Visita con mapa ilustrado ── */
+        .visit { display: grid; gap: 16px; align-items: center; background: #fff; border-radius: 32px; padding: 20px; }
         .visit h2 { color: var(--deep); font-size: 1.6rem; margin-bottom: 8px; }
-        .visit dl { display: grid; grid-template-columns: auto 1fr; gap: 6px 14px; font-size: 14px; }
-        .visit dt { color: var(--muted); }
-        .visit dd { font-weight: 600; }
-        .map { border-radius: 24px; overflow: hidden; }
-        .visit dd a { color: var(--deep); text-underline-offset: 3px; }
-        .now { display: inline-flex; align-items: center; gap: 6px; color: var(--muted); }
-        .now::before { content: ''; width: 8px; height: 8px; border-radius: 50%; background: #A9A28F; }
+        .week { width: 100%; border-collapse: collapse; font-size: 14px; }
+        .week td { padding: 6px 0; border-bottom: 1px dashed #E3D5BE; }
+        .week td:last-child { text-align: right; font-weight: 600; }
+        .week tr.today td { color: var(--terra); font-weight: 700; }
+        .now { display: inline-flex; align-items: center; gap: 6px; margin-top: 10px; font-weight: 700; color: var(--muted); }
+        .now::before { content: ''; width: 9px; height: 9px; border-radius: 50%; background: #A9A28F; }
         .now.on { color: #2F6B2A; }
         .now.on::before { background: #4CA03F; box-shadow: 0 0 0 3px rgba(76,160,63,.2); }
         .visit-actions { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 16px; }
         .visit-actions a { display: inline-flex; align-items: center; min-height: 44px; padding: 0 18px; border-radius: 999px; background: var(--sage); color: #fff; font-weight: 700; text-decoration: none; }
         .visit-actions a + a { background: var(--leaf); color: var(--deep); }
+        .map { border-radius: 24px; overflow: hidden; }
+        .grass { display: block; width: 100%; height: 60px; margin-top: 56px; }
+        footer { background: #8DB572; color: var(--ink); text-align: center; font-size: 14px; padding: 6px 16px 40px; }
         .foot-link { min-height: 44px; font-weight: 700; color: var(--deep); text-decoration: underline; text-underline-offset: 3px; }
-        footer { text-align: center; font-size: 13px; color: var(--muted); padding: 0 16px 40px; }
 
+        @media (min-width: 420px) { .brand span { display: inline; } .soft .long { display: inline; } }
         @media (min-width: 800px) {
-            .hero { grid-template-columns: 1fr 1fr; }
-            .hero .scene { order: 2; min-height: 380px; }
-            .hero-text { padding: 48px; align-self: center; }
+            .scene { display: grid; grid-template-columns: 1fr 1.05fr; min-height: 470px; }
+            .scene-art { position: absolute; inset: 0; height: auto; z-index: -1; }
+            .picnic { left: auto; right: 6%; transform: none; bottom: 34px; }
+            .picnic .frame img { width: 110px; height: 110px; }
+            .picnic .frame:nth-child(2) img { width: 146px; height: 146px; }
+            .story { margin: 40px; align-self: center; padding: 34px; }
+            .who button { font-size: 18px; }
+            .who svg { width: 84px; height: 84px; }
             .grid { grid-template-columns: 1fr 1fr; }
             .card { grid-template-columns: 150px 1fr; }
+            .clothes { grid-auto-columns: 230px; }
+            .bag { grid-template-columns: 240px 1fr; padding: 32px; gap: 32px; }
+            .bag-art { width: 220px; }
             .tips { grid-template-columns: repeat(3, 1fr); }
             .visit { grid-template-columns: 1fr 1.2fr; padding: 28px; }
+        }
+        @media (prefers-reduced-motion: reduce) {
+            html { scroll-behavior: auto; }
+            .cloud, .kite { animation: none; }
+            .shirt, .who button, .add { transition: none; }
         }
     </style>
 </head>
 <body>
     <header class="top"><div class="wrap">
-        <a class="brand" href="#" id="brand">Parque Caballito</a>
+        <a class="brand" href="#" id="brand"><span>Parque Caballito</span></a>
         <div style="display:flex;gap:8px">
             <button class="soft" type="button" data-cart-open>Carrito <b data-cart-count hidden>0</b></button>
-            <a class="soft" href="farmacia_v2.html#farmacias">← FarmaGlass</a>
+            <a class="soft" href="farmacia_v2.html#farmacias" aria-label="Volver a FarmaGlass">←<span class="long"> FarmaGlass</span></a>
         </div>
     </div></header>
 
     <main class="wrap">
-        <section class="hero" aria-labelledby="hero-title">
-            <div class="scene" aria-hidden="true">
-                <svg class="leaves" viewBox="0 0 400 300" preserveAspectRatio="xMidYMid slice">
-                    <circle cx="330" cy="60" r="34" fill="#F7C9A8"/>
-                    <path d="M0 230 Q100 190 200 225 T400 215 V300 H0Z" fill="#A9C98E"/>
-                    <path d="M0 260 Q120 230 230 258 T400 250 V300 H0Z" fill="#8DB572"/>
-                    <path d="M40 120c0-40 30-70 70-70 0 40-30 70-70 70z" fill="#4E6B3D" opacity=".55"/>
-                    <path d="M360 160c-6-34 14-62 46-70 4 32-14 62-46 70z" fill="#4E6B3D" opacity=".45"/>
-                    <path d="M70 60c-4-22 10-40 30-44 2 20-10 40-30 44z" fill="#B5532A" opacity=".45"/>
+        <section class="scene" aria-labelledby="hero-title">
+            <div class="scene-art" aria-hidden="true">
+                <svg viewBox="0 0 1200 520" preserveAspectRatio="xMidYMid slice">
+                    <defs>
+                        <pattern id="checks" width="28" height="28" patternUnits="userSpaceOnUse" patternTransform="skewX(-30)">
+                            <rect width="28" height="28" fill="#FFF4E6"/><rect width="14" height="14" fill="#E8896A"/><rect x="14" y="14" width="14" height="14" fill="#E8896A"/>
+                        </pattern>
+                    </defs>
+                    <circle cx="1040" cy="92" r="52" fill="#F6C760"/>
+                    <circle cx="1040" cy="92" r="72" fill="#F6C760" opacity=".25"/>
+                    <g class="cloud" fill="#fff" opacity=".95"><ellipse cx="120" cy="80" rx="60" ry="22"/><ellipse cx="160" cy="66" rx="40" ry="26"/><ellipse cx="88" cy="70" rx="30" ry="18"/></g>
+                    <g class="cloud c2" fill="#fff" opacity=".8"><ellipse cx="420" cy="130" rx="50" ry="18"/><ellipse cx="450" cy="118" rx="32" ry="20"/></g>
+                    <g class="kite"><path d="M900 60 L930 100 L900 150 L870 100 Z" fill="#B5532A"/><path d="M900 60 L900 150 M870 100 L930 100" stroke="#FFF4E6" stroke-width="3"/>
+                        <path d="M900 150 C 880 190, 930 210, 900 250 C 880 280, 920 300, 905 330" stroke="#3A5230" stroke-width="2" fill="none"/>
+                        <path d="M893 190 l14 6 M896 236 l12 -6 M898 280 l14 4" stroke="#F7C9A8" stroke-width="6" stroke-linecap="round"/></g>
+                    <path d="M0 360 Q 260 300 520 350 T 1200 330 V520 H0Z" fill="#A9C98E"/>
+                    <path d="M0 410 Q 300 370 620 405 T 1200 395 V520 H0Z" fill="#8DB572"/>
+                    <g><rect x="140" y="270" width="14" height="90" rx="6" fill="#7A5634"/><circle cx="147" cy="250" r="56" fill="#6E9A57"/><circle cx="118" cy="272" r="34" fill="#5E8A49"/><circle cx="180" cy="266" r="30" fill="#7BA864"/></g>
+                    <g><rect x="1110" y="300" width="12" height="80" rx="6" fill="#7A5634"/><circle cx="1116" cy="282" r="46" fill="#6E9A57"/><circle cx="1094" cy="300" r="26" fill="#5E8A49"/></g>
+                    <g fill="#7A5634"><rect x="300" y="380" width="120" height="10" rx="4"/><rect x="300" y="362" width="120" height="8" rx="4"/><rect x="308" y="390" width="8" height="26" rx="3"/><rect x="404" y="390" width="8" height="26" rx="3"/></g>
+                    <path d="M600 470 L1060 470 L1010 410 L650 410 Z" fill="url(#checks)" opacity=".95"/>
+                    <g fill="#F7C9A8"><circle cx="520" cy="440" r="5"/><circle cx="560" cy="455" r="4"/><circle cx="240" cy="450" r="5"/></g>
+                    <g fill="#fff"><circle cx="530" cy="438" r="2"/><circle cx="250" cy="448" r="2"/></g>
                 </svg>
-                <div class="packs" id="packs"></div>
+                <div class="picnic" id="packs"></div>
             </div>
-            <div class="hero-text">
-                <span class="kicker">Parque Familia</span>
-                <h1 id="hero-title">Bebés felices, <span>familias tranquilas</span></h1>
-                <p>Higiene y cuidado suave para los más chicos y toda la casa, frente a Parque Rivadavia.</p>
+            <div class="story">
+                <span class="kicker">Parque Familia · frente a Parque Rivadavia</span>
+                <h1 id="hero-title">Bebés felices, familias <span class="scribble">tranquilas<svg viewBox="0 0 200 14" preserveAspectRatio="none" aria-hidden="true"><path d="M2 9 C 40 3, 70 13, 100 7 S 160 3, 198 8" stroke="#B5532A" stroke-width="3" fill="none" stroke-linecap="round"/></svg></span></h1>
+                <p>Higiene y cuidado suave para los más chicos y toda la casa. Pasá por el local o te lo llevamos en 2 horas.</p>
                 <div class="deal" id="deal"></div>
             </div>
         </section>
 
-        <div class="filters" role="group" aria-label="Filtrar productos">
-            <button type="button" data-for="todos" aria-pressed="true">Todo</button>
-            <button type="button" data-for="bebe" aria-pressed="false">Bebés y chicos</button>
-            <button type="button" data-for="familia" aria-pressed="false">Para la familia</button>
-        </div>
-        <ul class="grid" id="grid"></ul>
-
-        <section class="brands" id="marcas" aria-labelledby="marcas-title">
-            <h2 id="marcas-title">Marcas que elegimos para la familia</h2>
-            <p>Las que tenemos siempre en el local, con los precios del catálogo de FarmaGlass.</p>
-            <ul class="grid" id="brands"></ul>
-            <p class="brands-note"><a href="farmacia_v2.html#catalogo">Ver todo el catálogo de FarmaGlass</a></p>
+        <section aria-labelledby="who-title">
+            <div class="sec-head">
+                <p class="hand">Empecemos por acá</p>
+                <h2 id="who-title">¿Para quién buscás?</h2>
+            </div>
+            <div class="who filters" role="group" aria-label="Filtrar productos">
+                <button type="button" data-for="bebe" aria-pressed="false">
+                    <svg viewBox="0 0 80 80" aria-hidden="true"><circle cx="40" cy="42" r="28" fill="#F7C9A8"/><path d="M40 14c-4 0-6 4-3 6 3 2 6-1 4-4" stroke="#8F3E1D" stroke-width="3" fill="none" stroke-linecap="round"/><circle cx="31" cy="42" r="3" fill="#2E3326"/><circle cx="49" cy="42" r="3" fill="#2E3326"/><path d="M33 52c4 4 10 4 14 0" stroke="#2E3326" stroke-width="3" fill="none" stroke-linecap="round"/><circle cx="26" cy="50" r="4" fill="#E8896A" opacity=".5"/><circle cx="54" cy="50" r="4" fill="#E8896A" opacity=".5"/></svg>
+                    Bebés y chicos
+                </button>
+                <button type="button" data-for="familia" aria-pressed="false">
+                    <svg viewBox="0 0 80 80" aria-hidden="true"><circle cx="28" cy="38" r="18" fill="#F7C9A8"/><path d="M12 32c2-12 26-14 32-2" fill="#8F3E1D"/><circle cx="54" cy="44" r="16" fill="#E8B48E"/><path d="M40 38c2-10 24-12 28 0" fill="#3A5230"/><circle cx="23" cy="40" r="2.4" fill="#2E3326"/><circle cx="33" cy="40" r="2.4" fill="#2E3326"/><circle cx="50" cy="46" r="2.2" fill="#2E3326"/><circle cx="59" cy="46" r="2.2" fill="#2E3326"/><path d="M24 47c3 3 7 3 10 0M51 53c2 2 6 2 8 0" stroke="#2E3326" stroke-width="2.5" fill="none" stroke-linecap="round"/></svg>
+                    Toda la familia
+                </button>
+                <button type="button" data-for="todos" aria-pressed="true">
+                    <svg viewBox="0 0 80 80" aria-hidden="true"><path d="M40 66s-24-14-24-32c0-10 8-16 16-16 4 0 7 2 8 5 1-3 4-5 8-5 8 0 16 6 16 16 0 18-24 32-24 32z" fill="#B5532A"/><path d="M28 30c2-4 6-6 10-5" stroke="#fff" stroke-width="3" fill="none" stroke-linecap="round" opacity=".7"/></svg>
+                    Ver todo
+                </button>
+            </div>
+            <ul class="grid" id="grid"></ul>
         </section>
 
-        <section class="tips" aria-label="Consejos del farmacéutico">
-            <article class="tip"><h3>Cambio de pañal</h3><p>Limpiá con óleo calcáreo, dejá secar y aplicá una capa fina de crema.</p></article>
-            <article class="tip warm"><h3>Baño sin llanto</h3><p>Agua tibia, shampoo sin lágrimas y baños cortos de 5 a 10 minutos.</p></article>
-            <article class="tip"><h3>Salidas al parque</h3><p>Repelente en crema y toallitas en la mochila. Evitá el sol fuerte del mediodía.</p></article>
+        <section id="marcas" aria-labelledby="marcas-title">
+            <div class="sec-head">
+                <p class="hand">Colgadas al sol</p>
+                <h2 id="marcas-title">Marcas que elegimos para la familia</h2>
+                <p>Las que tenemos siempre en el local, con los precios del catálogo de FarmaGlass.</p>
+            </div>
+            <div class="line-wrap">
+                <svg viewBox="0 0 1200 60" preserveAspectRatio="none" aria-hidden="true"><path d="M0 14 Q 600 52 1200 14" stroke="#7A5634" stroke-width="3" fill="none"/></svg>
+                <ul class="clothes" id="brands"></ul>
+            </div>
+            <p class="note"><a href="farmacia_v2.html#catalogo">Ver todo el catálogo de FarmaGlass</a></p>
         </section>
 
-        <section class="visit" aria-labelledby="visit-title">
+        <section id="mochila" aria-labelledby="bag-title">
+            <div class="sec-head">
+                <p class="hand">Antes de salir</p>
+                <h2 id="bag-title">La mochila para el parque</h2>
+                <p>Marcá lo que ya tenés en casa y sumamos al carrito solo lo que te falta.</p>
+            </div>
+            <div class="bag">
+                <div class="bag-art">
+                    <svg viewBox="0 0 200 220" aria-hidden="true">
+                        <path d="M70 40c0-22 60-22 60 0v14H116V42c0-10-32-10-32 0v12H70z" fill="#3A5230"/>
+                        <rect x="30" y="50" width="140" height="160" rx="40" fill="#4E6B3D"/>
+                        <rect x="50" y="120" width="100" height="70" rx="22" fill="#6E9A57"/>
+                        <rect x="50" y="120" width="100" height="18" rx="9" fill="#5E8A49"/>
+                        <circle cx="100" cy="129" r="5" fill="#F6C760"/>
+                        <rect x="56" y="70" width="88" height="36" rx="18" fill="#CFE3B8"/>
+                        <path d="M72 88h56" stroke="#4E6B3D" stroke-width="4" stroke-linecap="round" stroke-dasharray="2 8"/>
+                        <circle cx="152" cy="74" r="10" fill="#B5532A"/>
+                    </svg>
+                    <span class="bag-count" id="bag-count" aria-hidden="true">0</span>
+                </div>
+                <div>
+                    <p class="check-head" aria-hidden="true">✓ Ya lo tengo</p>
+                    <ul class="checklist" id="checklist"></ul>
+                    <button class="bag-go" type="button" id="bag-go"></button>
+                </div>
+            </div>
+        </section>
+
+        <section aria-labelledby="tips-title">
+            <div class="sec-head">
+                <p class="hand">De nuestro mostrador</p>
+                <h2 id="tips-title">Consejos del farmacéutico</h2>
+            </div>
+            <div class="tips">
+                <article class="tip"><h3>Cambio de pañal</h3><p>Limpiá con óleo calcáreo, dejá secar y aplicá una capa fina de crema para paspaduras.</p></article>
+                <article class="tip"><h3>Baño sin llanto</h3><p>Agua tibia, shampoo suave y baños cortos de 5 a 10 minutos.</p></article>
+                <article class="tip"><h3>Salidas al parque</h3><p>Protector solar, repelente y toallitas en la mochila. Evitá el sol fuerte del mediodía.</p></article>
+            </div>
+        </section>
+
+        <section class="visit" id="visitanos" aria-labelledby="visit-title" style="margin-top:64px">
             <div>
                 <h2 id="visit-title">Te esperamos frente al parque</h2>
-                <dl id="visit"></dl>
+                <p id="visit-street"></p>
+                <table class="week"><caption class="sr">Horario de la semana</caption><tbody id="week"></tbody></table>
+                <p class="now" id="visit-now"></p>
                 <div class="visit-actions" id="visit-actions"></div>
             </div>
             <div class="map" aria-hidden="true">
-                <svg viewBox="0 0 400 220" width="100%">
-                    <rect width="400" height="220" fill="#EEF2E4"/>
-                    <rect x="140" y="40" width="200" height="140" rx="30" fill="#A9C98E"/>
-                    <circle cx="190" cy="90" r="14" fill="#8DB572"/><circle cx="270" cy="120" r="18" fill="#8DB572"/><circle cx="230" cy="70" r="10" fill="#8DB572"/>
-                    <rect x="0" y="190" width="400" height="18" fill="#fff"/><rect x="110" y="0" width="16" height="220" fill="#fff"/>
-                    <text x="200" y="203" font-family="Arial" font-size="11" fill="#5C6352">Av. Rivadavia</text>
-                    <path d="M118 150c-12 0-22 10-22 22 0 16 22 34 22 34s22-18 22-34c0-12-10-22-22-22z" fill="#B5532A"/><circle cx="118" cy="172" r="7" fill="#fff"/>
+                <svg viewBox="0 0 400 240" width="100%">
+                    <rect width="400" height="240" fill="#EEF2E4"/>
+                    <rect x="140" y="40" width="200" height="150" rx="30" fill="#A9C98E"/>
+                    <circle cx="190" cy="90" r="14" fill="#8DB572"/><circle cx="270" cy="120" r="18" fill="#8DB572"/><circle cx="230" cy="70" r="10" fill="#8DB572"/><circle cx="300" cy="80" r="12" fill="#8DB572"/>
+                    <path d="M200 160 q 20 -30 50 -10" stroke="#fff" stroke-width="5" fill="none" stroke-dasharray="2 8" stroke-linecap="round"/>
+                    <text x="240" y="125" text-anchor="middle" font-family="Arial" font-size="11" fill="#3A5230">Parque Rivadavia</text>
+                    <rect x="0" y="200" width="400" height="18" fill="#fff"/><rect x="110" y="0" width="16" height="240" fill="#fff"/>
+                    <text x="230" y="213" font-family="Arial" font-size="11" fill="#5C6352">Av. Rivadavia</text>
+                    <path d="M118 158c-12 0-22 10-22 22 0 16 22 34 22 34s22-18 22-34c0-12-10-22-22-22z" fill="#B5532A"/><circle cx="118" cy="180" r="7" fill="#fff"/>
                 </svg>
             </div>
         </section>
     </main>
 
+    <svg class="grass" viewBox="0 0 1200 60" preserveAspectRatio="none" aria-hidden="true"><path d="M0 60 V30 Q 30 10 60 30 T 120 30 T 180 30 T 240 30 T 300 30 T 360 30 T 420 30 T 480 30 T 540 30 T 600 30 T 660 30 T 720 30 T 780 30 T 840 30 T 900 30 T 960 30 T 1020 30 T 1080 30 T 1140 30 T 1200 30 V60Z" fill="#8DB572"/></svg>
     <footer>Farmacia Parque Caballito forma parte de la red FarmaGlass · <button class="foot-link" type="button" data-account-open="orders">Mis pedidos</button> · Prototipo: datos ilustrativos</footer>
 
     <script src="productos-reales.js"></script>
@@ -191,28 +341,34 @@
     <script src="farmacias-red.js"></script>
     <script>
         const s = FG.store('parque');
-        document.getElementById('brand').insertAdjacentHTML('afterbegin', FG.logo(s, 40, 'Fredoka, sans-serif'));
-        const byId = id => s.items.find(p => p.id === id);
-        document.getElementById('packs').innerHTML = [113, 114, 115].map(id => `<img src="${byId(id).img}" alt="" width="160" height="160">`).join('');
-        const feat = byId(113);
-        document.getElementById('deal').innerHTML = `<span>${feat.name} ${feat.size}</span>${FG.off(feat) > 0 ? `<s>${FG.fmt(feat.list)}</s>` : ''}<b>${FG.fmt(feat.price)}</b>${FG.off(feat) > 0 ? `<em>−${FG.off(feat)} %</em>` : ''}
-            <button class="add" type="button" data-add="${feat.id}" aria-label="Agregar ${FG.esc(feat.name)} al carrito">Agregar</button>`;
-        // Para quién es cada producto (línea propia y marcas del catálogo)
-        const FOR = { 113: 'bebe', 114: 'bebe', 115: 'bebe', 116: 'bebe', 123: 'familia', 124: 'familia',
-            22: 'bebe', 31: 'bebe', 33: 'bebe', 34: 'bebe', 41: 'bebe', 23: 'familia', 25: 'familia', 28: 'familia', 29: 'familia' };
         const brands = FG.brands('parque');
+        const all = new Map([...s.items, ...brands].map(p => [p.id, p]));
+        const st = FG.status('parque');
+        const nm = p => p.fullName ? p.name : p.name.replace(new RegExp('^' + p.brand.replace(/[.*+?^${}()|[\]\\]/g, '\\$&') + '\\s', 'i'), '').replace(/^./, c => c.toUpperCase());
+        const label = p => p.fullName || `${p.name} (${p.size})`;
+        const bubble = p => { const d = FG.off(p); return `<span class="bubble">${d > 0 ? `<s><span class="sr">Antes </span>${FG.fmt(p.list)}</s>` : ''}${FG.fmt(p.price)}</span>`; };
+
+        document.getElementById('brand').insertAdjacentHTML('afterbegin', FG.logo(s, 40, 'Fredoka, sans-serif'));
+
+        // Picnic en la escena y oferta destacada
+        document.getElementById('packs').innerHTML = [113, 114, 115].map(id => all.get(id)).filter(Boolean).map(p => `<span class="frame">${FG.photo(p, 146).replace('loading="lazy"', '')}</span>`).join('');
+        const feat = all.get(113) || s.items[0], fd = FG.off(feat);
+        document.getElementById('deal').innerHTML = `<span class="t">${FG.esc(feat.brand)} · ${FG.esc(nm(feat))} · ${FG.esc(feat.size)}</span>
+            ${fd > 0 ? `<s>${FG.fmt(feat.list)}</s>` : ''}<b>${FG.fmt(feat.price)}</b>${fd > 0 ? `<em>−${fd} %</em>` : ''}
+            <button class="add" type="button" data-add="${feat.id}" aria-label="Agregar ${FG.esc(label(feat))} al carrito">Agregar</button>`;
+
+        // Para quién es cada producto (línea propia y marcas del catálogo)
+        const FOR = { 113: 'bebe', 114: 'bebe', 115: 'bebe', 116: 'bebe', 123: 'bebe', 124: 'familia',
+            22: 'bebe', 31: 'bebe', 33: 'bebe', 34: 'bebe', 41: 'bebe', 23: 'familia', 25: 'familia', 28: 'familia', 29: 'familia' };
         function render(filter) {
             document.getElementById('grid').innerHTML = s.items.filter(p => filter === 'todos' || FOR[p.id] === filter).map(p => {
                 const d = FG.off(p);
                 return `<li class="card">
-                    <div class="art"><img src="${p.img}" alt="" width="150" height="150"></div>
+                    <div class="art">${d > 0 ? `<span class="off-badge">−${d} %</span>` : ''}${FG.photo(p, 150)}</div>
                     <div>
-                        <span class="for">${FOR[p.id] === 'bebe' ? 'Para el bebé' : 'Para la familia'}</span>
-                        <h3>${FG.esc(p.name)}</h3><p>${p.size} · ${FG.esc(p.desc)}</p>
-                        <div class="foot">
-                            <span>${d > 0 ? `<s>${FG.fmt(p.list)}</s>` : ''}<span class="price${d > 0 ? ' sale' : ''}">${FG.fmt(p.price)}</span></span>
-                            <button class="add" type="button" data-add="${p.id}" data-name="${FG.esc(p.name)}" aria-label="Agregar ${FG.esc(p.name)} al carrito">Agregar</button>
-                        </div>
+                        <span class="for">${FOR[p.id] === 'bebe' ? 'Para bebés y chicos' : 'Para toda la familia'} · ${FG.esc(p.brand)}</span>
+                        <h3>${FG.esc(nm(p))}</h3><p>${FG.esc(p.size)} · ${FG.esc(p.desc)}</p>
+                        <div class="foot">${bubble(p)}<button class="add" type="button" data-add="${p.id}" aria-label="Agregar ${FG.esc(label(p))} al carrito">Agregar</button></div>
                     </div>
                 </li>`;
             }).join('');
@@ -220,16 +376,13 @@
             document.getElementById('marcas').hidden = !shown.length;
             document.getElementById('brands').innerHTML = shown.map(p => {
                 const d = FG.off(p);
-                return `<li class="card">
-                    <div class="art">${FG.photo(p, 150).replace('<img', '<img class="photo"')}</div>
-                    <div>
-                        <span class="for">${FG.esc(p.brand)}</span>
-                        <h3>${FG.esc(p.name)}</h3><p>${[p.size, FG.esc(p.desc)].filter(Boolean).join(' · ')}</p>
-                        <div class="foot">
-                            <span>${d > 0 ? `<s>${FG.fmt(p.list)}</s>` : ''}<span class="price${d > 0 ? ' sale' : ''}">${FG.fmt(p.price)}</span></span>
-                            <button class="add" type="button" data-add="${p.id}" aria-label="Agregar ${FG.esc(p.fullName)} al carrito">Agregar</button>
-                        </div>
-                    </div>
+                return `<li class="shirt">
+                    ${d > 0 ? `<span class="off-badge">−${d} %</span>` : ''}
+                    <div class="art">${FG.photo(p, 140)}</div>
+                    <p class="brand">${FG.esc(p.brand)}</p>
+                    <h3>${FG.esc(p.name)}</h3>${p.size ? `<p class="size">${FG.esc(p.size)}</p>` : ''}
+                    <div class="row"><span class="price${d > 0 ? ' sale' : ''}">${d > 0 ? `<s><span class="sr">Antes </span>${FG.fmt(p.list)}</s>` : ''}${FG.fmt(p.price)}</span>
+                    <button class="add" type="button" data-add="${p.id}" aria-label="Agregar ${FG.esc(p.fullName)} al carrito">Agregar</button></div>
                 </li>`;
             }).join('');
         }
@@ -238,11 +391,34 @@
             render(b.dataset.for);
         }));
         render('todos');
-        const st = FG.status('parque');
-        document.getElementById('visit').innerHTML = `<dt>Dirección</dt><dd>${s.street}</dd><dt>Horario</dt><dd>${s.hours}</dd>
-            <dt>Ahora</dt><dd><span class="now${st.open ? ' on' : ''}">${st.text}</span></dd>
-            <dt>Teléfono</dt><dd><a href="${FG.telUrl(s)}">${s.phone}</a></dd><dt>Valoración</dt><dd>★ ${String(s.rating).replace('.', ',')}</dd>`;
-        document.getElementById('visit-actions').innerHTML = `<a href="${FG.mapsUrl(s)}" target="_blank" rel="noopener">Cómo llegar ↗</a><a href="${FG.telUrl(s)}">Llamar</a>`;
+
+        // La mochila para el parque
+        const BAG = [[22, 'Protector solar'], [34, 'Repelente para el bebé'], [116, 'Toallitas húmedas'], [41, 'Curitas'], [124, 'Jabón para las manos']]
+            .map(([id, what]) => ({ p: all.get(id), what })).filter(x => x.p);
+        const list = document.getElementById('checklist');
+        list.innerHTML = BAG.map(({ p, what }, i) => `<li><label class="check">
+            <input type="checkbox" data-bag="${i}"><span class="sr">Ya tengo: </span>
+            <span class="ph">${FG.photo(p, 52)}</span>
+            <span><b>${what}</b><small>${FG.esc(p.brand)} · ${FG.esc(nm(p))}</small></span>
+            <span class="p">${FG.fmt(p.price)}</span></label></li>`).join('') +
+            `<li><label class="check"><input type="checkbox"><span class="sr">Ya tengo: </span><span class="ph" aria-hidden="true">💧</span><span><b>Botella de agua</b><small>Traela llena de casa</small></span><span class="p"></span></label></li>`;
+        const go = document.getElementById('bag-go');
+        const missing = () => BAG.filter((x, i) => !list.querySelector(`[data-bag="${i}"]`).checked).map(x => x.p);
+        function paintBag() {
+            const m = missing();
+            document.getElementById('bag-count').textContent = m.length;
+            go.disabled = !m.length;
+            go.textContent = m.length ? `Sumar lo que me falta (${m.length}) · ${FG.fmt(FG.total(m))}` : '¡Tu mochila está lista!';
+        }
+        list.addEventListener('change', paintBag);
+        go.addEventListener('click', () => FG.addAll(missing(), 'productos para la mochila'));
+        paintBag();
+
+        // Visita
+        document.getElementById('visit-street').textContent = s.street;
+        document.getElementById('week').innerHTML = FG.week('parque').map(d => `<tr class="${d.today ? 'today' : ''}"><td>${d.label}${d.today ? ' · hoy' : ''}</td><td>${d.hours}</td></tr>`).join('');
+        const vn = document.getElementById('visit-now'); vn.textContent = st.text; vn.classList.toggle('on', st.open);
+        document.getElementById('visit-actions').innerHTML = `<a href="${FG.mapsUrl(s)}" target="_blank" rel="noopener">Cómo llegar ↗</a><a href="${FG.telUrl(s)}">Llamar al ${s.phone}</a>`;
     </script>
 </body>
 </html>

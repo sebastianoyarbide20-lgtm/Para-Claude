@@ -102,7 +102,7 @@ window.FG = (() => {
         // Productos reales de la línea (productos-reales.js); si el archivo no está, quedan los dibujados
         const real = (window.FG_STORE_LINE || []).filter(p => p.pharmacy === id);
         s.items = real.length
-            ? real.map(p => ({ id: p.id, name: p.name, size: p.size, brand: p.brand, list: p.listPrice, price: p.price, desc: p.desc, img: p.img, real: true }))
+            ? real.map(p => ({ id: p.id, name: p.name, size: p.size, brand: p.brand, list: p.listPrice, price: p.price, desc: p.desc, img: p.img, real: true, store: id }))
             : s.products.map(([pid, name, size, list, price, kind, desc]) => ({ id: pid, name, size, list, price, kind, desc, img: packshot(kind, s, size) }));
         FGShop.register(s.items.map(p => ({ id: p.id, name: p.real ? `${p.name} (${p.size})` : p.name, size: p.real ? '' : p.size, price: p.price, list: p.list, img: p.img, store: id })));
         FGShop.setStore(id);
@@ -117,7 +117,7 @@ window.FG = (() => {
             let name = m ? m[1] : p.name;
             if (name.toLowerCase().startsWith(p.brand.toLowerCase() + ' ')) name = name.slice(p.brand.length + 1);
             return { id: p.id, fullName: p.name, name: name.charAt(0).toUpperCase() + name.slice(1), size: m ? m[2] : '',
-                brand: p.brand, cat: p.cat, desc: p.desc, list: p.listPrice, price: p.price, img: p.img };
+                brand: p.brand, cat: p.cat, desc: p.desc, list: p.listPrice, price: p.price, img: p.img, store: id };
         });
         // Mismo id y nombre que en la web principal: el carrito los reconoce como el mismo producto
         FGShop.register(list.map(p => ({ id: p.id, name: p.fullName, price: p.price, list: p.list, img: p.img, store: id })));
@@ -131,5 +131,28 @@ window.FG = (() => {
     const mapsUrl = s => 'https://www.google.com/maps/search/?api=1&query=' + encodeURIComponent(`${s.street}, Buenos Aires`);
     const telUrl = s => 'tel:+54' + s.phone.replace(/\D/g, '');
 
-    return { store, brands, photo, fmt, off, esc, logo, status, mapsUrl, telUrl, toast: FGShop.toast };
+    // Horario de la semana (lunes a domingo) con el día de hoy marcado
+    const DAYS = [['Lunes', 1], ['Martes', 2], ['Miércoles', 3], ['Jueves', 4], ['Viernes', 5], ['Sábado', 6], ['Domingo', 0]];
+    function week(id) {
+        const p = FGShop.PHARM[id], today = new Date().getDay();
+        return DAYS.map(([label, d]) => ({
+            label, short: label.slice(0, 3), today: d === today,
+            hours: p.allDay ? '24 h' : p.days.includes(d) ? `${p.from} a ${p.to} h` : 'Cerrado',
+        }));
+    }
+
+    // Suma varios productos al carrito de una vez (kits, rutinas, la mochila del parque)
+    function addAll(items, label = 'productos') {
+        let n = 0;
+        items.forEach(p => {
+            const name = p.fullName || (p.real ? `${p.name} (${p.size})` : p.name);
+            if (FGShop.cart.add({ id: p.id, name, price: p.price, list: p.list, img: p.img, store: p.store })) n++;
+        });
+        FGShop.toast(n ? `Sumamos ${n} ${label} al carrito` : 'Ya tenés el máximo de esos productos', n ? { action: 'Ver carrito', onAction: () => FGShop.open('cart') } : {});
+        return n;
+    }
+    const total = items => items.reduce((t, p) => t + p.price, 0);
+    const totalList = items => items.reduce((t, p) => t + p.list, 0);
+
+    return { store, brands, photo, fmt, off, esc, logo, status, mapsUrl, telUrl, week, addAll, total, totalList, toast: FGShop.toast };
 })();

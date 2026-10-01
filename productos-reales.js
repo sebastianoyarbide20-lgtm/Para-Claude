@@ -46,7 +46,7 @@ window.FG_REAL_PRODUCTS = [
 // Línea propia de cada farmacia (ids 101–124): también son productos reales de Farmacity, con los mismos
 // datos y el mismo script de actualización. Reemplazan a los productos dibujados del prototipo.
 window.FG_STORE_LINE = [
-    { id: 101, fcId: 5121, pharmacy: 'centro', name: 'Bushi crema de caléndula', size: '50 g', brand: 'Bushi', listPrice: 15241, price: 11431, desc: 'Crema de caléndula para pieles sensibles y agrietadas.', img: 'https://farmacityar.vtexassets.com/arquivos/ids/264287-500-500' },
+    { id: 101, fcId: 5121, pharmacy: 'centro', name: 'Bushi crema de caléndula', size: '50 g', brand: 'Bushi', listPrice: 15241, price: 11431, desc: 'Crema de caléndula para pezones sensibles y agrietados durante la lactancia.', img: 'https://farmacityar.vtexassets.com/arquivos/ids/264287-500-500' },
     { id: 102, fcId: 231461, pharmacy: 'centro', name: 'Veganis agua de rosas', size: '120 ml', brand: 'Veganis', listPrice: 15834, price: 15834, desc: 'Tónico facial de agua de rosas, refrescante y suave.', img: 'https://farmacityar.vtexassets.com/arquivos/ids/232369-500-500' },
     { id: 103, fcId: 210108, pharmacy: 'centro', name: 'Rexona jabón de glicerina neutro', size: 'x3', brand: 'Rexona', listPrice: 5132, price: 5132, desc: 'Jabones de glicerina neutros, sin perfume fuerte.', img: 'https://farmacityar.vtexassets.com/arquivos/ids/241645-500-500' },
     { id: 104, fcId: 62078, pharmacy: 'centro', name: 'Ewe vaselina sólida', size: '60 g', brand: 'Ewe', listPrice: 6147, price: 6147, desc: 'Vaselina pura para proteger e hidratar la piel.', img: 'https://farmacityar.vtexassets.com/arquivos/ids/206733-500-500' },
