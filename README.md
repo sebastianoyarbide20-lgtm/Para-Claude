@@ -11,6 +11,8 @@ Todo es HTML, CSS y JavaScript sin dependencias. Para verla, abrí `farmacia_v2.
 | `farmacia-centro.html` · `farmacia-plaza.html` · `farmacia-norte.html` · `farmacia-parque.html` | Página de cada farmacia, con su estilo y su línea de productos |
 | `fg-shop.js` | Carrito, checkout, pedidos, favoritos, cupones y "Mi cuenta", compartidos por todas las páginas |
 | `farmacias-red.js` | Datos y utilidades de las páginas de farmacia |
+| `productos-reales.js` | 34 productos reales de farmacia y cosmética con precio, oferta e imagen |
+| `scripts/actualizar-productos.js` | Actualiza precios e imágenes de esos productos |
 
 ## Funciones
 
@@ -26,5 +28,20 @@ Todo es HTML, CSS y JavaScript sin dependencias. Para verla, abrí `farmacia_v2.
 - **Dirección**: escrita o con "Usar mi ubicación actual"; muestra la farmacia más cercana y si está abierta.
 - **Recetas**: carga de foto o PDF con obra social; queda "En revisión" en Mi cuenta.
 - **Botón de arrepentimiento** con código de trámite, preguntas frecuentes y "Volver arriba".
+
+## Productos reales
+
+Los productos de `productos-reales.js` salen del catálogo público de Farmacity. Como es una tienda hecha
+con VTEX, responde a `https://www.farmacity.com/api/catalog_system/pub/products/search?ft=<búsqueda>`
+con nombre, marca, imagen, precio de lista, precio final y stock. Farmacias del Pueblo
+(`farmaciasdelpueblo.com.ar`) y Farmaonline (`farmaonline.com`) usan la misma API y sirven como alternativa.
+
+- Son productos de venta libre que no son medicamentos: dermocosmética, cuidado personal y capilar,
+  bebés, suplementos dietarios y botiquín. Los medicamentos no se venden directo en el carrito.
+- Los nombres se ordenaron como "Marca producto (tamaño)" y las descripciones están escritas para el
+  prototipo. Las imágenes se cargan desde el CDN de la tienda y pertenecen a sus marcas.
+- Las valoraciones con estrellas de los 10 productos originales son ilustrativas; los productos reales
+  muestran solo la marca.
+- Para actualizar precios e imágenes (Node 18 o superior): `node scripts/actualizar-productos.js`.
 
 Prototipo: no hay servidor. Los datos se guardan solo en el navegador (`localStorage`) y no se cobra nada.
