@@ -3,170 +3,353 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Farmacia Plaza Palermo · Abierta 24 h</title>
-    <meta name="description" content="Farmacia Plaza Palermo, abierta 24 h. Plaza Lab: skincare de noche con entrega a cualquier hora.">
-    <meta name="theme-color" content="#2B1240">
+    <title>Farmacia Plaza Palermo · After Hours 24 h</title>
+    <meta name="description" content="Farmacia Plaza Palermo, abierta las 24 horas: skincare de noche, entrega a cualquier hora y tu rutina en dos preguntas.">
+    <meta name="theme-color" content="#1C0A2B">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@500;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@500;700;800;900&family=Space+Mono:wght@400;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
-        /* Plaza Palermo · urbana y pop: noche ciruela, magenta y amarillo sticker */
+        /* ================================================================
+         *  FARMACIA PLAZA PALERMO · "After Hours"
+         *  Una farmacia que nunca cierra, contada como la noche de Palermo:
+         *  cielo estrellado, carteles de neón, reloj en vivo, cartas
+         *  holográficas y un collage de polaroids. Interacciones: qué está
+         *  abierto a cada hora y tu rutina en dos preguntas.
+         * ================================================================ */
+        @property --a { syntax: '<angle>'; inherits: false; initial-value: 0deg; }
         :root {
-            --plum: #2B1240; --night: #1C0A2B; --magenta: #C2185B; --magenta-hi: #FF5FA2; --yellow: #FFD23F; --lilac: #B79CFF;
-            --pink: #FFF0F6; --display: 'Unbounded', 'Arial Black', sans-serif; --sans: 'Inter', system-ui, sans-serif;
-            /* Carrito y checkout (fg-shop.js) en magenta Plaza */
+            --night: #14071F; --plum: #2B1240; --plum-2: #3B1A56; --magenta: #C2185B; --pink: #FF5FA2; --pink-soft: #FFD3E6;
+            --yellow: #FFD23F; --lilac: #B79CFF; --cyan: #5CF2E6; --paper: #FFF7FB;
+            --display: 'Unbounded', 'Arial Black', sans-serif; --mono: 'Space Mono', ui-monospace, monospace; --sans: 'Inter', system-ui, sans-serif;
             --fgs-accent: #C2185B; --fgs-accent-2: #8E1145; --fgs-sale: #C2185B; --fgs-display: var(--display);
         }
         * { box-sizing: border-box; margin: 0; padding: 0; }
         [hidden] { display: none !important; }
+        html { scroll-behavior: smooth; }
         body { font-family: var(--sans); background: var(--night); color: #fff; line-height: 1.5; -webkit-font-smoothing: antialiased; overflow-x: hidden; }
         img { display: block; max-width: 100%; }
         a { color: inherit; }
         button { font: inherit; cursor: pointer; border: 0; background: none; color: inherit; }
-        :focus-visible { outline: 3px solid var(--yellow); outline-offset: 3px; border-radius: 8px; }
-        .wrap { max-width: 1160px; margin: 0 auto; padding: 0 16px; }
+        :focus-visible { outline: 3px solid var(--yellow); outline-offset: 3px; border-radius: 10px; }
+        .wrap { max-width: 1180px; margin: 0 auto; padding: 0 16px; }
+        .sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+        .kicker { font-family: var(--mono); font-size: 13px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: var(--yellow); }
+        .h2 { font-family: var(--display); font-weight: 800; font-size: clamp(1.8rem, 5vw, 3rem); line-height: 1; letter-spacing: -.03em; }
+        .lead { color: rgba(255,255,255,.78); max-width: 52ch; margin-top: 10px; }
+        section { scroll-margin-top: 80px; }
 
-        /* Barra flotante */
-        .nav { position: sticky; top: 0; z-index: 50; padding: 10px 0; background: rgba(28,10,43,.8); -webkit-backdrop-filter: blur(14px); backdrop-filter: blur(14px); }
-        .nav .wrap { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
-        .brand { display: flex; align-items: center; gap: 10px; font-family: var(--display); font-weight: 700; font-size: 15px; text-decoration: none; }
-        .pill { display: inline-flex; align-items: center; gap: 8px; min-height: 44px; padding: 0 16px; border-radius: 999px; border: 1px solid rgba(255,255,255,.2); font-weight: 600; font-size: 14px; text-decoration: none; }
+        /* ── Barra con reloj en vivo ── */
+        .nav { position: sticky; top: 0; z-index: 50; padding: 10px 0; background: rgba(20, 7, 31, .78); -webkit-backdrop-filter: blur(14px); backdrop-filter: blur(14px); border-bottom: 1px solid rgba(255,255,255,.08); }
+        .nav .wrap { display: flex; align-items: center; gap: 8px; }
+        .brand { display: flex; align-items: center; gap: 10px; font-family: var(--display); font-weight: 700; font-size: 15px; text-decoration: none; white-space: nowrap; }
+        .brand span { display: none; }
+        .clock { margin-left: auto; display: inline-flex; align-items: center; gap: 8px; min-height: 40px; padding: 0 12px; border-radius: 999px; background: rgba(255,255,255,.06); border: 1px solid rgba(255,95,162,.4); font-family: var(--mono); font-weight: 700; font-size: 14px; color: var(--pink); text-shadow: 0 0 10px rgba(255,95,162,.7); white-space: nowrap; }
+        .clock::before { content: ''; width: 8px; height: 8px; border-radius: 50%; background: #3BE08C; box-shadow: 0 0 0 3px rgba(59,224,140,.25), 0 0 10px #3BE08C; animation: blink 2s ease-in-out infinite; }
+        .clock small { font-family: var(--sans); font-size: 11px; color: rgba(255,255,255,.7); text-shadow: none; letter-spacing: .08em; text-transform: uppercase; display: none; }
+        @keyframes blink { 50% { opacity: .35; } }
+        .pill { display: inline-flex; align-items: center; justify-content: center; gap: 8px; min-height: 44px; min-width: 44px; padding: 0 14px; border-radius: 999px; border: 1px solid rgba(255,255,255,.2); font-weight: 600; font-size: 14px; text-decoration: none; white-space: nowrap; }
         .pill:hover { background: rgba(255,255,255,.08); }
         .pill b { background: var(--yellow); color: var(--plum); border-radius: 999px; min-width: 22px; height: 22px; display: grid; place-items: center; font-size: 12px; padding: 0 6px; }
+        .pill .long { display: none; }
 
-        /* Cinta animada */
-        .marquee { overflow: hidden; background: var(--yellow); color: var(--plum); font-family: var(--display); font-weight: 800; font-size: 14px; padding: 10px 0; transform: rotate(-1.5deg); margin: 18px -10px 0; }
-        .marquee div { display: flex; gap: 28px; width: max-content; animation: run 28s linear infinite; }
+        /* ── Portada nocturna ── */
+        .hero { position: relative; overflow: hidden; isolation: isolate; padding: 44px 0 26px; }
+        .hero-grid { margin-bottom: 40px; }
+        .hero::before { /* estrellas */
+            content: ''; position: absolute; inset: 0; z-index: -2;
+            background:
+                radial-gradient(1.5px 1.5px at 12% 22%, #fff 50%, transparent 51%), radial-gradient(1px 1px at 28% 68%, #fff 50%, transparent 51%),
+                radial-gradient(1.5px 1.5px at 44% 14%, #FFE8F2 50%, transparent 51%), radial-gradient(1px 1px at 63% 42%, #fff 50%, transparent 51%),
+                radial-gradient(2px 2px at 78% 18%, #FFF6C9 50%, transparent 51%), radial-gradient(1px 1px at 88% 64%, #fff 50%, transparent 51%),
+                radial-gradient(1px 1px at 6% 84%, #fff 50%, transparent 51%), radial-gradient(1.5px 1.5px at 52% 88%, #fff 50%, transparent 51%),
+                radial-gradient(600px 380px at 85% 20%, rgba(194,24,91,.55), transparent 70%),
+                radial-gradient(500px 340px at 5% 95%, rgba(183,156,255,.28), transparent 70%),
+                linear-gradient(180deg, var(--night), var(--plum));
+        }
+        .moon { position: absolute; z-index: -1; top: 14px; right: 4%; width: 48px; height: 48px; border-radius: 50%; background: radial-gradient(circle at 35% 35%, #FFF9E0, #F2DFA0 70%); box-shadow: 0 0 40px rgba(255, 236, 170, .45), inset -10px -8px 0 rgba(0,0,0,.06); }
+        .moon::before, .moon::after { content: ''; position: absolute; border-radius: 50%; background: rgba(180, 150, 90, .18); }
+        .moon::before { width: 14px; height: 14px; top: 20px; left: 18px; }
+        .moon::after { width: 9px; height: 9px; top: 44px; left: 40px; }
+        .hero-grid { display: grid; gap: 34px; align-items: center; }
+        .neon-title { font-family: var(--display); font-weight: 900; font-size: clamp(2.5rem, 9vw, 5.6rem); line-height: 1.02; letter-spacing: -.04em; margin: 14px 0 18px; }
+        .neon-title .glow { color: #FFE4F0; text-shadow: 0 0 4px #fff, 0 0 14px var(--pink), 0 0 34px var(--magenta), 0 0 60px var(--magenta); }
+        .neon-title .flick { animation: flicker 5s infinite; }
+        @keyframes flicker { 0%, 93%, 97%, 100% { opacity: 1; } 95% { opacity: .35; } }
+        .neon-title mark { background: var(--magenta); color: #fff; padding: 0 .12em; border-radius: .16em; box-shadow: 0 0 30px rgba(194,24,91,.7); }
+        .hero p.sub { color: rgba(255,255,255,.85); max-width: 42ch; font-size: 17px; }
+        .hero-ctas { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 22px; }
+        .cta { display: inline-flex; align-items: center; gap: 8px; min-height: 50px; padding: 0 22px; border-radius: 999px; font-family: var(--display); font-weight: 700; font-size: 14px; text-decoration: none; }
+        .cta.primary { background: var(--yellow); color: var(--plum); box-shadow: 0 10px 30px rgba(255,210,63,.3); }
+        .cta.primary:hover { transform: translateY(-2px); }
+        .cta.ghost { border: 1px solid rgba(255,255,255,.35); }
+        .cta.ghost:hover { background: rgba(255,255,255,.08); }
+
+        /* Carta holográfica destacada */
+        .holo { position: relative; justify-self: center; width: min(330px, 84vw); border-radius: 26px; padding: 3px; transform: perspective(900px) rotateX(var(--rx, 0deg)) rotateY(var(--ry, 0deg)) rotate(-3deg); transition: transform .2s ease;
+            background: conic-gradient(from var(--a), var(--pink), var(--yellow), var(--cyan), var(--lilac), var(--pink)); animation: spin 8s linear infinite; box-shadow: 0 30px 70px rgba(0,0,0,.45), 0 0 40px rgba(255,95,162,.25); }
+        @keyframes spin { to { --a: 360deg; } }
+        .holo-in { position: relative; border-radius: 23px; overflow: hidden; background: linear-gradient(160deg, #fff, var(--pink-soft)); color: var(--plum); padding: 16px; }
+        .holo-in::after { content: ''; position: absolute; inset: 0; pointer-events: none; mix-blend-mode: overlay; opacity: .55; background: linear-gradient(115deg, transparent 30%, rgba(255,255,255,.9) 45%, rgba(183,156,255,.6) 52%, transparent 65%); background-size: 250% 100%; background-position: var(--sx, 50%) 0; }
+        .holo-top { display: flex; justify-content: space-between; align-items: center; font-family: var(--mono); font-size: 12px; font-weight: 700; }
+        .holo-art { aspect-ratio: 1; display: grid; place-items: center; margin: 8px 0; border-radius: 16px; background: #fff; }
+        .holo-art img { width: 72%; height: 72%; object-fit: contain; mix-blend-mode: multiply; }
+        .holo h2 { font-family: var(--display); font-weight: 700; font-size: 18px; line-height: 1.15; }
+        .holo .size { font-size: 13px; opacity: .75; }
+        .holo-row { display: flex; align-items: center; justify-content: space-between; gap: 10px; margin-top: 10px; }
+        .price { font-family: var(--display); font-weight: 800; font-size: 22px; line-height: 1; }
+        .price s { display: block; font-family: var(--sans); font-weight: 500; font-size: 12px; opacity: .7; margin-bottom: 2px; }
+        .add { width: 46px; height: 46px; border-radius: 50%; background: var(--plum); color: #fff; font-size: 24px; font-weight: 700; display: grid; place-items: center; flex-shrink: 0; transition: transform .15s ease, background .2s ease; }
+        .add:hover { background: var(--magenta); transform: scale(1.06); }
+        .add.wide { width: auto; padding: 0 18px; font-size: 14px; border-radius: 999px; min-height: 46px; }
+        .sticker { position: absolute; z-index: 2; font-family: var(--display); font-weight: 800; border-radius: 999px; box-shadow: 0 10px 24px rgba(0,0,0,.35); }
+        .sticker.off { top: -16px; left: -12px; background: var(--yellow); color: var(--plum); padding: 10px 14px; font-size: 18px; transform: rotate(-12deg); }
+        .sticker.note { top: 44%; right: -16px; background: #fff; color: var(--magenta); padding: 8px 14px; font-size: 12px; transform: rotate(8deg); }
+
+        /* Cinta */
+        .marquee { overflow: hidden; background: var(--yellow); color: var(--plum); font-family: var(--display); font-weight: 800; font-size: 14px; padding: 10px 0; transform: rotate(-1.5deg); margin: 0 -10px; }
+        .marquee div { display: flex; gap: 28px; width: max-content; animation: run 30s linear infinite; }
         .marquee span { white-space: nowrap; }
         @keyframes run { to { transform: translateX(-50%); } }
 
-        /* Banner primero: titular gigante + reloj */
-        .hero { position: relative; padding: 48px 0 32px; overflow: hidden; isolation: isolate; }
-        .hero::before { content: ''; position: absolute; inset: 0; z-index: -1; background:
-            radial-gradient(500px 300px at 85% 20%, rgba(194,24,91,.55), transparent 70%),
-            radial-gradient(400px 300px at 10% 90%, rgba(183,156,255,.25), transparent 70%),
-            radial-gradient(circle, rgba(255,210,63,.25) 1.5px, transparent 2px) 0 0 / 24px 24px; }
-        .hero-grid { display: grid; gap: 24px; align-items: center; }
-        .kicker { display: inline-block; font-weight: 800; font-size: 12px; letter-spacing: .14em; text-transform: uppercase; color: var(--yellow); }
-        .hero h1 { font-family: var(--display); font-weight: 800; font-size: clamp(2.4rem, 8vw, 5.4rem); line-height: .95; letter-spacing: -.03em; margin: 12px 0 16px; }
-        .hero h1 mark { background: var(--magenta); color: #fff; padding: 0 .12em; border-radius: .18em; }
-        .hero p { color: rgba(255,255,255,.85); max-width: 42ch; font-size: 17px; }
-        .clock { justify-self: center; position: relative; width: min(320px, 80vw); aspect-ratio: 1; border-radius: 50%; display: grid; place-items: center; text-align: center;
-            background: conic-gradient(from 200deg, var(--magenta), var(--lilac), var(--yellow), var(--magenta)); padding: 14px; }
-        .clock div { width: 100%; height: 100%; border-radius: 50%; background: var(--plum); display: grid; place-content: center; gap: 4px; }
-        .clock b { font-family: var(--display); font-size: 4.6rem; line-height: 1; color: var(--yellow); }
-        .clock span { font-size: 14px; font-weight: 600; }
-        .sticker { position: absolute; padding: 8px 14px; border-radius: 999px; font-family: var(--display); font-weight: 700; font-size: 13px; box-shadow: 0 10px 24px rgba(0,0,0,.35); }
-        .sticker.s1 { background: var(--yellow); color: var(--plum); top: 4%; right: -6%; transform: rotate(10deg); }
-        .sticker.s2 { background: #fff; color: var(--magenta); bottom: 6%; left: -8%; transform: rotate(-8deg); }
+        /* ── ¿A qué hora lo necesitás? ── */
+        .hour { margin-top: 64px; position: relative; overflow: hidden; isolation: isolate; border-radius: 32px; padding: 28px 20px; border: 1px solid rgba(255,255,255,.12); transition: background .6s ease; background: var(--sky, linear-gradient(160deg, #241038, #3B1A56)); }
+        .hour-grid { display: grid; gap: 24px; align-items: center; }
+        .hour-big { font-family: var(--mono); font-weight: 700; font-size: clamp(3.6rem, 16vw, 7rem); line-height: 1; color: #fff; text-shadow: 0 0 24px rgba(255,255,255,.35); }
+        .hour-eta { font-family: var(--display); font-weight: 700; font-size: 18px; margin-top: 6px; }
+        .hour-eta b { color: var(--yellow); }
+        .range { width: 100%; margin: 18px 0 6px; accent-color: var(--pink); height: 36px; cursor: pointer; }
+        .range-scale { display: flex; justify-content: space-between; font-family: var(--mono); font-size: 12px; color: rgba(255,255,255,.7); }
+        .net { list-style: none; display: grid; gap: 8px; }
+        .net li { display: flex; align-items: center; justify-content: space-between; gap: 10px; padding: 12px 14px; border-radius: 16px; background: rgba(20, 7, 31, .45); border: 1px solid rgba(255,255,255,.1); font-size: 14px; }
+        .net li b { font-weight: 700; }
+        .net .st { font-family: var(--mono); font-size: 12px; font-weight: 700; padding: 3px 10px; border-radius: 999px; background: rgba(255,255,255,.1); color: rgba(255,255,255,.75); white-space: nowrap; }
+        .net .st.on { background: rgba(59,224,140,.18); color: #7CF5B4; }
+        .net li.me { border-color: var(--pink); box-shadow: 0 0 0 1px var(--pink), 0 0 20px rgba(255,95,162,.25); }
 
-        /* Bento de productos */
-        .bento-title { font-family: var(--display); font-weight: 800; font-size: clamp(1.6rem, 4vw, 2.4rem); margin: 40px 0 6px; }
-        .bento-sub { color: rgba(255,255,255,.75); margin-bottom: 18px; }
-        .bento { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; list-style: none; }
-        .tile { position: relative; border-radius: 26px; background: var(--pink); color: var(--plum); padding: 14px; display: flex; flex-direction: column; gap: 8px; overflow: hidden; }
-        .tile:nth-child(3n+2) { background: #F3EDFF; }
-        .tile:nth-child(3n) { background: #FFF6D6; }
-        .tile.big { grid-column: span 2; background: linear-gradient(135deg, var(--magenta), #8E1145); color: #fff; }
-        .tile .art { aspect-ratio: 1; display: grid; place-items: center; }
-        .tile.big .art { aspect-ratio: auto; height: 220px; }
-        .tile .art img { width: 82%; height: 100%; object-fit: contain; mix-blend-mode: multiply; }
-        .tile.big .art { background: #fff; border-radius: 20px; }
-        .tile h3 { font-family: var(--display); font-weight: 700; font-size: 15px; line-height: 1.2; }
-        .tile.big h3 { font-size: 22px; }
-        .tile .size { font-size: 12px; opacity: .75; }
-        .row { display: flex; align-items: center; justify-content: space-between; gap: 8px; margin-top: auto; flex-wrap: wrap; }
-        .price { font-family: var(--display); font-weight: 800; font-size: 18px; }
-        .price s { font-family: var(--sans); font-weight: 500; font-size: 12px; opacity: .7; margin-right: 6px; }
-        .tile.big .price { color: var(--yellow); font-size: 26px; }
-        .add { width: 44px; height: 44px; border-radius: 50%; background: var(--plum); color: #fff; font-size: 22px; font-weight: 700; display: grid; place-items: center; }
-        .tile.big .add { background: var(--yellow); color: var(--plum); }
-        .tile .badge { position: absolute; top: 12px; left: 12px; transform: rotate(-8deg); background: var(--yellow); color: var(--plum); font-weight: 800; font-size: 12px; padding: 4px 10px; border-radius: 999px; }
+        /* ── Tu rutina en dos preguntas ── */
+        .quiz { margin-top: 64px; display: grid; gap: 24px; }
+        .q { border: 0; margin-top: 18px; }
+        .q legend { font-family: var(--display); font-weight: 700; font-size: 16px; margin-bottom: 10px; }
+        .q legend span { font-family: var(--mono); color: var(--pink); margin-right: 8px; }
+        .chips { display: flex; flex-wrap: wrap; gap: 8px; }
+        .chip { position: relative; }
+        .chip input { position: absolute; inset: 0; opacity: 0; cursor: pointer; }
+        .chip span { display: inline-flex; align-items: center; min-height: 44px; padding: 0 18px; border-radius: 999px; border: 1px solid rgba(255,255,255,.25); font-weight: 600; transition: background .2s ease, color .2s ease, border-color .2s ease; }
+        .chip input:checked + span { background: var(--pink); border-color: var(--pink); color: var(--night); box-shadow: 0 0 20px rgba(255,95,162,.45); }
+        .chip input:focus-visible + span { outline: 3px solid var(--yellow); outline-offset: 3px; }
+        .routine-card { border-radius: 28px; padding: 20px; background: var(--paper); color: var(--plum); box-shadow: 0 30px 60px rgba(0,0,0,.35); }
+        .routine-card h3 { font-family: var(--display); font-weight: 800; font-size: 20px; line-height: 1.1; }
+        .routine-card > p { color: #6B4A80; font-size: 14px; margin-top: 4px; }
+        .steps { list-style: none; display: grid; gap: 10px; margin: 16px 0; }
+        .steps li { display: grid; grid-template-columns: 64px minmax(0, 1fr) auto; gap: 12px; align-items: center; padding: 8px; border-radius: 18px; background: #fff; border: 1px solid #F3D3E3; }
+        .steps .ph { width: 64px; height: 64px; border-radius: 14px; background: var(--pink-soft); display: grid; place-items: center; }
+        .steps .ph img { width: 80%; height: 80%; object-fit: contain; mix-blend-mode: multiply; }
+        .steps .t { font-family: var(--mono); font-size: 11px; font-weight: 700; color: var(--magenta); }
+        .steps b { display: block; font-size: 14px; line-height: 1.25; }
+        .steps small { color: #6B4A80; font-size: 12px; }
+        .steps .p { font-family: var(--display); font-weight: 700; font-size: 14px; white-space: nowrap; }
+        .routine-total { display: flex; align-items: center; justify-content: space-between; gap: 12px; flex-wrap: wrap; border-top: 1px dashed #E7B9CF; padding-top: 14px; }
+        .routine-total .price { font-size: 26px; }
+        .routine-add { min-height: 50px; padding: 0 22px; border-radius: 999px; background: var(--magenta); color: #fff; font-family: var(--display); font-weight: 700; font-size: 14px; }
+        .routine-add:hover { background: #8E1145; }
 
-        /* Marcas que amamos: mismas tiles pastel del bento */
-        .brands-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; list-style: none; }
-        .brands-grid .tile .art { aspect-ratio: auto; height: clamp(130px, 28vw, 210px); }
-        .tile .art img.photo { mix-blend-mode: multiply; width: 74%; }
-        .brands-grid .price s { display: block; margin: 0 0 2px; }
-        .tile .brand { font-size: 12px; font-weight: 800; letter-spacing: .08em; text-transform: uppercase; color: var(--magenta); }
-        .brands-note { margin-top: 16px; color: rgba(255,255,255,.75); font-size: 14px; }
-        .brands-note a { color: var(--yellow); font-weight: 700; text-underline-offset: 3px; }
+        /* ── Plaza Lab: cartas holográficas ── */
+        .sec { margin-top: 72px; }
+        .tcards { list-style: none; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; margin-top: 22px; }
+        .tcard { border-radius: 22px; padding: 2px; background: linear-gradient(160deg, rgba(255,255,255,.25), rgba(255,255,255,.05)); transition: transform .25s ease; }
+        .tcard:hover, .tcard:focus-within { background: conic-gradient(from var(--a), var(--pink), var(--yellow), var(--cyan), var(--lilac), var(--pink)); animation: spin 4s linear infinite; transform: translateY(-4px) rotate(-1deg); }
+        .tcard-in { height: 100%; display: flex; flex-direction: column; gap: 6px; border-radius: 20px; padding: 12px; background: var(--paper); color: var(--plum); }
+        .tcard:nth-child(3n+2) .tcard-in { background: #F4EEFF; }
+        .tcard:nth-child(3n) .tcard-in { background: #FFF7D9; }
+        .tcard-top { display: flex; justify-content: space-between; align-items: center; font-family: var(--mono); font-size: 11px; font-weight: 700; color: var(--magenta); }
+        .tcard-top .b { background: var(--yellow); color: var(--plum); padding: 3px 9px; border-radius: 999px; transform: rotate(-6deg); }
+        .tcard-art { aspect-ratio: 1; display: grid; place-items: center; border-radius: 14px; background: rgba(255,255,255,.75); }
+        .tcard-art img { width: 74%; height: 74%; object-fit: contain; mix-blend-mode: multiply; }
+        .tcard .brand { font-family: var(--mono); font-size: 11px; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; color: var(--magenta); }
+        .tcard h3 { font-family: var(--display); font-weight: 700; font-size: 14px; line-height: 1.2; }
+        .tcard .size { font-size: 12px; opacity: .75; }
+        .tcard .row { margin-top: auto; display: flex; align-items: flex-end; justify-content: space-between; gap: 8px; padding-top: 6px; }
+        .tcard .price { font-size: 17px; }
 
-        /* Rutina */
-        .routine { margin: 48px 0; padding: 28px 20px; border-radius: 28px; background: rgba(255,255,255,.06); border: 1px solid rgba(255,255,255,.12); }
-        .routine h2 { font-family: var(--display); font-weight: 800; font-size: 1.6rem; margin-bottom: 18px; }
-        .steps { list-style: none; display: grid; gap: 14px; counter-reset: s; }
-        .steps li { counter-increment: s; display: grid; grid-template-columns: 52px 1fr; gap: 14px; align-items: start; }
-        .steps li::before { content: counter(s); width: 52px; height: 52px; border-radius: 16px; display: grid; place-items: center; font-family: var(--display); font-weight: 800; font-size: 22px; background: var(--magenta); }
-        .steps b { display: block; font-size: 17px; }
-        .steps span { color: rgba(255,255,255,.78); font-size: 14px; }
+        /* ── Marcas que amamos: collage de polaroids ── */
+        .collage { list-style: none; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 22px 14px; margin-top: 26px; }
+        .pola { position: relative; background: #fff; color: var(--plum); padding: 10px 10px 12px; border-radius: 4px; box-shadow: 0 18px 30px rgba(0,0,0,.35); transform: rotate(-2deg); transition: transform .25s ease; }
+        .pola:nth-child(even) { transform: rotate(1.6deg); }
+        .pola:nth-child(3n) { transform: rotate(-.6deg); }
+        .pola:hover, .pola:focus-within { transform: rotate(0) translateY(-4px) scale(1.02); z-index: 2; }
+        .pola::before { /* cinta */ content: ''; position: absolute; top: -10px; left: 50%; width: 70px; height: 20px; transform: translateX(-50%) rotate(-3deg); background: rgba(255, 210, 63, .75); }
+        .pola:nth-child(even)::before { background: rgba(183, 156, 255, .75); transform: translateX(-50%) rotate(4deg); }
+        .pola-art { aspect-ratio: 1; display: grid; place-items: center; background: linear-gradient(160deg, #FFF0F6, #F4EEFF); }
+        .pola-art img { width: 72%; height: 72%; object-fit: contain; mix-blend-mode: multiply; }
+        .pola .off { position: absolute; top: 18px; right: 18px; font-family: var(--display); font-weight: 800; font-size: 12px; background: var(--magenta); color: #fff; padding: 4px 9px; border-radius: 999px; transform: rotate(8deg); }
+        .pola .brand { font-family: var(--mono); font-size: 11px; font-weight: 700; color: var(--magenta); margin-top: 10px; letter-spacing: .06em; text-transform: uppercase; }
+        .pola h3 { font-family: var(--display); font-weight: 700; font-size: 13px; line-height: 1.2; }
+        .pola .size { font-size: 12px; opacity: .75; }
+        .pola .row { display: flex; align-items: flex-end; justify-content: space-between; gap: 8px; margin-top: 8px; }
+        .pola .price { font-size: 16px; }
+        .note { margin-top: 18px; color: rgba(255,255,255,.75); font-size: 14px; }
+        .note a { color: var(--yellow); font-weight: 700; text-underline-offset: 3px; }
 
-        .info { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 40px; }
+        /* ── La noche, paso a paso ── */
+        .night { margin-top: 72px; padding: 28px 20px; border-radius: 32px; background: rgba(255,255,255,.05); border: 1px solid rgba(255,255,255,.12); }
+        .timeline { list-style: none; display: grid; gap: 18px; margin-top: 22px; position: relative; }
+        .timeline li { display: grid; grid-template-columns: 56px 1fr; gap: 14px; align-items: start; }
+        .phase { width: 56px; height: 56px; border-radius: 50%; position: relative; background: #2B1240; border: 1px solid rgba(255,255,255,.2); overflow: hidden; }
+        .phase::after { content: ''; position: absolute; inset: 8px; border-radius: 50%; background: #FFF4C9; box-shadow: 0 0 18px rgba(255,236,170,.6); }
+        .phase.p1::before, .phase.p2::before { content: ''; position: absolute; z-index: 1; top: 8px; width: 40px; height: 40px; border-radius: 50%; background: #2B1240; }
+        .phase.p1::before { left: 18px; }
+        .phase.p2::before { left: 30px; }
+        .timeline time { font-family: var(--mono); font-weight: 700; color: var(--pink); font-size: 14px; }
+        .timeline b { display: block; font-family: var(--display); font-size: 18px; margin: 2px 0; }
+        .timeline span { color: rgba(255,255,255,.78); font-size: 14px; }
+
+        /* ── Cartel de neón ── */
+        .sign { margin: 72px 0 40px; text-align: center; }
+        .neon { display: inline-block; font-family: var(--display); font-weight: 900; font-size: clamp(2.6rem, 11vw, 6rem); line-height: 1; padding: 18px 26px; border-radius: 26px; border: 3px solid var(--pink); color: #FFE4F0;
+            text-shadow: 0 0 4px #fff, 0 0 14px var(--pink), 0 0 34px var(--magenta); box-shadow: 0 0 14px var(--pink), 0 0 40px rgba(194,24,91,.6), inset 0 0 20px rgba(255,95,162,.4); }
+        .neon .flick { animation: flicker 4s infinite; }
+        .info { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; margin-top: 26px; }
         .info span, .info a { display: inline-flex; align-items: center; gap: 6px; min-height: 44px; padding: 0 16px; border-radius: 999px; background: rgba(255,255,255,.08); font-size: 14px; text-decoration: none; }
         .info a { background: rgba(255,255,255,.14); font-weight: 700; }
         .info a:hover { background: rgba(255,255,255,.22); }
-        .info .now::before { content: ''; width: 8px; height: 8px; border-radius: 50%; background: #3BE08C; box-shadow: 0 0 0 3px rgba(59,224,140,.25); }
+        footer { text-align: center; font-size: 13px; color: rgba(255,255,255,.65); padding: 24px 16px 40px; border-top: 1px solid rgba(255,255,255,.08); }
         .foot-link { min-height: 44px; font-weight: 700; color: #fff; text-decoration: underline; text-underline-offset: 3px; }
-        footer { text-align: center; font-size: 13px; color: rgba(255,255,255,.6); padding: 24px 16px 40px; }
 
-        @media (min-width: 820px) {
-            .hero-grid { grid-template-columns: 1.4fr 1fr; }
-            .bento { grid-template-columns: repeat(4, minmax(0, 1fr)); }
-            .brands-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; }
-            .tile.big { grid-column: span 2; grid-row: span 2; }
-            .tile.big .art { height: auto; flex: 1; }
-            .steps { grid-template-columns: repeat(3, 1fr); }
+        @media (min-width: 420px) { .brand span { display: inline; } }
+        @media (min-width: 640px) {
+            .clock small { display: inline; }
+            .pill .long { display: inline; }
+            .net { grid-template-columns: 1fr 1fr; }
         }
-        @media (prefers-reduced-motion: reduce) { .marquee div { animation: none; } }
+        @media (min-width: 860px) {
+            .hero { padding: 70px 0 30px; }
+            .moon { top: 26px; right: 6%; width: 74px; height: 74px; }
+            .hero-grid { margin-bottom: 56px; }
+            .hero-grid { grid-template-columns: 1.35fr 1fr; }
+            .hour { padding: 40px; }
+            .hour-grid { grid-template-columns: 1fr 1fr; gap: 40px; }
+            .quiz { grid-template-columns: 1fr 1.05fr; align-items: start; gap: 40px; }
+            .tcards { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; }
+            .tcard-art, .pola-art { aspect-ratio: 4 / 3; }
+            .collage { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 30px 22px; }
+            .night { padding: 40px; }
+            .timeline { grid-template-columns: repeat(3, 1fr); }
+            .timeline::before { content: ''; position: absolute; left: 56px; right: 0; top: 28px; height: 1px; background: linear-gradient(90deg, var(--pink), transparent); }
+            .timeline li { grid-template-columns: 56px 1fr; }
+        }
+        @media (prefers-reduced-motion: reduce) {
+            html { scroll-behavior: auto; }
+            .marquee div, .holo, .tcard:hover, .tcard:focus-within, .clock::before, .flick { animation: none !important; }
+            .holo, .tcard, .pola { transition: none; }
+        }
     </style>
 </head>
 <body>
     <nav class="nav" aria-label="Farmacia Plaza Palermo"><div class="wrap">
-        <a class="brand" href="#" id="brand">Plaza Palermo</a>
-        <div style="display:flex;gap:8px">
-            <button class="pill" type="button" data-cart-open>Carrito <b data-cart-count hidden>0</b></button>
-            <a class="pill" href="farmacia_v2.html#farmacias">← FarmaGlass</a>
-        </div>
+        <a class="brand" href="#" id="brand"><span>Plaza Palermo</span></a>
+        <p class="clock" aria-live="off"><time id="clock">--:--:--</time><small>Abierto ahora</small></p>
+        <button class="pill" type="button" data-cart-open>Carrito <b data-cart-count hidden>0</b></button>
+        <a class="pill" href="farmacia_v2.html#farmacias" aria-label="Volver a FarmaGlass">←<span class="long"> FarmaGlass</span></a>
     </div></nav>
 
     <header class="hero">
+        <span class="moon" aria-hidden="true"></span>
         <div class="wrap hero-grid">
             <div>
-                <span class="kicker">Plaza Lab · Palermo</span>
-                <h1>Skincare de noche, <mark>entrega</mark> de noche</h1>
-                <p>Sérums, brumas y labiales de la selección Plaza Lab. Pedí a las 3 de la mañana y lo tenés en la puerta.</p>
+                <p class="kicker">Plaza Lab · Palermo · 24 h</p>
+                <h1 class="neon-title"><span class="glow">Skincare de <span class="flick">n</span>oche,</span> <mark>entrega</mark> de noche</h1>
+                <p class="sub">Sérums, brumas y labiales que elegimos para tu rutina. Pedí a las 3 de la mañana y lo tenés en la puerta en 2 horas.</p>
+                <div class="hero-ctas">
+                    <a class="cta primary" href="#rutina">Armá tu rutina</a>
+                    <a class="cta ghost" href="#hora">¿A qué hora lo necesitás?</a>
+                </div>
             </div>
-            <div class="clock" aria-label="Abierta las 24 horas">
-                <div><b>24</b><span>horas · 7 días</span></div>
-                <span class="sticker s1">−30 % bruma Caviahue</span>
-                <span class="sticker s2">Nuevo: Acf by Dadatina</span>
-            </div>
+            <article class="holo" id="holo" aria-labelledby="holo-title">
+                <div class="holo-in" id="holo-in"></div>
+                <span class="sticker off" id="holo-off" hidden></span>
+                <span class="sticker note">Lo más pedido de noche</span>
+            </article>
         </div>
         <div class="marquee" aria-hidden="true"><div id="marquee"></div></div>
     </header>
 
     <main class="wrap">
-        <h2 class="bento-title">Plaza Lab</h2>
-        <p class="bento-sub">Fórmulas livianas para tu rutina de noche.</p>
-        <ul class="bento" id="bento"></ul>
-
-        <section id="marcas" aria-labelledby="marcas-title">
-            <h2 class="bento-title" id="marcas-title">Marcas que amamos</h2>
-            <p class="bento-sub">Dermocosmética de farmacia para tu rutina, a cualquier hora.</p>
-            <ul class="brands-grid" id="brands"></ul>
-            <p class="brands-note">Precios del catálogo de FarmaGlass · <a href="farmacia_v2.html#catalogo">Ver todo el catálogo</a></p>
+        <section class="hour" id="hora" aria-labelledby="hora-title">
+            <div class="hour-grid">
+                <div>
+                    <p class="kicker">Nunca cerramos</p>
+                    <h2 class="h2" id="hora-title">¿A qué hora lo necesitás?</h2>
+                    <label class="sr" for="hour">Hora del pedido</label>
+                    <input class="range" type="range" id="hour" min="0" max="23" step="1">
+                    <div class="range-scale" aria-hidden="true"><span>00</span><span>06</span><span>12</span><span>18</span><span>23</span></div>
+                    <p class="hour-big" aria-hidden="true"><span id="hour-big">--</span>:00</p>
+                    <p class="hour-eta" id="hour-eta" aria-live="polite"></p>
+                </div>
+                <div>
+                    <p class="lead" style="margin:0 0 12px">Así está la red de FarmaGlass a esa hora:</p>
+                    <ul class="net" id="net"></ul>
+                </div>
+            </div>
         </section>
 
-        <section class="routine" aria-labelledby="routine-title">
-            <h2 id="routine-title">Tu rutina de noche en 3 pasos</h2>
-            <ol class="steps">
-                <li><div><b>Limpiá</b><span>Una bruma facial para refrescar después de desmaquillarte.</span></div></li>
-                <li><div><b>Tratá</b><span>Dos gotas de sérum vitamina C y contorno de ojos frío.</span></div></li>
-                <li><div><b>Protegé</b><span>Mascarilla Lumiglow y bruma de centella si aparece un granito.</span></div></li>
+        <section class="quiz" id="rutina" aria-labelledby="rutina-title">
+            <form id="quiz" onsubmit="return false">
+                <p class="kicker">Tu rutina en 2 preguntas</p>
+                <h2 class="h2" id="rutina-title">Armamos tu rutina de noche</h2>
+                <p class="lead">Elegí tu tipo de piel y lo que querés mejorar. Te proponemos tres pasos con productos de Plaza.</p>
+                <fieldset class="q">
+                    <legend><span>01</span>Tu piel es…</legend>
+                    <div class="chips">
+                        <label class="chip"><input type="radio" name="piel" value="seca"><span>Seca</span></label>
+                        <label class="chip"><input type="radio" name="piel" value="mixta" checked><span>Mixta</span></label>
+                        <label class="chip"><input type="radio" name="piel" value="grasa"><span>Grasa</span></label>
+                        <label class="chip"><input type="radio" name="piel" value="sensible"><span>Sensible</span></label>
+                    </div>
+                </fieldset>
+                <fieldset class="q">
+                    <legend><span>02</span>Querés mejorar…</legend>
+                    <div class="chips">
+                        <label class="chip"><input type="radio" name="foco" value="hidratacion" checked><span>Hidratación</span></label>
+                        <label class="chip"><input type="radio" name="foco" value="granitos"><span>Granitos</span></label>
+                        <label class="chip"><input type="radio" name="foco" value="manchas"><span>Manchas</span></label>
+                        <label class="chip"><input type="radio" name="foco" value="ojeras"><span>Ojeras</span></label>
+                    </div>
+                </fieldset>
+            </form>
+            <div class="routine-card" id="routine" aria-live="polite"></div>
+        </section>
+
+        <section class="sec" id="lab" aria-labelledby="lab-title">
+            <p class="kicker">Colección Plaza Lab</p>
+            <h2 class="h2" id="lab-title">Las cartas de la noche</h2>
+            <p class="lead">La selección de Plaza: brumas, sérums y labiales para tu rutina de noche.</p>
+            <ul class="tcards" id="bento"></ul>
+        </section>
+
+        <section class="sec" id="marcas" aria-labelledby="marcas-title">
+            <p class="kicker">Collage</p>
+            <h2 class="h2" id="marcas-title">Marcas que amamos</h2>
+            <p class="lead">Dermocosmética de farmacia, con precios de noche y de día.</p>
+            <ul class="collage" id="brands"></ul>
+            <p class="note">Precios del catálogo de FarmaGlass · <a href="farmacia_v2.html#catalogo">Ver todo el catálogo</a></p>
+        </section>
+
+        <section class="night" aria-labelledby="night-title">
+            <p class="kicker">La noche, paso a paso</p>
+            <h2 class="h2" id="night-title">Tu rutina de noche en 3 pasos</h2>
+            <ol class="timeline">
+                <li><span class="phase p1" aria-hidden="true"></span><div><time>22:00</time><b>Limpiá</b><span>Desmaquillate y limpiá la cara con agua micelar o un gel suave.</span></div></li>
+                <li><span class="phase p2" aria-hidden="true"></span><div><time>22:05</time><b>Tratá</b><span>Unas gotas de sérum y el contorno de ojos con toques suaves.</span></div></li>
+                <li><span class="phase" aria-hidden="true"></span><div><time>22:10</time><b>Hidratá</b><span>Una crema liviana o la mascarilla Lumiglow una vez por semana.</span></div></li>
             </ol>
         </section>
 
-        <div class="info" id="info"></div>
+        <section class="sign" aria-label="Datos de la farmacia">
+            <p class="neon" aria-hidden="true">ABIER<span class="flick">T</span>O 24 H</p>
+            <p class="sr">Abierto las 24 horas, todos los días.</p>
+            <div class="info" id="info"></div>
+        </section>
     </main>
 
     <footer>Farmacia Plaza Palermo forma parte de la red FarmaGlass · <button class="foot-link" type="button" data-account-open="orders">Mis pedidos</button> · Prototipo: datos ilustrativos</footer>
@@ -176,38 +359,124 @@
     <script src="farmacias-red.js"></script>
     <script>
         const s = FG.store('plaza');
-        document.getElementById('brand').insertAdjacentHTML('afterbegin', FG.logo(s, 34, 'Unbounded, sans-serif'));
-        const words = ['Abierta 24 h', '✦', 'Plaza Lab', '✦', 'Entrega en 2 h', '✦', 'Envío gratis desde $ 15.000', '✦'];
-        document.getElementById('marquee').innerHTML = [...words, ...words, ...words, ...words].map(w => `<span>${w}</span>`).join('');
-        const order = [108, 105, 106, 107, 119, 120];
-        document.getElementById('bento').innerHTML = order.map((id, i) => {
-            const p = s.items.find(x => x.id === id);
-            const d = FG.off(p);
-            return `<li class="tile${i === 0 ? ' big' : ''}">
-                ${d > 0 ? `<span class="badge">−${d} %</span>` : ''}
-                <div class="art"><img src="${p.img}" alt="" width="200" height="200"></div>
-                <h3>${FG.esc(p.name)}</h3><span class="size">${p.size}${i === 0 ? ' · ' + FG.esc(p.desc) : ''}</span>
-                <div class="row"><span class="price">${d > 0 ? `<s>${FG.fmt(p.list)}</s>` : ''}${FG.fmt(p.price)}</span>
-                <button class="add" type="button" data-add="${p.id}" data-name="${FG.esc(p.name)}" aria-label="Agregar ${FG.esc(p.name)} al carrito">+</button></div>
-            </li>`;
-        }).join('');
         const brands = FG.brands('plaza');
+        const all = new Map([...s.items, ...brands].map(p => [p.id, p]));
+        const pad = n => String(n).padStart(2, '0');
+        const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+        const label = p => p.fullName || `${p.name} (${p.size})`;
+        // En la línea propia el nombre empieza con la marca: se muestra aparte
+        const nm = p => p.fullName ? p.name : p.name.replace(new RegExp('^' + p.brand.replace(/[.*+?^${}()|[\]\\]/g, '\\$&') + '\\s', 'i'), '').replace(/^./, c => c.toUpperCase());
+        const priceHTML = p => { const d = FG.off(p); return `<span class="price">${d > 0 ? `<s><span class="sr">Antes </span>${FG.fmt(p.list)}</s>` : ''}${FG.fmt(p.price)}</span>`; };
+
+        document.getElementById('brand').insertAdjacentHTML('afterbegin', FG.logo(s, 34, 'Unbounded, sans-serif'));
+
+        // Reloj en vivo
+        const clock = document.getElementById('clock');
+        const tick = () => { const d = new Date(); clock.textContent = `${pad(d.getHours())}:${pad(d.getMinutes())}:${pad(d.getSeconds())}`; clock.dateTime = d.toISOString(); };
+        tick(); setInterval(tick, 1000);
+
+        // Carta holográfica: la bruma Caviahue (la que más baja de precio)
+        const feat = all.get(108) || s.items[0];
+        const fd = FG.off(feat);
+        document.getElementById('holo-in').innerHTML = `
+            <div class="holo-top"><span></span><span>PL-${feat.id} · ★ Favorito</span></div>
+            <div class="holo-art">${FG.photo(feat, 260)}</div>
+            <h2 id="holo-title">${FG.esc(feat.brand)} · ${FG.esc(nm(feat))}</h2><p class="size">${FG.esc(feat.size)} · ${FG.esc(feat.desc)}</p>
+            <div class="holo-row">${priceHTML(feat)}<button class="add" type="button" data-add="${feat.id}" aria-label="Agregar ${FG.esc(label(feat))} al carrito">+</button></div>`;
+        if (fd > 0) { const o = document.getElementById('holo-off'); o.hidden = false; o.textContent = `−${fd} %`; }
+        // Se inclina siguiendo el puntero (solo con mouse y sin "reducir movimiento")
+        const holo = document.getElementById('holo');
+        if (!reduce && matchMedia('(pointer: fine)').matches) {
+            holo.addEventListener('pointermove', e => {
+                const r = holo.getBoundingClientRect(), x = (e.clientX - r.left) / r.width - .5, y = (e.clientY - r.top) / r.height - .5;
+                holo.style.setProperty('--ry', `${x * 14}deg`); holo.style.setProperty('--rx', `${-y * 14}deg`);
+                document.getElementById('holo-in').style.setProperty('--sx', `${(x + .5) * 100}%`);
+            });
+            holo.addEventListener('pointerleave', () => { holo.style.setProperty('--rx', '0deg'); holo.style.setProperty('--ry', '0deg'); });
+        }
+
+        const words = ['Abierto 24 h', '✦', 'Plaza Lab', '✦', 'Entrega en 2 h', '✦', 'Envío gratis desde $ 15.000', '✦'];
+        document.getElementById('marquee').innerHTML = [...words, ...words, ...words, ...words].map(w => `<span>${w}</span>`).join('');
+
+        // ¿A qué hora lo necesitás? Cielo, hora de llegada y qué farmacias están abiertas
+        const SKY = h => h < 5 || h >= 22 ? 'linear-gradient(160deg, #120520, #2B1240 70%, #3B1A56)'
+            : h < 8 ? 'linear-gradient(160deg, #3B1A56, #C2185B 60%, #FF9E6B)'
+            : h < 18 ? 'linear-gradient(160deg, #6A3FD6, #C2185B 70%, #FF5FA2)'
+            : 'linear-gradient(160deg, #2B1240, #8E1145 55%, #FF7A59)';
+        const NAMES = { centro: 'Farmacia del Centro', plaza: 'Plaza Palermo', norte: 'Belgrano Norte', parque: 'Parque Caballito' };
+        const hourInput = document.getElementById('hour');
+        function paintHour() {
+            const h = Number(hourInput.value), at = new Date(); at.setHours(h, 0, 0, 0);
+            document.getElementById('hour-big').textContent = pad(h);
+            hourInput.setAttribute('aria-valuetext', `${pad(h)}:00`);
+            document.getElementById('hour-eta').innerHTML = `Pedí a las ${pad(h)}:00 y llega a las <b>${pad((h + 2) % 24)}:00</b>`;
+            document.getElementById('hora').style.setProperty('--sky', SKY(h));
+            document.getElementById('net').innerHTML = Object.keys(NAMES).map(id => {
+                const st = FGShop.openStatus(id, at);
+                return `<li class="${id === 'plaza' ? 'me' : ''}"><b>${NAMES[id]}</b><span class="st${st.open ? ' on' : ''}">${st.open ? 'Abierta' : 'Cerrada'}</span></li>`;
+            }).join('');
+        }
+        hourInput.value = new Date().getHours();
+        hourInput.addEventListener('input', paintHour);
+        paintHour();
+
+        // Tu rutina en 2 preguntas
+        const LIMPIA = { seca: 13, mixta: 11, grasa: 11, sensible: 16 };
+        const TRATA = { hidratacion: 17, granitos: 106, manchas: 20, ojeras: 120 };
+        const CIERRA = { seca: 12, mixta: 14, grasa: 14, sensible: 108 };
+        const quiz = document.getElementById('quiz');
+        let routine = [];
+        function paintRoutine() {
+            const piel = quiz.elements.piel.value, foco = quiz.elements.foco.value;
+            const ids = [LIMPIA[piel], TRATA[foco], CIERRA[piel]];
+            routine = [...new Set(ids)].map(id => all.get(id)).filter(Boolean);
+            const times = ['22:00 · Limpiá', '22:05 · Tratá', '22:10 · Hidratá'];
+            const total = FG.total(routine), save = FG.totalList(routine) - total;
+            const pielTxt = { seca: 'seca', mixta: 'mixta', grasa: 'grasa', sensible: 'sensible' }[piel];
+            const focoTxt = { hidratacion: 'más hidratación', granitos: 'menos granitos', manchas: 'un tono más parejo', ojeras: 'una mirada descansada' }[foco];
+            document.getElementById('routine').innerHTML = `
+                <h3>Piel ${pielTxt}, para ${focoTxt}</h3>
+                <p>Una propuesta orientativa. Si tenés dudas, consultá en el mostrador.</p>
+                <ol class="steps">${routine.map((p, i) => `<li>
+                    <span class="ph">${FG.photo(p, 64)}</span>
+                    <div><span class="t">${times[i] || times[2]}</span><b>${FG.esc(p.brand)} · ${FG.esc(nm(p))}</b><small>${FG.esc(p.size)}</small></div>
+                    <span class="p">${FG.fmt(p.price)}</span></li>`).join('')}</ol>
+                <div class="routine-total"><div><small>La rutina completa</small><br>${save > 0 ? `<span class="price"><s>${FG.fmt(total + save)}</s>${FG.fmt(total)}</span>` : `<span class="price">${FG.fmt(total)}</span>`}</div>
+                <button class="routine-add" type="button" id="routine-add">Sumar la rutina al carrito</button></div>`;
+            document.getElementById('routine-add').addEventListener('click', () => FG.addAll(routine, 'productos de tu rutina'));
+        }
+        quiz.addEventListener('change', paintRoutine);
+        paintRoutine();
+
+        // Plaza Lab: cartas holográficas
+        document.getElementById('bento').innerHTML = [108, 105, 106, 107, 119, 120].map(id => all.get(id)).filter(Boolean).map(p => {
+            const d = FG.off(p);
+            return `<li class="tcard"><div class="tcard-in">
+                <div class="tcard-top"><span>PL-${p.id}</span>${d > 0 ? `<span class="b">−${d} %</span>` : '<span>★</span>'}</div>
+                <div class="tcard-art">${FG.photo(p, 200)}</div>
+                <span class="brand">${FG.esc(p.brand)}</span>
+                <h3>${FG.esc(nm(p))}</h3><span class="size">${FG.esc(p.size)}</span>
+                <div class="row">${priceHTML(p)}<button class="add" type="button" data-add="${p.id}" aria-label="Agregar ${FG.esc(label(p))} al carrito">+</button></div>
+            </div></li>`;
+        }).join('');
+
+        // Marcas que amamos: collage de polaroids
         document.getElementById('marcas').hidden = !brands.length;
         document.getElementById('brands').innerHTML = brands.map(p => {
             const d = FG.off(p);
-            return `<li class="tile">
-                ${d > 0 ? `<span class="badge">−${d} %</span>` : ''}
-                <div class="art">${FG.photo(p, 200).replace('<img', '<img class="photo"')}</div>
-                <span class="brand">${FG.esc(p.brand)}</span>
-                <h3>${FG.esc(p.name)}</h3>${p.size ? `<span class="size">${FG.esc(p.size)}</span>` : ''}
-                <div class="row"><span class="price">${d > 0 ? `<s>${FG.fmt(p.list)}</s>` : ''}${FG.fmt(p.price)}</span>
-                <button class="add" type="button" data-add="${p.id}" aria-label="Agregar ${FG.esc(p.fullName)} al carrito">+</button></div>
+            return `<li class="pola">
+                ${d > 0 ? `<span class="off">−${d} %</span>` : ''}
+                <div class="pola-art">${FG.photo(p, 200)}</div>
+                <p class="brand">${FG.esc(p.brand)}</p>
+                <h3>${FG.esc(p.name)}</h3>${p.size ? `<p class="size">${FG.esc(p.size)}</p>` : ''}
+                <div class="row">${priceHTML(p)}<button class="add" type="button" data-add="${p.id}" aria-label="Agregar ${FG.esc(p.fullName)} al carrito">+</button></div>
             </li>`;
         }).join('');
-        document.getElementById('info').innerHTML = `<span class="now">${FG.status('plaza').text}</span>
+
+        document.getElementById('info').innerHTML = `<span>${FG.status('plaza').text}</span>
             <a href="${FG.mapsUrl(s)}" target="_blank" rel="noopener">${FG.esc(s.street)} · Cómo llegar ↗</a>
             <a href="${FG.telUrl(s)}">Llamar al ${s.phone}</a>
-            <span>★ ${String(s.rating).replace('.', ',')}</span>`;
+            <span>★ ${String(s.rating).replace('.', ',')} · Retiro en 30 min</span>`;
     </script>
 </body>
 </html>

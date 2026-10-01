@@ -14,6 +14,18 @@ Todo es HTML, CSS y JavaScript sin dependencias. Para verla, abrí `farmacia_v2.
 | `productos-reales.js` | 58 productos reales de farmacia y cosmética con precio, oferta e imagen: 34 del catálogo y 24 de las líneas de cada farmacia |
 | `scripts/actualizar-productos.js` | Actualiza precios e imágenes de esos productos |
 
+## Las farmacias de la red
+
+Cada farmacia tiene una página que es su propio mundo, con estructura, tipografía e interacciones distintas,
+y un banner propio en la portada de la web principal:
+
+| Farmacia | Concepto | Lo que tiene la página |
+| --- | --- | --- |
+| Farmacia del Centro | "La Gaceta de la Botica": un diario de 1962 | Cabecera con fecha y edición, nota principal con letra capital y sello de precio, cajonera de madera con plaquitas de bronce, vitrina con estantes y etiquetas colgantes, consultorio de cartas y horario de época |
+| Plaza Palermo | "After Hours": la noche de una farmacia 24 h | Reloj en vivo, deslizador "¿A qué hora lo necesitás?" que muestra qué farmacias de la red están abiertas, rutina de noche en 2 preguntas, cartas holográficas, collage de polaroids y cartel de neón |
+| Belgrano Norte | "Training Club": una app de entrenamiento | Marcador LED, armador de kit por deporte, fichas técnicas, calculadora de hidratación orientativa y el plan en una pista de atletismo |
+| Parque Caballito | "Un día en el parque": un libro ilustrado | Escena con barrilete y picnic, selector con dibujos, tendedero de marcas, mochila para el parque con checklist y notas del farmacéutico |
+
 ## Funciones
 
 - **Carrito real** compartido entre páginas: cantidades, quitar con "Deshacer", guardar para después,
