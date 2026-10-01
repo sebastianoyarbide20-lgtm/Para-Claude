@@ -1,5 +1,6 @@
 // FarmaGlass · datos y utilidades compartidas por las páginas de cada farmacia (prototipo).
 // Las farmacias, productos, direcciones y horarios son inventados.
+// El carrito, el checkout y los avisos vienen de fg-shop.js, que se carga antes que este archivo.
 window.FG = (() => {
     const STORES = {
         centro: {
@@ -93,41 +94,21 @@ window.FG = (() => {
             <text x="24" y="${s.shape === 'arch' ? 37 : 32}" text-anchor="middle" font-size="22" fill="#fff" style="font-family:${font}">${s.letter}</text></svg>`;
     }
 
+    // Carga la farmacia de la página: sus productos quedan disponibles para los botones data-add
+    // y la farmacia queda elegida por defecto para "Retiro en farmacia".
     function store(id) {
         const s = STORES[id];
         s.id = id;
         s.items = s.products.map(([pid, name, size, list, price, kind, desc]) => ({ id: pid, name, size, list, price, kind, desc, img: packshot(kind, s, size) }));
+        FGShop.register(s.items.map(p => ({ id: p.id, name: p.name, size: p.size, price: p.price, list: p.list, img: p.img, store: id })));
+        FGShop.setStore(id);
         return s;
     }
 
-    // Carrito compartido con la web principal (solo cuenta unidades)
-    const cart = {
-        get() { try { return Number(localStorage.getItem('fg-cart-units')) || 0; } catch { return 0; } },
-        add(n = 1) { const v = cart.get() + n; try { localStorage.setItem('fg-cart-units', String(v)); } catch {} cart.paint(); return v; },
-        paint() { document.querySelectorAll('[data-cart-count]').forEach(b => { const v = cart.get(); b.textContent = v; b.hidden = v === 0; }); },
-    };
+    // Abierta o cerrada según el horario y la hora actual
+    const status = id => FGShop.openStatus(id);
+    const mapsUrl = s => 'https://www.google.com/maps/search/?api=1&query=' + encodeURIComponent(`${s.street}, Buenos Aires`);
+    const telUrl = s => 'tel:+54' + s.phone.replace(/\D/g, '');
 
-    let toastTimer;
-    function toast(msg) {
-        let el = document.getElementById('fg-toast');
-        if (!el) {
-            el = document.createElement('div');
-            el.id = 'fg-toast'; el.setAttribute('role', 'status'); el.setAttribute('aria-live', 'polite');
-            el.style.cssText = 'position:fixed;left:50%;bottom:24px;transform:translateX(-50%);z-index:1000;max-width:calc(100vw - 32px);padding:12px 20px;border-radius:999px;background:#10261F;color:#fff;font:600 14px/1.3 Inter,system-ui,sans-serif;box-shadow:0 12px 30px rgba(0,0,0,.25);opacity:0;transition:opacity .25s;text-align:center;pointer-events:none';
-            document.body.appendChild(el);
-        }
-        el.textContent = msg; el.style.opacity = '1';
-        clearTimeout(toastTimer); toastTimer = setTimeout(() => { el.style.opacity = '0'; }, 2600);
-    }
-
-    // Botones con data-add="id" agregan al carrito
-    document.addEventListener('click', e => {
-        const b = e.target.closest('[data-add]');
-        if (!b) return;
-        cart.add(1);
-        toast(`${b.dataset.name || 'Producto'} agregado al carrito`);
-    });
-    document.addEventListener('DOMContentLoaded', () => cart.paint());
-
-    return { store, fmt, off, esc, logo, cart, toast };
+    return { store, fmt, off, esc, logo, status, mapsUrl, telUrl, toast: FGShop.toast };
 })();

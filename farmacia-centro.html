@@ -15,6 +15,8 @@
             --navy: #14284B; --ink: #1B2238; --brass: #C9A227; --brass-hi: #E6C65C; --brass-text: #7A5C12;
             --ivory: #FBF6EA; --paper: #FFFDF7; --line: #E6DCC3; --sale: #9B2335; --muted: #5B5F6E;
             --serif: 'DM Serif Display', Georgia, serif; --sans: 'Inter', system-ui, sans-serif;
+            /* Carrito y checkout (fg-shop.js) con los colores de la botica */
+            --fgs-accent: #14284B; --fgs-accent-2: #1E3A6B; --fgs-sale: #9B2335;
         }
         * { box-sizing: border-box; margin: 0; padding: 0; }
         [hidden] { display: none !important; }
@@ -93,7 +95,13 @@
         .visit { display: grid; gap: 14px; margin: 48px 0; }
         .visit div { background: var(--paper); border: 1px solid var(--line); border-radius: 12px; padding: 18px; }
         .visit small { display: block; font-size: 12px; letter-spacing: .15em; text-transform: uppercase; color: var(--brass-text); font-weight: 700; margin-bottom: 4px; }
+        .visit a { font-weight: 700; color: var(--navy); text-underline-offset: 3px; }
+        .now { display: inline-flex; align-items: center; gap: 6px; margin-top: 4px; font-size: 13px; font-weight: 700; color: var(--muted); }
+        .now::before { content: ''; width: 8px; height: 8px; border-radius: 50%; background: #A9A28F; }
+        .now.on { color: #2F6B3A; }
+        .now.on::before { background: #2F9E57; box-shadow: 0 0 0 3px rgba(47,158,87,.2); }
         footer { text-align: center; font-size: 13px; color: var(--muted); padding: 28px 16px 40px; border-top: 1px solid var(--line); }
+        .foot-link { min-height: 44px; font-weight: 700; color: var(--navy); text-decoration: underline; text-underline-offset: 3px; }
 
         @media (min-width: 760px) {
             .feature { grid-template-columns: 1fr 1.1fr; }
@@ -107,7 +115,7 @@
 <body>
     <div class="topbar"><div class="wrap">
         <a class="back" href="farmacia_v2.html#farmacias">← Volver a FarmaGlass</a>
-        <span class="cart" aria-live="polite">Carrito <b data-cart-count hidden>0</b></span>
+        <button class="cart" type="button" data-cart-open>Carrito <b data-cart-count hidden>0</b></button>
     </div></div>
 
     <header class="masthead">
@@ -158,8 +166,9 @@
         </section>
     </main>
 
-    <footer>Farmacia del Centro forma parte de la red FarmaGlass · Prototipo: datos ilustrativos</footer>
+    <footer>Farmacia del Centro forma parte de la red FarmaGlass · <button class="foot-link" type="button" data-account-open="orders">Mis pedidos</button> · Prototipo: datos ilustrativos</footer>
 
+    <script src="fg-shop.js"></script>
     <script src="farmacias-red.js"></script>
     <script>
         const s = FG.store('centro');
@@ -176,9 +185,10 @@
                     <button class="add" type="button" data-add="${p.id}" data-name="${FG.esc(p.name)}" aria-label="Agregar ${FG.esc(p.name)} al carrito">Agregar</button>
                 </div>
             </li>`).join('');
-        document.getElementById('v-street').textContent = s.street;
-        document.getElementById('v-hours').textContent = s.hours;
-        document.getElementById('v-phone').textContent = s.phone;
+        const st = FG.status('centro');
+        document.getElementById('v-street').innerHTML = `${FG.esc(s.street)}<br><a href="${FG.mapsUrl(s)}" target="_blank" rel="noopener">Cómo llegar ↗</a>`;
+        document.getElementById('v-hours').innerHTML = `${FG.esc(s.hours)}<br><span class="now${st.open ? ' on' : ''}">${st.text}</span>`;
+        document.getElementById('v-phone').innerHTML = `<a href="${FG.telUrl(s)}">${s.phone}</a><br>Atención farmacéutica en el mostrador`;
     </script>
 </body>
 </html>
