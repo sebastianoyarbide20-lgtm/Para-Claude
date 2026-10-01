@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Farmacia del Centro · Botica tradicional en Recoleta</title>
-    <meta name="description" content="Farmacia del Centro, botica tradicional desde 1962 en Recoleta. Línea Botica del Centro: caléndula, agua de rosas, glicerina y más.">
+    <meta name="description" content="Farmacia del Centro, botica tradicional desde 1962 en Recoleta. Selección Botica del Centro: caléndula, agua de rosas, glicerina, vaselina y más.">
     <meta name="theme-color" content="#14284B">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -48,7 +48,7 @@
         /* Destacado: imagen en arco + texto */
         .feature { display: grid; gap: 28px; padding: 44px 0; align-items: center; }
         .arch { aspect-ratio: 4 / 5; max-width: 380px; width: 100%; margin: 0 auto; border-radius: 999px 999px 18px 18px; background: linear-gradient(180deg, #fff, #F2E9D2); border: 1px solid var(--line); display: grid; place-items: center; box-shadow: 0 30px 60px rgba(20,40,75,.12); }
-        .arch img { width: 78%; }
+        .arch img { width: 64%; mix-blend-mode: multiply; }
         .eyebrow { font-size: 12px; letter-spacing: .2em; text-transform: uppercase; color: var(--brass-text); font-weight: 700; }
         .feature h2 { font-family: var(--serif); font-weight: 400; font-size: clamp(2rem, 5vw, 3.2rem); line-height: 1.05; color: var(--navy); margin: 10px 0 14px; }
         .feature h2 i { color: var(--brass-text); }
@@ -68,7 +68,7 @@
         .pricelist li { display: grid; grid-template-columns: 64px minmax(0, 1fr) auto; gap: 14px; align-items: center; padding: 14px 0; border-bottom: 1px dashed var(--line); }
         .pricelist li:last-child { border-bottom: 0; }
         .thumb { width: 64px; height: 64px; border-radius: 50% 50% 8px 8px; background: var(--ivory); display: grid; place-items: center; }
-        .thumb img { width: 90%; }
+        .thumb img { width: 80%; mix-blend-mode: multiply; }
         .item-name { font-family: var(--serif); font-size: 1.2rem; color: var(--navy); line-height: 1.15; }
         .item-desc { font-size: 13px; color: var(--muted); }
         .item-price { text-align: right; display: grid; gap: 4px; justify-items: end; }
@@ -150,18 +150,18 @@
         <section class="feature" aria-labelledby="feature-title">
             <div class="arch"><img id="feature-img" alt="Agua de rosas de la línea Botica del Centro" width="300" height="300"></div>
             <div>
-                <p class="eyebrow">Línea Botica del Centro</p>
+                <p class="eyebrow">Selección Botica del Centro</p>
                 <h2 id="feature-title">Fórmulas de botica, <i>como siempre</i></h2>
-                <p class="lead">Cremas, aguas y jabones elaborados con recetas clásicas en nuestro laboratorio de Recoleta. Ingredientes simples, presentaciones de siempre.</p>
+                <p class="lead">Caléndula, agua de rosas, glicerina y vaselina: los productos clásicos de botica que nuestros farmacéuticos eligen hace 60 años.</p>
                 <div class="price-tag" id="feature-price"></div>
-                <button class="btn" type="button" data-add="102" data-name="Agua de rosas (250 ml)">Agregar al carrito</button>
+                <button class="btn" type="button" data-add="101">Agregar al carrito</button>
                 <a class="btn ghost" href="#lista">Ver lista de precios</a>
             </div>
         </section>
 
         <section id="lista" aria-labelledby="lista-title">
             <h2 class="section-title" id="lista-title">Lista de precios</h2>
-            <p class="section-sub">Productos de elaboración propia</p>
+            <p class="section-sub">Clásicos de botica que siempre tenemos en el mostrador</p>
             <ul class="pricelist" id="pricelist"></ul>
         </section>
 
@@ -182,7 +182,7 @@
         <aside class="promo" aria-label="Promoción">
             <div>
                 <p class="eyebrow">Solo este mes</p>
-                <h3>20 % off en agua de rosas<br>y talco mentolado</h3>
+                <h3 id="promo-title">Clásicos de botica<br>con precio de mostrador</h3>
             </div>
             <a class="btn" href="#lista">Aprovechar</a>
         </aside>
@@ -202,9 +202,10 @@
     <script>
         const s = FG.store('centro');
         document.getElementById('logo').innerHTML = FG.logo(s, 72, 'DM Serif Display, Georgia, serif');
-        const feat = s.items.find(p => p.id === 102);
+        const feat = s.items.find(p => p.id === 101);
+        document.getElementById('feature-img').alt = `${feat.name} (${feat.size})`;
         document.getElementById('feature-img').src = feat.img;
-        document.getElementById('feature-price').innerHTML = `<s>${FG.fmt(feat.list)}</s><strong>${FG.fmt(feat.price)}</strong><span>−${FG.off(feat)} %</span>`;
+        document.getElementById('feature-price').innerHTML = `${FG.off(feat) > 0 ? `<s>${FG.fmt(feat.list)}</s>` : ''}<strong>${FG.fmt(feat.price)}</strong>${FG.off(feat) > 0 ? `<span>−${FG.off(feat)} %</span>` : ''}`;
         document.getElementById('pricelist').innerHTML = s.items.map(p => `
             <li>
                 <span class="thumb"><img src="${p.img}" alt="" width="60" height="60"></span>

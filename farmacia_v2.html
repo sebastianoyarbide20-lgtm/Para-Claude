@@ -774,7 +774,7 @@
                 box-shadow: 0 24px 48px rgba(0, 0, 0, .3);
                 transform: rotate(4deg);
             }
-            .store-banner-art img { width: 88%; height: 88%; }
+            .store-banner-art img { width: 78%; height: 78%; object-fit: contain; mix-blend-mode: multiply; }
         }
         @media (min-width: 900px) {
             .store-tabs { grid-template-columns: repeat(4, minmax(0, 1fr)); }
@@ -2392,22 +2392,22 @@
               style: 'Clásica · boticaria', tagline: 'Botica tradicional desde 1962', line: 'Botica del Centro', short: 'BOTICA',
               hours: 'Lun a sáb · 8 a 21 h', street: 'Av. Callao 1450, Recoleta', letter: 'C', shape: 'arch',
               colors: { primary: '#14284B', accent: '#C9A227', bg: '#FBF6EA', ink: '#1B2238', sale: '#9B2335' }, labelFont: 'Georgia, serif',
-              banner: { eyebrow: 'Línea Botica del Centro', title: 'Fórmulas de botica, como siempre', text: 'Cremas, aguas y jabones con recetas clásicas, preparados por nuestro equipo.', featured: 102, cta: 'Ver la botica' } },
+              banner: { eyebrow: 'Selección Botica del Centro', title: 'Clásicos de botica, como siempre', text: 'Caléndula, agua de rosas, glicerina y vaselina elegidas por nuestros farmacéuticos.', featured: 101, cta: 'Ver la botica' } },
             { id: 'plaza', name: 'Farmacia Plaza Palermo', zone: 'Palermo', rating: 4.7,
               style: 'Urbana · pop', tagline: 'Abierta 24 h en el corazón de Palermo', line: 'Plaza Lab', short: 'PLAZA LAB',
               hours: 'Todos los días · 24 h', street: 'Av. Santa Fe 3720, Palermo', letter: 'P', shape: 'blob',
               colors: { primary: '#C2185B', accent: '#FFD23F', bg: '#FFF0F6', ink: '#2B1240', sale: '#C2185B' }, labelFont: 'Arial Black, sans-serif',
-              banner: { eyebrow: 'Plaza Lab · 24 h', title: 'Skincare de noche, entrega de noche', text: 'Sérums, parches y bálsamos con entrega a cualquier hora.', featured: 105, cta: 'Ver Plaza Lab' } },
+              banner: { eyebrow: 'Plaza Lab · 24 h', title: 'Skincare de noche, entrega de noche', text: 'Sérums, brumas y labiales con entrega a cualquier hora.', featured: 108, cta: 'Ver Plaza Lab' } },
             { id: 'norte', name: 'Farmacia Belgrano Norte', zone: 'Belgrano', rating: 4.6,
               style: 'Deportiva · activa', tagline: 'Rendimiento y bienestar para tu día', line: 'Norte Active', short: 'NORTE',
               hours: 'Lun a dom · 7 a 23 h', street: 'Av. Cabildo 2300, Belgrano', letter: 'N', shape: 'hex',
               colors: { primary: '#1F4FD8', accent: '#FF7A2E', bg: '#EEF3FF', ink: '#0B1B3F', sale: '#C2410C' }, labelFont: 'Impact, Arial Narrow, sans-serif',
-              banner: { eyebrow: 'Norte Active', title: 'Recuperá energía para entrenar', text: 'Suplementos, hidratación y alivio muscular para tu rutina.', featured: 109, cta: 'Ver Norte Active' } },
+              banner: { eyebrow: 'Norte Active', title: 'Recuperá energía para entrenar', text: 'Suplementos, hidratación y alivio muscular para tu rutina.', featured: 112, cta: 'Ver Norte Active' } },
             { id: 'parque', name: 'Farmacia Parque Caballito', zone: 'Caballito', rating: 4.8,
               style: 'Familiar · natural', tagline: 'Cuidamos a toda la familia, frente al parque', line: 'Parque Familia', short: 'FAMILIA',
               hours: 'Lun a sáb · 8 a 22 h', street: 'Av. Rivadavia 5200, Caballito', letter: 'P', shape: 'leaf',
               colors: { primary: '#4E6B3D', accent: '#B5532A', bg: '#F8F1E4', ink: '#2E3326', sale: '#B5532A' }, labelFont: 'Verdana, sans-serif',
-              banner: { eyebrow: 'Parque Familia', title: 'Bebés felices, familias tranquilas', text: 'Higiene y cuidado suave para los más chicos y toda la casa.', featured: 114, cta: 'Ver Parque Familia' } },
+              banner: { eyebrow: 'Parque Familia', title: 'Bebés felices, familias tranquilas', text: 'Higiene y cuidado suave para los más chicos y toda la casa.', featured: 113, cta: 'Ver Parque Familia' } },
         ];
         const pharmById = new Map(PHARMACIES.map(f => [f.id, f]));
         // Coordenadas aproximadas (prototipo) para calcular distancias reales cuando se usa la ubicación
@@ -2464,7 +2464,10 @@
         ].map(([id, pharmacy, name, listPrice, price, kind, cat, desc, rating, reviews]) => {
             const f = pharmById.get(pharmacy);
             const label = name.match(/\(([^)]+)\)/)?.[1] || '';
-            return { id, pharmacy, name, brand: f.line, listPrice, price, cat, categories: [], rating, reviews, sale: 'Venta libre', desc, storeOnly: true, img: packshot(kind, f, label) };
+            const base = { id, pharmacy, name, brand: f.line, listPrice, price, cat, categories: [], sale: 'Venta libre', desc, storeOnly: true, img: packshot(kind, f, label) };
+            // Producto real que ocupa ese lugar en la línea (productos-reales.js); el dibujo queda solo de respaldo
+            const real = (window.FG_STORE_LINE || []).find(r => r.id === id);
+            return real ? { ...base, name: `${real.name} (${real.size})`, brand: real.brand, listPrice: real.listPrice, price: real.price, desc: real.desc, img: real.img, fcId: real.fcId, line: true } : { ...base, rating, reviews };
         });
         STORE_LINE.forEach(p => { PRODUCTS.push(p); byId.set(p.id, p); });
 
@@ -3072,7 +3075,7 @@
             const km = distanceKm(f);
             const line = PRODUCTS.filter(p => p.storeOnly && p.pharmacy === f.id);
             // Productos reales (productos-reales.js) que despacha esta farmacia, primero los de mayor descuento
-            const brands = PRODUCTS.filter(p => p.fcId && p.pharmacy === f.id).sort((a, b) => discountOf(b) - discountOf(a));
+            const brands = PRODUCTS.filter(p => p.fcId && !p.storeOnly && p.pharmacy === f.id).sort((a, b) => discountOf(b) - discountOf(a));
             const alsoCount = CATALOG.filter(p => p.pharmacy === f.id).length;
             storePanel.dataset.theme = f.id;
             storePanel.setAttribute('aria-labelledby', 'tab-' + f.id);
@@ -3108,7 +3111,7 @@
                 <ul class="product-grid store-grid">${brands.slice(0, 4).map(p => `<li>${cardHTML(p)}</li>`).join('')}</ul>` : ''}
                 <div class="store-line-head" id="store-line">
                     <h3>Línea ${esc(f.line)}</h3>
-                    <p>${line.length} productos exclusivos · también despacha ${alsoCount} productos del catálogo</p>
+                    <p>${line.length} productos seleccionados · también despacha ${alsoCount} productos del catálogo</p>
                 </div>
                 <ul class="product-grid store-grid">${line.map(p => `<li>${cardHTML(p)}</li>`).join('')}</ul>`;
             FGShop.refresh();

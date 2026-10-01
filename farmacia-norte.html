@@ -42,7 +42,7 @@
         .hero p { max-width: 40ch; font-size: 17px; color: rgba(255,255,255,.88); }
         .hero-art { position: relative; justify-self: center; width: min(360px, 82vw); aspect-ratio: 1; display: grid; place-items: center; }
         .hero-art::before { content: ''; position: absolute; inset: 8%; background: var(--orange); transform: skewX(-12deg) rotate(-6deg); border-radius: 14px; }
-        .hero-art img { position: relative; width: 82%; filter: drop-shadow(0 24px 30px rgba(0,0,0,.35)); }
+        .hero-art img { position: relative; width: 62%; background: #fff; border-radius: 18px; padding: 6%; box-shadow: 0 24px 40px rgba(0,0,0,.35); }
 
         /* Estadísticas */
         .stats { display: grid; grid-template-columns: repeat(2, 1fr); gap: 2px; margin-top: -40px; position: relative; background: var(--night); border-radius: 10px; overflow: hidden; box-shadow: 0 20px 40px rgba(11,27,63,.2); }
@@ -57,7 +57,7 @@
         .lane { display: grid; grid-auto-flow: column; grid-auto-columns: minmax(230px, 1fr); gap: 14px; overflow-x: auto; scroll-snap-type: x mandatory; padding-bottom: 12px; list-style: none; }
         .card { scroll-snap-align: start; background: #fff; border-radius: 10px; overflow: hidden; display: flex; flex-direction: column; border-bottom: 4px solid var(--cobalt); }
         .card .art { background: linear-gradient(160deg, #fff, var(--ice)); aspect-ratio: 4 / 3; display: grid; place-items: center; position: relative; }
-        .card .art img { height: 88%; width: auto; }
+        .card .art img { height: 80%; width: auto; mix-blend-mode: multiply; }
         .card .off { position: absolute; top: 10px; left: 0; background: var(--sale); color: #fff; padding: 4px 12px 4px 10px; font-size: 18px; clip-path: polygon(0 0, 100% 0, 88% 100%, 0 100%); }
         .card .body { padding: 14px; display: flex; flex-direction: column; gap: 4px; flex: 1; }
         .card h3 { font-size: 1.5rem; line-height: 1; }
@@ -122,7 +122,7 @@
                     <h1 class="up">Recuperá <i>energía</i> para entrenar</h1>
                     <p>Suplementos, hidratación y alivio muscular elegidos por nuestros farmacéuticos para tu rutina.</p>
                 </div>
-                <div class="hero-art"><img id="hero-img" alt="Magnesio + B6 de la línea Norte Active" width="300" height="300"></div>
+                <div class="hero-art"><img id="hero-img" alt="Magnesio 102, de la selección Norte Active" width="300" height="300"></div>
             </div>
         </div>
     </header>
@@ -144,7 +144,7 @@
         <aside class="promo" aria-label="Promoción">
             <div>
                 <p class="up" style="font-size:18px">Esta semana</p>
-                <h2 class="up">15 % off en suplementos y árnica</h2>
+                <h2 class="up">Hasta 35 % off en colágeno y suplementos</h2>
             </div>
             <a class="up" href="#lane">Ver ofertas</a>
         </aside>
@@ -159,9 +159,9 @@
         </section>
 
         <section class="plan" aria-label="Guía para tu entrenamiento">
-            <article><h3 class="up">Antes</h3><p>Llegá hidratado y con los músculos listos.</p><ul><li>Sales de rehidratación</li><li>Cinta kinesiológica</li></ul></article>
-            <article><h3 class="up">Durante</h3><p>Cuidate del sol si entrenás al aire libre.</p><ul><li>Protector solar sport FPS 50</li></ul></article>
-            <article><h3 class="up">Después</h3><p>Recuperación muscular y descanso.</p><ul><li>Gel frío de árnica</li><li>Magnesio + B6</li><li>Colágeno hidrolizado</li></ul></article>
+            <article><h3 class="up">Antes</h3><p>Llegá hidratado y con los músculos listos.</p><ul><li>Gel corporal On Roll Active</li><li>Colágeno Ultraflex en sobres</li></ul></article>
+            <article><h3 class="up">Durante</h3><p>Cuidate del sol si entrenás al aire libre.</p><ul><li>Dermaglós Sport FPS 50</li></ul></article>
+            <article><h3 class="up">Después</h3><p>Recuperación muscular y descanso.</p><ul><li>Gel de árnica Artrosil</li><li>Magnesio 102</li><li>Colágeno Pure Wellness Flex</li></ul></article>
         </section>
     </main>
 

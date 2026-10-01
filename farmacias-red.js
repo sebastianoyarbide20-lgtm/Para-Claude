@@ -99,8 +99,12 @@ window.FG = (() => {
     function store(id) {
         const s = STORES[id];
         s.id = id;
-        s.items = s.products.map(([pid, name, size, list, price, kind, desc]) => ({ id: pid, name, size, list, price, kind, desc, img: packshot(kind, s, size) }));
-        FGShop.register(s.items.map(p => ({ id: p.id, name: p.name, size: p.size, price: p.price, list: p.list, img: p.img, store: id })));
+        // Productos reales de la línea (productos-reales.js); si el archivo no está, quedan los dibujados
+        const real = (window.FG_STORE_LINE || []).filter(p => p.pharmacy === id);
+        s.items = real.length
+            ? real.map(p => ({ id: p.id, name: p.name, size: p.size, brand: p.brand, list: p.listPrice, price: p.price, desc: p.desc, img: p.img, real: true }))
+            : s.products.map(([pid, name, size, list, price, kind, desc]) => ({ id: pid, name, size, list, price, kind, desc, img: packshot(kind, s, size) }));
+        FGShop.register(s.items.map(p => ({ id: p.id, name: p.real ? `${p.name} (${p.size})` : p.name, size: p.real ? '' : p.size, price: p.price, list: p.list, img: p.img, store: id })));
         FGShop.setStore(id);
         return s;
     }
