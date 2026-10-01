@@ -501,6 +501,121 @@
         .trust-item strong { display: block; font-size: var(--t-14); font-weight: 700; line-height: 1.2; white-space: nowrap; }
         .trust-item span { display: block; font-size: var(--t-12); color: var(--ink-3); white-space: nowrap; }
 
+        /* ── DIRECCIÓN Y FARMACIAS ── */
+        .addr-btn {
+            display: inline-flex; align-items: center; gap: 6px;
+            min-height: 44px; padding: 0 10px 0 8px; flex-shrink: 0;
+            border-radius: var(--r-pill);
+            color: var(--forest-800); text-align: left;
+            transition: background .2s ease;
+        }
+        .addr-btn:hover { background: rgba(16, 38, 31, .06); }
+        .addr-btn > .icon { width: 22px; height: 22px; color: var(--sale); }
+        .addr-btn-text { display: none; line-height: 1.15; max-width: 170px; }
+        .addr-btn-text small { display: block; font-size: var(--t-12); color: var(--ink-3); }
+        .addr-btn-text b { display: block; font-size: var(--t-14); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+        .addr-btn.is-set > .icon { color: var(--forest-500); }
+
+        .addr-panel {
+            position: relative; overflow: hidden; isolation: isolate;
+            display: grid; gap: 16px;
+            background:
+                radial-gradient(600px 220px at 100% 0%, rgba(184, 240, 74, .22), transparent 60%),
+                linear-gradient(180deg, #FFFFFF, #F7F9F4);
+            border: 1px solid var(--line);
+            border-radius: var(--r-xl);
+            padding: 20px;
+            margin-bottom: 18px;
+            box-shadow: 0 1px 2px rgba(16,38,31,.04), 0 12px 28px rgba(16,38,31,.06);
+            scroll-margin-top: calc(var(--header-full) + 12px);
+        }
+        .addr-intro { display: flex; gap: 14px; align-items: flex-start; }
+        .addr-ico { width: 52px; height: 52px; border-radius: 16px; }
+        .addr-ico .duo { width: 32px; height: 32px; }
+        .addr-title { font-family: var(--font-display); font-size: var(--t-20); font-weight: 800; letter-spacing: -.02em; line-height: 1.15; }
+        .addr-sub { font-size: var(--t-14); color: var(--ink-2); margin-top: 4px; max-width: 52ch; }
+        .addr-form { display: grid; gap: 10px; grid-template-columns: minmax(0, 1fr); align-items: end; }
+        .addr-field { display: grid; gap: 4px; min-width: 0; }
+        .addr-field label { font-size: var(--t-14); font-weight: 600; }
+        .addr-field input, .addr-field select {
+            min-height: 48px; padding: 0 14px; width: 100%;
+            border-radius: var(--r-md); border: 1.5px solid var(--line-2); background: var(--surface);
+            font-size: var(--t-16);
+        }
+        .addr-field input:focus, .addr-field select:focus { outline: none; border-color: var(--forest-500); box-shadow: 0 0 0 4px rgba(19,154,107,.14); }
+        .addr-submit {
+            display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+            min-height: 48px; padding: 0 20px; border-radius: var(--r-pill);
+            background: var(--forest-800); color: #fff; font-weight: 700;
+            transition: background .2s ease, transform .2s var(--ease-out);
+        }
+        .addr-submit:hover { background: var(--forest-700); transform: translateY(-1px); }
+        .addr-submit .icon { width: 18px; height: 18px; color: var(--lime); }
+        .addr-msg { grid-column: 1 / -1; font-size: var(--t-14); color: var(--sale); min-height: 0; }
+        .addr-msg:empty { display: none; }
+        .addr-where { display: flex; align-items: center; flex-wrap: wrap; gap: 6px 8px; font-size: var(--t-14); color: var(--ink-2); margin-bottom: 10px; }
+        .addr-where .icon { width: 18px; height: 18px; color: var(--forest-500); }
+        .addr-where b { color: var(--ink); }
+        .addr-change { min-height: 44px; font-weight: 700; color: var(--forest-700); text-decoration: underline; text-underline-offset: 3px; }
+        .pharm-list { display: grid; gap: 10px; grid-template-columns: minmax(0, 1fr); list-style: none; }
+        .pharm-item {
+            position: relative;
+            display: flex; align-items: center; gap: 12px;
+            padding: 12px 14px; border-radius: var(--r-lg);
+            background: var(--surface); border: 1px solid var(--line);
+        }
+        .pharm-item.is-nearest { border-color: rgba(19,154,107,.45); box-shadow: 0 0 0 3px rgba(19,154,107,.12); }
+        .pharm-item .ico-tile { width: 44px; height: 44px; color: var(--forest-700); }
+        .pharm-item .ico-tile .icon { width: 22px; height: 22px; }
+        .pharm-name { font-weight: 700; line-height: 1.25; }
+        .pharm-meta { font-size: var(--t-12); color: var(--ink-3); }
+        .pharm-flag {
+            position: absolute; top: -9px; right: 12px;
+            font-size: var(--t-12); font-weight: 700;
+            padding: 2px 9px; border-radius: var(--r-pill);
+        }
+
+        /* Etiquetas de farmacia en tarjetas */
+        .pharm-tag {
+            display: inline-flex; align-items: center; gap: 4px; justify-self: start; align-self: flex-start;
+            font-size: 11px; font-weight: 800; letter-spacing: .02em;
+            padding: 3px 8px; border-radius: var(--r-pill);
+            line-height: 1.2;
+        }
+        .pharm-tag .icon { width: 12px; height: 12px; stroke-width: 2.6; }
+        .tag-nearest { background: var(--forest-800); color: var(--lime); }
+        .tag-recommended { background: linear-gradient(90deg, #FFE680, var(--sun)); color: var(--forest-900); }
+        .card-pharm { display: grid; gap: 4px; min-height: 1.3em; }
+        .card-pharm-name {
+            display: flex; align-items: center; gap: 4px; min-width: 0;
+            font-size: var(--t-12); color: var(--ink-3);
+        }
+        .card-pharm-name .icon { width: 12px; height: 12px; flex-shrink: 0; color: var(--forest-500); }
+        .card-pharm-name span:not(.km) { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+        .card-pharm-name b { font-weight: 600; color: var(--ink-2); }
+        .card-pharm-name .km { flex-shrink: 0; white-space: nowrap; }
+        .card-pharm-name .km::before { content: '· '; }
+        .pharm-tag { white-space: nowrap; }
+        .tag-short { display: none; }
+        @media (max-width: 559px) {
+            .tag-long { display: none; }
+            .tag-short { display: inline; }
+            .card-pharm-name { flex-wrap: wrap; }
+            .card-pharm-name span:not(.km) { flex: 1 1 0; }
+            .card-pharm-name .km { flex-basis: 100%; padding-left: 16px; }
+            .card-pharm-name .km::before { content: ''; }
+        }
+
+        @media (min-width: 640px) {
+            .addr-btn-text { display: block; }
+        }
+        @media (min-width: 768px) {
+            .addr-panel { padding: 24px 28px; grid-template-columns: minmax(0, 1fr) minmax(0, 1.4fr); align-items: center; gap: 24px; }
+            .addr-form { grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr) auto; }
+            .addr-result { grid-column: 1 / -1; }
+            .pharm-list { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+        }
+
         /* ── CAPAS DECORATIVAS ── */
         body {
             background-image:
@@ -1234,6 +1349,8 @@
         <symbol id="i-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></symbol>
         <symbol id="i-pause" viewBox="0 0 24 24"><path d="M9 5v14M15 5v14"/></symbol>
         <symbol id="i-play" viewBox="0 0 24 24"><path d="M7 5v14l12-7z"/></symbol>
+        <symbol id="i-pin" viewBox="0 0 24 24"><path d="M12 21s-7-6.2-7-11.5a7 7 0 0 1 14 0C19 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></symbol>
+        <symbol id="i-store" viewBox="0 0 24 24"><path d="M4 10v10h16V10"/><path d="M3 5h18l-1.5 5a2.5 2.5 0 0 1-5 0 2.5 2.5 0 0 1-5 0 2.5 2.5 0 0 1-5 0z"/><path d="M10 20v-5h4v5"/></symbol>
         <symbol id="i-undo" viewBox="0 0 24 24"><path d="M9 14 4 9l5-5"/><path d="M4 9h11a5 5 0 0 1 0 10h-3"/></symbol>
     </svg>
 
@@ -1246,6 +1363,11 @@
                 <span class="brand-logo-icon"><svg class="icon" aria-hidden="true"><use href="#i-cross"/></svg></span>
                 <span class="brand-logo-text" aria-hidden="true">Farma<span>Glass</span></span>
             </a>
+
+            <button class="addr-btn" type="button" id="addr-btn" aria-describedby="addr-label">
+                <svg class="icon" aria-hidden="true"><use href="#i-pin"/></svg>
+                <span class="addr-btn-text"><small>Entregar en</small><b id="addr-label">Ingresá tu dirección</b></span>
+            </button>
 
             <form class="search-bar" role="search" id="search-form">
                 <svg class="icon" aria-hidden="true"><use href="#i-search"/></svg>
@@ -1372,6 +1494,39 @@
                 <button class="promo-nav promo-pause" type="button" id="promo-pause" aria-label="Pausar banners" aria-pressed="false">
                     <svg class="icon ico-pause" aria-hidden="true"><use href="#i-pause"/></svg><svg class="icon ico-play" aria-hidden="true"><use href="#i-play"/></svg>
                 </button>
+            </div>
+        </section>
+
+        <!-- DIRECCIÓN DEL VISITANTE -->
+        <section class="addr-panel" id="addr-panel" aria-labelledby="addr-title">
+            <div class="addr-intro">
+                <span class="addr-ico ico-tile" aria-hidden="true"><svg class="duo"><use href="#d-truck"/></svg></span>
+                <div>
+                    <h2 class="addr-title" id="addr-title">¿Dónde te lo enviamos?</h2>
+                    <p class="addr-sub" id="addr-sub">Ingresá tu dirección y te mostramos la farmacia más cercana, con tiempos y precios de tu zona.</p>
+                </div>
+            </div>
+            <form class="addr-form" id="addr-form" novalidate>
+                <div class="addr-field addr-street">
+                    <label for="addr-street">Calle y número</label>
+                    <input id="addr-street" type="text" placeholder="Ej.: Av. Corrientes 1234" autocomplete="street-address" required>
+                </div>
+                <div class="addr-field">
+                    <label for="addr-zone">Barrio o localidad</label>
+                    <select id="addr-zone" required>
+                        <option value="">Elegí una opción</option>
+                        <option>Palermo</option><option>Belgrano</option><option>Caballito</option>
+                        <option>Recoleta</option><option>Almagro</option><option>Villa Urquiza</option>
+                        <option>San Isidro</option><option>Vicente López</option><option>Avellaneda</option>
+                    </select>
+                </div>
+                <button class="addr-submit" type="submit"><svg class="icon" aria-hidden="true"><use href="#i-pin"/></svg>Ver farmacias cercanas</button>
+                <p class="addr-msg" id="addr-msg" aria-live="polite"></p>
+            </form>
+            <div class="addr-result" id="addr-result" hidden>
+                <p class="addr-where"><svg class="icon" aria-hidden="true"><use href="#i-pin"/></svg><span>Entregamos en <b id="addr-current"></b></span>
+                    <button type="button" class="addr-change" id="addr-change">Cambiar</button></p>
+                <ul class="pharm-list" id="pharm-list"></ul>
             </div>
         </section>
 
@@ -1556,6 +1711,48 @@
         ];
         const byId = new Map(PRODUCTS.map(p => [p.id, p]));
 
+        // ── FARMACIAS (prototipo) ──
+        const PHARMACIES = [
+            { id: 'centro', name: 'Farmacia del Centro', zone: 'Recoleta', rating: 4.9, recommended: true },
+            { id: 'plaza', name: 'Farmacia Plaza Palermo', zone: 'Palermo', rating: 4.7 },
+            { id: 'norte', name: 'Farmacia Belgrano Norte', zone: 'Belgrano', rating: 4.6 },
+            { id: 'parque', name: 'Farmacia Parque Caballito', zone: 'Caballito', rating: 4.8 },
+        ];
+        const pharmById = new Map(PHARMACIES.map(f => [f.id, f]));
+        // Cada producto se despacha desde una farmacia de la red
+        const PRODUCT_PHARMACY = { 1: 'parque', 2: 'centro', 3: 'plaza', 4: 'centro', 5: 'norte', 6: 'parque', 7: 'plaza', 8: 'centro', 9: 'norte', 10: 'plaza' };
+        PRODUCTS.forEach(p => { p.pharmacy = PRODUCT_PHARMACY[p.id]; });
+
+        const addrStore = {
+            get() { try { return JSON.parse(localStorage.getItem('fg-address')); } catch { return null; } },
+            set(v) { try { localStorage.setItem('fg-address', JSON.stringify(v)); } catch {} },
+        };
+        let address = addrStore.get();
+
+        // Prototipo: distancia simulada a partir de la dirección. En producción se calcula con geocodificación.
+        function distanceKm(pharm) {
+            if (!address) return null;
+            const key = (address.zone + '|' + address.street + '|' + pharm.id).toLowerCase();
+            let h = 0; for (const c of key) h = (h * 31 + c.charCodeAt(0)) >>> 0;
+            const base = pharm.zone === address.zone ? 0.3 : 1.2;
+            return Math.round((base + (h % 260) / 100) * 10) / 10;
+        }
+        const kmText = km => km.toFixed(1).replace('.', ',') + ' km';
+        function nearestPharmacy() {
+            if (!address) return null;
+            return PHARMACIES.reduce((a, b) => distanceKm(a) <= distanceKm(b) ? a : b);
+        }
+        function pharmHTML(p) {
+            const f = pharmById.get(p.pharmacy);
+            if (!f) return '';
+            const near = nearestPharmacy();
+            const km = distanceKm(f);
+            let tag = '';
+            if (near && near.id === f.id) tag = '<span class="pharm-tag tag-nearest"><svg class="icon" aria-hidden="true"><use href="#i-pin"/></svg><span class="tag-long">Tu farmacia más cercana</span><span class="tag-short">Más cercana</span></span>';
+            else if (f.recommended) tag = '<span class="pharm-tag tag-recommended"><svg class="icon" aria-hidden="true"><use href="#i-star"/></svg><span class="tag-long">Farmacia recomendada</span><span class="tag-short">Recomendada</span></span>';
+            return `${tag}<p class="card-pharm-name"><svg class="icon" aria-hidden="true"><use href="#i-store"/></svg><span><b>${esc(f.name)}</b></span>${km != null ? `<span class="km">${kmText(km)}</span>` : ''}</p>`;
+        }
+
         const money = new Intl.NumberFormat('es-AR', { style: 'currency', currency: 'ARS', maximumFractionDigits: 0 });
         const fmt = n => money.format(Math.round(n));
         const discountOf = p => Math.round((1 - p.price / p.listPrice) * 100);
@@ -1583,6 +1780,7 @@
                     </button>
                 </div>
                 <div class="card-body">
+                    <div class="card-pharm" data-pharm-for="${p.id}">${pharmHTML(p)}</div>
                     <h3 class="card-title"><a class="card-link" href="#producto-${p.id}" data-open="${p.id}">${esc(p.name)}</a></h3>
                     <p class="card-rating"><svg class="icon" aria-hidden="true"><use href="#i-star"/></svg><b>${p.rating.toFixed(1).replace('.', ',')}</b><span>(${p.reviews})</span><span class="sr-only"> reseñas</span></p>
                     <div class="card-price-block">
@@ -1665,6 +1863,7 @@
             document.getElementById('dialog-facts').innerHTML =
                 `<dt>Marca</dt><dd>${esc(p.brand)}</dd>` +
                 `<dt>Condición de venta</dt><dd>${esc(p.sale)}</dd>` +
+                `<dt>Farmacia</dt><dd>${esc(pharmById.get(p.pharmacy).name)}${address ? ` · ${kmText(distanceKm(pharmById.get(p.pharmacy)))}` : ''}</dd>` +
                 `<dt>Envío</dt><dd>${freeShipping(p) ? 'Gratis, en 2 horas' : `En 2 horas · gratis desde ${fmt(FREE_SHIPPING_FROM)}`}</dd>`;
             document.getElementById('dialog-price-old').innerHTML = d > 0 ? `<s><span class="sr-only">Antes </span>${fmt(p.listPrice)}</s><b>Ahorrás ${fmt(p.listPrice - p.price)}</b>` : '';
             const price = document.getElementById('dialog-price');
@@ -1859,6 +2058,65 @@
             if (navigator.clipboard) navigator.clipboard.writeText('NUEVO20').then(done, () => showToast('Tu código es NUEVO20'));
             else showToast('Tu código es NUEVO20');
         });
+
+        // ── DIRECCIÓN DEL VISITANTE ──
+        const addrPanel = document.getElementById('addr-panel');
+        const addrForm = document.getElementById('addr-form');
+        const addrResult = document.getElementById('addr-result');
+        function renderAddress() {
+            const btn = document.getElementById('addr-btn');
+            const label = document.getElementById('addr-label');
+            btn.classList.toggle('is-set', !!address);
+            label.textContent = address ? `${address.street}, ${address.zone}` : 'Ingresá tu dirección';
+            btn.setAttribute('aria-label', address ? `Entregar en ${address.street}, ${address.zone}. Cambiar dirección` : 'Ingresá tu dirección de entrega');
+            addrForm.hidden = !!address;
+            addrResult.hidden = !address;
+            document.getElementById('addr-sub').textContent = address
+                ? 'Estas son las farmacias de la red que llegan a tu dirección.'
+                : 'Ingresá tu dirección y te mostramos la farmacia más cercana, con tiempos y precios de tu zona.';
+            if (address) {
+                document.getElementById('addr-current').textContent = `${address.street}, ${address.zone}`;
+                const near = nearestPharmacy();
+                const list = [...PHARMACIES].sort((a, b) => distanceKm(a) - distanceKm(b)).slice(0, 3);
+                document.getElementById('pharm-list').innerHTML = list.map(f => {
+                    const km = distanceKm(f);
+                    const mins = Math.round(25 + km * 12);
+                    const flag = f.id === near.id
+                        ? '<span class="pharm-flag tag-nearest">Más cercana</span>'
+                        : f.recommended ? '<span class="pharm-flag tag-recommended">Recomendada</span>' : '';
+                    return `<li class="pharm-item${f.id === near.id ? ' is-nearest' : ''}">${flag}
+                        <span class="ico-tile"><svg class="icon" aria-hidden="true"><use href="#i-store"/></svg></span>
+                        <div><p class="pharm-name">${esc(f.name)}</p>
+                        <p class="pharm-meta">${kmText(km)} · llega en ~${mins} min · ★ ${f.rating.toFixed(1).replace('.', ',')}</p></div></li>`;
+                }).join('');
+            }
+            // Actualiza la farmacia en todas las tarjetas
+            document.querySelectorAll('[data-pharm-for]').forEach(el => { el.innerHTML = pharmHTML(byId.get(Number(el.dataset.pharmFor))); });
+        }
+        addrForm.addEventListener('submit', e => {
+            e.preventDefault();
+            const street = document.getElementById('addr-street');
+            const zone = document.getElementById('addr-zone');
+            const msg = document.getElementById('addr-msg');
+            if (!street.value.trim() || !/\d/.test(street.value)) { msg.textContent = 'Ingresá la calle y el número, por ejemplo: Av. Corrientes 1234.'; street.focus(); return; }
+            if (!zone.value) { msg.textContent = 'Elegí tu barrio o localidad.'; zone.focus(); return; }
+            msg.textContent = '';
+            address = { street: street.value.trim(), zone: zone.value };
+            addrStore.set(address);
+            renderAddress();
+            showToast(`Listo: tu farmacia más cercana es ${nearestPharmacy().name}`);
+        });
+        document.getElementById('addr-change').addEventListener('click', () => {
+            document.getElementById('addr-street').value = address ? address.street : '';
+            document.getElementById('addr-zone').value = address ? address.zone : '';
+            addrForm.hidden = false; addrResult.hidden = true;
+            document.getElementById('addr-street').focus();
+        });
+        document.getElementById('addr-btn').addEventListener('click', () => {
+            addrPanel.scrollIntoView({ behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth', block: 'start' });
+            if (!address) setTimeout(() => document.getElementById('addr-street').focus({ preventScroll: true }), 350);
+        });
+        renderAddress();
 
         // ── NEWSLETTER con validación ──
         const nlForm = document.getElementById('newsletter-form');
