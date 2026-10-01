@@ -70,7 +70,8 @@
         .tile.big { grid-column: span 2; background: linear-gradient(135deg, var(--magenta), #8E1145); color: #fff; }
         .tile .art { aspect-ratio: 1; display: grid; place-items: center; }
         .tile.big .art { aspect-ratio: auto; height: 220px; }
-        .tile .art img { width: 82%; height: 100%; object-fit: contain; }
+        .tile .art img { width: 82%; height: 100%; object-fit: contain; mix-blend-mode: multiply; }
+        .tile.big .art { background: #fff; border-radius: 20px; }
         .tile h3 { font-family: var(--display); font-weight: 700; font-size: 15px; line-height: 1.2; }
         .tile.big h3 { font-size: 22px; }
         .tile .size { font-size: 12px; opacity: .75; }
@@ -133,12 +134,12 @@
             <div>
                 <span class="kicker">Plaza Lab · Palermo</span>
                 <h1>Skincare de noche, <mark>entrega</mark> de noche</h1>
-                <p>Sérums, parches y bálsamos de nuestra línea Plaza Lab. Pedí a las 3 de la mañana y lo tenés en la puerta.</p>
+                <p>Sérums, brumas y labiales de la selección Plaza Lab. Pedí a las 3 de la mañana y lo tenés en la puerta.</p>
             </div>
             <div class="clock" aria-label="Abierta las 24 horas">
                 <div><b>24</b><span>horas · 7 días</span></div>
-                <span class="sticker s1">−20 % sérum C</span>
-                <span class="sticker s2">Nuevo: contorno frío</span>
+                <span class="sticker s1">−30 % bruma Caviahue</span>
+                <span class="sticker s2">Nuevo: Acf by Dadatina</span>
             </div>
         </div>
         <div class="marquee" aria-hidden="true"><div id="marquee"></div></div>
@@ -161,7 +162,7 @@
             <ol class="steps">
                 <li><div><b>Limpiá</b><span>Una bruma facial para refrescar después de desmaquillarte.</span></div></li>
                 <li><div><b>Tratá</b><span>Dos gotas de sérum vitamina C y contorno de ojos frío.</span></div></li>
-                <li><div><b>Protegé</b><span>Mascarilla de noche y un parche si aparece un granito.</span></div></li>
+                <li><div><b>Protegé</b><span>Mascarilla Lumiglow y bruma de centella si aparece un granito.</span></div></li>
             </ol>
         </section>
 
@@ -178,7 +179,7 @@
         document.getElementById('brand').insertAdjacentHTML('afterbegin', FG.logo(s, 34, 'Unbounded, sans-serif'));
         const words = ['Abierta 24 h', '✦', 'Plaza Lab', '✦', 'Entrega en 2 h', '✦', 'Envío gratis desde $ 15.000', '✦'];
         document.getElementById('marquee').innerHTML = [...words, ...words, ...words, ...words].map(w => `<span>${w}</span>`).join('');
-        const order = [105, 106, 107, 108, 119, 120];
+        const order = [108, 105, 106, 107, 119, 120];
         document.getElementById('bento').innerHTML = order.map((id, i) => {
             const p = s.items.find(x => x.id === id);
             const d = FG.off(p);

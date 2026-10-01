@@ -37,8 +37,8 @@
         .scene { position: relative; min-height: 240px; background: linear-gradient(180deg, #DDEBC9 0%, var(--leaf) 100%); }
         .scene svg.leaves { position: absolute; inset: 0; width: 100%; height: 100%; }
         .packs { position: absolute; left: 50%; bottom: 10px; transform: translateX(-50%); display: flex; align-items: end; gap: 4px; }
-        .packs img { width: 120px; filter: drop-shadow(0 12px 14px rgba(46,51,38,.25)); }
-        .packs img:nth-child(2) { width: 160px; }
+        .packs img { width: 104px; background: #fff; border-radius: 18px; padding: 8px; box-shadow: 0 12px 20px rgba(46,51,38,.22); }
+        .packs img:nth-child(2) { width: 136px; }
         .hero-text { padding: 26px 24px 30px; }
         .hero-text .kicker { display: inline-block; background: rgba(255,255,255,.16); padding: 4px 12px; border-radius: 999px; font-size: 13px; font-weight: 600; }
         .hero-text h1 { font-size: clamp(2.2rem, 6vw, 3.6rem); margin: 12px 0 10px; }
@@ -58,7 +58,7 @@
         .grid { list-style: none; display: grid; gap: 14px; }
         .card { display: grid; grid-template-columns: 120px 1fr; gap: 14px; align-items: center; background: #fff; border-radius: 28px; padding: 12px; box-shadow: 0 6px 20px rgba(46,51,38,.06); }
         .card .art { aspect-ratio: 1; border-radius: 22px; background: radial-gradient(circle at 50% 70%, var(--leaf), #F2F7EA 70%); display: grid; place-items: center; }
-        .card .art img { width: 92%; }
+        .card .art img { width: 80%; mix-blend-mode: multiply; }
         .card h3 { font-size: 1.25rem; color: var(--deep); }
         .card p { font-size: 13px; color: var(--muted); }
         .card .for { display: inline-block; font-size: 12px; font-weight: 700; color: var(--terra); margin-bottom: 2px; }
@@ -194,9 +194,9 @@
         document.getElementById('brand').insertAdjacentHTML('afterbegin', FG.logo(s, 40, 'Fredoka, sans-serif'));
         const byId = id => s.items.find(p => p.id === id);
         document.getElementById('packs').innerHTML = [113, 114, 115].map(id => `<img src="${byId(id).img}" alt="" width="160" height="160">`).join('');
-        const feat = byId(114);
-        document.getElementById('deal').innerHTML = `<span>${feat.name} ${feat.size}</span><s>${FG.fmt(feat.list)}</s><b>${FG.fmt(feat.price)}</b><em>−${FG.off(feat)} %</em>
-            <button class="add" type="button" data-add="${feat.id}" data-name="${feat.name}">Agregar</button>`;
+        const feat = byId(113);
+        document.getElementById('deal').innerHTML = `<span>${feat.name} ${feat.size}</span>${FG.off(feat) > 0 ? `<s>${FG.fmt(feat.list)}</s>` : ''}<b>${FG.fmt(feat.price)}</b>${FG.off(feat) > 0 ? `<em>−${FG.off(feat)} %</em>` : ''}
+            <button class="add" type="button" data-add="${feat.id}" aria-label="Agregar ${FG.esc(feat.name)} al carrito">Agregar</button>`;
         // Para quién es cada producto (línea propia y marcas del catálogo)
         const FOR = { 113: 'bebe', 114: 'bebe', 115: 'bebe', 116: 'bebe', 123: 'familia', 124: 'familia',
             22: 'bebe', 31: 'bebe', 33: 'bebe', 34: 'bebe', 41: 'bebe', 23: 'familia', 25: 'familia', 28: 'familia', 29: 'familia' };
