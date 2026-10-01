@@ -682,6 +682,34 @@
             padding: 8px 8px 14px;
         }
         .store-panel:focus { outline: none; }
+        /* Portada: el banner de cada farmacia en grande */
+        .hero-stores { margin-bottom: 14px; }
+        .hero-slide { border-radius: var(--r-xl); box-shadow: var(--shadow-md); }
+        .hero-slide .store-banner { border-radius: var(--r-xl); padding: 26px 22px 20px; min-height: 360px; align-content: center; }
+        .hero-slide .store-title { font-size: calc(clamp(2rem, 6vw, 3.4rem) * var(--st-size)); }
+        .hero-slide .store-text { font-size: var(--t-16); }
+        .hero-slide.is-in .store-banner-text, .hero-slide.is-in .store-banner-art { animation: hero-in .5s var(--ease-out); }
+        @keyframes hero-in { from { opacity: 0; transform: translateY(10px); } }
+        .hero-switch { display: flex; align-items: center; gap: 8px; margin-top: 10px; }
+        .hero-switch-list { flex: 1; min-width: 0; display: flex; gap: 6px; overflow-x: auto; scrollbar-width: none; }
+        .hero-switch-list::-webkit-scrollbar { display: none; }
+        .hero-pick {
+            flex: 1 0 auto; display: inline-flex; align-items: center; gap: 8px;
+            min-height: 48px; padding: 4px 14px 4px 6px; border-radius: var(--r-pill);
+            background: var(--surface); border: 1px solid var(--line);
+            font-size: var(--t-14); font-weight: 700; color: var(--ink-2); white-space: nowrap;
+            position: relative; overflow: hidden;
+        }
+        .hero-pick[aria-pressed="true"] { border-color: var(--forest-800); color: var(--ink); box-shadow: inset 0 0 0 1px var(--forest-800); }
+        .hero-pick .store-logo { width: 34px; height: 34px; }
+        .hero-pick::after { content: ''; position: absolute; left: 0; bottom: 0; height: 3px; width: 0; background: var(--forest-700); }
+        .hero-stores.is-playing .hero-pick[aria-pressed="true"]::after { animation: hero-progress 7s linear; }
+        @keyframes hero-progress { to { width: 100%; } }
+        @media (max-width: 639px) { .hero-slide .store-info li:not(:first-child) { display: none; } }
+        @media (min-width: 768px) {
+            .hero-slide .store-banner { grid-template-columns: minmax(0, 1fr) 300px; padding: 40px 44px 26px; }
+            .hero-slide .store-banner-art { width: 260px; }
+        }
         .store-banner {
             position: relative; overflow: hidden; isolation: isolate;
             display: grid; grid-template-columns: minmax(0, 1fr); gap: 16px;
@@ -1872,34 +1900,15 @@
 
     <main class="main-content" id="main">
 
-        <!-- HERO: una sola oferta, verificable en el catálogo -->
-        <section class="hero" aria-labelledby="hero-title">
-            <span class="hero-rings" aria-hidden="true"></span>
-            <div class="hero-content">
-                <p class="hero-eyebrow"><svg class="icon" aria-hidden="true" style="width:14px;height:14px"><use href="#i-sparkle"/></svg> Dermocosmética</p>
-                <h1 class="hero-title" id="hero-title">Hasta 30 % off en <em>cuidado facial</em></h1>
-                <p class="hero-subtitle">Sérums, limpiadores y shampoos dermatológicos de Dermaglós, Caviahue y Klorane, con precios rebajados toda la semana.</p>
-                <ul class="hero-tags">
-                    <li><svg class="icon" aria-hidden="true"><use href="#i-truck"/></svg>Envío en 2 h</li>
-                    <li><svg class="icon" aria-hidden="true"><use href="#i-card"/></svg>3 cuotas sin interés</li>
-                    <li><svg class="icon" aria-hidden="true"><use href="#i-clock"/></svg>Hasta el 31/10</li>
-                </ul>
-                <div class="hero-actions">
-                    <a class="hero-cta" href="#ofertas">Ver ofertas <svg class="icon" aria-hidden="true"><use href="#i-arrow"/></svg></a>
-                    <button class="hero-link" type="button" data-go-cat="dermocosmetica">Toda la dermocosmética</button>
-                </div>
-            </div>
-            <div class="hero-visual" aria-hidden="true">
-                <div class="pack pack-1"><img src="https://farmaciasdelpueblo.vtexassets.com/arquivos/ids/163629-800-800" alt="" referrerpolicy="no-referrer"></div>
-                <div class="pack pack-2"><img src="https://www.dermaglos.com/portals/0/Images/ecommerce/webp/7793742007125-3.webp" alt="" referrerpolicy="no-referrer"></div>
-                <div class="pack pack-3"><img src="https://farmacityar.vtexassets.com/arquivos/ids/234504-800-auto" alt="" referrerpolicy="no-referrer"></div>
-                <div class="hero-deal">
-                    <span class="hero-deal-off">−30 %</span>
-                    <p class="hero-deal-name">Dermaglós sérum niacinamida</p>
-                    <p class="hero-deal-old">Antes $ 41.119</p>
-                    <p class="hero-deal-price">$ 28.783</p>
-                    <p class="hero-deal-save">Ahorrás $ 12.336</p>
-                </div>
+        <!-- PORTADA: las farmacias de la red, una por vez, cada una con su estilo -->
+        <section class="hero-stores" id="hero-stores" aria-roledescription="carrusel" aria-labelledby="hero-title">
+            <h1 class="sr-only" id="hero-title">FarmaGlass: las farmacias de tu barrio, online y con envío en 2 horas</h1>
+            <div class="hero-slide" id="hero-slide" aria-live="polite"></div>
+            <div class="hero-switch">
+                <div class="hero-switch-list" id="hero-switch" role="group" aria-label="Elegí la farmacia de la portada"></div>
+                <button class="promo-nav promo-pause" type="button" id="hero-pause" aria-label="Pausar portada" aria-pressed="false">
+                    <svg class="icon ico-pause" aria-hidden="true"><use href="#i-pause"/></svg><svg class="icon ico-play" aria-hidden="true"><use href="#i-play"/></svg>
+                </button>
             </div>
         </section>
 
@@ -3068,25 +3077,19 @@
             renderStorePanel();
         }
 
-        function renderStorePanel() {
-            const f = pharmById.get(activeStore);
+        // Banner de una farmacia: se usa en la portada y en "Farmacias de la red"
+        function storeBannerHTML(f, tag) {
             const feat = byId.get(f.banner.featured);
             const d = discountOf(feat);
             const km = distanceKm(f);
-            const line = PRODUCTS.filter(p => p.storeOnly && p.pharmacy === f.id);
-            // Productos reales (productos-reales.js) que despacha esta farmacia, primero los de mayor descuento
-            const brands = PRODUCTS.filter(p => p.fcId && !p.storeOnly && p.pharmacy === f.id).sort((a, b) => discountOf(b) - discountOf(a));
-            const alsoCount = CATALOG.filter(p => p.pharmacy === f.id).length;
-            storePanel.dataset.theme = f.id;
-            storePanel.setAttribute('aria-labelledby', 'tab-' + f.id);
-            storePanel.innerHTML = `
+            return `
                 <div class="store-banner">
                     <div class="store-banner-text">
                         <div class="store-brand">${logoSVG(f, 56)}
                             <div><p class="store-name">${esc(f.name)}</p><p class="store-tagline">${esc(f.tagline)}</p></div>
                         </div>
                         <p class="store-eyebrow">${esc(f.banner.eyebrow)}</p>
-                        <h3 class="store-title">${esc(f.banner.title)}</h3>
+                        <${tag} class="store-title">${esc(f.banner.title)}</${tag}>
                         <p class="store-text">${esc(f.banner.text)}</p>
                         <div class="store-deal">
                             <span class="store-deal-name">${esc(feat.name)}</span>
@@ -3103,7 +3106,64 @@
                         <li><svg class="icon" aria-hidden="true"><use href="#i-pin"/></svg>${esc(f.street)}</li>
                         <li><svg class="icon" aria-hidden="true"><use href="#i-truck"/></svg>${km != null ? `${kmText(km)} · llega en ~${Math.round(25 + km * 12)} min` : 'Ingresá tu dirección para ver el tiempo de entrega'}</li>
                     </ul>
-                </div>
+                </div>`;
+        }
+
+        // ── PORTADA: rota entre las farmacias de la red (7 s, se pausa al interactuar) ──
+        const heroBox = document.getElementById('hero-stores');
+        const heroSlide = document.getElementById('hero-slide');
+        const heroSwitch = document.getElementById('hero-switch');
+        const heroPause = document.getElementById('hero-pause');
+        let heroIndex = 0, heroTimer = null, heroPaused = matchMedia('(prefers-reduced-motion: reduce)').matches, heroHold = false;
+        function renderHero(animate) {
+            const f = PHARMACIES[heroIndex];
+            heroSlide.dataset.theme = f.id;
+            heroSlide.setAttribute('aria-label', `${heroIndex + 1} de ${PHARMACIES.length}: ${f.name}`);
+            heroSlide.innerHTML = storeBannerHTML(f, 'h2');
+            heroSlide.classList.remove('is-in');
+            if (animate) { void heroSlide.offsetWidth; heroSlide.classList.add('is-in'); }
+            heroSwitch.innerHTML = PHARMACIES.map((p, i) => `<button class="hero-pick" type="button" data-hero="${i}" aria-pressed="${i === heroIndex}">${logoSVG(p, 34)}${esc(p.name.replace(/^Farmacia (del )?/, ''))}</button>`).join('');
+            heroBox.classList.toggle('is-playing', !!heroTimer);
+        }
+        function heroGo(i, animate = true) { heroIndex = (i + PHARMACIES.length) % PHARMACIES.length; renderHero(animate); }
+        function heroStart() {
+            clearInterval(heroTimer); heroTimer = null;
+            if (!heroPaused && !heroHold) heroTimer = setInterval(() => heroGo(heroIndex + 1), 7000);
+            heroBox.classList.toggle('is-playing', !!heroTimer);
+        }
+        heroSwitch.addEventListener('click', e => {
+            const b = e.target.closest('[data-hero]');
+            if (!b) return;
+            heroGo(Number(b.dataset.hero)); heroStart();
+            heroSwitch.querySelector(`[data-hero="${heroIndex}"]`).focus();
+        });
+        heroPause.addEventListener('click', () => {
+            heroPaused = !heroPaused;
+            heroPause.setAttribute('aria-pressed', String(heroPaused));
+            heroPause.setAttribute('aria-label', heroPaused ? 'Reanudar portada' : 'Pausar portada');
+            heroStart();
+        });
+        heroPause.setAttribute('aria-pressed', String(heroPaused));
+        if (heroPaused) heroPause.setAttribute('aria-label', 'Reanudar portada');
+        // Mientras la persona lee o usa la portada, no cambia sola
+        heroSlide.addEventListener('mouseenter', () => { heroHold = true; heroStart(); });
+        heroSlide.addEventListener('mouseleave', () => { heroHold = false; heroStart(); });
+        heroSlide.addEventListener('focusin', () => { heroHold = true; heroStart(); });
+        heroSlide.addEventListener('focusout', () => { heroHold = false; heroStart(); });
+
+        function renderStorePanel() {
+            const f = pharmById.get(activeStore);
+            const feat = byId.get(f.banner.featured);
+            const d = discountOf(feat);
+            const km = distanceKm(f);
+            const line = PRODUCTS.filter(p => p.storeOnly && p.pharmacy === f.id);
+            // Productos reales (productos-reales.js) que despacha esta farmacia, primero los de mayor descuento
+            const brands = PRODUCTS.filter(p => p.fcId && !p.storeOnly && p.pharmacy === f.id).sort((a, b) => discountOf(b) - discountOf(a));
+            const alsoCount = CATALOG.filter(p => p.pharmacy === f.id).length;
+            storePanel.dataset.theme = f.id;
+            storePanel.setAttribute('aria-labelledby', 'tab-' + f.id);
+            storePanel.innerHTML = `
+                ${storeBannerHTML(f, 'h3')}
                 ${brands.length ? `<div class="store-line-head">
                     <h3>Marcas en ${esc(f.name)}</h3>
                     <a href="farmacia-${f.id}.html#marcas">Ver los ${brands.length} productos en la farmacia →</a>
@@ -3182,7 +3242,8 @@
             const near = nearestPharmacy();
             if (near) FGShop.setStore(near.id);
             renderRxStores();
-            // Actualiza la farmacia en todas las tarjetas y las pestañas de farmacias
+            // Actualiza la farmacia en todas las tarjetas, la portada y las pestañas de farmacias
+            renderHero(false);
             renderStores();
             document.querySelectorAll('[data-pharm-for]').forEach(el => { el.innerHTML = pharmHTML(byId.get(Number(el.dataset.pharmFor))); });
         }
@@ -3368,7 +3429,10 @@
             document.querySelector('.brand-logo').focus({ preventScroll: true });
         });
 
+        // La portada arranca con la farmacia más cercana (o la recomendada)
+        heroIndex = Math.max(0, PHARMACIES.findIndex(f => f.id === storeDefault()));
         renderAddress();
+        heroStart();
         fromHash();
         // Enlace directo a un producto: farmacia_v2.html#producto-4
         const productFromHash = () => { const m = location.hash.match(/^#producto-(\d+)$/); if (m && byId.has(Number(m[1]))) openProduct(Number(m[1])); };
