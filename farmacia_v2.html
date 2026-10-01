@@ -8,7 +8,7 @@
     <meta name="theme-color" content="#062A20">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,700;12..96,800&family=Inter:wght@400;500;600;700&family=Instrument+Serif:ital@1&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,700;12..96,800&family=Inter:wght@400;500;600;700&family=Instrument+Serif:ital@1&family=DM+Serif+Display&family=Unbounded:wght@700&family=Barlow+Condensed:wght@700;800&family=Fredoka:wght@600;700&display=swap" rel="stylesheet">
     <style>
         /* ================================================================
          *  FARMAGLASS — PROTOTIPO v3
@@ -614,6 +614,171 @@
             .addr-form { grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr) auto; }
             .addr-result { grid-column: 1 / -1; }
             .pharm-list { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+        }
+
+        /* ── FARMACIAS DE LA RED ──
+         * Cada farmacia redefine estos tokens; la estructura (radios, tarjetas, Inter) es la del sitio. */
+        [data-theme="centro"] {
+            --st-primary: #14284B; --st-deep: #14284B; --st-accent: #C9A227; --st-hi: #E6C65C; --st-on-accent: #14284B;
+            --st-bg: #FBF6EA; --st-ink: #1B2238; --st-sale: #9B2335;
+            --st-font: 'DM Serif Display', Georgia, serif; --st-weight: 400; --st-case: none; --st-size: 1;
+            --st-pattern: repeating-linear-gradient(90deg, rgba(201, 162, 39, .16) 0 1px, transparent 1px 18px);
+        }
+        [data-theme="plaza"] {
+            --st-primary: #C2185B; --st-deep: #8E1145; --st-accent: #FFD23F; --st-hi: #FFD23F; --st-on-accent: #2B1240;
+            --st-bg: #FFF0F6; --st-ink: #2B1240; --st-sale: #C2185B;
+            --st-font: 'Unbounded', 'Arial Black', sans-serif; --st-weight: 700; --st-case: none; --st-size: .86;
+            --st-pattern: radial-gradient(circle, rgba(255, 210, 63, .4) 2px, transparent 2.6px) 0 0 / 22px 22px;
+        }
+        [data-theme="norte"] {
+            --st-primary: #1F4FD8; --st-deep: #1739A8; --st-accent: #FF7A2E; --st-hi: #FFB27A; --st-on-accent: #0B1B3F;
+            --st-bg: #EEF3FF; --st-ink: #0B1B3F; --st-sale: #C2410C;
+            --st-font: 'Barlow Condensed', 'Arial Narrow', sans-serif; --st-weight: 800; --st-case: uppercase; --st-size: 1.12;
+            --st-pattern: repeating-linear-gradient(-45deg, rgba(255, 255, 255, .07) 0 12px, transparent 12px 26px);
+        }
+        [data-theme="parque"] {
+            --st-primary: #4E6B3D; --st-deep: #3A5230; --st-accent: #B5532A; --st-hi: #F7C9A8; --st-on-accent: #FFFFFF;
+            --st-bg: #F8F1E4; --st-ink: #2E3326; --st-sale: #B5532A;
+            --st-font: 'Fredoka', 'Nunito', sans-serif; --st-weight: 700; --st-case: none; --st-size: 1.02;
+            --st-pattern: radial-gradient(circle at 8% 115%, rgba(207, 227, 184, .3) 0 22%, transparent 22.5%), radial-gradient(circle at 70% -20%, rgba(255, 255, 255, .1) 0 24%, transparent 24.5%);
+        }
+
+        .stores { margin-bottom: 32px; scroll-margin-top: calc(var(--header-full) + 8px); }
+        .store-tabs { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; margin-bottom: 14px; }
+        .store-tab {
+            position: relative;
+            display: flex; align-items: center; gap: 10px;
+            min-height: 76px; padding: 12px; text-align: left;
+            border-radius: var(--r-lg);
+            background: var(--st-bg); color: var(--st-ink);
+            border: 2px solid color-mix(in srgb, var(--st-primary) 12%, transparent);
+            box-shadow: var(--shadow-xs);
+            transition: transform .25s var(--ease-out), box-shadow .25s ease, border-color .2s ease;
+        }
+        .store-tab:hover { transform: translateY(-2px); box-shadow: var(--shadow-md); }
+        .store-tab[aria-selected="true"] {
+            border-color: var(--st-primary);
+            box-shadow: 0 0 0 4px color-mix(in srgb, var(--st-primary) 16%, transparent), var(--shadow-md);
+        }
+        .store-tab-text { min-width: 0; }
+        .store-tab-name {
+            display: block;
+            font-family: var(--st-font); font-weight: var(--st-weight); text-transform: var(--st-case);
+            font-size: calc(15px * var(--st-size)); line-height: 1.1;
+        }
+        .store-tab-meta { display: block; margin-top: 3px; font-size: var(--t-12); color: color-mix(in srgb, var(--st-ink) 75%, transparent); }
+        .store-flag {
+            position: absolute; top: -9px; right: 10px;
+            font-size: 11px; font-weight: 800; padding: 2px 8px; border-radius: var(--r-pill);
+        }
+        .store-logo { flex-shrink: 0; filter: drop-shadow(0 4px 6px rgba(0, 0, 0, .16)); }
+        .store-logo text { font-family: var(--st-font); font-weight: var(--st-weight); }
+
+        .store-panel {
+            background: var(--st-bg);
+            border: 1px solid color-mix(in srgb, var(--st-primary) 18%, transparent);
+            border-radius: var(--r-xl);
+            padding: 8px 8px 14px;
+        }
+        .store-panel:focus { outline: none; }
+        .store-banner {
+            position: relative; overflow: hidden; isolation: isolate;
+            display: grid; grid-template-columns: minmax(0, 1fr); gap: 16px;
+            padding: 22px 20px 18px;
+            border-radius: calc(var(--r-xl) - 6px);
+            color: #fff;
+            background: var(--st-pattern), linear-gradient(125deg, var(--st-ink) 0%, var(--st-deep) 100%);
+        }
+        .store-banner::before {
+            content: ''; position: absolute; z-index: -1;
+            width: 340px; height: 340px; right: -110px; top: -130px; border-radius: 50%;
+            background: radial-gradient(circle, color-mix(in srgb, var(--st-accent) 45%, transparent), transparent 70%);
+        }
+        .store-brand { display: flex; align-items: center; gap: 12px; }
+        .store-name {
+            font-family: var(--st-font); font-weight: var(--st-weight); text-transform: var(--st-case);
+            font-size: calc(19px * var(--st-size)); line-height: 1.1;
+        }
+        .store-tagline { font-size: var(--t-12); opacity: .85; margin-top: 2px; }
+        .store-eyebrow { margin-top: 14px; font-size: var(--t-12); font-weight: 800; letter-spacing: .08em; text-transform: uppercase; color: var(--st-hi); }
+        .store-title {
+            margin: 6px 0 8px;
+            font-family: var(--st-font); font-weight: var(--st-weight); text-transform: var(--st-case);
+            font-size: calc(clamp(1.7rem, 5vw, 2.7rem) * var(--st-size)); line-height: 1.02; letter-spacing: -.01em;
+            text-wrap: balance;
+        }
+        .store-text { font-size: var(--t-14); opacity: .9; max-width: 44ch; }
+        .store-deal {
+            display: inline-grid; gap: 2px; margin-top: 14px;
+            padding: 10px 14px; border-radius: var(--r-md);
+            background: rgba(255, 255, 255, .1); border: 1px solid rgba(255, 255, 255, .2);
+        }
+        .store-deal-name { font-size: 13px; font-weight: 600; }
+        .store-deal-prices { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+        .store-deal-prices s { font-size: var(--t-14); opacity: .75; }
+        .store-deal-prices b { font-family: var(--font-display); font-size: 1.75rem; font-weight: 800; line-height: 1; color: var(--st-hi); font-variant-numeric: tabular-nums; }
+        .store-deal-off { font-size: var(--t-12); font-weight: 800; padding: 3px 8px; border-radius: 6px; background: var(--st-accent); color: var(--st-on-accent); }
+        .store-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 16px; margin-top: 16px; }
+        .store-cta {
+            min-height: 46px; padding: 0 20px; border-radius: var(--r-pill);
+            background: var(--st-accent); color: var(--st-on-accent); font-weight: 800;
+            transition: transform .2s var(--ease-out);
+        }
+        .store-cta:hover { transform: translateY(-1px); }
+        .store-link-more { min-height: 44px; display: inline-flex; align-items: center; color: #fff; font-weight: 700; text-underline-offset: 4px; }
+        .store-banner-art { display: none; }
+        .store-info { grid-column: 1 / -1; display: flex; flex-wrap: wrap; gap: 8px; list-style: none; }
+        .store-info li {
+            display: inline-flex; align-items: center; gap: 6px;
+            padding: 6px 10px; border-radius: var(--r-pill);
+            font-size: var(--t-12); font-weight: 600;
+            background: rgba(255, 255, 255, .12); border: 1px solid rgba(255, 255, 255, .18);
+        }
+        .store-info .icon { width: 14px; height: 14px; color: var(--st-hi); }
+        .store-line-head {
+            display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: 4px 12px;
+            margin: 18px 6px 12px; color: var(--st-ink);
+            scroll-margin-top: calc(var(--header-full) + 12px);
+        }
+        .store-line-head h3 { font-family: var(--st-font); font-weight: var(--st-weight); text-transform: var(--st-case); font-size: calc(22px * var(--st-size)); }
+        .store-line-head p { font-size: var(--t-14); color: color-mix(in srgb, var(--st-ink) 75%, transparent); }
+        .store-grid { margin-bottom: 0; }
+
+        /* Tarjetas dentro de cada farmacia: mismos componentes, colores de la marca */
+        .store-panel .product-card { border-color: color-mix(in srgb, var(--st-primary) 22%, transparent); }
+        .store-panel .card-img-wrap { background: linear-gradient(180deg, #FFFFFF 0%, var(--st-bg) 100%); }
+        .store-panel .card-add { background: var(--st-primary); }
+        .store-panel .card-price.on-sale { color: var(--st-sale); }
+        .store-panel .card-off, .store-panel .card-badge.badge-sale { background: var(--st-sale); }
+        .store-panel .card-price-old { text-decoration-color: var(--st-sale); }
+        .store-panel .price-drop { color: var(--st-sale); }
+        .store-panel .card-pharm-name { display: none; }
+
+        /* Nombre de farmacia clickeable en las tarjetas */
+        .card-pharm { position: relative; z-index: 2; }
+        .pharm-go { font: inherit; font-weight: 600; color: var(--ink-2); text-decoration: underline; text-decoration-color: transparent; text-underline-offset: 2px; padding: 4px 0; }
+        .pharm-go:hover { color: var(--forest-700); text-decoration-color: currentColor; }
+        .cat-top.store-link { text-decoration: none; }
+        .cat-top.store-link .cat-ico { color: var(--forest-700); }
+        .cat-top.store-link .cat-ico .icon { width: 18px; height: 18px; }
+        .pharm-item .pharm-see { margin-left: auto; min-height: 44px; padding: 0 4px; font-size: var(--t-14); font-weight: 700; color: var(--forest-700); text-decoration: underline; text-underline-offset: 3px; flex-shrink: 0; }
+
+        @media (min-width: 768px) {
+            .store-banner { grid-template-columns: minmax(0, 1fr) 230px; padding: 30px 32px 22px; align-items: center; }
+            .store-banner-art {
+                display: grid; place-items: center;
+                width: 210px; aspect-ratio: 1; justify-self: center;
+                border-radius: 30px; background: rgba(255, 255, 255, .95);
+                box-shadow: 0 24px 48px rgba(0, 0, 0, .3);
+                transform: rotate(4deg);
+            }
+            .store-banner-art img { width: 88%; height: 88%; }
+        }
+        @media (min-width: 900px) {
+            .store-tabs { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+        }
+        @media (min-width: 1024px) {
+            .store-grid { grid-template-columns: repeat(4, minmax(0, 1fr)); }
         }
 
         /* ── CAPAS DECORATIVAS ── */
@@ -1392,6 +1557,7 @@
                 <li><button class="cat-chip cat-top" type="button" data-cat="farmacia" aria-pressed="false"><span class="cat-ico ico-tile"><svg class="duo" aria-hidden="true"><use href="#d-pill"/></svg></span>Farmacia</button></li>
                 <li><button class="cat-chip cat-top" type="button" data-cat="bebes" aria-pressed="false"><span class="cat-ico ico-tile"><svg class="duo" aria-hidden="true"><use href="#d-baby"/></svg></span>Bebés</button></li>
                 <li><button class="cat-chip cat-top" type="button" data-cat="nutricion" aria-pressed="false"><span class="cat-ico ico-tile"><svg class="duo" aria-hidden="true"><use href="#d-leaf"/></svg></span>Nutrición</button></li>
+                <li><a class="cat-top store-link" href="#farmacias"><span class="cat-ico ico-tile"><svg class="icon" aria-hidden="true"><use href="#i-store"/></svg></span>Farmacias</a></li>
             </ul>
         </nav>
     </header>
@@ -1549,6 +1715,18 @@
                 <div><strong>Farmacéutico online</strong><span>Consultas de 8 a 22 h</span></div>
             </li>
         </ul>
+
+        <!-- FARMACIAS DE LA RED: cada una con su identidad, banner y línea propia -->
+        <section class="stores" id="farmacias" aria-labelledby="stores-title">
+            <div class="section-header">
+                <div>
+                    <h2 class="section-title" id="stores-title">Farmacias <em>de la red</em></h2>
+                    <p class="section-subtitle">Cada farmacia tiene su estilo y su propia línea de productos.</p>
+                </div>
+            </div>
+            <div class="store-tabs" role="tablist" aria-label="Elegí una farmacia" id="store-tabs"></div>
+            <div class="store-panel" id="store-panel" role="tabpanel" tabindex="-1"></div>
+        </section>
 
         <!-- OFERTAS DEL DÍA -->
         <section class="flash-section" id="ofertas" aria-labelledby="flash-title">
@@ -1712,16 +1890,76 @@
         const byId = new Map(PRODUCTS.map(p => [p.id, p]));
 
         // ── FARMACIAS (prototipo) ──
+        // Identidad de cada farmacia (ver hojas de estilo en Figma: "FarmaGlass · Farmacias de la red")
         const PHARMACIES = [
-            { id: 'centro', name: 'Farmacia del Centro', zone: 'Recoleta', rating: 4.9, recommended: true },
-            { id: 'plaza', name: 'Farmacia Plaza Palermo', zone: 'Palermo', rating: 4.7 },
-            { id: 'norte', name: 'Farmacia Belgrano Norte', zone: 'Belgrano', rating: 4.6 },
-            { id: 'parque', name: 'Farmacia Parque Caballito', zone: 'Caballito', rating: 4.8 },
+            { id: 'centro', name: 'Farmacia del Centro', zone: 'Recoleta', rating: 4.9, recommended: true,
+              style: 'Clásica · boticaria', tagline: 'Botica tradicional desde 1962', line: 'Botica del Centro', short: 'BOTICA',
+              hours: 'Lun a sáb · 8 a 21 h', street: 'Av. Callao 1450, Recoleta', letter: 'C', shape: 'arch',
+              colors: { primary: '#14284B', accent: '#C9A227', bg: '#FBF6EA', ink: '#1B2238', sale: '#9B2335' }, labelFont: 'Georgia, serif',
+              banner: { eyebrow: 'Línea Botica del Centro', title: 'Fórmulas de botica, como siempre', text: 'Cremas, aguas y jabones con recetas clásicas, preparados por nuestro equipo.', featured: 102, cta: 'Ver la botica' } },
+            { id: 'plaza', name: 'Farmacia Plaza Palermo', zone: 'Palermo', rating: 4.7,
+              style: 'Urbana · pop', tagline: 'Abierta 24 h en el corazón de Palermo', line: 'Plaza Lab', short: 'PLAZA LAB',
+              hours: 'Todos los días · 24 h', street: 'Av. Santa Fe 3720, Palermo', letter: 'P', shape: 'blob',
+              colors: { primary: '#C2185B', accent: '#FFD23F', bg: '#FFF0F6', ink: '#2B1240', sale: '#C2185B' }, labelFont: 'Arial Black, sans-serif',
+              banner: { eyebrow: 'Plaza Lab · 24 h', title: 'Skincare de noche, entrega de noche', text: 'Sérums, parches y bálsamos con entrega a cualquier hora.', featured: 105, cta: 'Ver Plaza Lab' } },
+            { id: 'norte', name: 'Farmacia Belgrano Norte', zone: 'Belgrano', rating: 4.6,
+              style: 'Deportiva · activa', tagline: 'Rendimiento y bienestar para tu día', line: 'Norte Active', short: 'NORTE',
+              hours: 'Lun a dom · 7 a 23 h', street: 'Av. Cabildo 2300, Belgrano', letter: 'N', shape: 'hex',
+              colors: { primary: '#1F4FD8', accent: '#FF7A2E', bg: '#EEF3FF', ink: '#0B1B3F', sale: '#C2410C' }, labelFont: 'Impact, Arial Narrow, sans-serif',
+              banner: { eyebrow: 'Norte Active', title: 'Recuperá energía para entrenar', text: 'Suplementos, hidratación y alivio muscular para tu rutina.', featured: 109, cta: 'Ver Norte Active' } },
+            { id: 'parque', name: 'Farmacia Parque Caballito', zone: 'Caballito', rating: 4.8,
+              style: 'Familiar · natural', tagline: 'Cuidamos a toda la familia, frente al parque', line: 'Parque Familia', short: 'FAMILIA',
+              hours: 'Lun a sáb · 8 a 22 h', street: 'Av. Rivadavia 5200, Caballito', letter: 'P', shape: 'leaf',
+              colors: { primary: '#4E6B3D', accent: '#B5532A', bg: '#F8F1E4', ink: '#2E3326', sale: '#B5532A' }, labelFont: 'Verdana, sans-serif',
+              banner: { eyebrow: 'Parque Familia', title: 'Bebés felices, familias tranquilas', text: 'Higiene y cuidado suave para los más chicos y toda la casa.', featured: 114, cta: 'Ver Parque Familia' } },
         ];
         const pharmById = new Map(PHARMACIES.map(f => [f.id, f]));
-        // Cada producto se despacha desde una farmacia de la red
+        // Cada producto del catálogo se despacha desde una farmacia de la red
         const PRODUCT_PHARMACY = { 1: 'parque', 2: 'centro', 3: 'plaza', 4: 'centro', 5: 'norte', 6: 'parque', 7: 'plaza', 8: 'centro', 9: 'norte', 10: 'plaza' };
         PRODUCTS.forEach(p => { p.pharmacy = PRODUCT_PHARMACY[p.id]; });
+
+        // Packshot ilustrado (SVG) con los colores de cada farmacia, para la línea propia del prototipo
+        function packshot(kind, f, label) {
+            const c = f.colors;
+            const rect = (x, y, w, h, r, fill, extra = '') => `<rect x="${x}" y="${y}" width="${w}" height="${h}" rx="${r}" fill="${fill}" ${extra}/>`;
+            const labelBox = (x, y, w, h) => rect(x, y, w, h, 6, '#fff') +
+                `<text x="${x + w / 2}" y="${y + h / 2 - 2}" text-anchor="middle" font-family="${f.labelFont}" font-size="${Math.min(13, w / 6)}" font-weight="700" fill="${c.ink}">${f.short}</text>` +
+                `<text x="${x + w / 2}" y="${y + h / 2 + 12}" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="${c.ink}" opacity=".7">${label}</text>`;
+            const shine = (x, y, h) => rect(x, y, 7, h, 3.5, '#fff', 'opacity=".28"');
+            let body = '';
+            if (kind === 'bottle') body = rect(86, 30, 28, 20, 5, c.ink) + rect(64, 46, 72, 118, 20, c.primary) + labelBox(70, 86, 60, 44) + shine(70, 54, 90);
+            if (kind === 'jar') body = rect(46, 64, 108, 24, 8, c.accent) + rect(50, 84, 100, 80, 18, c.primary) + labelBox(62, 100, 76, 44) + shine(58, 92, 60);
+            if (kind === 'box') body = rect(52, 40, 96, 124, 8, c.primary) + rect(52, 62, 96, 18, 0, c.accent) + labelBox(62, 96, 76, 44) + shine(58, 46, 110);
+            if (kind === 'tube') body = `<g transform="rotate(-16 100 100)">${rect(72, 30, 56, 116, 18, c.primary)}${rect(80, 144, 40, 22, 5, c.ink)}${labelBox(78, 64, 44, 50)}${shine(78, 38, 96)}</g>`;
+            if (kind === 'dropper') body = rect(92, 22, 16, 34, 7, c.ink) + rect(80, 52, 40, 16, 5, c.ink) + rect(66, 66, 68, 98, 18, c.primary) + labelBox(72, 96, 56, 44) + shine(72, 72, 80);
+            const svg = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200"><ellipse cx="100" cy="176" rx="54" ry="8" fill="${c.ink}" opacity=".14"/>${body}<circle cx="148" cy="44" r="10" fill="${c.accent}"/></svg>`;
+            return 'data:image/svg+xml;charset=utf-8,' + encodeURIComponent(svg);
+        }
+
+        // Línea propia de cada farmacia (solo se muestra en su sección)
+        const STORE_LINE = [
+            [101, 'centro', 'Crema de caléndula (100 g)', 6900, 6900, 'jar', 'Dermocosmética', 'Crema suave de caléndula para pieles sensibles e irritadas.', 4.8, 64],
+            [102, 'centro', 'Agua de rosas (250 ml)', 5400, 4320, 'bottle', 'Dermocosmética', 'Tónico facial refrescante de agua de rosas, receta tradicional.', 4.9, 112],
+            [103, 'centro', 'Jabón de glicerina y avena (x3)', 7800, 7800, 'box', 'Higiene', 'Jabones de glicerina con avena coloidal, sin perfume.', 4.7, 41],
+            [104, 'centro', 'Vaselina sólida (100 g)', 3200, 3200, 'jar', 'Farmacia y botiquín', 'Vaselina pura para proteger e hidratar la piel.', 4.6, 58],
+            [105, 'plaza', 'Sérum vitamina C (30 ml)', 14900, 11920, 'dropper', 'Dermocosmética', 'Sérum antioxidante con vitamina C al 10 % para dar luminosidad.', 4.7, 203],
+            [106, 'plaza', 'Parches para granitos (x24)', 5600, 5600, 'box', 'Dermocosmética', 'Parches hidrocoloides invisibles para usar de día o de noche.', 4.8, 176],
+            [107, 'plaza', 'Bálsamo labial FPS 15 (4 g)', 3900, 3900, 'tube', 'Cuidado personal', 'Bálsamo hidratante con protección solar y aroma a frutilla.', 4.5, 89],
+            [108, 'plaza', 'Bruma facial hidratante (120 ml)', 8700, 8700, 'bottle', 'Dermocosmética', 'Bruma con ácido hialurónico para refrescar el rostro.', 4.6, 74],
+            [109, 'norte', 'Magnesio + B6 (60 comp.)', 9800, 8330, 'bottle', 'Nutrición y vitaminas', 'Suplemento dietario de magnesio con vitamina B6.', 4.7, 132],
+            [110, 'norte', 'Sales de rehidratación (10 sobres)', 4500, 4500, 'box', 'Nutrición y vitaminas', 'Sobres para preparar bebida de rehidratación oral sabor limón.', 4.6, 57],
+            [111, 'norte', 'Gel frío de árnica (120 g)', 6200, 5270, 'tube', 'Farmacia y botiquín', 'Gel de efecto frío con árnica para después del ejercicio.', 4.5, 66],
+            [112, 'norte', 'Colágeno hidrolizado (300 g)', 16500, 16500, 'jar', 'Nutrición y vitaminas', 'Suplemento dietario de colágeno en polvo, sin sabor.', 4.4, 48],
+            [113, 'parque', 'Shampoo bebé sin lágrimas (400 ml)', 6400, 6400, 'bottle', 'Bebés y maternidad', 'Shampoo suave para bebés, fórmula sin lágrimas.', 4.8, 95],
+            [114, 'parque', 'Óleo calcáreo (500 ml)', 7200, 5400, 'bottle', 'Bebés y maternidad', 'Limpia y protege la zona del pañal en cada cambio.', 4.9, 141],
+            [115, 'parque', 'Crema para paspaduras (90 g)', 5900, 5900, 'tube', 'Bebés y maternidad', 'Crema con óxido de zinc que forma una barrera protectora.', 4.7, 83],
+            [116, 'parque', 'Toallitas húmedas (x50)', 3600, 3600, 'box', 'Bebés y maternidad', 'Toallitas sin alcohol ni perfume para piel sensible.', 4.6, 120],
+        ].map(([id, pharmacy, name, listPrice, price, kind, cat, desc, rating, reviews]) => {
+            const f = pharmById.get(pharmacy);
+            const label = name.match(/\(([^)]+)\)/)?.[1] || '';
+            return { id, pharmacy, name, brand: f.line, listPrice, price, cat, categories: [], rating, reviews, sale: 'Venta libre', desc, storeOnly: true, img: packshot(kind, f, label) };
+        });
+        STORE_LINE.forEach(p => { PRODUCTS.push(p); byId.set(p.id, p); });
 
         const addrStore = {
             get() { try { return JSON.parse(localStorage.getItem('fg-address')); } catch { return null; } },
@@ -1750,7 +1988,7 @@
             let tag = '';
             if (near && near.id === f.id) tag = '<span class="pharm-tag tag-nearest"><svg class="icon" aria-hidden="true"><use href="#i-pin"/></svg><span class="tag-long">Tu farmacia más cercana</span><span class="tag-short">Más cercana</span></span>';
             else if (f.recommended) tag = '<span class="pharm-tag tag-recommended"><svg class="icon" aria-hidden="true"><use href="#i-star"/></svg><span class="tag-long">Farmacia recomendada</span><span class="tag-short">Recomendada</span></span>';
-            return `${tag}<p class="card-pharm-name"><svg class="icon" aria-hidden="true"><use href="#i-store"/></svg><span><b>${esc(f.name)}</b></span>${km != null ? `<span class="km">${kmText(km)}</span>` : ''}</p>`;
+            return `${tag}<p class="card-pharm-name"><svg class="icon" aria-hidden="true"><use href="#i-store"/></svg><span><button type="button" class="pharm-go" data-store-go="${f.id}" aria-label="Ver ${esc(f.name)}">${esc(f.name)}</button></span>${km != null ? `<span class="km">${kmText(km)}</span>` : ''}</p>`;
         }
 
         const money = new Intl.NumberFormat('es-AR', { style: 'currency', currency: 'ARS', maximumFractionDigits: 0 });
@@ -1796,7 +2034,8 @@
         // ── RENDER ──
         const grid = document.getElementById('products-container');
         const flashList = document.getElementById('flash-carousel');
-        grid.innerHTML = PRODUCTS.map(p => `<li data-id="${p.id}">${cardHTML(p)}</li>`).join('') +
+        const CATALOG = PRODUCTS.filter(p => !p.storeOnly);
+        grid.innerHTML = CATALOG.map(p => `<li data-id="${p.id}">${cardHTML(p)}</li>`).join('') +
             `<li class="no-results" id="no-results" hidden><strong>No encontramos productos</strong>Probá con otro término o elegí otra categoría.<br><button type="button" id="reset-filters">Ver todos los productos</button></li>`;
         flashList.innerHTML = PRODUCTS.filter(p => p.flash).sort((a, b) => discountOf(b) - discountOf(a)).map(p => `<li>${cardHTML(p)}</li>`).join('');
 
@@ -2059,6 +2298,112 @@
             else showToast('Tu código es NUEVO20');
         });
 
+        // ── FARMACIAS DE LA RED ──
+        const storeTabs = document.getElementById('store-tabs');
+        const storePanel = document.getElementById('store-panel');
+        let activeStore = null, storeChosen = false;
+        const LOGO_SHAPES = {
+            arch: 'M6 45V24a18 18 0 0 1 36 0v21z',
+            blob: 'M24 3c12 0 21 8 21 20 0 13-9 22-21 22S3 37 3 25C3 12 12 3 24 3z',
+            hex: 'M24 2l19 11v22L24 46 5 35V13z',
+            leaf: 'M4 44V24C4 12 12 4 24 4h20v20c0 12-8 20-20 20z',
+        };
+        function logoSVG(f, size) {
+            return `<svg class="store-logo" viewBox="0 0 48 48" width="${size}" height="${size}" aria-hidden="true">
+                <path d="${LOGO_SHAPES[f.shape]}" fill="${f.colors.primary}"/>
+                <circle cx="39" cy="9" r="6" fill="${f.colors.accent}" stroke="${f.colors.bg}" stroke-width="2.5"/>
+                <text x="24" y="${f.shape === 'arch' ? 37 : 32}" text-anchor="middle" font-size="22" fill="#fff">${f.letter}</text></svg>`;
+        }
+        const storeDefault = () => (nearestPharmacy() || PHARMACIES.find(f => f.recommended)).id;
+        const ratingText = r => r.toFixed(1).replace('.', ',');
+
+        function renderStores() {
+            if (!storeChosen || !activeStore) activeStore = storeDefault();
+            const near = nearestPharmacy();
+            storeTabs.innerHTML = PHARMACIES.map(f => {
+                const km = distanceKm(f);
+                const sel = f.id === activeStore;
+                const flag = near && near.id === f.id
+                    ? '<span class="store-flag tag-nearest">Más cercana</span>'
+                    : f.recommended ? '<span class="store-flag tag-recommended">Recomendada</span>' : '';
+                return `<button class="store-tab" type="button" role="tab" id="tab-${f.id}" aria-selected="${sel}" aria-controls="store-panel" tabindex="${sel ? 0 : -1}" data-theme="${f.id}" data-store-tab="${f.id}">
+                    ${flag}${logoSVG(f, 44)}
+                    <span class="store-tab-text"><span class="store-tab-name">${esc(f.name)}</span>
+                    <span class="store-tab-meta">${esc(f.style)} · ★ ${ratingText(f.rating)}${km != null ? ` · ${kmText(km)}` : ''}</span></span>
+                </button>`;
+            }).join('');
+            renderStorePanel();
+        }
+
+        function renderStorePanel() {
+            const f = pharmById.get(activeStore);
+            const feat = byId.get(f.banner.featured);
+            const d = discountOf(feat);
+            const km = distanceKm(f);
+            const line = PRODUCTS.filter(p => p.storeOnly && p.pharmacy === f.id);
+            const alsoCount = CATALOG.filter(p => p.pharmacy === f.id).length;
+            storePanel.dataset.theme = f.id;
+            storePanel.setAttribute('aria-labelledby', 'tab-' + f.id);
+            storePanel.innerHTML = `
+                <div class="store-banner">
+                    <div class="store-banner-text">
+                        <div class="store-brand">${logoSVG(f, 56)}
+                            <div><p class="store-name">${esc(f.name)}</p><p class="store-tagline">${esc(f.tagline)}</p></div>
+                        </div>
+                        <p class="store-eyebrow">${esc(f.banner.eyebrow)}</p>
+                        <h3 class="store-title">${esc(f.banner.title)}</h3>
+                        <p class="store-text">${esc(f.banner.text)}</p>
+                        <div class="store-deal">
+                            <span class="store-deal-name">${esc(feat.name)}</span>
+                            <span class="store-deal-prices">${d > 0 ? `<s><span class="sr-only">Antes </span>${fmt(feat.listPrice)}</s>` : ''}<b>${fmt(feat.price)}</b>${d > 0 ? `<span class="store-deal-off">−${d} %</span>` : ''}</span>
+                        </div>
+                        <div class="store-actions">
+                            <button class="store-cta" type="button" data-add="${feat.id}">Agregar al carrito</button>
+                            <a class="store-link-more" href="#store-line">${esc(f.banner.cta)}</a>
+                        </div>
+                    </div>
+                    <div class="store-banner-art"><img src="${feat.img}" alt="" width="200" height="200"></div>
+                    <ul class="store-info" aria-label="Datos de la farmacia">
+                        <li><svg class="icon" aria-hidden="true"><use href="#i-clock"/></svg>${esc(f.hours)}</li>
+                        <li><svg class="icon" aria-hidden="true"><use href="#i-pin"/></svg>${esc(f.street)}</li>
+                        <li><svg class="icon" aria-hidden="true"><use href="#i-truck"/></svg>${km != null ? `${kmText(km)} · llega en ~${Math.round(25 + km * 12)} min` : 'Ingresá tu dirección para ver el tiempo de entrega'}</li>
+                    </ul>
+                </div>
+                <div class="store-line-head" id="store-line">
+                    <h3>Línea ${esc(f.line)}</h3>
+                    <p>${line.length} productos exclusivos · también despacha ${alsoCount} productos del catálogo</p>
+                </div>
+                <ul class="product-grid store-grid">${line.map(p => `<li>${cardHTML(p)}</li>`).join('')}</ul>`;
+        }
+
+        function selectStore(id, { scroll = false, focus = false } = {}) {
+            if (!pharmById.has(id)) return;
+            activeStore = id; storeChosen = true;
+            renderStores();
+            if (scroll) document.getElementById('farmacias').scrollIntoView({ behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth' });
+            if (focus) document.getElementById('tab-' + id).focus();
+        }
+        storeTabs.addEventListener('click', e => {
+            const t = e.target.closest('[data-store-tab]');
+            if (t) selectStore(t.dataset.storeTab, { focus: true });
+        });
+        // Flechas izquierda/derecha entre pestañas
+        storeTabs.addEventListener('keydown', e => {
+            if (!['ArrowLeft', 'ArrowRight', 'Home', 'End'].includes(e.key)) return;
+            e.preventDefault();
+            const i = PHARMACIES.findIndex(f => f.id === activeStore);
+            const n = PHARMACIES.length;
+            const next = e.key === 'Home' ? 0 : e.key === 'End' ? n - 1 : (i + (e.key === 'ArrowRight' ? 1 : -1) + n) % n;
+            selectStore(PHARMACIES[next].id, { focus: true });
+        });
+        // Cualquier enlace a una farmacia (tarjetas, lista de cercanas)
+        document.addEventListener('click', e => {
+            const go = e.target.closest('[data-store-go]');
+            if (go) { e.preventDefault(); selectStore(go.dataset.storeGo, { scroll: true }); }
+        });
+        const fromHash = () => { if (location.hash.startsWith('#farmacia-')) selectStore(location.hash.slice(10), { scroll: true }); };
+        window.addEventListener('hashchange', fromHash);
+
         // ── DIRECCIÓN DEL VISITANTE ──
         const addrPanel = document.getElementById('addr-panel');
         const addrForm = document.getElementById('addr-form');
@@ -2087,10 +2432,12 @@
                     return `<li class="pharm-item${f.id === near.id ? ' is-nearest' : ''}">${flag}
                         <span class="ico-tile"><svg class="icon" aria-hidden="true"><use href="#i-store"/></svg></span>
                         <div><p class="pharm-name">${esc(f.name)}</p>
-                        <p class="pharm-meta">${kmText(km)} · llega en ~${mins} min · ★ ${f.rating.toFixed(1).replace('.', ',')}</p></div></li>`;
+                        <p class="pharm-meta">${kmText(km)} · llega en ~${mins} min · ★ ${f.rating.toFixed(1).replace('.', ',')}</p></div>
+                        <button type="button" class="pharm-see" data-store-go="${f.id}" aria-label="Ver ${esc(f.name)}">Ver</button></li>`;
                 }).join('');
             }
-            // Actualiza la farmacia en todas las tarjetas
+            // Actualiza la farmacia en todas las tarjetas y las pestañas de farmacias
+            renderStores();
             document.querySelectorAll('[data-pharm-for]').forEach(el => { el.innerHTML = pharmHTML(byId.get(Number(el.dataset.pharmFor))); });
         }
         addrForm.addEventListener('submit', e => {
@@ -2117,6 +2464,7 @@
             if (!address) setTimeout(() => document.getElementById('addr-street').focus({ preventScroll: true }), 350);
         });
         renderAddress();
+        fromHash();
 
         // ── NEWSLETTER con validación ──
         const nlForm = document.getElementById('newsletter-form');
