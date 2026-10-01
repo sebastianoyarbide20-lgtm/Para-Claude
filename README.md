@@ -8,7 +8,7 @@ Todo es HTML, CSS y JavaScript sin dependencias. Para verla, abrí `farmacia_v2.
 | Archivo | Qué es |
 | --- | --- |
 | `farmacia_v2.html` | Web principal: catálogo, ofertas, farmacias de la red, recetas y ayuda |
-| `farmacia-centro.html` · `farmacia-plaza.html` · `farmacia-norte.html` · `farmacia-parque.html` | Página de cada farmacia, con su estilo y su línea de productos |
+| `farmacia-centro.html` · `farmacia-plaza.html` · `farmacia-norte.html` · `farmacia-parque.html` | Página de cada farmacia, con su estilo, su línea propia y los productos reales que despacha |
 | `fg-shop.js` | Carrito, checkout, pedidos, favoritos, cupones y "Mi cuenta", compartidos por todas las páginas |
 | `farmacias-red.js` | Datos y utilidades de las páginas de farmacia |
 | `productos-reales.js` | 34 productos reales de farmacia y cosmética con precio, oferta e imagen |
@@ -42,6 +42,9 @@ con nombre, marca, imagen, precio de lista, precio final y stock. Farmacias del 
   prototipo. Las imágenes se cargan desde el CDN de la tienda y pertenecen a sus marcas.
 - Las valoraciones con estrellas de los 10 productos originales son ilustrativas; los productos reales
   muestran solo la marca.
+- Cada producto tiene asignada la farmacia de la red que lo despacha (`pharmacy`) y aparece también en
+  la página de esa farmacia, con su estilo: vitrina en Centro, "Marcas que amamos" en Plaza,
+  "Marcas para tu rutina" en Norte y "Marcas que elegimos para la familia" en Parque.
 - Para actualizar precios e imágenes (Node 18 o superior): `node scripts/actualizar-productos.js`.
 
 Prototipo: no hay servidor. Los datos se guardan solo en el navegador (`localStorage`) y no se cobra nada.

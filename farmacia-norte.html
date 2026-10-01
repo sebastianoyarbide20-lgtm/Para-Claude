@@ -69,6 +69,11 @@
         .add { min-height: 44px; padding: 0 16px; background: var(--night); color: #fff; font-family: var(--display); font-weight: 800; font-size: 17px; text-transform: uppercase; transform: skewX(-8deg); }
         .add:hover { background: var(--cobalt); }
 
+        .card .brand { font-size: 14px; color: var(--cobalt); letter-spacing: .04em; }
+        .card .art img.photo { height: 78%; mix-blend-mode: multiply; }
+        .lane-note { margin-top: 4px; color: #4A587A; font-size: 14px; }
+        .lane-note a { color: var(--cobalt); font-weight: 700; text-underline-offset: 3px; }
+
         /* Banner en el medio */
         .promo { margin: 48px 0; display: grid; gap: 12px; align-items: center; background: var(--orange); color: var(--night); padding: 26px 24px; transform: skewY(-2deg); }
         .promo > * { transform: skewY(2deg); }
@@ -76,7 +81,7 @@
         .promo a { justify-self: start; display: inline-flex; align-items: center; min-height: 48px; padding: 0 22px; background: var(--night); color: #fff; text-decoration: none; }
 
         /* Antes, durante, después */
-        .plan { display: grid; gap: 14px; margin-bottom: 48px; }
+        .plan { display: grid; gap: 14px; margin: 48px 0; }
         .plan article { background: #fff; border-radius: 10px; padding: 20px; border-left: 6px solid var(--cobalt); }
         .plan article:nth-child(2) { border-color: var(--orange); }
         .plan article:nth-child(3) { border-color: var(--night); }
@@ -144,6 +149,15 @@
             <a class="up" href="#lane">Ver ofertas</a>
         </aside>
 
+        <section id="marcas" aria-labelledby="marcas-title">
+            <div class="lane-head">
+                <h2 class="up" id="marcas-title">Marcas para tu rutina</h2>
+                <p>Suplementos y cuidado de marcas que ya conocés →</p>
+            </div>
+            <ul class="lane" id="lane-brands"></ul>
+            <p class="lane-note">Precios del catálogo de FarmaGlass · <a href="farmacia_v2.html#catalogo">Ver todo el catálogo</a></p>
+        </section>
+
         <section class="plan" aria-label="Guía para tu entrenamiento">
             <article><h3 class="up">Antes</h3><p>Llegá hidratado y con los músculos listos.</p><ul><li>Sales de rehidratación</li><li>Cinta kinesiológica</li></ul></article>
             <article><h3 class="up">Durante</h3><p>Cuidate del sol si entrenás al aire libre.</p><ul><li>Protector solar sport FPS 50</li></ul></article>
@@ -153,6 +167,7 @@
 
     <footer><div class="wrap" id="foot"></div></footer>
 
+    <script src="productos-reales.js"></script>
     <script src="fg-shop.js"></script>
     <script src="farmacias-red.js"></script>
     <script>
@@ -175,6 +190,22 @@
         const st = FG.status('norte');
         const now = document.getElementById('st-now');
         now.textContent = st.text; now.classList.toggle('on', st.open);
+        const brands = FG.brands('norte');
+        document.getElementById('marcas').hidden = !brands.length;
+        document.getElementById('lane-brands').innerHTML = brands.map(p => {
+            const d = FG.off(p);
+            return `<li class="card">
+                <div class="art">${d > 0 ? `<span class="off up">−${d} %</span>` : ''}${FG.photo(p, 200).replace('<img', '<img class="photo"')}</div>
+                <div class="body">
+                    <span class="brand up">${FG.esc(p.brand)}</span>
+                    <h3 class="up">${FG.esc(p.name)}</h3><span class="size">${[p.size, FG.esc(p.cat)].filter(Boolean).join(' · ')}</span>
+                    <div class="foot">
+                        <div>${d > 0 ? `<s>${FG.fmt(p.list)}</s>` : ''}<span class="price up${d > 0 ? ' sale' : ''}">${FG.fmt(p.price)}</span></div>
+                        <button class="add" type="button" data-add="${p.id}" aria-label="Agregar ${FG.esc(p.fullName)} al carrito">Sumar</button>
+                    </div>
+                </div>
+            </li>`;
+        }).join('');
         document.getElementById('foot').innerHTML = `<a href="${FG.mapsUrl(s)}" target="_blank" rel="noopener">${FG.esc(s.street)} · Cómo llegar ↗</a>
             <span>${s.hours}</span><a href="${FG.telUrl(s)}">Tel. ${s.phone}</a>
             <button type="button" data-account-open="orders">Mis pedidos</button><span>Parte de la red FarmaGlass · Prototipo</span>`;

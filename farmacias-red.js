@@ -105,10 +105,27 @@ window.FG = (() => {
         return s;
     }
 
+    // Productos reales del catálogo general (productos-reales.js) que despacha esta farmacia.
+    // Se separa el tamaño y se quita la marca del nombre para mostrarla aparte.
+    function brands(id) {
+        const list = (window.FG_REAL_PRODUCTS || []).filter(p => p.pharmacy === id).map(p => {
+            const m = p.name.match(/^(.*?)\s*\(([^)]+)\)$/);
+            let name = m ? m[1] : p.name;
+            if (name.toLowerCase().startsWith(p.brand.toLowerCase() + ' ')) name = name.slice(p.brand.length + 1);
+            return { id: p.id, fullName: p.name, name: name.charAt(0).toUpperCase() + name.slice(1), size: m ? m[2] : '',
+                brand: p.brand, cat: p.cat, desc: p.desc, list: p.listPrice, price: p.price, img: p.img };
+        });
+        // Mismo id y nombre que en la web principal: el carrito los reconoce como el mismo producto
+        FGShop.register(list.map(p => ({ id: p.id, name: p.fullName, price: p.price, list: p.list, img: p.img, store: id })));
+        return list;
+    }
+    // Las fotos reales vienen del CDN de la tienda; si no cargan, queda el fondo de la tarjeta
+    const photo = (p, size) => `<img src="${p.img}" alt="" width="${size}" height="${size}" loading="lazy" referrerpolicy="no-referrer" onerror="this.style.visibility='hidden'">`;
+
     // Abierta o cerrada según el horario y la hora actual
     const status = id => FGShop.openStatus(id);
     const mapsUrl = s => 'https://www.google.com/maps/search/?api=1&query=' + encodeURIComponent(`${s.street}, Buenos Aires`);
     const telUrl = s => 'tel:+54' + s.phone.replace(/\D/g, '');
 
-    return { store, fmt, off, esc, logo, status, mapsUrl, telUrl, toast: FGShop.toast };
+    return { store, brands, photo, fmt, off, esc, logo, status, mapsUrl, telUrl, toast: FGShop.toast };
 })();
