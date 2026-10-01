@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="es-AR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Farmacia del Centro · Botica tradicional en Recoleta</title>
+    <meta name="description" content="Farmacia del Centro, botica tradicional desde 1962 en Recoleta. Línea Botica del Centro: caléndula, agua de rosas, glicerina y más.">
+    <meta name="theme-color" content="#14284B">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* Farmacia del Centro · editorial clásica: marfil, azul botica y bronce */
+        :root {
+            --navy: #14284B; --ink: #1B2238; --brass: #C9A227; --brass-hi: #E6C65C; --brass-text: #7A5C12;
+            --ivory: #FBF6EA; --paper: #FFFDF7; --line: #E6DCC3; --sale: #9B2335; --muted: #5B5F6E;
+            --serif: 'DM Serif Display', Georgia, serif; --sans: 'Inter', system-ui, sans-serif;
+        }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        [hidden] { display: none !important; }
+        body { font-family: var(--sans); color: var(--ink); background: var(--ivory); line-height: 1.55; -webkit-font-smoothing: antialiased; }
+        img { display: block; max-width: 100%; }
+        a { color: inherit; }
+        button { font: inherit; cursor: pointer; border: 0; background: none; color: inherit; }
+        :focus-visible { outline: 3px solid var(--brass); outline-offset: 3px; border-radius: 4px; }
+        .wrap { max-width: 1080px; margin: 0 auto; padding: 0 16px; }
+
+        /* Barra superior */
+        .topbar { background: var(--navy); color: #fff; font-size: 13px; }
+        .topbar .wrap { display: flex; justify-content: space-between; align-items: center; gap: 12px; min-height: 48px; }
+        .back { display: inline-flex; align-items: center; gap: 6px; min-height: 44px; font-weight: 600; text-decoration: none; }
+        .back:hover { text-decoration: underline; }
+        .cart { display: inline-flex; align-items: center; gap: 8px; min-height: 44px; font-weight: 600; }
+        .cart b { background: var(--brass); color: var(--navy); border-radius: 999px; min-width: 22px; height: 22px; display: grid; place-items: center; font-size: 12px; padding: 0 6px; }
+
+        /* Cabecera tipo membrete */
+        .masthead { text-align: center; padding: 40px 16px 28px; border-bottom: 1px solid var(--line); background:
+            repeating-linear-gradient(90deg, rgba(201,162,39,.12) 0 1px, transparent 1px 18px), var(--paper); }
+        .masthead svg { margin: 0 auto 10px; }
+        .masthead .since { font-size: 12px; letter-spacing: .3em; text-transform: uppercase; color: var(--brass-text); font-weight: 700; }
+        .masthead h1 { font-family: var(--serif); font-weight: 400; font-size: clamp(2.4rem, 7vw, 4.2rem); line-height: 1; color: var(--navy); margin: 8px 0; }
+        .masthead p { color: var(--muted); }
+        .ornament { display: flex; align-items: center; justify-content: center; gap: 12px; margin-top: 16px; color: var(--brass); }
+        .ornament::before, .ornament::after { content: ''; width: 80px; height: 1px; background: currentColor; }
+
+        /* Destacado: imagen en arco + texto */
+        .feature { display: grid; gap: 28px; padding: 44px 0; align-items: center; }
+        .arch { aspect-ratio: 4 / 5; max-width: 380px; width: 100%; margin: 0 auto; border-radius: 999px 999px 18px 18px; background: linear-gradient(180deg, #fff, #F2E9D2); border: 1px solid var(--line); display: grid; place-items: center; box-shadow: 0 30px 60px rgba(20,40,75,.12); }
+        .arch img { width: 78%; }
+        .eyebrow { font-size: 12px; letter-spacing: .2em; text-transform: uppercase; color: var(--brass-text); font-weight: 700; }
+        .feature h2 { font-family: var(--serif); font-weight: 400; font-size: clamp(2rem, 5vw, 3.2rem); line-height: 1.05; color: var(--navy); margin: 10px 0 14px; }
+        .feature h2 i { color: var(--brass-text); }
+        .feature p.lead { color: var(--muted); max-width: 46ch; }
+        .price-tag { display: flex; align-items: baseline; gap: 12px; flex-wrap: wrap; margin: 22px 0; padding: 14px 18px; border: 1px solid var(--line); border-left: 4px solid var(--brass); background: var(--paper); border-radius: 4px 12px 12px 4px; }
+        .price-tag s { color: var(--muted); }
+        .price-tag strong { font-family: var(--serif); font-weight: 400; font-size: 2.2rem; color: var(--sale); line-height: 1; }
+        .price-tag span { font-size: 13px; font-weight: 700; color: #fff; background: var(--sale); padding: 2px 8px; border-radius: 4px; }
+        .btn { display: inline-flex; align-items: center; gap: 8px; min-height: 48px; padding: 0 24px; border-radius: 4px; background: var(--navy); color: #fff; font-weight: 700; text-decoration: none; }
+        .btn:hover { background: #1E3A6B; }
+        .btn.ghost { background: transparent; color: var(--navy); border: 1px solid var(--navy); }
+
+        /* Lista de precios */
+        .section-title { font-family: var(--serif); font-weight: 400; font-size: 2rem; color: var(--navy); text-align: center; }
+        .section-sub { text-align: center; color: var(--muted); margin: 4px 0 24px; }
+        .pricelist { list-style: none; display: grid; gap: 0 40px; background: var(--paper); border: 1px solid var(--line); border-radius: 16px; padding: 8px 20px; }
+        .pricelist li { display: grid; grid-template-columns: 64px minmax(0, 1fr) auto; gap: 14px; align-items: center; padding: 14px 0; border-bottom: 1px dashed var(--line); }
+        .pricelist li:last-child { border-bottom: 0; }
+        .thumb { width: 64px; height: 64px; border-radius: 50% 50% 8px 8px; background: var(--ivory); display: grid; place-items: center; }
+        .thumb img { width: 90%; }
+        .item-name { font-family: var(--serif); font-size: 1.2rem; color: var(--navy); line-height: 1.15; }
+        .item-desc { font-size: 13px; color: var(--muted); }
+        .item-price { text-align: right; display: grid; gap: 4px; justify-items: end; }
+        .item-price s { font-size: 12px; color: var(--muted); }
+        .item-price b { font-family: var(--serif); font-weight: 400; font-size: 1.35rem; color: var(--navy); }
+        .item-price b.sale { color: var(--sale); }
+        .add { min-height: 36px; min-width: 44px; padding: 0 12px; border: 1px solid var(--navy); border-radius: 4px; font-size: 13px; font-weight: 700; color: var(--navy); }
+        .add:hover { background: var(--navy); color: #fff; }
+
+        /* Historia */
+        .history { display: grid; gap: 16px; margin: 56px 0; }
+        .year { padding: 22px; border-top: 3px solid var(--brass); background: var(--paper); border-radius: 0 0 12px 12px; }
+        .year b { font-family: var(--serif); font-weight: 400; font-size: 2.4rem; color: var(--navy); display: block; line-height: 1; }
+        .year p { color: var(--muted); margin-top: 8px; font-size: 14px; }
+
+        /* Banner promocional */
+        .promo { position: relative; overflow: hidden; display: grid; gap: 16px; align-items: center; padding: 32px 28px; border-radius: 18px; color: #fff; background: linear-gradient(120deg, var(--ink), var(--navy)); outline: 1px solid var(--brass); outline-offset: -10px; }
+        .promo::after { content: ''; position: absolute; right: -60px; top: -60px; width: 260px; height: 260px; border-radius: 50%; border: 1px solid rgba(201,162,39,.35); box-shadow: 0 0 0 30px rgba(201,162,39,.06), 0 0 0 60px rgba(201,162,39,.04); }
+        .promo .eyebrow { color: var(--brass-hi); }
+        .promo h3 { font-family: var(--serif); font-weight: 400; font-size: clamp(1.8rem, 4vw, 2.6rem); line-height: 1.05; }
+        .promo .btn { background: var(--brass); color: var(--navy); }
+
+        /* Visita */
+        .visit { display: grid; gap: 14px; margin: 48px 0; }
+        .visit div { background: var(--paper); border: 1px solid var(--line); border-radius: 12px; padding: 18px; }
+        .visit small { display: block; font-size: 12px; letter-spacing: .15em; text-transform: uppercase; color: var(--brass-text); font-weight: 700; margin-bottom: 4px; }
+        footer { text-align: center; font-size: 13px; color: var(--muted); padding: 28px 16px 40px; border-top: 1px solid var(--line); }
+
+        @media (min-width: 760px) {
+            .feature { grid-template-columns: 1fr 1.1fr; }
+            .pricelist { grid-template-columns: 1fr 1fr; }
+            .history { grid-template-columns: repeat(3, 1fr); }
+            .promo { grid-template-columns: 1fr auto; padding: 40px 48px; }
+            .visit { grid-template-columns: repeat(3, 1fr); }
+        }
+    </style>
+</head>
+<body>
+    <div class="topbar"><div class="wrap">
+        <a class="back" href="farmacia_v2.html#farmacias">← Volver a FarmaGlass</a>
+        <span class="cart" aria-live="polite">Carrito <b data-cart-count hidden>0</b></span>
+    </div></div>
+
+    <header class="masthead">
+        <div id="logo"></div>
+        <p class="since">Desde 1962 · Recoleta</p>
+        <h1>Farmacia del Centro</h1>
+        <p>Botica tradicional, atendida por farmacéuticos</p>
+        <div class="ornament" aria-hidden="true">✦</div>
+    </header>
+
+    <main class="wrap">
+        <section class="feature" aria-labelledby="feature-title">
+            <div class="arch"><img id="feature-img" alt="Agua de rosas de la línea Botica del Centro" width="300" height="300"></div>
+            <div>
+                <p class="eyebrow">Línea Botica del Centro</p>
+                <h2 id="feature-title">Fórmulas de botica, <i>como siempre</i></h2>
+                <p class="lead">Cremas, aguas y jabones elaborados con recetas clásicas en nuestro laboratorio de Recoleta. Ingredientes simples, presentaciones de siempre.</p>
+                <div class="price-tag" id="feature-price"></div>
+                <button class="btn" type="button" data-add="102" data-name="Agua de rosas (250 ml)">Agregar al carrito</button>
+                <a class="btn ghost" href="#lista">Ver lista de precios</a>
+            </div>
+        </section>
+
+        <section id="lista" aria-labelledby="lista-title">
+            <h2 class="section-title" id="lista-title">Lista de precios</h2>
+            <p class="section-sub">Productos de elaboración propia</p>
+            <ul class="pricelist" id="pricelist"></ul>
+        </section>
+
+        <section class="history" aria-label="Nuestra historia">
+            <div class="year"><b>1962</b><p>Don Ernesto abre la botica en la esquina de Callao, con un mostrador de roble que todavía usamos.</p></div>
+            <div class="year"><b>1988</b><p>Sumamos el laboratorio de fórmulas propias: nace la línea Botica del Centro.</p></div>
+            <div class="year"><b>2026</b><p>La tercera generación de farmacéuticos te atiende en el local y por FarmaGlass.</p></div>
+        </section>
+
+        <aside class="promo" aria-label="Promoción">
+            <div>
+                <p class="eyebrow">Solo este mes</p>
+                <h3>20 % off en agua de rosas<br>y talco mentolado</h3>
+            </div>
+            <a class="btn" href="#lista">Aprovechar</a>
+        </aside>
+
+        <section class="visit" aria-label="Visitanos">
+            <div><small>Dirección</small><span id="v-street"></span></div>
+            <div><small>Horario</small><span id="v-hours"></span></div>
+            <div><small>Teléfono</small><span id="v-phone"></span></div>
+        </section>
+    </main>
+
+    <footer>Farmacia del Centro forma parte de la red FarmaGlass · Prototipo: datos ilustrativos</footer>
+
+    <script src="farmacias-red.js"></script>
+    <script>
+        const s = FG.store('centro');
+        document.getElementById('logo').innerHTML = FG.logo(s, 72, 'DM Serif Display, Georgia, serif');
+        const feat = s.items.find(p => p.id === 102);
+        document.getElementById('feature-img').src = feat.img;
+        document.getElementById('feature-price').innerHTML = `<s>${FG.fmt(feat.list)}</s><strong>${FG.fmt(feat.price)}</strong><span>−${FG.off(feat)} %</span>`;
+        document.getElementById('pricelist').innerHTML = s.items.map(p => `
+            <li>
+                <span class="thumb"><img src="${p.img}" alt="" width="60" height="60"></span>
+                <div><p class="item-name">${FG.esc(p.name)}</p><p class="item-desc">${p.size} · ${FG.esc(p.desc)}</p></div>
+                <div class="item-price">
+                    ${p.price < p.list ? `<s>${FG.fmt(p.list)}</s>` : ''}<b class="${p.price < p.list ? 'sale' : ''}">${FG.fmt(p.price)}</b>
+                    <button class="add" type="button" data-add="${p.id}" data-name="${FG.esc(p.name)}" aria-label="Agregar ${FG.esc(p.name)} al carrito">Agregar</button>
+                </div>
+            </li>`).join('');
+        document.getElementById('v-street').textContent = s.street;
+        document.getElementById('v-hours').textContent = s.hours;
+        document.getElementById('v-phone').textContent = s.phone;
+    </script>
+</body>
+</html>

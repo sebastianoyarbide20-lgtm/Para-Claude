@@ -2056,8 +2056,10 @@
         }
 
         // ── CARRITO (prototipo: solo cuenta unidades) ──
-        let cartCount = 0;
+        // Se comparte con las páginas de cada farmacia (farmacia-*.html)
+        let cartCount = (() => { try { return Number(localStorage.getItem('fg-cart-units')) || 0; } catch { return 0; } })();
         function updateCart() {
+            try { localStorage.setItem('fg-cart-units', String(cartCount)); } catch {}
             document.querySelectorAll('[data-cart-count]').forEach(b => { b.textContent = cartCount; b.hidden = cartCount === 0; });
             const label = `Carrito, ${cartCount} ${cartCount === 1 ? 'producto' : 'productos'}`;
             document.getElementById('header-cart-btn').setAttribute('aria-label', label);
@@ -2070,6 +2072,7 @@
             updateCart();
             showToast(`${qty > 1 ? qty + ' × ' : ''}${p.name} agregado al carrito`);
         }
+        updateCart();
         const showCart = () => showToast(cartCount ? `Tenés ${cartCount} ${cartCount === 1 ? 'producto' : 'productos'} en el carrito` : 'Tu carrito está vacío');
         document.getElementById('header-cart-btn').addEventListener('click', showCart);
         document.getElementById('nav-cart-btn').addEventListener('click', showCart);
@@ -2359,7 +2362,7 @@
                         </div>
                         <div class="store-actions">
                             <button class="store-cta" type="button" data-add="${feat.id}">Agregar al carrito</button>
-                            <a class="store-link-more" href="#store-line">${esc(f.banner.cta)}</a>
+                            <a class="store-link-more" href="farmacia-${f.id}.html">Visitar la farmacia →</a>
                         </div>
                     </div>
                     <div class="store-banner-art"><img src="${feat.img}" alt="" width="200" height="200"></div>
@@ -2396,10 +2399,10 @@
             const next = e.key === 'Home' ? 0 : e.key === 'End' ? n - 1 : (i + (e.key === 'ArrowRight' ? 1 : -1) + n) % n;
             selectStore(PHARMACIES[next].id, { focus: true });
         });
-        // Cualquier enlace a una farmacia (tarjetas, lista de cercanas)
+        // Cualquier enlace a una farmacia (tarjetas, lista de cercanas) lleva a su página
         document.addEventListener('click', e => {
             const go = e.target.closest('[data-store-go]');
-            if (go) { e.preventDefault(); selectStore(go.dataset.storeGo, { scroll: true }); }
+            if (go && pharmById.has(go.dataset.storeGo)) { e.preventDefault(); location.href = `farmacia-${go.dataset.storeGo}.html`; }
         });
         const fromHash = () => { if (location.hash.startsWith('#farmacia-')) selectStore(location.hash.slice(10), { scroll: true }); };
         window.addEventListener('hashchange', fromHash);
