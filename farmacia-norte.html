@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="es-AR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Farmacia Belgrano Norte · Norte Active</title>
+    <meta name="description" content="Farmacia Belgrano Norte: suplementos, hidratación y alivio muscular. Línea Norte Active.">
+    <meta name="theme-color" content="#0B1B3F">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@0,700;0,800;1,800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* Belgrano Norte · deportiva: cobalto, noche y naranja energía */
+        :root {
+            --cobalt: #1F4FD8; --deep: #1739A8; --night: #0B1B3F; --orange: #FF7A2E; --orange-hi: #FFB27A; --ice: #EEF3FF; --sale: #C2410C;
+            --display: 'Barlow Condensed', 'Arial Narrow', sans-serif; --sans: 'Inter', system-ui, sans-serif;
+        }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        [hidden] { display: none !important; }
+        body { font-family: var(--sans); background: var(--ice); color: var(--night); line-height: 1.5; -webkit-font-smoothing: antialiased; }
+        img { display: block; max-width: 100%; }
+        a { color: inherit; }
+        button { font: inherit; cursor: pointer; border: 0; background: none; color: inherit; }
+        :focus-visible { outline: 3px solid var(--orange); outline-offset: 3px; }
+        .wrap { max-width: 1200px; margin: 0 auto; padding: 0 16px; }
+        .up { font-family: var(--display); font-weight: 800; text-transform: uppercase; letter-spacing: .01em; }
+
+        /* Portada diagonal */
+        .hero { position: relative; color: #fff; padding-bottom: 72px; clip-path: polygon(0 0, 100% 0, 100% 88%, 0 100%);
+            background: repeating-linear-gradient(-45deg, rgba(255,255,255,.06) 0 14px, transparent 14px 30px), linear-gradient(115deg, var(--night) 0%, var(--deep) 60%, var(--cobalt) 100%); }
+        .bar { display: flex; align-items: center; justify-content: space-between; gap: 12px; min-height: 64px; }
+        .brand { display: flex; align-items: center; gap: 10px; font-size: 22px; text-decoration: none; }
+        .links { display: flex; gap: 6px; }
+        .links a, .links span { display: inline-flex; align-items: center; gap: 6px; min-height: 44px; padding: 0 12px; font-weight: 700; font-size: 14px; text-decoration: none; }
+        .links b { background: var(--orange); color: var(--night); min-width: 22px; height: 22px; border-radius: 4px; display: grid; place-items: center; font-size: 12px; padding: 0 6px; }
+        .hero-grid { display: grid; gap: 20px; align-items: center; padding-top: 28px; }
+        .tag { display: inline-block; background: var(--orange); color: var(--night); padding: 4px 10px; font-size: 13px; transform: skewX(-10deg); }
+        .hero h1 { font-size: clamp(3.4rem, 12vw, 7.5rem); line-height: .86; margin: 14px 0; }
+        .hero h1 i { color: var(--orange-hi); }
+        .hero p { max-width: 40ch; font-size: 17px; color: rgba(255,255,255,.88); }
+        .hero-art { position: relative; justify-self: center; width: min(360px, 82vw); aspect-ratio: 1; display: grid; place-items: center; }
+        .hero-art::before { content: ''; position: absolute; inset: 8%; background: var(--orange); transform: skewX(-12deg) rotate(-6deg); border-radius: 14px; }
+        .hero-art img { position: relative; width: 82%; filter: drop-shadow(0 24px 30px rgba(0,0,0,.35)); }
+
+        /* Estadísticas */
+        .stats { display: grid; grid-template-columns: repeat(2, 1fr); gap: 2px; margin-top: -40px; position: relative; background: var(--night); border-radius: 10px; overflow: hidden; box-shadow: 0 20px 40px rgba(11,27,63,.2); }
+        .stats div { background: #fff; padding: 16px; }
+        .stats b { display: block; font-size: 2.4rem; line-height: 1; color: var(--cobalt); }
+        .stats span { font-size: 13px; color: #4A587A; font-weight: 600; }
+
+        /* Carril de productos */
+        .lane-head { display: flex; align-items: end; justify-content: space-between; gap: 12px; margin: 48px 0 14px; flex-wrap: wrap; }
+        .lane-head h2 { font-size: clamp(2rem, 5vw, 3rem); line-height: .9; }
+        .lane-head p { color: #4A587A; }
+        .lane { display: grid; grid-auto-flow: column; grid-auto-columns: minmax(230px, 1fr); gap: 14px; overflow-x: auto; scroll-snap-type: x mandatory; padding-bottom: 12px; list-style: none; }
+        .card { scroll-snap-align: start; background: #fff; border-radius: 10px; overflow: hidden; display: flex; flex-direction: column; border-bottom: 4px solid var(--cobalt); }
+        .card .art { background: linear-gradient(160deg, #fff, var(--ice)); aspect-ratio: 4 / 3; display: grid; place-items: center; position: relative; }
+        .card .art img { height: 88%; width: auto; }
+        .card .off { position: absolute; top: 10px; left: 0; background: var(--sale); color: #fff; padding: 4px 12px 4px 10px; font-size: 18px; clip-path: polygon(0 0, 100% 0, 88% 100%, 0 100%); }
+        .card .body { padding: 14px; display: flex; flex-direction: column; gap: 4px; flex: 1; }
+        .card h3 { font-size: 1.5rem; line-height: 1; }
+        .card .size { font-size: 13px; color: #4A587A; }
+        .card .foot { display: flex; align-items: center; justify-content: space-between; margin-top: auto; padding-top: 10px; gap: 8px; }
+        .card .price { font-size: 2rem; line-height: 1; }
+        .card .price.sale { color: var(--sale); }
+        .card s { display: block; font-size: 13px; color: #4A587A; }
+        .add { min-height: 44px; padding: 0 16px; background: var(--night); color: #fff; font-family: var(--display); font-weight: 800; font-size: 17px; text-transform: uppercase; transform: skewX(-8deg); }
+        .add:hover { background: var(--cobalt); }
+
+        /* Banner en el medio */
+        .promo { margin: 48px 0; display: grid; gap: 12px; align-items: center; background: var(--orange); color: var(--night); padding: 26px 24px; transform: skewY(-2deg); }
+        .promo > * { transform: skewY(2deg); }
+        .promo h2 { font-size: clamp(2.2rem, 7vw, 4rem); line-height: .9; }
+        .promo a { justify-self: start; display: inline-flex; align-items: center; min-height: 48px; padding: 0 22px; background: var(--night); color: #fff; text-decoration: none; }
+
+        /* Antes, durante, después */
+        .plan { display: grid; gap: 14px; margin-bottom: 48px; }
+        .plan article { background: #fff; border-radius: 10px; padding: 20px; border-left: 6px solid var(--cobalt); }
+        .plan article:nth-child(2) { border-color: var(--orange); }
+        .plan article:nth-child(3) { border-color: var(--night); }
+        .plan h3 { font-size: 2rem; line-height: 1; margin-bottom: 6px; }
+        .plan p { color: #4A587A; font-size: 14px; }
+        .plan ul { list-style: none; margin-top: 10px; display: grid; gap: 6px; font-weight: 600; font-size: 14px; }
+        .plan li::before { content: '→ '; color: var(--cobalt); }
+
+        footer { background: var(--night); color: rgba(255,255,255,.8); padding: 28px 0; font-size: 14px; }
+        footer .wrap { display: flex; flex-wrap: wrap; gap: 8px 24px; justify-content: space-between; }
+
+        @media (min-width: 820px) {
+            .hero-grid { grid-template-columns: 1.3fr 1fr; }
+            .stats { grid-template-columns: repeat(4, 1fr); }
+            .promo { grid-template-columns: 1fr auto; padding: 34px 48px; }
+            .plan { grid-template-columns: repeat(3, 1fr); }
+        }
+    </style>
+</head>
+<body>
+    <header class="hero">
+        <div class="wrap">
+            <div class="bar">
+                <a class="brand up" href="#" id="brand">Belgrano Norte</a>
+                <nav class="links" aria-label="Accesos">
+                    <span aria-live="polite">Carrito <b data-cart-count hidden>0</b></span>
+                    <a href="farmacia_v2.html#farmacias">← FarmaGlass</a>
+                </nav>
+            </div>
+            <div class="hero-grid">
+                <div>
+                    <span class="tag up">Norte Active</span>
+                    <h1 class="up">Recuperá <i>energía</i> para entrenar</h1>
+                    <p>Suplementos, hidratación y alivio muscular elegidos por nuestros farmacéuticos para tu rutina.</p>
+                </div>
+                <div class="hero-art"><img id="hero-img" alt="Magnesio + B6 de la línea Norte Active" width="300" height="300"></div>
+            </div>
+        </div>
+    </header>
+
+    <main class="wrap">
+        <section class="stats up" aria-label="La farmacia en números">
+            <div><b>7–23 h</b><span>Abierta todos los días</span></div>
+            <div><b>12 min</b><span>Para retirar en el local</span></div>
+            <div><b>★ 4,6</b><span>Valoración de clientes</span></div>
+            <div><b>6</b><span>Productos Norte Active</span></div>
+        </section>
+
+        <div class="lane-head">
+            <h2 class="up">Kit de entrenamiento</h2>
+            <p>Deslizá para ver toda la línea →</p>
+        </div>
+        <ul class="lane" id="lane"></ul>
+
+        <aside class="promo" aria-label="Promoción">
+            <div>
+                <p class="up" style="font-size:18px">Esta semana</p>
+                <h2 class="up">15 % off en suplementos y árnica</h2>
+            </div>
+            <a class="up" href="#lane">Ver ofertas</a>
+        </aside>
+
+        <section class="plan" aria-label="Guía para tu entrenamiento">
+            <article><h3 class="up">Antes</h3><p>Llegá hidratado y con los músculos listos.</p><ul><li>Sales de rehidratación</li><li>Cinta kinesiológica</li></ul></article>
+            <article><h3 class="up">Durante</h3><p>Cuidate del sol si entrenás al aire libre.</p><ul><li>Protector solar sport FPS 50</li></ul></article>
+            <article><h3 class="up">Después</h3><p>Recuperación muscular y descanso.</p><ul><li>Gel frío de árnica</li><li>Magnesio + B6</li><li>Colágeno hidrolizado</li></ul></article>
+        </section>
+    </main>
+
+    <footer><div class="wrap" id="foot"></div></footer>
+
+    <script src="farmacias-red.js"></script>
+    <script>
+        const s = FG.store('norte');
+        document.getElementById('brand').insertAdjacentHTML('afterbegin', FG.logo(s, 38, 'Barlow Condensed, sans-serif'));
+        document.getElementById('hero-img').src = s.items.find(p => p.id === 109).img;
+        document.getElementById('lane').innerHTML = s.items.map(p => {
+            const d = FG.off(p);
+            return `<li class="card">
+                <div class="art">${d > 0 ? `<span class="off up">−${d} %</span>` : ''}<img src="${p.img}" alt="" width="200" height="200"></div>
+                <div class="body">
+                    <h3 class="up">${FG.esc(p.name)}</h3><span class="size">${p.size} · ${FG.esc(p.desc)}</span>
+                    <div class="foot">
+                        <div>${d > 0 ? `<s>${FG.fmt(p.list)}</s>` : ''}<span class="price up${d > 0 ? ' sale' : ''}">${FG.fmt(p.price)}</span></div>
+                        <button class="add" type="button" data-add="${p.id}" data-name="${FG.esc(p.name)}" aria-label="Agregar ${FG.esc(p.name)} al carrito">Sumar</button>
+                    </div>
+                </div>
+            </li>`;
+        }).join('');
+        document.getElementById('foot').innerHTML = `<span>${s.street}</span><span>${s.hours}</span><span>Tel. ${s.phone}</span><span>Parte de la red FarmaGlass · Prototipo</span>`;
+    </script>
+</body>
+</html>
