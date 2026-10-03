@@ -1,0 +1,10 @@
+{
+  "layout": "farmaglass",
+  "sections": {
+    "portada": {
+      "type": "farmaglass-home",
+      "settings": {}
+    }
+  },
+  "order": ["portada"]
+}

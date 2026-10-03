@@ -1,0 +1,28 @@
+<!doctype html>
+{%- comment -%}
+  FarmaGlass · layout de la portada (templates/index.json). Es el <head> de farmacia_v2.html:
+  la portada tiene su propio encabezado, pie, carrito y cuenta, así que no usa los de Horizon.
+{%- endcomment -%}
+<html lang="es-AR">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    {%- if template.name == 'index' -%}
+        <title>FarmaGlass · Farmacia y dermocosmética online con envío en 2 horas</title>
+        <meta name="description" content="FarmaGlass: farmacia online con envío en 2 horas, gratis desde $15.000. Dermocosmética, cuidado personal, bebés y nutrición con hasta 30 % de descuento.">
+    {%- else -%}
+        <title>{{ page_title }} · FarmaGlass</title>
+        {%- if page_description %}<meta name="description" content="{{ page_description | escape }}">{% endif -%}
+    {%- endif %}
+    <meta name="theme-color" content="#062A20">
+    <link rel="canonical" href="{{ canonical_url }}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,700;12..96,800&family=Inter:wght@400;500;600;700&family=Instrument+Serif:ital@1&family=DM+Serif+Display:ital@0;1&family=Unbounded:wght@700;800;900&family=Barlow+Condensed:ital,wght@0,700;0,800;1,800;1,900&family=Fredoka:wght@600;700&family=Caveat:wght@700&family=Space+Mono:wght@700&display=swap" rel="stylesheet">
+    {{ 'farmaglass.css' | asset_url | stylesheet_tag }}
+    {{ content_for_header }}
+</head>
+<body>
+    {{ content_for_layout }}
+</body>
+</html>
