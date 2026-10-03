@@ -1,0 +1,65 @@
+{%- comment -%}
+  FarmaGlass · datos de la tienda para la portada (farmaglass-home.js y fg-shop.js).
+  Cada producto se identifica con el número de su SKU (FG-12 → 12), el mismo id que usa la web.
+  Las etiquetas dicen la categoría (cat-*), la farmacia que lo despacha (farmacia-*), si está en las
+  ofertas del día (flash), si es de la línea propia de la farmacia (linea-propia) y su sello (badge:*).
+{%- endcomment -%}
+<script>
+    window.FG_SHOPIFY = {
+        root: {{ routes.root_url | json }},
+        collections: {{ routes.collections_url | json }},
+        account: {{ routes.account_url | json }},
+        login: {{ routes.account_login_url | json }},
+        products: [
+            {%- paginate collections.all.products by 250 -%}
+                {%- for product in collections.all.products -%}
+                    {%- assign v = product.selected_or_first_available_variant -%}
+                    {%- assign sku = v.sku | default: '' -%}
+                    {%- unless sku contains 'FG-' -%}{%- continue -%}{%- endunless -%}
+                    {%- assign fg = sku | remove_first: 'FG-' | plus: 0 -%}
+                    {%- assign list = v.compare_at_price | default: v.price -%}
+                    {
+                        "id": {{ fg }},
+                        "variantId": {{ v.id }},
+                        "url": {{ product.url | json }},
+                        "available": {{ v.available | json }},
+                        "stock": {% if v.inventory_management == 'shopify' and v.inventory_policy == 'deny' %}{{ v.inventory_quantity | default: 0 }}{% else %}null{% endif %},
+                        "name": {{ product.title | json }},
+                        "brand": {{ product.vendor | json }},
+                        "type": {{ product.type | json }},
+                        "price": {{ v.price | divided_by: 100.0 }},
+                        "listPrice": {{ list | divided_by: 100.0 }},
+                        "desc": {{ product.description | split: '</p>' | first | strip_html | strip | json }},
+                        "img": {% if product.featured_image %}{{ product.featured_image | image_url: width: 500 | json }}{% else %}""{% endif %},
+                        "tags": {{ product.tags | json }}
+                    },
+                {%- endfor -%}
+            {%- endpaginate -%}
+        ],
+        customer: {%- if customer -%} {
+            "name": {{ customer.first_name | default: customer.name | json }},
+            "email": {{ customer.email | json }},
+            "orders": [
+                {%- for order in customer.orders limit: 20 -%}
+                    {
+                        "name": {{ order.name | json }},
+                        "date": {{ order.created_at | date: '%s' | times: 1000 }},
+                        "total": {{ order.total_price | divided_by: 100.0 }},
+                        "count": {{ order.item_count }},
+                        "cancelled": {{ order.cancelled | json }},
+                        "status": {{ order.fulfillment_status_label | json }},
+                        "fulfilled": {{ order.fulfillment_status | json }},
+                        "payment": {{ order.financial_status_label | json }},
+                        "url": {{ order.customer_url | json }},
+                        "lines": [
+                            {%- for li in order.line_items -%}
+                                { "variantId": {{ li.variant_id | json }}, "qty": {{ li.quantity }}, "name": {{ li.title | json }},
+                                  "img": {% if li.image %}{{ li.image | image_url: width: 120 | json }}{% else %}""{% endif %} }{% unless forloop.last %},{% endunless %}
+                            {%- endfor -%}
+                        ]
+                    }{% unless forloop.last %},{% endunless %}
+                {%- endfor -%}
+            ]
+        } {%- else %} null {%- endif %}
+    };
+</script>

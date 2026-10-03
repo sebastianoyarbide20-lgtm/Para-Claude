@@ -62,3 +62,37 @@ con nombre, marca, imagen, precio de lista, precio final y stock. Farmacias del 
 - Para actualizar precios e imágenes (Node 18 o superior): `node scripts/actualizar-productos.js`.
 
 Prototipo: no hay servidor. Los datos se guardan solo en el navegador (`localStorage`) y no se cobra nada.
+
+## Tienda en Shopify
+
+La web principal también está en la tienda de Shopify, como portada del tema **FarmaGlass (web principal)**,
+que es una copia de Horizon sin publicar. Los archivos están en `shopify/tema/`, con la misma estructura que un tema:
+
+| Archivo | Qué es |
+| --- | --- |
+| `templates/index.json` | La portada: usa el layout y la sección de FarmaGlass |
+| `layout/farmaglass.liquid` | El `<head>` de la web, sin el encabezado ni el pie de Horizon |
+| `sections/farmaglass-home.liquid` | El HTML de `farmacia_v2.html`, con los formularios de la tienda |
+| `snippets/farmaglass-datos.liquid` | Pasa a la página los productos, el cliente y sus pedidos |
+| `assets/farmaglass.css` | Los estilos de la web, con unos pocos agregados al final |
+| `assets/farmaglass-home.js` | El script de la web, con los datos de la tienda |
+| `assets/fg-shop.js` | El carrito, los cupones y "Mi cuenta", conectados a Shopify |
+
+Qué cambia respecto de la web:
+
+- **Productos**: salen de la tienda (los 68 productos, con precio, precio de lista, stock e imagen).
+  Cada uno se reconoce por el número de su SKU (`FG-12` es el 12) y sus etiquetas dicen la categoría (`cat-*`),
+  la farmacia que lo despacha (`farmacia-*`), si va en las ofertas del día (`flash`), si es de la línea propia
+  (`linea-propia`) y su sello (`badge:2x1`). Un producto nuevo aparece en la portada si tiene SKU `FG-<número>`.
+- **Carrito y cupones**: son el carrito de Shopify (API Ajax) y los códigos `NUEVO20` y `FARMA10` de la tienda.
+  "Iniciar compra" lleva al pago de Shopify, donde se eligen la entrega y el medio de pago.
+- **Mi cuenta**: los pedidos son los de la cuenta del cliente, con su estado y el enlace al seguimiento.
+- **Recetas y botón de arrepentimiento**: llegan al email de la tienda por el formulario de contacto, con un código.
+  La foto de la receta no viaja con el formulario: si el farmacéutico la necesita, se la pide al cliente por email.
+- **Newsletter**: da de alta al cliente como suscriptor, con la etiqueta `newsletter`.
+- **Páginas de farmacia**: son sus colecciones en la tienda. Las demás páginas de la tienda usan el diseño de Horizon.
+- **Sin valoraciones**: la tienda no tiene reseñas, así que no se muestran estrellas.
+
+Para actualizar el tema se suben los archivos de `shopify/tema/` al tema, por ejemplo con Shopify CLI:
+`shopify theme push --path shopify/tema --theme <id del tema> --nodelete`. Para usarlo, se publica desde
+Tienda online → Temas.

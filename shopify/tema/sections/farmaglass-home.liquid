@@ -1,0 +1,693 @@
+{%- comment -%}
+  FarmaGlass · portada. Es el HTML de farmacia_v2.html llevado a Shopify: los productos, el carrito,
+  los cupones, los formularios y la cuenta salen de la tienda. Datos: snippet farmaglass-datos.
+{%- endcomment -%}
+
+<!-- Íconos duotono (degradé + brillo), set propio -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+    <defs>
+        <linearGradient id="gd-green" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#5FE0A8"/><stop offset="1" stop-color="#0B7A55"/></linearGradient>
+        <linearGradient id="gd-lime" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#E2FF8F"/><stop offset="1" stop-color="#6FC21F"/></linearGradient>
+        <linearGradient id="gd-coral" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#FF9A7A"/><stop offset="1" stop-color="#D62F2A"/></linearGradient>
+        <linearGradient id="gd-sun" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#FFE680"/><stop offset="1" stop-color="#F29A00"/></linearGradient>
+        <linearGradient id="gd-sky" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#8FD3FF"/><stop offset="1" stop-color="#2F6FE0"/></linearGradient>
+        <linearGradient id="gd-violet" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#C6A8FF"/><stop offset="1" stop-color="#6A3FD6"/></linearGradient>
+        <linearGradient id="gd-pink" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#FFB8D9"/><stop offset="1" stop-color="#E04A8C"/></linearGradient>
+        <linearGradient id="gd-shine" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#fff" stop-opacity=".85"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></linearGradient>
+    </defs>
+    <symbol id="d-grid" viewBox="0 0 48 48">
+        <rect x="6" y="6" width="16" height="16" rx="5" fill="url(#gd-green)"/><rect x="26" y="6" width="16" height="16" rx="5" fill="url(#gd-sun)"/>
+        <rect x="6" y="26" width="16" height="16" rx="5" fill="url(#gd-sky)"/><rect x="26" y="26" width="16" height="16" rx="8" fill="url(#gd-coral)"/>
+        <rect x="9" y="9" width="10" height="4" rx="2" fill="url(#gd-shine)"/><rect x="29" y="9" width="10" height="4" rx="2" fill="url(#gd-shine)"/>
+    </symbol>
+    <symbol id="d-tag" viewBox="0 0 48 48">
+        <path d="M6 10a4 4 0 0 1 4-4h14.3a4 4 0 0 1 2.8 1.2l14.2 14.2a4 4 0 0 1 0 5.7L27 41.4a4 4 0 0 1-5.7 0L7.2 27.1A4 4 0 0 1 6 24.3z" fill="url(#gd-coral)"/>
+        <path d="M10 9h13l-6 6H10z" fill="url(#gd-shine)" opacity=".7"/>
+        <circle cx="16" cy="16" r="4" fill="#fff"/><circle cx="16" cy="16" r="1.8" fill="#D62F2A"/>
+        <path d="M22 31l9-9M24 24h.01M29 29h.01" stroke="#fff" stroke-width="3" stroke-linecap="round"/>
+    </symbol>
+    <symbol id="d-sparkle" viewBox="0 0 48 48">
+        <path d="M22 4c1.4 9.6 5.4 13.6 15 15-9.6 1.4-13.6 5.4-15 15-1.4-9.6-5.4-13.6-15-15 9.6-1.4 13.6-5.4 15-15z" fill="url(#gd-violet)"/>
+        <path d="M38 28c.7 4.3 2.4 6 6 6.7-3.6.7-5.3 2.4-6 6.7-.7-4.3-2.4-6-6-6.7 3.6-.7 5.3-2.4 6-6.7z" fill="url(#gd-pink)"/>
+        <path d="M22 10c.8 4.5 2.4 6.6 6 8" stroke="#fff" stroke-opacity=".8" stroke-width="2" stroke-linecap="round" fill="none"/>
+    </symbol>
+    <symbol id="d-drop" viewBox="0 0 48 48">
+        <path d="M24 4s15 15.5 15 26a15 15 0 0 1-30 0C9 19.5 24 4 24 4z" fill="url(#gd-sky)"/>
+        <ellipse cx="18" cy="28" rx="4" ry="7" fill="url(#gd-shine)" transform="rotate(-15 18 28)"/>
+        <path d="M29 34a7 7 0 0 1-5 4" stroke="#fff" stroke-width="2.5" stroke-linecap="round" fill="none" opacity=".8"/>
+    </symbol>
+    <symbol id="d-pill" viewBox="0 0 48 48">
+        <g transform="rotate(-45 24 24)">
+            <rect x="5" y="15" width="38" height="18" rx="9" fill="#fff"/>
+            <path d="M24 15h10a9 9 0 0 1 0 18H24z" fill="url(#gd-coral)"/>
+            <path d="M24 15H14a9 9 0 0 0 0 18h10z" fill="url(#gd-green)"/>
+            <rect x="10" y="18" width="28" height="4" rx="2" fill="url(#gd-shine)"/>
+        </g>
+    </symbol>
+    <symbol id="d-baby" viewBox="0 0 48 48">
+        <path d="M20 3h8l1.5 7h-11z" fill="url(#gd-sun)"/>
+        <rect x="15" y="10" width="18" height="6" rx="3" fill="url(#gd-pink)"/>
+        <rect x="13" y="16" width="22" height="29" rx="9" fill="url(#gd-sky)"/>
+        <rect x="16" y="30" width="16" height="12" rx="5" fill="#fff" opacity=".45"/>
+        <path d="M29 22v4M29 30v3" stroke="#fff" stroke-width="2" stroke-linecap="round"/>
+        <rect x="16" y="19" width="4" height="20" rx="2" fill="url(#gd-shine)"/>
+    </symbol>
+    <symbol id="d-leaf" viewBox="0 0 48 48">
+        <path d="M8 40C8 20 20 8 42 6c-1 22-13 34-34 34z" fill="url(#gd-lime)"/>
+        <path d="M8 40c8-10 16-18 26-24" stroke="#fff" stroke-width="2.5" stroke-linecap="round" fill="none" opacity=".85"/>
+        <path d="M18 29l-2-8M24 23l-1-8M24 23l8 1M18 29l8 2" stroke="#fff" stroke-width="1.8" stroke-linecap="round" opacity=".6"/>
+    </symbol>
+    <symbol id="d-truck" viewBox="0 0 48 48">
+        <rect x="3" y="11" width="27" height="22" rx="4" fill="url(#gd-green)"/>
+        <path d="M30 18h8.5a3 3 0 0 1 2.4 1.2L45 25v6a2 2 0 0 1-2 2H30z" fill="url(#gd-lime)"/>
+        <rect x="6" y="14" width="21" height="4" rx="2" fill="url(#gd-shine)"/>
+        <path d="M34 21h4l3 4h-7z" fill="#fff" opacity=".7"/>
+        <circle cx="12" cy="35" r="5" fill="#10261F"/><circle cx="12" cy="35" r="2" fill="#fff"/>
+        <circle cx="36" cy="35" r="5" fill="#10261F"/><circle cx="36" cy="35" r="2" fill="#fff"/>
+    </symbol>
+    <symbol id="d-shield" viewBox="0 0 48 48">
+        <path d="M24 3 7 9v12c0 11 7.3 18.6 17 22 9.7-3.4 17-11 17-22V9z" fill="url(#gd-green)"/>
+        <path d="M24 3v40c-9.7-3.4-17-11-17-22V9z" fill="#fff" opacity=".14"/>
+        <path d="M16 23l6 6 11-12" stroke="#fff" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+    </symbol>
+    <symbol id="d-card" viewBox="0 0 48 48">
+        <rect x="4" y="12" width="36" height="24" rx="5" fill="url(#gd-violet)" transform="rotate(-8 22 24)"/>
+        <rect x="8" y="14" width="36" height="24" rx="5" fill="url(#gd-sky)"/>
+        <rect x="8" y="19" width="36" height="5" fill="#10261F" opacity=".35"/>
+        <rect x="13" y="28" width="8" height="6" rx="1.5" fill="url(#gd-sun)"/>
+        <rect x="10" y="15.5" width="24" height="2.5" rx="1.25" fill="url(#gd-shine)"/>
+    </symbol>
+    <symbol id="d-rx" viewBox="0 0 48 48">
+        <path d="M12 4h17l11 11v27a3 3 0 0 1-3 3H12a3 3 0 0 1-3-3V7a3 3 0 0 1 3-3z" fill="url(#gd-sky)"/>
+        <path d="M29 4v9a2 2 0 0 0 2 2h9z" fill="#fff" opacity=".55"/>
+        <rect x="13" y="8" width="12" height="3" rx="1.5" fill="url(#gd-shine)"/>
+        <path d="M16 22v14M16 22h5a4 4 0 0 1 0 8h-5M20 30l8 8M28 30l-8 8" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+        <circle cx="36" cy="38" r="7" fill="url(#gd-green)"/><path d="m33 38 2 2 4-4" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+    </symbol>
+    <symbol id="d-chat" viewBox="0 0 48 48">
+        <path d="M6 12a6 6 0 0 1 6-6h24a6 6 0 0 1 6 6v14a6 6 0 0 1-6 6H18l-9 8v-8.5A6 6 0 0 1 6 26z" fill="url(#gd-sun)"/>
+        <path d="M10 10h26" stroke="url(#gd-shine)" stroke-width="3" stroke-linecap="round"/>
+        <circle cx="16" cy="19" r="2.5" fill="#fff"/><circle cx="24" cy="19" r="2.5" fill="#fff"/><circle cx="32" cy="19" r="2.5" fill="#fff"/>
+    </symbol>
+</svg>
+<!-- Íconos (un solo set de trazo, estilo Lucide) -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+    <symbol id="i-cross" viewBox="0 0 24 24"><path d="M9 3h6v6h6v6h-6v6H9v-6H3V9h6z"/></symbol>
+    <symbol id="i-search" viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></symbol>
+    <symbol id="i-x" viewBox="0 0 24 24"><path d="M18 6 6 18M6 6l12 12"/></symbol>
+    <symbol id="i-cart" viewBox="0 0 24 24"><circle cx="9" cy="20" r="1.5"/><circle cx="18" cy="20" r="1.5"/><path d="M2.5 3h2.2l2.6 12.2a2 2 0 0 0 2 1.6h8.6a2 2 0 0 0 2-1.5L21.5 8H6"/></symbol>
+    <symbol id="i-plus" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></symbol>
+    <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></symbol>
+    <symbol id="i-left" viewBox="0 0 24 24"><path d="m15 6-6 6 6 6"/></symbol>
+    <symbol id="i-right" viewBox="0 0 24 24"><path d="m9 6 6 6-6 6"/></symbol>
+    <symbol id="i-truck" viewBox="0 0 24 24"><path d="M3 6h11v10H3zM14 10h4l3 3v3h-7"/><circle cx="7" cy="18" r="1.8"/><circle cx="17.5" cy="18" r="1.8"/></symbol>
+    <symbol id="i-shield" viewBox="0 0 24 24"><path d="M12 3 4 6v6c0 5 3.4 8.3 8 9 4.6-.7 8-4 8-9V6z"/><path d="m9 12 2 2 4-4"/></symbol>
+    <symbol id="i-card" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2.5"/><path d="M3 10h18M7 15h3"/></symbol>
+    <symbol id="i-chat" viewBox="0 0 24 24"><path d="M4 5h16v11H9l-5 4z"/></symbol>
+    <symbol id="i-star" viewBox="0 0 24 24"><path d="m12 2.8 2.8 5.8 6.3.9-4.6 4.4 1.1 6.3L12 17.2l-5.6 3 1.1-6.3L2.9 9.5l6.3-.9z"/></symbol>
+    <symbol id="i-grid" viewBox="0 0 24 24"><rect x="4" y="4" width="7" height="7" rx="1.5"/><rect x="13" y="4" width="7" height="7" rx="1.5"/><rect x="4" y="13" width="7" height="7" rx="1.5"/><rect x="13" y="13" width="7" height="7" rx="1.5"/></symbol>
+    <symbol id="i-pill" viewBox="0 0 24 24"><rect x="2.5" y="8" width="19" height="8" rx="4" transform="rotate(-45 12 12)"/><path d="m8.5 8.5 7 7"/></symbol>
+    <symbol id="i-sparkle" viewBox="0 0 24 24"><path d="M12 3c.6 4.6 2.4 6.4 7 7-4.6.6-6.4 2.4-7 7-.6-4.6-2.4-6.4-7-7 4.6-.6 6.4-2.4 7-7z"/></symbol>
+    <symbol id="i-tag" viewBox="0 0 24 24"><path d="M3 12V4h8l10 10-8 8z"/><circle cx="7.5" cy="8.5" r="1.3"/></symbol>
+    <symbol id="i-baby" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5"/><path d="M9 11h.01M15 11h.01M9.5 15a3.5 3.5 0 0 0 5 0"/><path d="M12 3.5c1 1.5 0 3-1 3"/></symbol>
+    <symbol id="i-drop" viewBox="0 0 24 24"><path d="M12 3s6 6.5 6 11a6 6 0 0 1-12 0c0-4.5 6-11 6-11z"/></symbol>
+    <symbol id="i-leaf" viewBox="0 0 24 24"><path d="M5 19c0-8 5-13 15-14-1 10-6 15-14 15"/><path d="M5 19c3-4 6-6 9-7.5"/></symbol>
+    <symbol id="i-home" viewBox="0 0 24 24"><path d="m3 11 9-7 9 7v9a1 1 0 0 1-1 1h-5v-6h-6v6H4a1 1 0 0 1-1-1z"/></symbol>
+    <symbol id="i-user" viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/></symbol>
+    <symbol id="i-down" viewBox="0 0 24 24"><path d="M12 5v14M6 13l6 6 6-6"/></symbol>
+    <symbol id="i-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></symbol>
+    <symbol id="i-pause" viewBox="0 0 24 24"><path d="M9 5v14M15 5v14"/></symbol>
+    <symbol id="i-play" viewBox="0 0 24 24"><path d="M7 5v14l12-7z"/></symbol>
+    <symbol id="i-pin" viewBox="0 0 24 24"><path d="M12 21s-7-6.2-7-11.5a7 7 0 0 1 14 0C19 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></symbol>
+    <symbol id="i-store" viewBox="0 0 24 24"><path d="M4 10v10h16V10"/><path d="M3 5h18l-1.5 5a2.5 2.5 0 0 1-5 0 2.5 2.5 0 0 1-5 0 2.5 2.5 0 0 1-5 0z"/><path d="M10 20v-5h4v5"/></symbol>
+    <symbol id="i-undo" viewBox="0 0 24 24"><path d="M9 14 4 9l5-5"/><path d="M4 9h11a5 5 0 0 1 0 10h-3"/></symbol>
+    <symbol id="i-heart" viewBox="0 0 24 24"><path d="M12 20s-7.5-4.6-9.2-9.4C1.6 7.2 3.8 4 7.1 4c2 0 3.6 1.1 4.9 2.8C13.3 5.1 14.9 4 16.9 4c3.3 0 5.5 3.2 4.3 6.6C19.5 15.4 12 20 12 20z"/></symbol>
+    <symbol id="i-share" viewBox="0 0 24 24"><circle cx="18" cy="5" r="2.5"/><circle cx="6" cy="12" r="2.5"/><circle cx="18" cy="19" r="2.5"/><path d="m8.2 10.8 7.6-4.4M8.2 13.2l7.6 4.4"/></symbol>
+    <symbol id="i-upload" viewBox="0 0 24 24"><path d="M12 15V4M7 9l5-5 5 5"/><path d="M4 15v4a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-4"/></symbol>
+    <symbol id="i-locate" viewBox="0 0 24 24"><circle cx="12" cy="12" r="7"/><circle cx="12" cy="12" r="2.5"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3"/></symbol>
+    <symbol id="i-up" viewBox="0 0 24 24"><path d="M12 19V5M6 11l6-6 6 6"/></symbol>
+    <symbol id="i-history" viewBox="0 0 24 24"><path d="M3.5 12a8.5 8.5 0 1 0 2.6-6.1L3.5 8.5"/><path d="M3.5 3.5v5h5M12 7.5V12l3 2"/></symbol>
+    <symbol id="i-trend" viewBox="0 0 24 24"><path d="m3 17 6-6 4 4 8-8"/><path d="M15 7h6v6"/></symbol>
+    <symbol id="i-check" viewBox="0 0 24 24"><path d="m5 12 5 5L20 7"/></symbol>
+    <symbol id="i-cart-sm" viewBox="0 0 24 24"><path d="M5 8h14l-1 12H6z"/><path d="M9 8V6a3 3 0 0 1 6 0v2"/></symbol>
+</svg>
+
+<a class="skip-link" href="#catalogo">Ir al catálogo</a>
+
+<!-- HEADER -->
+<header class="global-header">
+    <div class="header-inner">
+        <a class="brand-logo" href="{{ routes.root_url }}" aria-label="FarmaGlass, inicio">
+            <span class="brand-logo-icon"><svg class="icon" aria-hidden="true"><use href="#i-cross"/></svg></span>
+            <span class="brand-logo-text" aria-hidden="true">Farma<span>Glass</span></span>
+        </a>
+
+        <button class="addr-btn" type="button" id="addr-btn" aria-describedby="addr-label">
+            <svg class="icon" aria-hidden="true"><use href="#i-pin"/></svg>
+            <span class="addr-btn-text"><small>Entregar en</small><b id="addr-label">Ingresá tu dirección</b></span>
+        </button>
+
+        <form class="search-bar" role="search" id="search-form">
+            <svg class="icon" aria-hidden="true"><use href="#i-search"/></svg>
+            <label for="product-search" class="sr-only">Buscar productos</label>
+            <input type="search" id="product-search" placeholder="Buscá productos, marcas o farmacias" autocomplete="off"
+                role="combobox" aria-autocomplete="list" aria-expanded="false" aria-controls="search-suggest">
+            <kbd class="search-kbd" aria-hidden="true">/</kbd>
+            <button type="button" class="search-clear" id="search-clear" aria-label="Borrar búsqueda" hidden>
+                <svg class="icon" aria-hidden="true"><use href="#i-x"/></svg>
+            </button>
+            <div class="search-suggest" id="search-suggest" role="listbox" aria-label="Sugerencias de búsqueda" hidden></div>
+        </form>
+
+        <button class="header-icon-btn header-desk" type="button" data-account-open="favs" aria-label="Mis favoritos">
+            <svg class="icon" aria-hidden="true"><use href="#i-heart"/></svg>
+            <span class="count-badge" data-fav-count hidden>0</span>
+        </button>
+        <button class="header-icon-btn header-desk" type="button" data-account-open="orders" aria-label="Mi cuenta: pedidos, favoritos y recetas">
+            <svg class="icon" aria-hidden="true"><use href="#i-user"/></svg>
+        </button>
+        <button class="header-icon-btn" type="button" id="header-cart-btn" data-cart-open aria-label="Carrito, 0 productos">
+            <svg class="icon" aria-hidden="true"><use href="#i-cart"/></svg>
+            <span class="count-badge" data-cart-count hidden>0</span>
+        </button>
+    </div>
+    <nav class="header-cats" aria-label="Categorías">
+        <ul>
+            <li><button class="cat-chip cat-top" type="button" data-cat="todos" aria-pressed="true"><span class="cat-ico ico-tile"><svg class="duo" aria-hidden="true"><use href="#d-grid"/></svg></span>Todo</button></li>
+            <li><button class="cat-chip cat-top is-sale" type="button" data-cat="ofertas" aria-pressed="false"><span class="cat-ico ico-tile"><svg class="duo" aria-hidden="true"><use href="#d-tag"/></svg></span>Ofertas</button></li>
+            <li><button class="cat-chip cat-top" type="button" data-cat="dermocosmetica" aria-pressed="false"><span class="cat-ico ico-tile"><svg class="duo" aria-hidden="true"><use href="#d-sparkle"/></svg></span>Dermocosmética</button></li>
+            <li><button class="cat-chip cat-top" type="button" data-cat="cuidado" aria-pressed="false"><span class="cat-ico ico-tile"><svg class="duo" aria-hidden="true"><use href="#d-drop"/></svg></span>Cuidado personal</button></li>
+            <li><button class="cat-chip cat-top" type="button" data-cat="farmacia" aria-pressed="false"><span class="cat-ico ico-tile"><svg class="duo" aria-hidden="true"><use href="#d-pill"/></svg></span>Farmacia</button></li>
+            <li><button class="cat-chip cat-top" type="button" data-cat="bebes" aria-pressed="false"><span class="cat-ico ico-tile"><svg class="duo" aria-hidden="true"><use href="#d-baby"/></svg></span>Bebés</button></li>
+            <li><button class="cat-chip cat-top" type="button" data-cat="nutricion" aria-pressed="false"><span class="cat-ico ico-tile"><svg class="duo" aria-hidden="true"><use href="#d-leaf"/></svg></span>Nutrición</button></li>
+            <li><a class="cat-top store-link" href="#farmacias"><span class="cat-ico ico-tile"><svg class="icon" aria-hidden="true"><use href="#i-store"/></svg></span>Farmacias</a></li>
+        </ul>
+    </nav>
+</header>
+
+<main class="main-content" id="main">
+
+    <!-- PORTADA: las farmacias de la red, una por vez, cada una con su estilo -->
+    <section class="hero-stores" id="hero-stores" aria-roledescription="carrusel" aria-labelledby="hero-title">
+        <h1 class="sr-only" id="hero-title">FarmaGlass: las farmacias de tu barrio, online y con envío en 2 horas</h1>
+        <div class="hero-slide" id="hero-slide" aria-live="polite"></div>
+        <div class="hero-switch">
+            <div class="hero-switch-list" id="hero-switch" role="group" aria-label="Elegí la farmacia de la portada"></div>
+            <button class="promo-nav promo-pause" type="button" id="hero-pause" aria-label="Pausar portada" aria-pressed="false">
+                <svg class="icon ico-pause" aria-hidden="true"><use href="#i-pause"/></svg><svg class="icon ico-play" aria-hidden="true"><use href="#i-play"/></svg>
+            </button>
+        </div>
+    </section>
+
+    <!-- BANNERS SECUNDARIOS -->
+    <section class="promo-carousel" aria-roledescription="carrusel" aria-label="Promociones">
+        <div class="promo-track" id="promo-track">
+        <article class="promo promo-baby">
+            <div class="promo-text">
+                <p class="promo-kicker">Bebés · 2x1</p>
+                <h2 class="promo-title">Llevá 2 latas de Nido 3 y pagá 1</h2>
+                <p class="promo-prices" data-promo-price="1"><span class="promo-old">$ 57.800</span><span class="promo-new">$ 28.900</span></p>
+                <button class="promo-cta" type="button" data-go-cat="bebes">Ver promo <svg class="icon" aria-hidden="true"><use href="#i-arrow"/></svg></button>
+            </div>
+            <img class="promo-img" data-promo-img="1" alt="" loading="lazy" width="160" height="160">
+        </article>
+        <article class="promo promo-hair">
+            <div class="promo-text">
+                <p class="promo-kicker">Cuidado capilar</p>
+                <h2 class="promo-title">Hasta 25 % off en shampoos y máscaras</h2>
+                <p class="promo-prices" data-promo-price="3"><span class="promo-from">desde</span><span class="promo-new">$ 7.280</span></p>
+                <button class="promo-cta" type="button" data-go-cat="cuidado">Ver productos <svg class="icon" aria-hidden="true"><use href="#i-arrow"/></svg></button>
+            </div>
+            <img class="promo-img" data-promo-img="5" alt="" loading="lazy" width="160" height="160">
+        </article>
+        <article class="promo promo-ship">
+            <div class="promo-text">
+                <p class="promo-kicker">Beneficio</p>
+                <h2 class="promo-title">Envío gratis desde $ 15.000</h2>
+                <p class="promo-note">Recibilo en 2 horas en CABA y GBA. Y pagá en 3 cuotas sin interés.</p>
+                <button class="promo-cta" type="button" data-go-cat="todos">Empezar a comprar <svg class="icon" aria-hidden="true"><use href="#i-arrow"/></svg></button>
+            </div>
+            <span class="promo-ico" aria-hidden="true"><svg class="duo"><use href="#d-truck"/></svg></span>
+        </article>
+        <article class="promo promo-face">
+            <div class="promo-text">
+                <p class="promo-kicker">Limpieza facial</p>
+                <h2 class="promo-title">Espuma termal Caviahue con <span data-promo-off="8">18</span> % off</h2>
+                <p class="promo-prices" data-promo-price="8"><span class="promo-old">$ 20.731</span><span class="promo-new">$ 17.000</span></p>
+                <button class="promo-cta" type="button" data-go-cat="dermocosmetica">Ver producto <svg class="icon" aria-hidden="true"><use href="#i-arrow"/></svg></button>
+            </div>
+            <img class="promo-img" data-promo-img="8" alt="" loading="lazy" width="160" height="160">
+        </article>
+        <article class="promo promo-derma">
+            <div class="promo-text">
+                <p class="promo-kicker" id="promo-derma-kicker">Semana dermo</p>
+                <h2 class="promo-title">Ofertas en CeraVe, La Roche-Posay y Vichy</h2>
+                <p class="promo-prices"><span class="promo-from">desde</span><span class="promo-new" id="promo-derma-price"></span></p>
+                <button class="promo-cta" type="button" data-go-cat="dermocosmetica">Ver ofertas <svg class="icon" aria-hidden="true"><use href="#i-arrow"/></svg></button>
+            </div>
+            <img class="promo-img" id="promo-derma-img" alt="" loading="lazy" width="160" height="160">
+        </article>
+        <article class="promo promo-vit">
+            <div class="promo-text">
+                <p class="promo-kicker">Nutrición y vitaminas</p>
+                <h2 class="promo-title">Energía para todo el día</h2>
+                <p class="promo-prices" data-promo-price="10"><span class="promo-from">Supradyn x30</span><span class="promo-new">$ 17.950</span></p>
+                <button class="promo-cta" type="button" data-go-cat="nutricion">Ver vitaminas <svg class="icon" aria-hidden="true"><use href="#i-arrow"/></svg></button>
+            </div>
+            <span class="promo-ico" aria-hidden="true"><svg class="duo"><use href="#d-pill"/></svg></span>
+        </article>
+        <article class="promo promo-hyg">
+            <div class="promo-text">
+                <p class="promo-kicker">Higiene y botiquín</p>
+                <h2 class="promo-title">Toallitas Espadol con <span data-promo-off="7">10</span> % off</h2>
+                <p class="promo-prices" data-promo-price="7"><span class="promo-old">$ 3.274</span><span class="promo-new">$ 2.947</span></p>
+                <button class="promo-cta" type="button" data-go-cat="farmacia">Ver botiquín <svg class="icon" aria-hidden="true"><use href="#i-arrow"/></svg></button>
+            </div>
+            <img class="promo-img" data-promo-img="7" alt="" loading="lazy" width="160" height="160">
+        </article>
+        </div>
+        <div class="promo-controls">
+            <button class="promo-nav" type="button" id="promo-prev" aria-label="Banner anterior"><svg class="icon" aria-hidden="true"><use href="#i-left"/></svg></button>
+            <div class="promo-dots" id="promo-dots"></div>
+            <button class="promo-nav" type="button" id="promo-next" aria-label="Banner siguiente"><svg class="icon" aria-hidden="true"><use href="#i-right"/></svg></button>
+            <button class="promo-nav promo-pause" type="button" id="promo-pause" aria-label="Pausar banners" aria-pressed="false">
+                <svg class="icon ico-pause" aria-hidden="true"><use href="#i-pause"/></svg><svg class="icon ico-play" aria-hidden="true"><use href="#i-play"/></svg>
+            </button>
+        </div>
+    </section>
+
+    <!-- DIRECCIÓN DEL VISITANTE -->
+    <section class="addr-panel" id="addr-panel" aria-labelledby="addr-title">
+        <div class="addr-intro">
+            <span class="addr-ico ico-tile" aria-hidden="true"><svg class="duo"><use href="#d-truck"/></svg></span>
+            <div>
+                <h2 class="addr-title" id="addr-title">¿Dónde te lo enviamos?</h2>
+                <p class="addr-sub" id="addr-sub">Ingresá tu dirección y te mostramos la farmacia más cercana, con tiempos y precios de tu zona.</p>
+            </div>
+        </div>
+        <form class="addr-form" id="addr-form" novalidate>
+            <div class="addr-field addr-street">
+                <label for="addr-street">Calle y número</label>
+                <input id="addr-street" type="text" placeholder="Ej.: Av. Corrientes 1234" autocomplete="street-address" required>
+            </div>
+            <div class="addr-field">
+                <label for="addr-zone">Barrio o localidad</label>
+                <select id="addr-zone" required>
+                    <option value="">Elegí una opción</option>
+                    <option>Palermo</option><option>Belgrano</option><option>Caballito</option>
+                    <option>Recoleta</option><option>Almagro</option><option>Villa Urquiza</option>
+                    <option>San Isidro</option><option>Vicente López</option><option>Avellaneda</option>
+                </select>
+            </div>
+            <button class="addr-submit" type="submit"><svg class="icon" aria-hidden="true"><use href="#i-pin"/></svg>Ver farmacias cercanas</button>
+            <button class="addr-geo" type="button" id="addr-geo"><svg class="icon" aria-hidden="true"><use href="#i-locate"/></svg><span>Usar mi ubicación actual</span></button>
+            <p class="addr-msg" id="addr-msg" aria-live="polite"></p>
+        </form>
+        <div class="addr-result" id="addr-result" hidden>
+            <p class="addr-where"><svg class="icon" aria-hidden="true"><use href="#i-pin"/></svg><span>Entregamos en <b id="addr-current"></b></span>
+                <button type="button" class="addr-change" id="addr-change">Cambiar</button></p>
+            <ul class="pharm-list" id="pharm-list"></ul>
+        </div>
+    </section>
+
+    <!-- TRUST STRIP -->
+    <ul class="trust-strip" aria-label="Beneficios">
+        <li class="trust-item">
+            <span class="trust-ico ico-tile"><svg class="duo" aria-hidden="true"><use href="#d-truck"/></svg></span>
+            <div><strong>Envío en 2 horas</strong><span>Gratis desde $15.000</span></div>
+        </li>
+        <li class="trust-item">
+            <span class="trust-ico ico-tile"><svg class="duo" aria-hidden="true"><use href="#d-shield"/></svg></span>
+            <div><strong>Farmacia habilitada</strong><span>Productos originales</span></div>
+        </li>
+        <li class="trust-item">
+            <span class="trust-ico ico-tile"><svg class="duo" aria-hidden="true"><use href="#d-card"/></svg></span>
+            <div><strong>3 cuotas sin interés</strong><span>Con todas las tarjetas</span></div>
+        </li>
+        <li class="trust-item">
+            <span class="trust-ico ico-tile"><svg class="duo" aria-hidden="true"><use href="#d-chat"/></svg></span>
+            <div><strong>Farmacéutico online</strong><span>Consultas de 8 a 22 h</span></div>
+        </li>
+    </ul>
+
+    <!-- FARMACIAS DE LA RED: cada una con su identidad, banner y línea propia -->
+    <section class="stores" id="farmacias" aria-labelledby="stores-title">
+        <div class="section-header">
+            <div>
+                <h2 class="section-title" id="stores-title">Farmacias <em>de la red</em></h2>
+                <p class="section-subtitle">Cada farmacia tiene su estilo y su propia línea de productos.</p>
+            </div>
+        </div>
+        <div class="store-tabs" role="tablist" aria-label="Elegí una farmacia" id="store-tabs"></div>
+        <div class="store-panel" id="store-panel" role="tabpanel" tabindex="-1"></div>
+    </section>
+
+    <!-- OFERTAS DEL DÍA -->
+    <section class="flash-section" id="ofertas" aria-labelledby="flash-title">
+        <div class="flash-header">
+            <h2 class="flash-title" id="flash-title">Ofertas del día
+                <span class="flash-title-sub">Precios válidos hasta las 23:59</span>
+            </h2>
+            <div class="flash-timer">
+                <span>Terminan en</span>
+                <time id="flash-timer" aria-live="off">
+                    <span class="flash-timer-block" id="flash-h">--</span>
+                    <span class="flash-timer-block" id="flash-m">--</span>
+                    <span class="flash-timer-block" id="flash-s">--</span>
+                </time>
+            </div>
+        </div>
+        <div class="carousel-wrap">
+            <button class="carousel-arrow" type="button" data-dir="-1" aria-label="Ofertas anteriores"><svg class="icon" aria-hidden="true"><use href="#i-left"/></svg></button>
+            <ul class="flash-carousel" id="flash-carousel"></ul>
+            <button class="carousel-arrow" type="button" data-dir="1" aria-label="Más ofertas"><svg class="icon" aria-hidden="true"><use href="#i-right"/></svg></button>
+        </div>
+    </section>
+
+    <!-- CATÁLOGO -->
+    <section class="catalog" id="catalogo" aria-labelledby="catalog-title">
+        <div class="section-header">
+            <div>
+                <h2 class="section-title" id="catalog-title">Elegidos <em>para vos</em></h2>
+                <p class="section-subtitle">Lo más pedido esta semana</p>
+            </div>
+            <p class="item-count" id="item-count" aria-live="polite"></p>
+        </div>
+
+        <div class="catalog-tools">
+            <div class="tool-chips" role="group" aria-label="Filtros rápidos">
+                <button class="tool-chip" type="button" data-toggle="envio" aria-pressed="false"><svg class="icon" aria-hidden="true"><use href="#i-truck"/></svg>Envío gratis</button>
+                <button class="tool-chip" type="button" data-toggle="cerca" aria-pressed="false"><svg class="icon" aria-hidden="true"><use href="#i-pin"/></svg>De mi farmacia más cercana</button>
+                <button class="tool-chip" type="button" data-toggle="favs" aria-pressed="false"><svg class="icon" aria-hidden="true"><use href="#i-heart"/></svg>Mis favoritos</button>
+            </div>
+            <div class="tools-right">
+                <button class="tools-reset" type="button" id="tools-reset" hidden>Limpiar filtros</button>
+                <label class="sort-field"><span>Ordenar por</span>
+                    <select id="sort-select">
+                        <option value="relevancia">Más vendidos</option>
+                        <option value="precio-asc">Menor precio</option>
+                        <option value="precio-desc">Mayor precio</option>
+                        <option value="descuento">Mayor descuento</option>
+                    </select>
+                </label>
+            </div>
+        </div>
+
+        <ul class="product-grid" id="products-container"></ul>
+        <div class="catalog-more" id="catalog-more" hidden>
+            <p class="catalog-more-info" id="catalog-more-info"></p>
+            <div class="catalog-more-bar" aria-hidden="true"><span id="catalog-more-bar"></span></div>
+            <button class="catalog-more-btn" type="button" id="catalog-more-btn">Mostrar más productos</button>
+        </div>
+    </section>
+
+    <!-- VISTOS RECIENTEMENTE -->
+    <section class="recent" id="recent" aria-labelledby="recent-title" hidden>
+        <div class="section-header">
+            <div>
+                <h2 class="section-title" id="recent-title">Vistos <em>recientemente</em></h2>
+                <p class="section-subtitle">Retomá donde dejaste</p>
+            </div>
+            <button class="text-btn" type="button" id="recent-clear">Borrar historial</button>
+        </div>
+        <ul class="recent-list" id="recent-list"></ul>
+    </section>
+
+    <!-- RECETAS -->
+    <section class="rx" id="receta" aria-labelledby="rx-title">
+        <div class="rx-intro">
+            <span class="rx-ico ico-tile" aria-hidden="true"><svg class="duo"><use href="#d-rx"/></svg></span>
+            <p class="rx-kicker">Medicamentos con receta</p>
+            <h2 class="rx-title" id="rx-title">Subí tu receta y te la <em>preparamos</em></h2>
+            <p class="rx-sub">Un farmacéutico la revisa, te confirma el precio y la cobertura de tu obra social, y la recibís en tu casa o la retirás en la farmacia.</p>
+            <ol class="rx-steps">
+                <li>Subí una foto o un PDF de la receta</li>
+                <li>Te confirmamos precio y cobertura</li>
+                <li>Pagás y la recibís o la retirás</li>
+            </ol>
+        </div>
+        {%- comment -%} Se envía con el formulario de contacto de la tienda: llega al email de FarmaGlass. {%- endcomment -%}
+        {%- form 'contact', id: 'rx-form', class: 'rx-form', novalidate: 'novalidate' -%}
+            <input type="hidden" name="contact[Tipo]" value="Receta">
+            <input type="hidden" name="contact[Código]" id="rx-code-field">
+            <input type="hidden" name="contact[Farmacia]" id="rx-store-field">
+            <input type="hidden" name="contact[Archivos]" id="rx-files-field">
+            <div class="rx-drop" id="rx-drop">
+                <input type="file" id="rx-file" class="sr-only" accept="image/*,application/pdf" multiple aria-describedby="rx-file-help">
+                <label class="rx-drop-label" for="rx-file">
+                    <svg class="icon" aria-hidden="true"><use href="#i-upload"/></svg>
+                    <b><span class="rx-touch">Sacá una foto o </span><span class="rx-mouse">Arrastrá tu receta o </span><u>elegí un archivo</u></b>
+                    <small id="rx-file-help">JPG, PNG o PDF · hasta 10 MB · máximo 3 archivos</small>
+                </label>
+                <ul class="rx-files" id="rx-files"></ul>
+            </div>
+            <div class="rx-grid">
+                <div class="addr-field">
+                    <label for="rx-email">Email</label>
+                    <input id="rx-email" name="contact[email]" type="email" inputmode="email" autocomplete="email" placeholder="nombre@correo.com" value="{{ customer.email }}">
+                </div>
+                <div class="addr-field">
+                    <label for="rx-phone">Celular</label>
+                    <input id="rx-phone" name="contact[Celular]" type="tel" inputmode="tel" autocomplete="tel" placeholder="11 2345-6789">
+                </div>
+                <div class="addr-field">
+                    <label for="rx-os">Obra social o prepaga</label>
+                    <select id="rx-os" name="contact[Obra social]">
+                        <option value="">Elegí una opción</option>
+                        <option>Particular (sin cobertura)</option><option>OSDE</option><option>Swiss Medical</option><option>Galeno</option>
+                        <option>Medifé</option><option>PAMI</option><option>IOMA</option><option>OSECAC</option><option>Otra</option>
+                    </select>
+                </div>
+                <div class="addr-field" id="rx-member-field">
+                    <label for="rx-member">N.º de afiliado</label>
+                    <input id="rx-member" name="contact[Afiliado]" type="text" inputmode="numeric" autocomplete="off" placeholder="Como figura en tu credencial">
+                </div>
+                <div class="addr-field rx-wide">
+                    <label for="rx-store">Farmacia que la prepara</label>
+                    <select id="rx-store"></select>
+                </div>
+            </div>
+            <label class="rx-check"><input type="checkbox" id="rx-consent" name="contact[Autorización]" value="Sí"><span>Autorizo a un farmacéutico de la red a revisar mi receta para cotizarla.</span></label>
+            <p class="rx-err" id="rx-err" aria-live="polite"></p>
+            {%- if form.errors -%}<div class="rx-err" data-form-errors="rx" hidden>{{ form.errors | default_errors }}</div>{%- endif -%}
+            <button class="addr-submit rx-submit" type="submit"><svg class="icon" aria-hidden="true"><use href="#i-upload"/></svg>Enviar receta</button>
+            <p class="rx-note">La foto no viaja con el formulario: si el farmacéutico la necesita, te la pide por email.</p>
+        {%- endform -%}
+        <div class="rx-done" id="rx-done" hidden tabindex="-1">
+            <span class="rx-done-ico" aria-hidden="true"><svg class="icon"><use href="#i-check"/></svg></span>
+            <h3>Recibimos tu receta</h3>
+            <p>Código <span class="rx-code" id="rx-code"></span>. <span id="rx-done-text"></span></p>
+            <div class="rx-done-actions">
+                <button class="addr-submit" type="button" data-account-open="rx">Ver mis recetas</button>
+                <button class="text-btn" type="button" id="rx-again">Subir otra receta</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- PREGUNTAS FRECUENTES -->
+    <section class="faq" id="ayuda" aria-labelledby="faq-title">
+        <div class="faq-aside">
+            <h2 class="section-title" id="faq-title">Preguntas <em>frecuentes</em></h2>
+            <p class="section-subtitle">Lo que más nos consultan sobre envíos, recetas y pagos.</p>
+            <div class="faq-card">
+                <span class="trust-ico ico-tile" aria-hidden="true"><svg class="duo"><use href="#d-chat"/></svg></span>
+                <div>
+                    <strong>¿Ya compraste?</strong>
+                    <span>Seguí tu pedido o pedí la cancelación sin dar explicaciones.</span>
+                    <div class="faq-card-actions">
+                        <button class="text-btn" type="button" data-account-open="orders">Mis pedidos</button>
+                        <button class="text-btn" type="button" data-regret-open>Botón de arrepentimiento</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="faq-list">
+            <details class="faq-item" name="faq" open><summary>¿Cuánto tarda y cuánto cuesta el envío?</summary>
+                <p>Llega en unas 2 horas a CABA y GBA desde la farmacia de la red más cercana. Cuesta $ 1.990 y es gratis en compras desde $ 15.000. También podés elegir una franja horaria al confirmar.</p></details>
+            <details class="faq-item" name="faq"><summary>¿Puedo retirar en una farmacia?</summary>
+                <p>Sí. En el checkout elegí “Retiro en farmacia” y la sucursal: es gratis y queda listo en unos 30 minutos si la farmacia está abierta. Te mostramos el horario de cada una.</p></details>
+            <details class="faq-item" name="faq"><summary>¿Cómo compro un medicamento con receta?</summary>
+                <p>Subí la foto o el PDF en “Subí tu receta”. Un farmacéutico la revisa, te confirma precio y cobertura de tu obra social, y después la pagás y la recibís. Los medicamentos de venta bajo receta no se pueden agregar directo al carrito.</p></details>
+            <details class="faq-item" name="faq"><summary>¿Qué medios de pago aceptan?</summary>
+                <p>Tarjetas de crédito en 3 cuotas sin interés, débito, Mercado Pago y efectivo si retirás en la farmacia.</p></details>
+            <details class="faq-item" name="faq"><summary>¿Cómo uso un cupón de descuento?</summary>
+                <p>Abrí el carrito y tocá “¿Tenés un cupón de descuento?”. Con NUEVO20 tenés 20 % off en tu primera compra.</p></details>
+            <details class="faq-item" name="faq"><summary>¿Puedo cancelar o devolver una compra?</summary>
+                <p>Sí. Tenés 10 días corridos desde que recibís el pedido para cancelarlo con el botón de arrepentimiento, sin costo y sin dar explicaciones. Los medicamentos no admiten cambio una vez entregados.</p></details>
+        </div>
+    </section>
+</main>
+
+<!-- FOOTER -->
+<footer class="site-footer">
+    <div class="footer-grid">
+        <div class="footer-newsletter">
+            <h2>Suscribite y <em>ahorrá</em></h2>
+            <p>Ofertas de la semana en tu email, una vez por semana.</p>
+            {%- comment -%} Crea el cliente con aceptación de marketing por email (Clientes → Suscriptos). {%- endcomment -%}
+            {%- form 'customer', id: 'newsletter-form', class: 'newsletter-form', novalidate: 'novalidate' -%}
+                <input type="hidden" name="contact[tags]" value="newsletter">
+                <label for="newsletter-email" class="sr-only">Tu email</label>
+                <input type="email" id="newsletter-email" name="contact[email]" class="newsletter-input" placeholder="tu@email.com" required autocomplete="email">
+                <button class="newsletter-btn" type="submit">Suscribirme</button>
+                {%- if form.posted_successfully? -%}{%- assign newsletter_state = 'ok' -%}{%- elsif form.errors -%}{%- assign newsletter_state = 'error' -%}{%- endif -%}
+            {%- endform -%}
+            <p class="newsletter-msg{% if newsletter_state %} {{ newsletter_state }}{% endif %}" id="newsletter-msg" aria-live="polite">
+                {%- if newsletter_state == 'ok' -%}Listo. Te vamos a escribir una vez por semana con las ofertas.{%- elsif newsletter_state == 'error' -%}No pudimos suscribirte: revisá el email o probá de nuevo más tarde.{%- endif -%}
+            </p>
+        </div>
+
+        <div class="footer-links">
+            <nav class="footer-col" aria-label="FarmaGlass">
+                <h3>FarmaGlass</h3>
+                <ul>
+                    <li><a href="{{ pages.farmacias.url | default: routes.root_url }}">Sobre nosotros</a></li>
+                    <li><a href="#farmacias">Farmacias de la red</a></li>
+                    <li><a href="{{ pages.contact.url | default: routes.root_url }}">Trabajá con nosotros</a></li>
+                </ul>
+            </nav>
+            <nav class="footer-col" aria-label="Ayuda">
+                <h3>Ayuda</h3>
+                <ul>
+                    <li><a href="#ayuda">Preguntas frecuentes</a></li>
+                    <li><a href="#receta">Subí tu receta</a></li>
+                    <li><a href="#cuenta" data-account-open="orders">Mis pedidos</a></li>
+                </ul>
+            </nav>
+        </div>
+
+        <div>
+            <ul class="footer-payments" aria-label="Medios de pago">
+                <li class="payment-chip">Visa</li>
+                <li class="payment-chip">Mastercard</li>
+                <li class="payment-chip">Mercado Pago</li>
+                <li class="payment-chip">Débito</li>
+            </ul>
+        </div>
+
+        <div>
+            <button class="regret-btn" type="button" data-regret-open><svg class="icon" aria-hidden="true"><use href="#i-undo"/></svg>Botón de arrepentimiento</button>
+        </div>
+
+        <div class="footer-legal">
+            <!-- PROTOTIPO: completar con los datos reales antes de publicar -->
+            <p>Director técnico: Farm. <span class="placeholder">[Nombre y apellido]</span>, M.N. <span class="placeholder">[matrícula]</span> · Habilitación <span class="placeholder">[N.º]</span> · <span class="placeholder">[Razón social]</span>, CUIT <span class="placeholder">[00-00000000-0]</span> · <span class="placeholder">[Dirección]</span></p>
+            <p>Defensa de las y los consumidores: <a href="https://www.argentina.gob.ar/produccion/defensadelconsumidor" target="_blank" rel="noopener">argentina.gob.ar/defensadelconsumidor</a> · Data Fiscal <span class="placeholder">[QR de ARCA]</span></p>
+            <p>Leé atentamente las instrucciones y ante cualquier duda consultá a tu médico o farmacéutico. © 2026 FarmaGlass.</p>
+        </div>
+    </div>
+</footer>
+
+<!-- BOTTOM NAV (móvil) -->
+<nav class="bottom-nav" aria-label="Navegación principal">
+    <a class="nav-item" href="{{ routes.root_url }}" aria-current="page"><svg class="icon" aria-hidden="true"><use href="#i-home"/></svg>Inicio</a>
+    <a class="nav-item" href="#catalogo"><svg class="icon" aria-hidden="true"><use href="#i-grid"/></svg>Catálogo</a>
+    <button class="nav-item" type="button" data-account-open="favs">
+        <svg class="icon" aria-hidden="true"><use href="#i-heart"/></svg>Favoritos
+        <span class="count-badge" data-fav-count hidden>0</span>
+    </button>
+    <button class="nav-item" type="button" id="nav-cart-btn" data-cart-open aria-label="Carrito, 0 productos">
+        <svg class="icon" aria-hidden="true"><use href="#i-cart"/></svg>Carrito
+        <span class="count-badge" data-cart-count hidden>0</span>
+    </button>
+    <button class="nav-item" type="button" data-account-open="orders"><svg class="icon" aria-hidden="true"><use href="#i-user"/></svg>Mi cuenta</button>
+</nav>
+
+<!-- MODAL DE PRODUCTO -->
+<dialog class="product-dialog" id="product-dialog" aria-labelledby="dialog-title">
+    <div class="dialog-inner">
+        <div class="dialog-top">
+            <div class="dialog-tools">
+                <button class="dialog-tool" type="button" id="dialog-fav" data-fav="" aria-pressed="false" aria-label="Guardar en favoritos"><svg class="icon" aria-hidden="true"><use href="#i-heart"/></svg></button>
+                <button class="dialog-tool" type="button" id="dialog-share" aria-label="Compartir producto"><svg class="icon" aria-hidden="true"><use href="#i-share"/></svg></button>
+            </div>
+            <button class="dialog-close" type="button" id="dialog-close" aria-label="Cerrar"><svg class="icon" aria-hidden="true"><use href="#i-x"/></svg></button>
+        </div>
+        <div class="dialog-img"><img id="dialog-img" src="" alt="" referrerpolicy="no-referrer"></div>
+        <div class="dialog-meta" id="dialog-meta"></div>
+        <h2 class="dialog-title" id="dialog-title"></h2>
+        <p class="dialog-desc" id="dialog-desc"></p>
+        <dl class="dialog-facts" id="dialog-facts"></dl>
+        <a class="dialog-page" id="dialog-page" href="{{ routes.all_products_collection_url }}">Ver la página del producto</a>
+        <div class="dialog-price-row">
+            <div>
+                <div class="dialog-price-old" id="dialog-price-old"></div>
+                <div class="dialog-price" id="dialog-price"></div>
+                <p class="dialog-cuotas" id="dialog-cuotas"></p>
+            </div>
+            <div class="qty-selector" role="group" aria-label="Cantidad">
+                <button class="qty-btn" type="button" id="qty-minus" aria-label="Quitar uno">−</button>
+                <output class="qty-value" id="qty-val" aria-live="polite">1</output>
+                <button class="qty-btn" type="button" id="qty-plus" aria-label="Agregar uno">+</button>
+            </div>
+        </div>
+        <button class="dialog-add" type="button" id="dialog-add">
+            <svg class="icon" aria-hidden="true"><use href="#i-cart"/></svg>
+            <span id="dialog-add-label">Agregar al carrito</span>
+        </button>
+        <section class="dialog-related" id="dialog-related" aria-labelledby="related-title" hidden>
+            <h3 id="related-title">También te puede interesar</h3>
+            <ul class="related-list" id="related-list"></ul>
+        </section>
+    </div>
+</dialog>
+
+<!-- BOTÓN DE ARREPENTIMIENTO -->
+<dialog class="product-dialog regret-dialog" id="regret-dialog" aria-labelledby="regret-title">
+    <div class="dialog-inner">
+        <div class="dialog-top">
+            <h2 id="regret-title">Botón de arrepentimiento</h2>
+            <button class="dialog-close" type="button" data-close aria-label="Cerrar"><svg class="icon" aria-hidden="true"><use href="#i-x"/></svg></button>
+        </div>
+        {%- form 'contact', id: 'regret-form', class: 'regret-form', novalidate: 'novalidate' -%}
+            <input type="hidden" name="contact[Tipo]" value="Botón de arrepentimiento">
+            <input type="hidden" name="contact[Código de trámite]" id="regret-code-field">
+            <p class="regret-intro">Tenés 10 días corridos desde que recibiste tu compra para cancelarla, sin costo y sin dar explicaciones. Te damos un código de trámite para hacer el seguimiento.</p>
+            <div class="addr-field">
+                <label for="regret-order">Número de pedido</label>
+                <input id="regret-order" name="contact[Pedido]" type="text" list="regret-orders" autocomplete="off" placeholder="Ej.: #1001" aria-describedby="regret-order-help">
+                <datalist id="regret-orders"></datalist>
+                <small class="field-help" id="regret-order-help">Lo encontrás en el email de confirmación o en Mi cuenta.</small>
+            </div>
+            <div class="addr-field">
+                <label for="regret-email">Email de la compra</label>
+                <input id="regret-email" name="contact[email]" type="email" autocomplete="email" inputmode="email" placeholder="nombre@correo.com" value="{{ customer.email }}">
+            </div>
+            <div class="addr-field">
+                <label for="regret-reason">Motivo <span class="optional">(opcional)</span></label>
+                <textarea id="regret-reason" name="contact[body]" rows="3"></textarea>
+            </div>
+            <p class="rx-err" id="regret-err" aria-live="polite"></p>
+            {%- if form.errors -%}<div class="rx-err" data-form-errors="regret" hidden>{{ form.errors | default_errors }}</div>{%- endif -%}
+            <button class="dialog-add" type="submit">Solicitar la cancelación</button>
+        {%- endform -%}
+        <div class="regret-done" id="regret-done" hidden tabindex="-1">
+            <span class="rx-done-ico" aria-hidden="true"><svg class="icon"><use href="#i-check"/></svg></span>
+            <h3>Recibimos tu solicitud</h3>
+            <p>Tu código de trámite es <span class="rx-code" id="regret-code"></span>. <span id="regret-done-text"></span></p>
+            <button class="dialog-add" type="button" data-close>Listo</button>
+        </div>
+    </div>
+</dialog>
+
+<!-- BANDA DE BIENVENIDA -->
+<aside class="welcome-bar" id="welcome-bar" aria-label="Beneficio de bienvenida">
+    <p><strong>Primera compra:</strong> 20 % off con <code>NUEVO20</code></p>
+    <button class="welcome-copy" type="button" id="welcome-copy">Usar código</button>
+    <button class="welcome-close" type="button" id="welcome-close" aria-label="Cerrar"><svg class="icon" aria-hidden="true"><use href="#i-x"/></svg></button>
+</aside>
+
+<button class="to-top" type="button" id="to-top" aria-label="Volver arriba"><svg class="icon" aria-hidden="true"><use href="#i-up"/></svg></button>
+
+{% render 'farmaglass-datos' %}
+<script src="{{ 'fg-shop.js' | asset_url }}" defer></script>
+<script src="{{ 'farmaglass-home.js' | asset_url }}" defer></script>
+
+{% schema %}
+{
+  "name": "FarmaGlass · portada",
+  "tag": "div",
+  "class": "fg-home",
+  "settings": []
+}
+{% endschema %}
