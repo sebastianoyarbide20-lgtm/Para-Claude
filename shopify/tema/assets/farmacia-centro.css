@@ -1,0 +1,318 @@
+/* Generado por shopify/construir-farmacias.js a partir de farmacia-centro.html: no editar a mano. */
+/* ================================================================
+ *  FARMACIA DEL CENTRO · "La Gaceta de la Botica"
+ *  Un diario de 1962 impreso en papel marfil: cabecera con fecha y
+ *  edición, columnas, letra capital, sello de goma, una cajonera de
+ *  madera con plaquitas de bronce y una vitrina de vidrio con estantes.
+ * ================================================================ */
+:root {
+    --navy: #14284B; --navy-2: #1E3A6B; --ink: #1B2238; --muted: #5B5F6E;
+    --brass: #C9A227; --brass-hi: #E9CF72; --brass-lo: #9C7A16; --brass-text: #7A5C12;
+    --ivory: #FBF6EA; --paper: #FFFDF7; --line: #E2D6B8; --sale: #9B2335;
+    --wood: #4E3120; --wood-2: #6E4529; --wood-hi: #8F5F38;
+    --serif: 'DM Serif Display', Georgia, serif;
+    --text: 'Libre Caslon Text', Georgia, serif;
+    --sans: 'Inter', system-ui, sans-serif;
+    /* Carrito y checkout (fg-shop.js) con los colores de la botica */
+    --fgs-accent: #14284B; --fgs-accent-2: #1E3A6B; --fgs-sale: #9B2335;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+[hidden] { display: none !important; }
+html { scroll-behavior: smooth; }
+body {
+    font-family: var(--text); color: var(--ink); line-height: 1.65; -webkit-font-smoothing: antialiased;
+    background: var(--ivory) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .35 0 0 0 0 .27 0 0 0 0 .12 0 0 0 .08 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+img { display: block; max-width: 100%; }
+a { color: inherit; }
+button { font: inherit; cursor: pointer; border: 0; background: none; color: inherit; }
+:focus-visible { outline: 3px solid var(--brass); outline-offset: 3px; border-radius: 3px; }
+.wrap { max-width: 1120px; margin: 0 auto; padding: 0 16px; }
+.sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+.smallcaps { font-family: var(--sans); font-size: 12px; font-weight: 700; letter-spacing: .18em; text-transform: uppercase; }
+
+/* ── Almanaque: la franja superior del diario ── */
+.almanac { background: var(--navy); color: #F3EAD3; font-family: var(--sans); font-size: 13px; }
+.almanac .wrap { display: flex; align-items: center; justify-content: space-between; gap: 12px; min-height: 46px; }
+.almanac a, .almanac button { display: inline-flex; align-items: center; gap: 8px; min-height: 44px; font-weight: 600; text-decoration: none; }
+.almanac a:hover { text-decoration: underline; text-underline-offset: 3px; }
+.almanac .date { display: none; font-family: var(--text); font-style: italic; opacity: .9; }
+.almanac b { background: var(--brass); color: var(--navy); border-radius: 999px; min-width: 22px; height: 22px; display: grid; place-items: center; font-size: 12px; padding: 0 6px; }
+
+/* ── Cabecera de diario ── */
+.nameplate { padding: 22px 0 0; text-align: center; }
+.np-top { display: grid; gap: 14px; align-items: center; }
+.np-seal { display: flex; justify-content: center; margin-bottom: 6px; }
+.np-kicker { color: var(--brass-text); }
+.np-kicker span + span::before { content: '✦'; margin: 0 .7em; color: var(--brass); }
+.np-title { font-family: var(--serif); font-weight: 400; font-size: clamp(2.6rem, 11vw, 6.2rem); line-height: .95; color: var(--navy); letter-spacing: -.01em; margin: 8px 0 6px; }
+.np-motto { font-style: italic; color: var(--muted); }
+.ears { display: flex; justify-content: center; }
+.ear { border: 1px solid var(--ink); padding: 6px 12px; font-family: var(--sans); font-size: 12px; line-height: 1.35; text-align: center; background: var(--paper); }
+.ear b { display: block; font-size: 11px; letter-spacing: .16em; text-transform: uppercase; color: var(--brass-text); }
+.ears-mobile { display: flex; justify-content: center; gap: 8px; flex-wrap: wrap; margin-top: 14px; }
+.np-top > .ears { display: none; }
+.rules { margin-top: 18px; border-top: 3px solid var(--ink); border-bottom: 1px solid var(--ink); height: 7px; }
+.np-nav { display: flex; justify-content: center; flex-wrap: wrap; gap: 0 2px; padding: 2px 0; border-bottom: 1px solid var(--ink); }
+.np-nav a { display: inline-flex; align-items: center; min-height: 44px; padding: 0 10px; font-family: var(--sans); font-size: 13px; font-weight: 600; letter-spacing: .06em; text-transform: uppercase; text-decoration: none; }
+.np-nav a:hover { color: var(--sale); }
+
+/* ── Portada: nota principal + columna lateral ── */
+.front { display: grid; gap: 28px; padding: 30px 0 10px; }
+.kicker { color: var(--sale); }
+.lead h2 { font-family: var(--serif); font-weight: 400; font-size: clamp(2.1rem, 6vw, 3.6rem); line-height: 1.02; color: var(--navy); margin: 8px 0 6px; text-wrap: balance; }
+.lead h2 i { color: var(--brass-text); }
+.byline { font-style: italic; color: var(--muted); font-size: 14px; padding-bottom: 14px; border-bottom: 1px solid var(--line); }
+.lead-body { display: grid; gap: 24px; margin-top: 18px; }
+.plate { position: relative; }
+.plate-frame {
+    aspect-ratio: 4 / 5; max-width: 330px; margin: 0 auto; border-radius: 999px 999px 10px 10px; display: grid; place-items: center;
+    background: radial-gradient(120% 70% at 50% 0%, #fff 0%, #F4EBD3 70%); border: 1px solid var(--line);
+    box-shadow: inset 0 0 0 8px var(--paper), inset 0 0 0 9px var(--line), 0 26px 50px rgba(20, 40, 75, .14);
+}
+.plate-frame img { width: 60%; mix-blend-mode: multiply; }
+.plate figcaption { text-align: center; font-style: italic; font-size: 13px; color: var(--muted); margin-top: 10px; }
+/* Sello de goma con el precio */
+.stamp {
+    position: absolute; top: 4%; right: 0; width: 124px; height: 124px; border-radius: 50%;
+    display: grid; place-content: center; text-align: center; gap: 2px;
+    color: var(--sale); border: 4px double var(--sale); background: rgba(255, 253, 247, .93);
+    transform: rotate(-12deg); box-shadow: 0 10px 24px rgba(155, 35, 53, .14); font-family: var(--sans);
+}
+.stamp small { font-size: 10px; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; }
+.stamp b { font-family: var(--serif); font-weight: 400; font-size: 1.6rem; line-height: 1; }
+.stamp s { font-size: 12px; opacity: .8; }
+.lead-text p { font-size: 17px; margin-bottom: 12px; }
+.dropcap::first-letter { float: left; font-family: var(--serif); font-size: 4.4em; line-height: .82; padding: 6px 10px 0 0; color: var(--navy); }
+.lead-price { border-top: 1px dotted var(--line); padding-top: 12px; }
+.lead-buy { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 8px; }
+.btn { display: inline-flex; align-items: center; justify-content: center; gap: 8px; min-height: 48px; padding: 0 22px; border-radius: 3px; background: var(--navy); color: #fff; font-family: var(--sans); font-weight: 700; font-size: 15px; text-decoration: none; box-shadow: 0 2px 0 var(--ink); transition: transform .15s ease, background .2s ease; }
+.btn:hover { background: var(--navy-2); transform: translateY(-1px); }
+.btn.ghost { background: transparent; color: var(--navy); border: 1px solid var(--navy); box-shadow: none; }
+.btn.ghost:hover { background: rgba(20, 40, 75, .06); }
+
+.side { display: grid; gap: 18px; align-content: start; }
+.side h3 { font-family: var(--sans); font-size: 12px; font-weight: 700; letter-spacing: .18em; text-transform: uppercase; color: var(--brass-text); border-bottom: 1px solid var(--ink); padding-bottom: 6px; margin-bottom: 10px; }
+.notice { border: 1px solid var(--ink); padding: 14px 16px; background: var(--paper); box-shadow: 4px 4px 0 var(--line); }
+.notice p { font-size: 15px; }
+.notice p + p { margin-top: 6px; color: var(--muted); font-size: 14px; }
+.now { display: inline-flex; align-items: center; gap: 8px; font-family: var(--sans); font-weight: 700; font-size: 14px; color: var(--muted); }
+.now::before { content: ''; width: 9px; height: 9px; border-radius: 50%; background: #A9A28F; flex-shrink: 0; }
+.now.on { color: #2F6B3A; }
+.now.on::before { background: #2F9E57; box-shadow: 0 0 0 3px rgba(47, 158, 87, .2); }
+.contents ol { list-style: none; counter-reset: c; }
+.contents li { counter-increment: c; }
+.contents a { display: flex; align-items: baseline; gap: 8px; min-height: 40px; padding: 6px 0; text-decoration: none; border-bottom: 1px dotted var(--line); }
+.contents a::before { content: counter(c, upper-roman) '.'; font-family: var(--serif); color: var(--brass-text); width: 30px; }
+.contents a span { margin-left: auto; font-style: italic; color: var(--muted); font-size: 13px; }
+.contents a:hover { color: var(--sale); }
+.pull { font-family: var(--serif); font-size: 1.5rem; line-height: 1.2; color: var(--navy); padding: 16px 0; border-top: 3px solid var(--ink); border-bottom: 1px solid var(--ink); }
+.pull cite { display: block; margin-top: 8px; font-family: var(--text); font-style: italic; font-size: 13px; color: var(--muted); }
+
+/* ── Encabezado de sección, como una "página" del diario ── */
+.sec-head { text-align: center; margin: 60px 0 22px; }
+.sec-num { display: flex; align-items: center; gap: 12px; color: var(--brass-text); }
+.sec-num::before, .sec-num::after { content: ''; flex: 1; height: 1px; background: var(--ink); }
+.sec-head h2 { font-family: var(--serif); font-weight: 400; font-size: clamp(2.2rem, 6vw, 3.4rem); line-height: 1; color: var(--navy); margin: 12px 0 8px; }
+.sec-head > p:last-child { font-style: italic; color: var(--muted); max-width: 52ch; margin: 0 auto; }
+
+/* ── La cajonera: madera, bronce y un tirador por cajón ── */
+.drawers {
+    list-style: none; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px;
+    padding: 12px; border-radius: 10px;
+    background: repeating-linear-gradient(90deg, rgba(255,255,255,.035) 0 3px, transparent 3px 11px), linear-gradient(180deg, var(--wood-2), var(--wood));
+    box-shadow: inset 0 0 0 4px rgba(0,0,0,.18), 0 30px 50px rgba(78, 49, 32, .3);
+}
+.drawer { display: flex; flex-direction: column; border-radius: 6px; overflow: hidden; background: #2E1D12; }
+.drawer-inside {
+    position: relative; aspect-ratio: 5 / 4; display: grid; place-items: center;
+    background: linear-gradient(180deg, #E5D8B8, #FFFBEF 65%); box-shadow: inset 0 14px 18px -8px rgba(46, 29, 18, .6);
+}
+.drawer-inside img { width: 60%; height: 78%; object-fit: contain; mix-blend-mode: multiply; transition: transform .35s cubic-bezier(.16, 1, .3, 1); }
+.drawer:hover .drawer-inside img, .drawer:focus-within .drawer-inside img { transform: translateY(-6px) scale(1.05); }
+.drawer-num { position: absolute; top: 8px; left: 10px; font-family: var(--serif); font-size: 15px; color: var(--brass-text); }
+.drawer-off { position: absolute; top: 8px; right: 8px; font-family: var(--sans); font-size: 12px; font-weight: 700; color: #fff; background: var(--sale); padding: 2px 7px; border-radius: 3px; }
+.drawer-front {
+    flex: 1; display: grid; justify-items: center; align-content: start; gap: 10px; padding: 14px 10px 14px; text-align: center; color: #FBF1DC;
+    background: linear-gradient(180deg, var(--wood-hi), var(--wood-2) 40%, var(--wood));
+    box-shadow: inset 0 1px 0 rgba(255,255,255,.18), inset 0 -3px 0 rgba(0,0,0,.25);
+}
+.label-plate {
+    min-height: 60px; display: grid; align-content: center;
+    width: 100%; max-width: 230px; padding: 7px 10px 6px; border-radius: 3px; color: var(--ink);
+    background: linear-gradient(180deg, var(--brass-hi), var(--brass) 55%, var(--brass-lo));
+    box-shadow: inset 0 0 0 1px rgba(78, 49, 32, .5), 0 2px 3px rgba(0,0,0,.35);
+}
+.label-plate b { display: block; font-family: var(--serif); font-weight: 400; font-size: 1.12rem; line-height: 1.1; }
+.label-plate small { font-family: var(--sans); font-size: 11px; font-weight: 700; letter-spacing: .03em; }
+.drawer-price { font-family: var(--sans); font-size: 13px; line-height: 1.2; }
+.drawer-price s { opacity: .8; margin-right: 6px; }
+.drawer-price b { font-family: var(--serif); font-weight: 400; font-size: 1.5rem; color: #FFE7A3; }
+.knob {
+    min-height: 44px; padding: 0 20px; border-radius: 999px; font-family: var(--sans); font-weight: 700; font-size: 14px; color: var(--ink);
+    background: radial-gradient(circle at 35% 30%, #FFF2C0, var(--brass) 55%, var(--brass-lo));
+    box-shadow: 0 3px 0 #3A2416, 0 6px 12px rgba(0,0,0,.35); transition: transform .15s ease;
+}
+.knob:hover { transform: translateY(-1px); }
+.knob:active { transform: translateY(2px); box-shadow: 0 1px 0 #3A2416; }
+
+/* ── La vitrina: vidrio, reflejos y estantes de madera ── */
+.showcase-frame { padding: 12px; border-radius: 14px 14px 6px 6px; background: linear-gradient(180deg, var(--wood-hi), var(--wood)); box-shadow: 0 30px 60px rgba(78, 49, 32, .28); }
+.glass {
+    position: relative; overflow: hidden; border-radius: 8px 8px 2px 2px; padding: 18px 12px 8px;
+    background: linear-gradient(180deg, #F1F4F3, #E3EAE9);
+    box-shadow: inset 0 0 0 1px rgba(255,255,255,.7), inset 0 0 40px rgba(78, 49, 32, .12);
+}
+.glass::after {
+    content: ''; position: absolute; inset: 0; pointer-events: none;
+    background: linear-gradient(115deg, transparent 0 18%, rgba(255,255,255,.5) 18% 21%, transparent 21% 26%, rgba(255,255,255,.3) 26% 27%, transparent 27% 70%, rgba(255,255,255,.35) 70% 72%, transparent 72%);
+}
+.shelf-grid { list-style: none; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0 12px; }
+.bottle { position: relative; display: flex; flex-direction: column; align-items: center; padding-bottom: 22px; }
+.bottle-art { height: 150px; width: 100%; display: flex; align-items: flex-end; justify-content: center; }
+.bottle-art img { max-height: 140px; width: auto; max-width: 82%; object-fit: contain; mix-blend-mode: multiply; }
+.bottle::before { /* el estante */
+    content: ''; position: absolute; left: -12px; right: -12px; top: 150px; height: 12px;
+    background: linear-gradient(180deg, var(--wood-hi), var(--wood)); box-shadow: 0 6px 10px rgba(46, 29, 18, .25);
+}
+.tag {
+    position: relative; z-index: 1; margin-top: 30px; width: min(100%, 190px); padding: 18px 10px 12px; text-align: center;
+    background: var(--paper); border: 1px solid var(--line); border-radius: 4px 4px 12px 12px;
+    transform: rotate(-2.5deg); box-shadow: 0 6px 12px rgba(46, 29, 18, .12);
+}
+.bottle:nth-child(even) .tag { transform: rotate(2deg); }
+.tag::before { content: ''; position: absolute; left: 50%; top: -28px; width: 1px; height: 34px; background: var(--brass-text); }
+.tag::after { content: ''; position: absolute; left: calc(50% - 4px); top: 4px; width: 8px; height: 8px; border-radius: 50%; border: 1px solid var(--brass-text); background: var(--ivory); }
+.tag-brand { color: var(--brass-text); font-size: 11px; letter-spacing: .14em; }
+.tag h3 { font-family: var(--serif); font-weight: 400; font-size: 1.06rem; line-height: 1.15; color: var(--navy); margin: 3px 0 2px; }
+.tag-size { font-size: 13px; color: var(--muted); font-style: italic; }
+.tag-price { margin-top: 6px; font-family: var(--sans); line-height: 1.2; }
+.tag-price s { display: block; font-size: 12px; color: var(--muted); }
+.tag-price b { font-family: var(--serif); font-weight: 400; font-size: 1.35rem; color: var(--navy); }
+.tag-price b.sale { color: var(--sale); }
+.tag .add { margin-top: 8px; width: 100%; min-height: 44px; border: 1px solid var(--navy); border-radius: 3px; font-family: var(--sans); font-size: 13px; font-weight: 700; color: var(--navy); }
+.tag .add:hover { background: var(--navy); color: #fff; }
+.shelf-note { text-align: center; color: var(--muted); font-style: italic; font-size: 14px; margin-top: 16px; }
+.shelf-note a { color: var(--navy); font-weight: 700; font-style: normal; text-underline-offset: 3px; }
+
+/* ── Recortables: fórmulas de la botica en cupones troquelados ── */
+.coupons { list-style: none; display: grid; gap: 30px 22px; }
+.coupon { position: relative; display: flex; flex-direction: column; gap: 10px; padding: 26px 20px 20px; background: var(--paper); border: 2px dashed var(--ink); box-shadow: 6px 6px 0 rgba(20, 40, 75, .07); transform: rotate(-.6deg); }
+.coupon:nth-child(2) { transform: rotate(.7deg); }
+.coupon:nth-child(3) { transform: rotate(-.3deg); }
+.scissors { position: absolute; top: -17px; left: 20px; padding: 0 6px; background: var(--ivory); font-size: 24px; line-height: 1; color: var(--ink); }
+.coupon-n { color: var(--brass-text); }
+.coupon h3 { font-family: var(--serif); font-weight: 400; font-size: 1.7rem; line-height: 1.05; color: var(--navy); }
+.recipe { list-style: none; display: grid; gap: 4px; font-size: 15px; }
+.recipe li { display: flex; align-items: flex-end; }
+.recipe span { min-width: 0; }
+.recipe i { flex: 1; min-width: 16px; margin: 0 6px 6px; border-bottom: 2px dotted var(--line); }
+.recipe b { font-family: var(--sans); font-size: 14px; white-space: nowrap; font-variant-numeric: tabular-nums; }
+.how { font-style: italic; color: var(--muted); font-size: 14px; border-top: 1px solid var(--line); padding-top: 10px; }
+.coupon-foot { margin-top: auto; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 10px; padding-top: 12px; border-top: 3px double var(--ink); }
+.coupon-foot small { display: block; font-family: var(--sans); font-size: 11px; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; color: var(--brass-text); }
+.coupon-foot b { font-family: var(--serif); font-weight: 400; font-size: 1.7rem; line-height: 1; color: var(--navy); }
+.coupon-foot s { margin-left: 8px; font-size: 13px; color: var(--muted); }
+
+/* ── Cotizaciones del mostrador: la página de bolsa del diario ── */
+.market { background: var(--paper); border-top: 3px solid var(--ink); border-bottom: 3px solid var(--ink); padding: 14px 0 10px; }
+.market-sum { display: flex; flex-wrap: wrap; gap: 4px 18px; padding: 0 10px 12px; border-bottom: 1px solid var(--ink); font-family: var(--sans); font-size: 13px; font-weight: 600; }
+.market-sum b { font-family: var(--serif); font-weight: 400; font-size: 1.15rem; color: var(--navy); }
+.market-sum .down { color: var(--sale); }
+.quotes { width: 100%; border-collapse: collapse; font-size: 15px; }
+.quotes th, .quotes td { padding: 9px 10px; text-align: left; border-bottom: 1px dotted var(--line); vertical-align: middle; }
+.quotes thead th { font-family: var(--sans); font-size: 11px; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; color: var(--brass-text); border-bottom: 1px solid var(--ink); padding-top: 6px; padding-bottom: 6px; }
+.quotes thead button { display: inline-flex; align-items: center; gap: 4px; min-height: 36px; font: inherit; letter-spacing: inherit; text-transform: inherit; color: inherit; }
+.quotes thead button::after { content: '↕'; opacity: .45; }
+.quotes th[aria-sort="ascending"] button::after { content: '▲'; opacity: 1; }
+.quotes th[aria-sort="descending"] button::after { content: '▼'; opacity: 1; }
+.quotes thead button:hover { color: var(--sale); }
+.quotes tbody tr:nth-child(odd) { background: rgba(233, 207, 114, .08); }
+.quotes tbody th { font-weight: 400; }
+.q-name { display: block; font-family: var(--serif); font-size: 1.05rem; line-height: 1.15; color: var(--navy); }
+.q-brand { color: var(--muted); font-size: 12px; font-style: italic; }
+.quotes .num { text-align: right; font-variant-numeric: tabular-nums; white-space: nowrap; }
+.quotes td.num b { font-family: var(--sans); font-size: 15px; }
+.quotes .was { display: block; font-size: 12px; color: var(--muted); }
+.var { font-family: var(--sans); font-size: 13px; font-weight: 700; }
+.var.down { color: var(--sale); }
+.var.flat { color: var(--muted); }
+.pedir { min-height: 40px; padding: 0 12px; border: 1px solid var(--navy); border-radius: 3px; font-family: var(--sans); font-size: 13px; font-weight: 700; color: var(--navy); }
+.pedir:hover { background: var(--navy); color: #fff; }
+.col-list { display: none; }
+.market-foot { padding: 10px 10px 0; font-style: italic; font-size: 13px; color: var(--muted); }
+
+/* ── El consultorio: cartas de lectores ── */
+.letters { display: grid; gap: 22px; }
+.letter { position: relative; background: var(--paper); border: 1px solid var(--line); padding: 24px 22px 18px; box-shadow: 0 14px 26px rgba(20, 40, 75, .06); }
+.letter::before { content: '“'; position: absolute; top: -20px; left: 14px; font-family: var(--serif); font-size: 4.4rem; line-height: 1; color: var(--brass); }
+.letter .q { font-family: var(--serif); font-size: 1.3rem; line-height: 1.2; color: var(--navy); }
+.letter .from { font-style: italic; font-size: 13px; color: var(--muted); margin: 6px 0 12px; }
+.letter .a { font-size: 15px; border-top: 1px dotted var(--line); padding-top: 12px; }
+.letter .a b { font-family: var(--sans); font-size: 12px; letter-spacing: .12em; text-transform: uppercase; color: var(--sale); }
+.signature { text-align: center; margin-top: 16px; font-style: italic; color: var(--muted); font-size: 14px; }
+
+/* ── Crónica: tres fechas grabadas ── */
+.chronicle { display: grid; margin-top: 60px; border-top: 3px solid var(--ink); border-bottom: 1px solid var(--ink); }
+.year { padding: 22px 18px; }
+.year + .year { border-top: 1px solid var(--line); }
+.year b { display: block; font-family: var(--serif); font-weight: 400; font-size: 3rem; line-height: 1; color: var(--navy); }
+.year b::after { content: '✦'; font-size: 1rem; color: var(--brass); margin-left: 10px; vertical-align: middle; }
+.year p { margin-top: 8px; font-size: 15px; color: var(--muted); }
+
+/* ── Visitanos: tarjeta de visita y horario de época ── */
+.visit { display: grid; gap: 24px; align-items: start; }
+.card {
+    position: relative; padding: 28px 24px; background: var(--paper); border: 1px solid var(--line); text-align: center;
+    box-shadow: 8px 8px 0 rgba(20, 40, 75, .06); transform: rotate(-1deg);
+}
+.card::before { content: ''; position: absolute; inset: 8px; border: 1px solid var(--brass); pointer-events: none; }
+.card .logo { display: flex; justify-content: center; margin-bottom: 8px; }
+.card h3 { font-family: var(--serif); font-weight: 400; font-size: 1.8rem; color: var(--navy); line-height: 1.1; }
+.card p { font-size: 15px; }
+.card .tagline { font-style: italic; color: var(--muted); margin: 2px 0 12px; }
+.card a:not(.btn) { color: var(--navy); font-weight: 700; text-underline-offset: 3px; }
+.card .btn { margin-top: 14px; position: relative; }
+.timetable { background: var(--paper); border: 1px solid var(--ink); padding: 18px 20px; }
+.timetable h3 { font-family: var(--serif); font-weight: 400; font-size: 1.6rem; color: var(--navy); text-align: center; border-bottom: 3px double var(--ink); padding-bottom: 8px; margin-bottom: 6px; }
+.timetable table { width: 100%; border-collapse: collapse; font-size: 15px; }
+.timetable td { padding: 7px 4px; border-bottom: 1px dotted var(--line); }
+.timetable td:last-child { text-align: right; font-variant-numeric: tabular-nums; }
+.timetable tr.today td { font-weight: 700; color: var(--navy); }
+.timetable tr.today td:first-child::after { content: 'hoy'; margin-left: 8px; font-family: var(--sans); font-size: 11px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: #fff; background: var(--sale); padding: 1px 6px; border-radius: 2px; vertical-align: 1px; }
+.timetable .closed { color: var(--muted); font-style: italic; }
+.timetable .now { margin-top: 12px; }
+
+.colophon { margin-top: 60px; border-top: 3px solid var(--ink); padding: 18px 16px 40px; text-align: center; font-size: 13px; color: var(--muted); font-style: italic; }
+.colophon p + p { margin-top: 4px; }
+.foot-link { min-height: 44px; font-family: var(--sans); font-style: normal; font-weight: 700; color: var(--navy); text-decoration: underline; text-underline-offset: 3px; }
+
+@media (min-width: 640px) {
+    .almanac .date { display: inline; }
+    .np-top { grid-template-columns: 1fr auto 1fr; }
+    .np-top > .ears { display: flex; }
+    .ears-mobile { display: none; }
+    .ear { width: 190px; }
+    .lead-body { grid-template-columns: minmax(0, .9fr) minmax(0, 1.1fr); align-items: start; }
+    .letters { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+    .col-list { display: table-cell; }
+    .quotes .was { display: none; }
+    .chronicle { grid-template-columns: repeat(3, 1fr); }
+    .year + .year { border-top: 0; border-left: 1px solid var(--line); }
+}
+@media (min-width: 780px) {
+    .drawers { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; padding: 18px; }
+    .shelf-grid { grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 0 16px; }
+    .coupons { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+    .bottle::before { left: -16px; right: -16px; }
+    .visit { grid-template-columns: 1fr 1fr; }
+}
+@media (min-width: 960px) {
+    .front { grid-template-columns: minmax(0, 2.1fr) minmax(0, 1fr); gap: 0; }
+    .lead { padding-right: 32px; border-right: 1px solid var(--ink); }
+    .side { padding-left: 28px; }
+}
+@media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    *, *::before, *::after { transition: none !important; }
+}

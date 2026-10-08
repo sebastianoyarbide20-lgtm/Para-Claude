@@ -191,6 +191,30 @@
         .note { margin-top: 18px; color: rgba(255,255,255,.75); font-size: 14px; }
         .note a { color: var(--yellow); font-weight: 700; text-underline-offset: 3px; }
 
+        /* ── Diccionario de la noche: ingredientes en tubos de neón ── */
+        .dict { display: grid; gap: 18px; margin-top: 24px; }
+        .dict-tabs { display: flex; flex-wrap: wrap; gap: 8px; }
+        .dict-tab { --g: var(--pink); min-height: 44px; padding: 0 16px; border-radius: 999px; border: 2px solid var(--g); color: #fff; font-family: var(--display); font-weight: 700; font-size: 13px; letter-spacing: .01em;
+            box-shadow: 0 0 6px color-mix(in srgb, var(--g) 55%, transparent), inset 0 0 6px color-mix(in srgb, var(--g) 35%, transparent); transition: background .2s ease, color .2s ease, box-shadow .2s ease; }
+        .dict-tab:hover { background: color-mix(in srgb, var(--g) 18%, transparent); }
+        .dict-tab[aria-selected="true"] { background: var(--g); color: var(--night); box-shadow: 0 0 18px var(--g), 0 0 40px color-mix(in srgb, var(--g) 45%, transparent); }
+        .dict-panel { --g: var(--pink); display: grid; gap: 18px; padding: 22px 18px; border-radius: 28px; background: rgba(255,255,255,.05); border: 1px solid color-mix(in srgb, var(--g) 50%, transparent); box-shadow: inset 0 0 40px color-mix(in srgb, var(--g) 12%, transparent); }
+        .dict-panel:focus-visible { outline-offset: 4px; }
+        .dict-word { font-family: var(--display); font-weight: 900; font-size: clamp(2rem, 8vw, 3.4rem); line-height: 1; letter-spacing: -.03em; color: #fff; text-shadow: 0 0 4px #fff, 0 0 14px var(--g), 0 0 34px var(--g); overflow-wrap: anywhere; }
+        .dict-what { margin-top: 12px; font-size: 16px; color: rgba(255,255,255,.88); max-width: 44ch; }
+        .dict-when { display: inline-flex; align-items: center; gap: 8px; margin-top: 14px; padding: 6px 12px; border-radius: 999px; background: rgba(255,255,255,.08); font-family: var(--mono); font-size: 12px; font-weight: 700; color: var(--g); }
+        .dict-when::before { content: '◐'; }
+        .dict-found { font-family: var(--mono); font-size: 12px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: rgba(255,255,255,.7); margin-bottom: 10px; }
+        .dict-list { list-style: none; display: grid; gap: 10px; }
+        .dict-item { display: grid; grid-template-columns: 60px minmax(0, 1fr) auto; gap: 12px; align-items: center; padding: 8px 10px 8px 8px; border-radius: 18px; background: var(--paper); color: var(--plum); }
+        .dict-item .ph { width: 60px; height: 60px; border-radius: 14px; background: var(--pink-soft); display: grid; place-items: center; }
+        .dict-item .ph img { width: 82%; height: 82%; object-fit: contain; mix-blend-mode: multiply; }
+        .dict-item .brand { font-family: var(--mono); font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: .06em; color: var(--magenta); }
+        .dict-item b { display: block; font-size: 14px; line-height: 1.25; }
+        .dict-item .price { font-size: 15px; }
+        .dict-item .add { width: 42px; height: 42px; font-size: 20px; }
+        .dict-item .buy { display: flex; align-items: center; gap: 10px; }
+
         /* ── La noche, paso a paso ── */
         .night { margin-top: 72px; padding: 28px 20px; border-radius: 32px; background: rgba(255,255,255,.05); border: 1px solid rgba(255,255,255,.12); }
         .timeline { list-style: none; display: grid; gap: 18px; margin-top: 22px; position: relative; }
@@ -203,6 +227,23 @@
         .timeline time { font-family: var(--mono); font-weight: 700; color: var(--pink); font-size: 14px; }
         .timeline b { display: block; font-family: var(--display); font-size: 18px; margin: 2px 0; }
         .timeline span { color: rgba(255,255,255,.78); font-size: 14px; }
+
+        /* El ritual con temporizador: un anillo de neón que se llena */
+        .ritual { display: grid; gap: 26px; margin-top: 22px; }
+        .ritual .timeline { margin-top: 0; }
+        .timeline li { padding: 10px; border-radius: 20px; border: 1px solid transparent; transition: border-color .3s ease, background .3s ease; }
+        .timeline li.is-now { border-color: var(--pink); background: rgba(255,95,162,.1); box-shadow: 0 0 24px rgba(255,95,162,.2); }
+        .timeline li.is-done b::after { content: ' ✓'; color: #7CF5B4; }
+        .timeline li.is-done span:not(.phase) { opacity: .6; }
+        .timer { order: -1; display: grid; justify-items: center; gap: 16px; text-align: center; }
+        .ring { --p: 0; position: relative; width: 210px; aspect-ratio: 1; border-radius: 50%; display: grid; place-content: center; gap: 4px;
+            background: conic-gradient(var(--pink) calc(var(--p) * 1%), rgba(255,255,255,.1) 0); box-shadow: 0 0 30px rgba(255,95,162,.35); }
+        .ring::before { content: ''; position: absolute; inset: 12px; border-radius: 50%; background: radial-gradient(circle at 50% 35%, #2B1240, var(--night)); }
+        .ring > * { position: relative; }
+        .ring-time { font-family: var(--mono); font-weight: 700; font-size: 46px; line-height: 1; color: #fff; text-shadow: 0 0 14px rgba(255,95,162,.8); font-variant-numeric: tabular-nums; }
+        .ring-step { font-family: var(--display); font-weight: 700; font-size: 14px; color: var(--yellow); max-width: 150px; }
+        .timer-ctrl { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; }
+        .timer-tip { font-size: 14px; color: rgba(255,255,255,.78); max-width: 34ch; min-height: 3em; }
 
         /* ── Cartel de neón ── */
         .sign { margin: 72px 0 40px; text-align: center; }
@@ -234,13 +275,15 @@
             .tcard-art, .pola-art { aspect-ratio: 4 / 3; }
             .collage { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 30px 22px; }
             .night { padding: 40px; }
-            .timeline { grid-template-columns: repeat(3, 1fr); }
-            .timeline::before { content: ''; position: absolute; left: 56px; right: 0; top: 28px; height: 1px; background: linear-gradient(90deg, var(--pink), transparent); }
-            .timeline li { grid-template-columns: 56px 1fr; }
+            .ritual { grid-template-columns: minmax(0, 1.6fr) minmax(0, 1fr); align-items: center; gap: 40px; }
+            .timer { order: 0; }
+            .dict { grid-template-columns: 1fr; }
+            .dict-panel { grid-template-columns: minmax(0, 1fr) minmax(0, 1.1fr); padding: 32px; gap: 32px; align-items: start; }
         }
         @media (prefers-reduced-motion: reduce) {
             html { scroll-behavior: auto; }
             .marquee div, .holo, .tcard:hover, .tcard:focus-within, .clock::before, .flick { animation: none !important; }
+            .timeline li, .dict-tab { transition: none; }
             .holo, .tcard, .pola { transition: none; }
         }
     </style>
@@ -335,14 +378,37 @@
             <p class="note">Precios del catálogo de FarmaGlass · <a href="farmacia_v2.html#catalogo">Ver todo el catálogo</a></p>
         </section>
 
-        <section class="night" aria-labelledby="night-title">
+        <section class="sec" id="ingredientes" aria-labelledby="ing-title">
+            <p class="kicker">Diccionario de la noche</p>
+            <h2 class="h2" id="ing-title">¿Qué lleva tu skincare?</h2>
+            <p class="lead">Elegí un ingrediente: te contamos qué hace y en qué productos de Plaza lo encontrás.</p>
+            <div class="dict">
+                <div class="dict-tabs" role="tablist" aria-label="Ingredientes" id="dict-tabs"></div>
+                <div class="dict-panel" role="tabpanel" id="dict-panel" tabindex="0"></div>
+            </div>
+            <p class="note">Información orientativa sobre ingredientes cosméticos. Si tu piel es sensible, probá cada producto primero en una zona chica.</p>
+        </section>
+
+        <section class="night" id="ritual" aria-labelledby="night-title">
             <p class="kicker">La noche, paso a paso</p>
             <h2 class="h2" id="night-title">Tu rutina de noche en 3 pasos</h2>
-            <ol class="timeline">
-                <li><span class="phase p1" aria-hidden="true"></span><div><time>22:00</time><b>Limpiá</b><span>Desmaquillate y limpiá la cara con agua micelar o un gel suave.</span></div></li>
-                <li><span class="phase p2" aria-hidden="true"></span><div><time>22:05</time><b>Tratá</b><span>Unas gotas de sérum y el contorno de ojos con toques suaves.</span></div></li>
-                <li><span class="phase" aria-hidden="true"></span><div><time>22:10</time><b>Hidratá</b><span>Una crema liviana o la mascarilla Lumiglow una vez por semana.</span></div></li>
-            </ol>
+            <div class="ritual">
+                <ol class="timeline" id="timeline">
+                    <li><span class="phase p1" aria-hidden="true"></span><div><time>22:00</time><b>Limpiá</b><span>Desmaquillate y limpiá la cara con agua micelar o un gel suave.</span></div></li>
+                    <li><span class="phase p2" aria-hidden="true"></span><div><time>22:05</time><b>Tratá</b><span>Unas gotas de sérum y el contorno de ojos con toques suaves.</span></div></li>
+                    <li><span class="phase" aria-hidden="true"></span><div><time>22:10</time><b>Hidratá</b><span>Una crema liviana o la mascarilla Lumiglow una vez por semana.</span></div></li>
+                </ol>
+                <div class="timer">
+                    <div class="ring" id="ring" aria-hidden="true"><span class="ring-time" id="ring-time">2:00</span><span class="ring-step" id="ring-step">Ritual de 2 minutos</span></div>
+                    <p class="timer-tip" id="ritual-tip">Dejá el celular en el lavabo y seguí el anillo: te avisa cuándo pasar al paso siguiente.</p>
+                    <div class="timer-ctrl">
+                        <button class="routine-add" type="button" id="ritual-go">Empezar el ritual</button>
+                        <button class="pill" type="button" id="ritual-next" hidden>Siguiente paso</button>
+                        <button class="pill" type="button" id="ritual-reset" hidden>Reiniciar</button>
+                    </div>
+                    <p class="sr" id="ritual-live" aria-live="polite"></p>
+                </div>
+            </div>
         </section>
 
         <section class="sign" aria-label="Datos de la farmacia">
@@ -473,10 +539,92 @@
             </li>`;
         }).join('');
 
+        // Diccionario de la noche: cada ingrediente encuentra los productos de Plaza que lo llevan
+        const INGREDIENTS = [
+            { name: 'Niacinamida', glow: '#5CF2E6', re: /niacinamida/i, when: 'De día y de noche', what: 'Es vitamina B3. Ayuda a regular el sebo, a disimular los poros y a emparejar el tono.' },
+            { name: 'Ácido hialurónico', glow: '#B79CFF', re: /hialur/i, when: 'De día y de noche', what: 'Retiene agua en la superficie de la piel: la hidrata y la deja más jugosa.' },
+            { name: 'Ceramidas', glow: '#FFD23F', re: /ceramida/i, when: 'Todos los días', what: 'Forman parte de la barrera natural de la piel. Ayudan a que no pierda agua ni se reseque.' },
+            { name: 'Vitamina C', glow: '#FF9E6B', re: /vitamina c\b/i, when: 'Mejor de día, con protector solar', what: 'Antioxidante que le da luminosidad a la piel y ayuda a atenuar las manchas.' },
+            { name: 'Centella asiática', glow: '#7CF5B4', re: /centella/i, when: 'Cuando la piel lo pida', what: 'Una planta de efecto calmante: alivia la piel irritada o con granitos.' },
+            { name: 'Agua termal', glow: '#8FD3FF', re: /termal|volc[áa]nica/i, when: 'A cualquier hora', what: 'Agua rica en minerales que calma y refresca la piel sensible.' },
+            { name: 'Coenzima Q10', glow: '#FF5FA2', re: /q10/i, when: 'De noche', what: 'Antioxidante que acompaña el cuidado de las líneas de expresión.' },
+        ].map(i => ({ ...i, items: [...all.values()].filter(p => i.re.test(`${label(p)} ${p.desc}`)) })).filter(i => i.items.length);
+        const dictTabs = document.getElementById('dict-tabs'), dictPanel = document.getElementById('dict-panel');
+        let dictAt = 0;
+        function paintDict(focus) {
+            const ing = INGREDIENTS[dictAt];
+            dictTabs.innerHTML = INGREDIENTS.map((x, i) => `<button class="dict-tab" type="button" role="tab" id="ing-${i}" aria-controls="dict-panel" aria-selected="${i === dictAt}" tabindex="${i === dictAt ? 0 : -1}" style="--g:${x.glow}">${FG.esc(x.name)}</button>`).join('');
+            dictPanel.style.setProperty('--g', ing.glow);
+            dictPanel.setAttribute('aria-labelledby', `ing-${dictAt}`);
+            dictPanel.innerHTML = `<div>
+                    <p class="dict-word">${FG.esc(ing.name)}</p>
+                    <p class="dict-what">${FG.esc(ing.what)}</p>
+                    <p class="dict-when">${FG.esc(ing.when)}</p>
+                </div>
+                <div>
+                    <p class="dict-found">Lo encontrás en ${ing.items.length} ${ing.items.length === 1 ? 'producto' : 'productos'}</p>
+                    <ul class="dict-list">${ing.items.map(p => `<li class="dict-item">
+                        <span class="ph">${FG.photo(p, 60)}</span>
+                        <div><span class="brand">${FG.esc(p.brand)}</span><b>${FG.esc(nm(p))}</b></div>
+                        <div class="buy">${priceHTML(p)}<button class="add" type="button" data-add="${p.id}" aria-label="Agregar ${FG.esc(label(p))} al carrito">+</button></div>
+                    </li>`).join('')}</ul>
+                </div>`;
+            if (focus) document.getElementById(`ing-${dictAt}`).focus();
+        }
+        dictTabs.addEventListener('click', e => { const t = e.target.closest('[role="tab"]'); if (t) { dictAt = Number(t.id.slice(4)); paintDict(true); } });
+        dictTabs.addEventListener('keydown', e => {
+            const n = INGREDIENTS.length, keys = { ArrowRight: 1, ArrowDown: 1, ArrowLeft: -1, ArrowUp: -1 };
+            if (e.key in keys) dictAt = (dictAt + keys[e.key] + n) % n; else if (e.key === 'Home') dictAt = 0; else if (e.key === 'End') dictAt = n - 1; else return;
+            e.preventDefault();
+            paintDict(true);
+        });
+        document.getElementById('ingredientes').hidden = !INGREDIENTS.length;
+        if (INGREDIENTS.length) paintDict(false);
+
+        // El ritual de noche con temporizador: 1 minuto para limpiar, 30 segundos para tratar y para hidratar
+        const RITUAL = [
+            { step: 'Limpiá', secs: 60, tip: 'Masajeá el limpiador con movimientos circulares y enjuagá con agua tibia.' },
+            { step: 'Tratá', secs: 30, tip: 'Dos o tres gotas de sérum, a toques. El contorno de ojos, con el dedo anular.' },
+            { step: 'Hidratá', secs: 30, tip: 'Una capa fina de crema, de adentro hacia afuera, y a dormir.' },
+        ];
+        const TOTAL = RITUAL.reduce((t, r) => t + r.secs, 0);
+        const el = id => document.getElementById(id);
+        const steps = [...el('timeline').children];
+        let rAt = -1, rLeft = 0, rTimer = null;
+        const mmss = n => `${Math.floor(n / 60)}:${pad(n % 60)}`;
+        function paintRitual() {
+            const done = rAt >= RITUAL.length;
+            const elapsed = rAt < 0 ? 0 : done ? TOTAL : RITUAL.slice(0, rAt).reduce((t, r) => t + r.secs, 0) + RITUAL[rAt].secs - rLeft;
+            el('ring').style.setProperty('--p', Math.round(elapsed / TOTAL * 100));
+            el('ring-time').textContent = rAt < 0 ? mmss(TOTAL) : done ? '✦' : mmss(rLeft);
+            el('ring-step').textContent = rAt < 0 ? 'Ritual de 2 minutos' : done ? 'Buenas noches' : `Paso ${rAt + 1} · ${RITUAL[rAt].step}`;
+            el('ritual-tip').textContent = rAt < 0 ? 'Dejá el celular en el lavabo y seguí el anillo: te avisa cuándo pasar al paso siguiente.' : done ? 'Ritual terminado. Tu piel ya está lista para la noche.' : RITUAL[rAt].tip;
+            steps.forEach((li, i) => { li.classList.toggle('is-now', i === rAt); li.classList.toggle('is-done', i < rAt); });
+            el('ritual-go').textContent = done ? 'Repetir el ritual' : rAt < 0 ? 'Empezar el ritual' : rTimer ? 'Pausar' : 'Seguir';
+            el('ritual-next').hidden = rAt < 0 || done;
+            el('ritual-reset').hidden = rAt < 0;
+        }
+        const stopRitual = () => { clearInterval(rTimer); rTimer = null; };
+        function goStep(i) {
+            rAt = i;
+            if (rAt >= RITUAL.length) { stopRitual(); el('ritual-live').textContent = 'Ritual terminado. Buenas noches.'; }
+            else { rLeft = RITUAL[rAt].secs; el('ritual-live').textContent = `Paso ${rAt + 1}: ${RITUAL[rAt].step}. ${RITUAL[rAt].tip}`; }
+            paintRitual();
+        }
+        el('ritual-go').addEventListener('click', () => {
+            if (rTimer) { stopRitual(); paintRitual(); return; }
+            if (rAt < 0 || rAt >= RITUAL.length) goStep(0);
+            rTimer = setInterval(() => { rLeft--; if (rLeft <= 0) goStep(rAt + 1); else paintRitual(); }, 1000);
+            paintRitual();
+        });
+        el('ritual-next').addEventListener('click', () => goStep(rAt + 1));
+        el('ritual-reset').addEventListener('click', () => { stopRitual(); rAt = -1; el('ritual-live').textContent = 'Ritual reiniciado.'; paintRitual(); });
+        paintRitual();
+
         document.getElementById('info').innerHTML = `<span>${FG.status('plaza').text}</span>
             <a href="${FG.mapsUrl(s)}" target="_blank" rel="noopener">${FG.esc(s.street)} · Cómo llegar ↗</a>
             <a href="${FG.telUrl(s)}">Llamar al ${s.phone}</a>
-            <span>★ ${String(s.rating).replace('.', ',')} · Retiro en 30 min</span>`;
+            <span>Retiro en 30 min</span>`;
     </script>
 </body>
 </html>

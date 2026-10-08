@@ -50,8 +50,13 @@ const db = {
 
     // ── PRODUCTOS QUE CADA PÁGINA REGISTRA ──
     const REG = new Map();
-    const snap = i => ({ id: Number(i.id), name: String(i.name), size: i.size || '', price: Number(i.price), list: Number(i.list || i.price), img: i.img || '', store: i.store || '',
-        variantId: i.variantId || null, stock: i.stock ?? null, available: i.available !== false, url: i.url || '' });
+    // Las páginas registran cada producto por su número (el del SKU FG-<n>); la variante y el stock salen de la tienda
+    const SHOP_ITEMS = new Map((SHOP.products || []).map(p => [p.id, p]));
+    const snap = i => {
+        const sp = SHOP_ITEMS.get(Number(i.id)) || {};
+        return { id: Number(i.id), name: String(i.name), size: i.size || '', price: Number(i.price), list: Number(i.list || i.price), img: i.img || '', store: i.store || '',
+            variantId: i.variantId || sp.variantId || null, stock: i.stock ?? sp.stock ?? null, available: (i.available ?? sp.available) !== false, url: i.url || sp.url || '' };
+    };
     const maxQty = i => Math.max(0, Math.min(MAX_QTY, i.stock == null ? MAX_QTY : i.stock));
     function register(items) { items.forEach(i => REG.set(Number(i.id), snap(i))); if (shopCart) fromShopify(shopCart); paint(); }
 

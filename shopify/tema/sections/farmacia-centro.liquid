@@ -1,0 +1,195 @@
+{%- comment -%}
+  Farmacia del Centro · Generado por shopify/construir-farmacias.js a partir de farmacia-centro.html: no editar a mano.
+  Los productos salen de la tienda: snippet farmaglass-datos → farmaglass-productos.js → farmacias-red.js.
+{%- endcomment -%}
+<div class="almanac"><div class="wrap">
+    <a href="{{ routes.root_url }}#farmacias">← FarmaGlass</a>
+    <span class="date" id="date"></span>
+    <button type="button" data-cart-open>Mi pedido <b data-cart-count hidden>0</b></button>
+</div></div>
+
+<header class="nameplate">
+    <div class="wrap">
+        <div class="np-top">
+            <div class="ears"><p class="ear" data-ear="left"></p></div>
+            <div>
+                <div class="np-seal" id="logo"></div>
+                <p class="np-kicker smallcaps"><span>Botica tradicional</span><span>Fundada en 1962</span></p>
+                <h1 class="np-title">Farmacia del Centro</h1>
+                <p class="np-motto">Atendida por farmacéuticos, en la misma esquina de Callao</p>
+            </div>
+            <div class="ears"><p class="ear" data-ear="right"></p></div>
+        </div>
+        <div class="ears-mobile"><p class="ear" data-ear="left"></p><p class="ear" data-ear="right"></p></div>
+        <div class="rules"></div>
+        <nav class="np-nav" aria-label="Secciones de la gaceta">
+            <a href="#portada">Portada</a><a href="#cajonera">La cajonera</a><a href="#vitrina">La vitrina</a><a href="#recortables">Recortables</a><a href="#cotizaciones">Cotizaciones</a><a href="#consultorio">Consultorio</a><a href="#visitanos">Visitanos</a>
+        </nav>
+    </div>
+</header>
+
+<main class="wrap">
+    <section class="front" id="portada" aria-labelledby="lead-title">
+        <article class="lead">
+            <p class="kicker smallcaps">El producto de la semana</p>
+            <h2 id="lead-title">Agua de rosas, <i>el tónico de siempre</i></h2>
+            <p class="byline">Por el equipo de farmacéuticos de la botica · Recoleta</p>
+            <div class="lead-body">
+                <figure class="plate">
+                    <div class="plate-frame"><img id="lead-img" alt="" width="300" height="300"></div>
+                    <figcaption id="lead-cap"></figcaption>
+                    <div class="stamp" id="lead-stamp" aria-hidden="true"></div>
+                </figure>
+                <div class="lead-text">
+                    <p class="dropcap">El agua de rosas se usa como tónico desde mucho antes de que existieran las boticas modernas, y en la nuestra nunca faltó en el mostrador. Refresca, deja la piel suave y es un gesto simple para terminar la limpieza de la cara.</p>
+                    <p>Pasala con un algodón después de limpiar el rostro, o guardala en la heladera y aplicala en bruma los días de calor. Si tu piel es muy sensible, probala primero en una zona chica.</p>
+                    <p class="lead-price" id="lead-price"></p>
+                    <div class="lead-buy">
+                        <button class="btn" type="button" id="lead-add">Agregar a mi pedido</button>
+                        <a class="btn ghost" href="#cajonera">Abrir la cajonera</a>
+                    </div>
+                </div>
+            </div>
+        </article>
+        <aside class="side" aria-label="Columna lateral">
+            <section class="notice">
+                <h3>Aviso al público</h3>
+                <p><span class="now" id="notice-status"></span></p>
+                <p>Retirá tu pedido en el mostrador en 30 minutos o recibilo en tu casa en 2 horas.</p>
+            </section>
+            <section class="contents">
+                <h3>En esta edición</h3>
+                <ol>
+                    <li><a href="#cajonera">La cajonera <span>pág. 2</span></a></li>
+                    <li><a href="#vitrina">La vitrina <span>pág. 3</span></a></li>
+                    <li><a href="#recortables">Fórmulas para recortar <span>pág. 4</span></a></li>
+                    <li><a href="#cotizaciones">Cotizaciones del mostrador <span>pág. 5</span></a></li>
+                    <li><a href="#consultorio">El consultorio <span>pág. 6</span></a></li>
+                    <li><a href="#visitanos">Horarios y visitas <span>pág. 7</span></a></li>
+                </ol>
+            </section>
+            <blockquote class="pull">«Una botica se elige por la confianza, y la confianza se gana mostrador a mostrador.»<cite>Don Ernesto, fundador · 1962</cite></blockquote>
+        </aside>
+    </section>
+
+    <section id="cajonera" aria-labelledby="caj-title">
+        <header class="sec-head">
+            <p class="sec-num smallcaps">Página 2</p>
+            <h2 id="caj-title">La cajonera</h2>
+            <p>Los clásicos de botica, cada uno en su cajón, como los guardamos desde 1962.</p>
+        </header>
+        <ul class="drawers" id="drawers"></ul>
+    </section>
+
+    <span id="marcas" aria-hidden="true"></span>
+    <section id="vitrina" aria-labelledby="vitrina-title">
+        <header class="sec-head">
+            <p class="sec-num smallcaps">Página 3</p>
+            <h2 id="vitrina-title">La vitrina</h2>
+            <p>Dermocosmética, cuidado diario y botiquín de las marcas que recomendamos en el mostrador.</p>
+        </header>
+        <div class="showcase-frame"><div class="glass"><ul class="shelf-grid" id="shelf"></ul></div></div>
+        <p class="shelf-note">Precios del catálogo de FarmaGlass · <a href="{{ routes.root_url }}#catalogo">Ver todo el catálogo</a></p>
+    </section>
+
+    <section id="recortables" aria-labelledby="rec-title">
+        <header class="sec-head">
+            <p class="sec-num smallcaps">Página 4</p>
+            <h2 id="rec-title">Fórmulas para recortar</h2>
+            <p>Las combinaciones que más recomendamos en el mostrador. Recortá la que necesites y te la preparamos junta.</p>
+        </header>
+        <ul class="coupons" id="coupons"></ul>
+        <p class="signature">Sugerencias de uso orientativas. Ante cualquier duda, consultá a tu farmacéutico.</p>
+    </section>
+
+    <section id="cotizaciones" aria-labelledby="quote-title">
+        <header class="sec-head">
+            <p class="sec-num smallcaps">Página 5</p>
+            <h2 id="quote-title">Cotizaciones del mostrador</h2>
+            <p>Cómo cierran hoy los precios de la botica frente a su precio de lista. Tocá una columna para ordenar.</p>
+        </header>
+        <div class="market">
+            <p class="market-sum" id="market-sum"></p>
+            <table class="quotes">
+                <caption class="sr">Precios de hoy de la Farmacia del Centro, comparados con el precio de lista</caption>
+                <thead><tr>
+                    <th scope="col" aria-sort="none"><button type="button" data-sort="name">Producto</button></th>
+                    <th scope="col" class="num col-list">Anterior</th>
+                    <th scope="col" class="num" aria-sort="none"><button type="button" data-sort="price">Hoy</button></th>
+                    <th scope="col" class="num" aria-sort="descending"><button type="button" data-sort="off">Var.</button></th>
+                    <th scope="col"><span class="sr">Pedir</span></th>
+                </tr></thead>
+                <tbody id="quotes"></tbody>
+            </table>
+            <p class="market-foot" id="market-foot"></p>
+        </div>
+    </section>
+
+    <section id="consultorio" aria-labelledby="cons-title">
+        <header class="sec-head">
+            <p class="sec-num smallcaps">Página 6</p>
+            <h2 id="cons-title">El consultorio</h2>
+            <p>Preguntas de los vecinos, respondidas en el mostrador.</p>
+        </header>
+        <div class="letters">
+            <article class="letter">
+                <p class="q">¿Vaselina sólida o líquida? Nunca sé cuál llevar.</p>
+                <p class="from">— Marta, de Barrio Norte</p>
+                <p class="a"><b>Responde la botica.</b> La sólida es más densa y protege labios, codos y talones resecos. La líquida se extiende mejor: va bien para masajes o para hidratar el cuerpo después de la ducha.</p>
+            </article>
+            <article class="letter">
+                <p class="q">¿El agua de rosas sirve como tónico?</p>
+                <p class="from">— Julián, de Recoleta</p>
+                <p class="a"><b>Responde la botica.</b> Sí. Después de limpiar la cara, pasala con un algodón o aplicala en bruma. Refresca y deja la piel suave. Si tu piel es muy sensible, probala antes en una zona chica.</p>
+            </article>
+            <article class="letter">
+                <p class="q">¿Para qué sirve el talco en los pies?</p>
+                <p class="from">— Elena, de Retiro</p>
+                <p class="a"><b>Responde la botica.</b> Absorbe la humedad y ayuda a mantener los pies secos y frescos, sobre todo con calzado cerrado. Aplicalo con los pies limpios y bien secos.</p>
+            </article>
+        </div>
+        <p class="signature">Ante cualquier duda, consultá a tu médico o farmacéutico.</p>
+    </section>
+
+    <section class="chronicle" aria-label="Nuestra historia">
+        <div class="year"><b>1962</b><p>Don Ernesto abre la botica en la esquina de Callao, con un mostrador de roble que todavía usamos.</p></div>
+        <div class="year"><b>1988</b><p>Sumamos la cajonera de clásicos: caléndula, agua de rosas, glicerina y vaselina, siempre a mano.</p></div>
+        <div class="year"><b>2026</b><p>La tercera generación de farmacéuticos te atiende en el local y por FarmaGlass.</p></div>
+    </section>
+
+    <section id="visitanos" aria-labelledby="visit-title">
+        <header class="sec-head">
+            <p class="sec-num smallcaps">Página 7</p>
+            <h2 id="visit-title">Visitanos</h2>
+            <p>Te esperamos en el mismo mostrador de siempre.</p>
+        </header>
+        <div class="visit">
+            <div class="card" id="visit-card"></div>
+            <div class="timetable">
+                <h3>Horario de atención</h3>
+                <table><caption class="sr">Horario de atención de la semana</caption><tbody id="week"></tbody></table>
+                <p class="now" id="week-status"></p>
+            </div>
+        </div>
+    </section>
+</main>
+
+<footer class="colophon">
+    <p id="colophon"></p>
+    <p>Farmacia del Centro forma parte de la red FarmaGlass · <button class="foot-link" type="button" data-account-open="orders">Mis pedidos</button></p>
+</footer>
+
+{% render 'farmaglass-datos' %}
+<script src="{{ 'farmaglass-productos.js' | asset_url }}" defer></script>
+<script src="{{ 'fg-shop.js' | asset_url }}" defer></script>
+<script src="{{ 'farmacias-red.js' | asset_url }}" defer></script>
+<script src="{{ 'farmacia-centro.js' | asset_url }}" defer></script>
+
+{% schema %}
+{
+  "name": "Farmacia del Centro",
+  "tag": "div",
+  "class": "fg-farmacia",
+  "settings": []
+}
+{% endschema %}

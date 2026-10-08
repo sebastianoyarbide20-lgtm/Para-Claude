@@ -137,6 +137,66 @@
         .bag-go:hover { background: var(--terra-dk); }
         .bag-go:disabled { background: #C9C2B3; cursor: default; }
 
+        /* ── Las cuatro estaciones del parque: la escena cambia con la estación ── */
+        .season-pick { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 8px; }
+        .season-pick button { display: grid; justify-items: center; gap: 2px; padding: 10px 4px 8px; border-radius: 22px; background: #fff; border: 3px solid transparent; font-family: var(--display); font-weight: 600; font-size: 14px; color: var(--deep); box-shadow: 0 6px 16px rgba(46,51,38,.06); transition: transform .2s ease, border-color .2s ease; }
+        .season-pick button:hover { transform: translateY(-2px); }
+        .season-pick button[aria-selected="true"] { border-color: var(--terra); background: #FFF4EC; }
+        .season-pick .ico { font-size: 26px; line-height: 1; }
+        .season-pick .now-tag { font-family: var(--hand); font-size: 18px; line-height: 1; color: var(--terra); }
+        .season-card { display: grid; margin-top: 14px; border-radius: 36px; overflow: hidden; background: #fff; box-shadow: 0 10px 30px rgba(46,51,38,.08); }
+        .season-art { display: block; width: 100%; height: auto; }
+        .season-art * { transition: fill .6s ease, opacity .6s ease, transform .6s ease; }
+        .s-sky { fill: #D5ECF2; } .s-sun { fill: #F6C760; } .s-rays { opacity: 0; } .s-cloud { fill: #fff; opacity: .9; }
+        .s-hill { fill: #A9C98E; } .s-hill2 { fill: #8DB572; } .s-crown { fill: #6E9A57; } .s-crown2 { fill: #7BA864; }
+        .s-flower, .s-leaf, .s-branch, .s-drop { opacity: 0; }
+        [data-season="primavera"] .s-flower { opacity: 1; }
+        [data-season="verano"] .s-sky { fill: #BFE5F7; } [data-season="verano"] .s-rays { opacity: 1; } [data-season="verano"] .s-cloud { opacity: 0; }
+        [data-season="verano"] .s-crown { fill: #4F8540; } [data-season="verano"] .s-crown2 { fill: #5E9A4B; } [data-season="verano"] .s-hill { fill: #9CC27B; }
+        [data-season="otono"] .s-sky { fill: #F4E3CF; } [data-season="otono"] .s-sun { fill: #F2B35E; } [data-season="otono"] .s-crown { fill: #D8843F; } [data-season="otono"] .s-crown2 { fill: #C2652B; }
+        [data-season="otono"] .s-hill { fill: #C9C08A; } [data-season="otono"] .s-hill2 { fill: #B3A86E; } [data-season="otono"] .s-leaf { opacity: 1; }
+        [data-season="invierno"] .s-sky { fill: #DCE3E8; } [data-season="invierno"] .s-sun { fill: #E9E3CF; } [data-season="invierno"] .s-crown, [data-season="invierno"] .s-crown2 { opacity: 0; }
+        [data-season="invierno"] .s-branch { opacity: 1; } [data-season="invierno"] .s-drop { opacity: .8; } [data-season="invierno"] .s-cloud { fill: #C5CDD3; }
+        [data-season="invierno"] .s-hill { fill: #A3B79A; } [data-season="invierno"] .s-hill2 { fill: #8FA587; }
+        .season-text { padding: 22px 20px 24px; }
+        .season-months { font-size: 24px; color: var(--terra); line-height: 1; }
+        .season-text h3 { font-size: 1.6rem; color: var(--deep); margin: 4px 0 10px; }
+        .season-tips { list-style: none; display: grid; gap: 8px; }
+        .season-tips li { position: relative; padding-left: 28px; color: var(--muted); font-size: 15px; }
+        .season-tips li::before { content: '✿'; position: absolute; left: 0; top: -1px; color: var(--sage); font-size: 18px; }
+        .season-items { list-style: none; display: grid; gap: 8px; margin: 16px 0; }
+        .season-item { display: grid; grid-template-columns: 52px minmax(0, 1fr) auto; gap: 10px; align-items: center; padding: 6px 12px 6px 6px; border-radius: 18px; background: var(--cream); }
+        .season-item .ph { width: 52px; height: 52px; border-radius: 14px; background: #fff; display: grid; place-items: center; }
+        .season-item .ph img { width: 82%; height: 82%; object-fit: contain; mix-blend-mode: multiply; }
+        .season-item b { display: block; font-family: var(--display); font-size: 15px; color: var(--deep); line-height: 1.2; }
+        .season-item small { color: var(--muted); font-size: 12px; }
+        .season-item .p { font-weight: 700; font-size: 14px; white-space: nowrap; }
+        .season-go { width: 100%; min-height: 52px; border-radius: 999px; background: var(--terra); color: #fff; font-family: var(--display); font-weight: 700; font-size: 17px; }
+        .season-go:hover { background: var(--terra-dk); }
+
+        /* ── ¿Cuánto te duran las toallitas? ── */
+        .wipes { display: grid; gap: 18px; }
+        .wipes-form { background: #fff; border-radius: 32px; padding: 22px 20px; box-shadow: 0 10px 30px rgba(46,51,38,.07); }
+        .wipes-form label { display: flex; align-items: baseline; justify-content: space-between; gap: 10px; font-weight: 600; font-size: 15px; color: var(--deep); margin-top: 14px; }
+        .wipes-form label:first-child { margin-top: 0; }
+        .wipes-form output { font-family: var(--display); font-weight: 700; font-size: 1.6rem; color: var(--terra); line-height: 1; }
+        .wipes-form input { width: 100%; height: 36px; accent-color: var(--sage); cursor: pointer; }
+        .per-day { margin-top: 14px; padding-top: 14px; border-top: 2px dashed #E3D5BE; font-family: var(--hand); font-size: 30px; line-height: 1.05; color: var(--deep); }
+        .per-day b { color: var(--terra); font-size: 1.2em; }
+        .wipes-packs { list-style: none; display: grid; gap: 14px; }
+        .pack { position: relative; display: grid; grid-template-columns: 96px minmax(0, 1fr); gap: 14px; background: #fff; border-radius: 28px; padding: 14px; box-shadow: 0 6px 20px rgba(46,51,38,.06); }
+        .pack::after { content: ''; position: absolute; inset: 6px; border: 2px dashed #E3D5BE; border-radius: 22px; pointer-events: none; }
+        .pack .art { aspect-ratio: 1; border-radius: 22px; background: radial-gradient(circle at 50% 70%, var(--leaf), #F2F7EA 70%); display: grid; place-items: center; }
+        .pack .art img { width: 80%; height: 80%; object-fit: contain; mix-blend-mode: multiply; }
+        .pack .brand { font-family: var(--hand); font-size: 22px; color: var(--terra); line-height: 1; }
+        .pack h3 { font-size: 1.05rem; color: var(--deep); }
+        .lasts { font-family: var(--display); font-weight: 700; font-size: 1.7rem; line-height: 1.1; color: var(--deep); margin-top: 6px; }
+        .lasts small { display: block; font-family: var(--sans); font-weight: 500; font-size: 13px; color: var(--muted); }
+        .pack .foot { position: relative; z-index: 1; display: flex; flex-wrap: wrap; gap: 8px; margin-top: 10px; }
+        .pack .add.month { background: var(--terra); }
+        .pack .add.month:hover { background: var(--terra-dk); }
+        .value { position: absolute; z-index: 1; top: -10px; right: 18px; background: var(--sun); color: var(--ink); font-family: var(--hand); font-size: 22px; line-height: 1; padding: 4px 12px 6px; border-radius: 999px; transform: rotate(4deg); box-shadow: 0 6px 12px rgba(46,51,38,.15); }
+
         /* ── Notas del farmacéutico ── */
         .tips { display: grid; gap: 22px; margin-top: 20px; }
         .tip { position: relative; border-radius: 6px 22px 6px 22px; padding: 26px 22px 22px; background: #FFFDF2; box-shadow: 0 10px 22px rgba(46,51,38,.08); transform: rotate(-1deg); }
@@ -182,12 +242,18 @@
             .bag { grid-template-columns: 240px 1fr; padding: 32px; gap: 32px; }
             .bag-art { width: 220px; }
             .tips { grid-template-columns: repeat(3, 1fr); }
+            .season-pick button { font-size: 17px; }
+            .season-card { grid-template-columns: minmax(0, 1.05fr) minmax(0, 1fr); align-items: center; }
+            .season-art { height: 100%; min-height: 360px; }
+            .season-text { padding: 30px 32px; }
+            .wipes { grid-template-columns: minmax(0, .9fr) minmax(0, 1.1fr); align-items: start; }
+            .wipes-form { padding: 28px; }
             .visit { grid-template-columns: 1fr 1.2fr; padding: 28px; }
         }
         @media (prefers-reduced-motion: reduce) {
             html { scroll-behavior: auto; }
             .cloud, .kite { animation: none; }
-            .shirt, .who button, .add { transition: none; }
+            .shirt, .who button, .add, .season-pick button, .season-art * { transition: none; }
         }
     </style>
 </head>
@@ -270,6 +336,37 @@
             <p class="note"><a href="farmacia_v2.html#catalogo">Ver todo el catálogo de FarmaGlass</a></p>
         </section>
 
+        <section id="estaciones" aria-labelledby="est-title">
+            <div class="sec-head">
+                <p class="hand">El parque cambia, nosotros también</p>
+                <h2 id="est-title">Las cuatro estaciones del parque</h2>
+                <p>Elegí una estación y te contamos qué llevar. Arrancamos por la de hoy.</p>
+            </div>
+            <div class="seasons" id="seasons" data-season="primavera">
+                <div class="season-pick" role="tablist" aria-label="Estaciones del año" id="season-pick"></div>
+                <div class="season-card" role="tabpanel" id="season-panel" tabindex="0">
+                    <svg class="season-art" viewBox="0 0 400 260" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+                        <rect class="s-sky" width="400" height="260"/>
+                        <g class="s-rays" stroke="#F6C760" stroke-width="4" stroke-linecap="round"><path d="M320 16v-12M320 104v12M272 60h-12M368 60h12M286 26l-9-9M354 94l9 9M354 26l9-9M286 94l-9 9"/></g>
+                        <circle class="s-sun" cx="320" cy="60" r="30"/>
+                        <g class="s-cloud"><ellipse cx="90" cy="54" rx="40" ry="15"/><ellipse cx="116" cy="44" rx="26" ry="17"/><ellipse cx="68" cy="47" rx="20" ry="12"/></g>
+                        <g class="s-cloud"><ellipse cx="230" cy="88" rx="30" ry="11"/><ellipse cx="248" cy="80" rx="18" ry="12"/></g>
+                        <g class="s-drop" stroke="#9AAAB5" stroke-width="3" stroke-linecap="round"><path d="M60 82l-4 10M100 98l-4 10M200 72l-4 10M240 112l-4 10M300 102l-4 10M352 132l-4 10M30 122l-4 10M190 120l-4 10"/></g>
+                        <path class="s-hill" d="M0 190 Q 120 150 240 180 T 400 170 V260 H0Z"/>
+                        <path class="s-hill2" d="M0 222 Q 140 196 280 214 T 400 208 V260 H0Z"/>
+                        <rect x="142" y="128" width="14" height="84" rx="6" fill="#7A5634"/>
+                        <g class="s-branch" stroke="#7A5634" stroke-width="5" stroke-linecap="round" fill="none"><path d="M149 140 120 104M149 150 182 112M128 114 112 100M170 124 192 104M149 132 150 90"/></g>
+                        <circle class="s-crown" cx="149" cy="102" r="46"/><circle class="s-crown2" cx="120" cy="124" r="28"/><circle class="s-crown2" cx="180" cy="120" r="26"/>
+                        <g class="s-flower" fill="#F7A8C4"><circle cx="128" cy="90" r="5"/><circle cx="160" cy="78" r="5"/><circle cx="176" cy="110" r="5"/><circle cx="112" cy="122" r="5"/><circle cx="148" cy="120" r="5"/><circle cx="190" cy="128" r="4"/><circle cx="140" cy="70" r="4"/></g>
+                        <g class="s-leaf" fill="#C2652B"><path d="M210 150q8-8 14 0-8 8-14 0z"/><path d="M90 168q8-8 14 0-8 8-14 0z"/><path d="M228 198q8-8 14 0-8 8-14 0z"/><path d="M60 214q8-8 14 0-8 8-14 0z"/><path d="M176 186q8-8 14 0-8 8-14 0z"/></g>
+                        <g fill="#7A5634"><rect x="252" y="196" width="80" height="7" rx="3"/><rect x="252" y="184" width="80" height="6" rx="3"/><rect x="258" y="203" width="6" height="18" rx="2"/><rect x="320" y="203" width="6" height="18" rx="2"/></g>
+                    </svg>
+                    <div class="season-text" id="season-text"></div>
+                </div>
+            </div>
+            <p class="note" style="margin-top:12px">Consejos generales para salir al parque. Para cada chico, seguí las indicaciones de su pediatra.</p>
+        </section>
+
         <section id="mochila" aria-labelledby="bag-title">
             <div class="sec-head">
                 <p class="hand">Antes de salir</p>
@@ -295,6 +392,24 @@
                     <ul class="checklist" id="checklist"></ul>
                     <button class="bag-go" type="button" id="bag-go"></button>
                 </div>
+            </div>
+        </section>
+
+        <section id="toallitas" aria-labelledby="toa-title">
+            <div class="sec-head">
+                <p class="hand">Las cuentas de la casa</p>
+                <h2 id="toa-title">¿Cuánto te duran las toallitas?</h2>
+                <p>Contanos cuántos cambios hacés por día y te decimos cuánto rinde cada paquete y cuántos necesitás para el mes.</p>
+            </div>
+            <div class="wipes">
+                <div class="wipes-form">
+                    <label for="cambios">Cambios de pañal por día <output id="cambios-out">6</output></label>
+                    <input type="range" id="cambios" min="2" max="12" value="6">
+                    <label for="porcambio">Toallitas por cambio <output id="porcambio-out">2</output></label>
+                    <input type="range" id="porcambio" min="1" max="5" value="2">
+                    <p class="per-day" id="per-day" aria-live="polite"></p>
+                </div>
+                <ul class="wipes-packs" id="wipes"></ul>
             </div>
         </section>
 
@@ -413,6 +528,81 @@
         list.addEventListener('change', paintBag);
         go.addEventListener('click', () => FG.addAll(missing(), 'productos para la mochila'));
         paintBag();
+
+        // Las cuatro estaciones del parque (hemisferio sur): arranca por la de hoy
+        const SEASONS = [
+            { id: 'primavera', label: 'Primavera', ico: '✿', months: [8, 9, 10], when: 'de septiembre a noviembre', title: 'Vuelven las flores, el sol y los mosquitos',
+              tips: ['Repelente apto para la edad de cada chico, solo en la piel que queda al aire.', 'Protector solar media hora antes de salir, y otra vez después de jugar con agua.'], ids: [123, 34, 22] },
+            { id: 'verano', label: 'Verano', ico: '☀', months: [11, 0, 1], when: 'de diciembre a febrero', title: 'Sol fuerte, sombra y mucha agua',
+              tips: ['Evitá el sol fuerte entre las 11 y las 16 h: es el momento de la sombra.', 'Renová el protector cada 2 horas y siempre después del agua.'], ids: [22, 23, 116] },
+            { id: 'otono', label: 'Otoño', ico: '❦', months: [2, 3, 4], when: 'de marzo a mayo', title: 'Hojas en el piso y baños tibios',
+              tips: ['Cuando refresca, baños cortos con agua tibia y shampoo suave.', 'Curitas en la mochila: con las hojas mojadas hay más de un raspón.'], ids: [113, 33, 41] },
+            { id: 'invierno', label: 'Invierno', ico: '☁', months: [5, 6, 7], when: 'de junio a agosto', title: 'Abrigo, manos limpias y piel protegida',
+              tips: ['La calefacción reseca el aire: baños cortos y cremas suaves.', 'Manos lavadas al volver de la plaza y antes de comer.'], ids: [115, 114, 124] },
+        ].map(x => ({ ...x, items: x.ids.map(id => all.get(id)).filter(Boolean) }));
+        const today = SEASONS.find(x => x.months.includes(new Date().getMonth()));
+        let seasonAt = SEASONS.indexOf(today);
+        const seasonsEl = document.getElementById('seasons'), pick = document.getElementById('season-pick');
+        function paintSeason(focus) {
+            const x = SEASONS[seasonAt];
+            seasonsEl.dataset.season = x.id;
+            pick.innerHTML = SEASONS.map((y, i) => `<button type="button" role="tab" id="season-${y.id}" aria-controls="season-panel" aria-selected="${i === seasonAt}" tabindex="${i === seasonAt ? 0 : -1}">
+                <span class="ico" aria-hidden="true">${y.ico}</span>${y.label}${y === today ? '<span class="now-tag">hoy</span>' : ''}</button>`).join('');
+            document.getElementById('season-panel').setAttribute('aria-labelledby', `season-${x.id}`);
+            document.getElementById('season-text').innerHTML = `
+                <p class="hand season-months">${x === today ? 'Estamos en ' + x.label.toLowerCase() + ', ' : ''}${x.when}</p>
+                <h3>${FG.esc(x.title)}</h3>
+                <ul class="season-tips">${x.tips.map(t => `<li>${FG.esc(t)}</li>`).join('')}</ul>
+                ${x.items.length ? `<ul class="season-items">${x.items.map(p => `<li class="season-item">
+                    <span class="ph">${FG.photo(p, 52)}</span>
+                    <span><b>${FG.esc(nm(p))}</b><small>${FG.esc(p.brand)}${p.size ? ` · ${FG.esc(p.size)}` : ''}</small></span>
+                    <span class="p">${FG.fmt(p.price)}</span></li>`).join('')}</ul>
+                <button class="season-go" type="button" id="season-go">Sumar los de ${x.label.toLowerCase()} · ${FG.fmt(FG.total(x.items))}</button>` : ''}`;
+            if (focus) document.getElementById(`season-${x.id}`).focus();
+        }
+        pick.addEventListener('click', e => { const b = e.target.closest('[role="tab"]'); if (b) { seasonAt = SEASONS.findIndex(x => `season-${x.id}` === b.id); paintSeason(true); } });
+        pick.addEventListener('keydown', e => {
+            const keys = { ArrowRight: 1, ArrowDown: 1, ArrowLeft: -1, ArrowUp: -1 };
+            if (!(e.key in keys)) return;
+            e.preventDefault();
+            seasonAt = (seasonAt + keys[e.key] + SEASONS.length) % SEASONS.length;
+            paintSeason(true);
+        });
+        document.getElementById('season-text').addEventListener('click', e => {
+            if (e.target.closest('#season-go')) FG.addAll(SEASONS[seasonAt].items, `productos para ${SEASONS[seasonAt].label.toLowerCase()}`);
+        });
+        paintSeason(false);
+
+        // ¿Cuánto te duran las toallitas? Rinde de cada paquete según los cambios del día
+        const countOf = p => Number(((p.size || '') + ' ' + label(p)).match(/x\s?(\d+)/i)?.[1] || 0);
+        const WIPES = [...all.values()].filter(p => /toallitas/i.test(label(p)) && countOf(p) > 0);
+        const cambios = document.getElementById('cambios'), porCambio = document.getElementById('porcambio');
+        function paintWipes() {
+            const perDay = Number(cambios.value) * Number(porCambio.value);
+            document.getElementById('cambios-out').textContent = cambios.value;
+            document.getElementById('porcambio-out').textContent = porCambio.value;
+            document.getElementById('per-day').innerHTML = `Usás <b>${perDay}</b> toallitas por día, unas ${perDay * 30} por mes`;
+            const rows = WIPES.map(p => ({ p, n: countOf(p), unit: p.price / countOf(p) })).sort((a, b) => a.unit - b.unit);
+            document.getElementById('wipes').innerHTML = rows.map(({ p, n, unit }, i) => {
+                const days = Math.floor(n / perDay), month = Math.min(10, Math.ceil(perDay * 30 / n));
+                return `<li class="pack">
+                    ${i === 0 && rows.length > 1 ? '<span class="value">Rinde más</span>' : ''}
+                    <div class="art">${FG.photo(p, 96)}</div>
+                    <div>
+                        <p class="brand">${FG.esc(p.brand)}</p>
+                        <h3>${FG.esc(nm(p))}</h3>
+                        <p class="lasts">${days >= 1 ? `Te dura ${days} ${days === 1 ? 'día' : 'días'}` : 'Te dura menos de un día'}<small>${n} toallitas · ${FG.fmt(unit)} cada una · ${FG.fmt(p.price)} el paquete</small></p>
+                        <div class="foot">
+                            <button class="add" type="button" data-add="${p.id}" aria-label="Agregar un paquete de ${FG.esc(label(p))} al carrito">Sumar 1</button>
+                            ${month > 1 ? `<button class="add month" type="button" data-add="${p.id}" data-qty="${month}" aria-label="Agregar ${month} paquetes de ${FG.esc(label(p))} al carrito">Sumar ${month} para el mes · ${FG.fmt(p.price * month)}</button>` : ''}
+                        </div>
+                    </div>
+                </li>`;
+            }).join('');
+        }
+        document.getElementById('toallitas').hidden = !WIPES.length;
+        [cambios, porCambio].forEach(i => i.addEventListener('input', paintWipes));
+        if (WIPES.length) paintWipes();
 
         // Visita
         document.getElementById('visit-street').textContent = s.street;

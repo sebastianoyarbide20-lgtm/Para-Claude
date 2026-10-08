@@ -1,0 +1,172 @@
+{%- comment -%}
+  Farmacia Belgrano Norte · Generado por shopify/construir-farmacias.js a partir de farmacia-norte.html: no editar a mano.
+  Los productos salen de la tienda: snippet farmaglass-datos → farmaglass-productos.js → farmacias-red.js.
+{%- endcomment -%}
+<header class="hero">
+    <div class="wrap">
+        <div class="bar">
+            <a class="brand up" href="#" id="brand"><span>Belgrano Norte</span></a>
+            <nav class="menu" aria-label="Secciones"><a href="#kit">Kit</a><a href="#linea">Línea</a><a href="#rendimiento">Rendimiento</a><a href="#hidratacion">Hidratación</a><a href="#plan">Plan</a><a href="#elongacion">Elongá</a></nav>
+            <nav class="links" aria-label="Accesos">
+                <button type="button" data-cart-open>Carrito <b data-cart-count hidden>0</b></button>
+                <a href="{{ routes.root_url }}#farmacias" aria-label="Volver a FarmaGlass">←<span class="long"> FarmaGlass</span></a>
+            </nav>
+        </div>
+        <div class="hero-grid">
+            <div>
+                <span class="tagline up">Norte Training Club</span>
+                <h1 class="up">Recuperá <i>energía</i> para entrenar</h1>
+                <p class="sub">Suplementos, hidratación y alivio muscular elegidos por nuestros farmacéuticos. Armá tu kit en dos toques.</p>
+                <div class="ctas">
+                    <a class="skew-btn orange" href="#kit"><span>Armá tu kit</span></a>
+                    <a class="skew-btn line" href="#hidratacion"><span>¿Cuánta agua necesitás?</span></a>
+                </div>
+            </div>
+            <div class="hero-art" id="hero-art"></div>
+        </div>
+    </div>
+</header>
+
+<main class="wrap">
+    <section class="board" aria-label="Marcador de la farmacia">
+        <div class="board-in">
+            <div class="cell"><small>Horario</small><p class="led">07–23</p></div>
+            <div class="cell"><small>Ahora</small><p class="led" id="led-now"></p></div>
+            <div class="cell"><small>Retiro</small><p class="led">12'</p></div>
+            <div class="cell"><small>Envío</small><p class="led">2 H</p></div>
+        </div>
+        <div class="ticker" aria-hidden="true"><div id="ticker"></div></div>
+    </section>
+
+    <section id="kit" aria-labelledby="kit-title">
+        <div class="sec-head">
+            <h2 class="up" id="kit-title">Armá tu <em>kit</em></h2>
+            <p>Elegí tu deporte y te armamos un kit para antes, durante y después de entrenar.</p>
+        </div>
+        <div class="seg" role="radiogroup" aria-label="Deporte" id="seg"></div>
+        <div class="kit">
+            <ul class="kit-list" id="kit-list" aria-live="polite"></ul>
+            <div>
+                <div class="kit-sum" id="kit-sum"></div>
+                <p class="disclaimer" style="margin-top:10px">Kit orientativo. Los suplementos no reemplazan una alimentación variada: ante cualquier duda, consultá a tu médico o farmacéutico.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="linea" aria-labelledby="linea-title">
+        <div class="sec-head">
+            <h2 class="up" id="linea-title">Fichas <em>Norte Active</em></h2>
+            <div class="lane-arrows"><button type="button" data-lane="-1" aria-label="Fichas anteriores">←</button><button type="button" data-lane="1" aria-label="Más fichas">→</button></div>
+        </div>
+        <ul class="lane" id="lane"></ul>
+    </section>
+
+    <aside class="promo" aria-label="Promoción">
+        <div>
+            <p class="up">Esta semana</p>
+            <h2 class="up">Hasta 35 % off en colágeno y suplementos</h2>
+        </div>
+        <a class="skew-btn dark" href="#linea"><span>Ver ofertas</span></a>
+    </aside>
+
+    <section id="marcas" aria-labelledby="marcas-title">
+        <div class="sec-head">
+            <h2 class="up" id="marcas-title">Marcas para tu <em>rutina</em></h2>
+            <p>Suplementos y cuidado de marcas que ya conocés.</p>
+        </div>
+        <ul class="lane" id="lane-brands"></ul>
+        <p class="lane-note">Precios del catálogo de FarmaGlass · <a href="{{ routes.root_url }}#catalogo">Ver todo el catálogo</a></p>
+    </section>
+
+    <section id="rendimiento" aria-labelledby="ren-title">
+        <div class="sec-head">
+            <h2 class="up" id="ren-title">Tabla de <em>rendimiento</em></h2>
+            <p>Cuánto pagás por cada comprimido, sobre o 100 g de polvo, con el precio de hoy. El primero de cada tabla es el que más rinde.</p>
+        </div>
+        <div class="stats" id="stats"></div>
+        <p class="disclaimer" style="margin-top:10px">Comparamos el precio por unidad del envase, no la dosis: cada suplemento tiene su propia indicación de uso. Consultá a tu médico o farmacéutico.</p>
+    </section>
+
+    <section id="hidratacion" aria-labelledby="hid-title" style="margin-top:64px">
+        <div class="calc">
+            <div>
+                <span class="tagline up">Calculadora</span>
+                <h3 class="up" id="hid-title" style="margin-top:12px">¿Cuánta agua necesitás hoy?</h3>
+                <div class="field">
+                    <label for="peso">Tu peso <b><output id="peso-out">70</output> kg</b></label>
+                    <input type="range" id="peso" min="40" max="120" value="70">
+                </div>
+                <div class="field">
+                    <label for="mins">Minutos de entrenamiento <b><output id="mins-out">45</output> min</b></label>
+                    <input type="range" id="mins" min="0" max="180" step="5" value="45">
+                </div>
+            </div>
+            <div class="gauge">
+                <div class="bottle" aria-hidden="true"><div class="water" id="water"></div></div>
+                <div>
+                    <p class="liters up" aria-live="polite"><span id="liters">3,0</span> <small>litros</small></p>
+                    <p class="glasses" id="glasses"></p>
+                    <p class="disclaimer" style="margin-top:12px">Estimación orientativa (35 ml por kilo más unos 600 ml por hora de ejercicio). Con calor, más. Consultá a tu médico si tenés una indicación especial.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="plan" aria-labelledby="plan-title">
+        <div class="sec-head">
+            <h2 class="up" id="plan-title">El plan, en la <em>pista</em></h2>
+            <p>Tocá un producto para sumarlo al carrito.</p>
+        </div>
+        <div class="track" id="track"></div>
+    </section>
+
+    <section id="elongacion" aria-labelledby="elo-title">
+        <div class="sec-head">
+            <h2 class="up" id="elo-title">Elongá en <em>3 minutos</em></h2>
+            <p>Seis estiramientos de 30 segundos para después de entrenar. Seguí el marcador: te avisa cuándo cambiar.</p>
+        </div>
+        <div class="stretch">
+            <div class="scoreboard">
+                <div class="sb-in">
+                    <div class="cell wide"><small>Ejercicio</small><p class="led name" id="st-name">Listos para elongar</p></div>
+                    <div class="cell"><small>Tiempo</small><p class="led big" id="st-time">03:00</p></div>
+                    <div class="cell"><small>Serie</small><p class="led big" id="st-count">0/6</p></div>
+                </div>
+                <div class="segs" id="st-segs" aria-hidden="true"></div>
+                <div class="sb-foot">
+                    <p class="cue" id="st-cue">Elongá con los músculos todavía calientes, respirando lento y sin rebotar.</p>
+                    <div class="sb-ctrl">
+                        <button class="skew-btn orange" type="button" id="st-go"><span>Empezar</span></button>
+                        <button class="skew-btn line" type="button" id="st-skip" hidden><span>Saltar</span></button>
+                        <button class="skew-btn line" type="button" id="st-reset" hidden><span>Reiniciar</span></button>
+                    </div>
+                </div>
+                <p class="sr" id="st-live" aria-live="polite"></p>
+            </div>
+            <div>
+                <ol class="moves" id="moves"></ol>
+                <div class="after" id="after"></div>
+            </div>
+        </div>
+        <p class="disclaimer" style="margin-top:12px">Orientativo: estirá hasta sentir tensión, nunca dolor. Si tenés una lesión, consultá a un profesional.</p>
+    </section>
+</main>
+
+<footer>
+    <div class="wrap foot-grid" id="foot"></div>
+</footer>
+
+{% render 'farmaglass-datos' %}
+<script src="{{ 'farmaglass-productos.js' | asset_url }}" defer></script>
+<script src="{{ 'fg-shop.js' | asset_url }}" defer></script>
+<script src="{{ 'farmacias-red.js' | asset_url }}" defer></script>
+<script src="{{ 'farmacia-norte.js' | asset_url }}" defer></script>
+
+{% schema %}
+{
+  "name": "Farmacia Belgrano Norte",
+  "tag": "div",
+  "class": "fg-farmacia",
+  "settings": []
+}
+{% endschema %}
