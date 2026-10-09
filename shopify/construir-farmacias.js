@@ -2,7 +2,8 @@
 // Lee farmacia-<id>.html y escribe en shopify/tema/:
 //   assets/farmacia-<id>.css · assets/farmacia-<id>.js · sections/farmacia-<id>.liquid
 //   templates/collection.farmacia-<id>.json · layout/farmacia.liquid · assets/farmacias-red.js
-// Uso: node shopify/construir-farmacias.js   (después de cambiar una página de farmacia)
+// También copia los archivos que el tema comparte con el prototipo: fg-receta.js y fg-receta.css (la receta de la portada).
+// Uso: node shopify/construir-farmacias.js   (después de cambiar una página de farmacia o la receta)
 const fs = require('fs');
 const path = require('path');
 
@@ -73,8 +74,8 @@ ${dedent(markup, 4)}
     }, null, 2) + '\n');
 }
 
-// Datos y utilidades de las farmacias: el mismo archivo que usa el prototipo
-fs.copyFileSync(path.join(ROOT, 'farmacias-red.js'), path.join(THEME, 'assets/farmacias-red.js'));
+// Archivos compartidos con el prototipo, tal cual: las utilidades de las farmacias y la receta de la portada
+for (const f of ['farmacias-red.js', 'fg-receta.js', 'fg-receta.css']) fs.copyFileSync(path.join(ROOT, f), path.join(THEME, 'assets', f));
 
 // Layout: el <head> de cada página (título, fuentes y color) según la plantilla
 const cases = Object.entries(heads).map(([id, h]) => `        {%- when 'farmacia-${id}' -%}
@@ -109,4 +110,4 @@ ${cases}
 </body>
 </html>
 `);
-console.log('Listo:', Object.keys(IDS).map(id => `farmacia-${id}`).join(', '));
+console.log('Listo:', Object.keys(IDS).map(id => `farmacia-${id}`).join(', '), '· fg-receta.js y fg-receta.css');

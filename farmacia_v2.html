@@ -1626,6 +1626,7 @@
         .rx-sub { margin: 10px 0 16px; font-size: var(--t-14); color: var(--ink-2); max-width: 46ch; }
         .rx-steps { list-style: none; counter-reset: rx; display: grid; gap: 8px; }
         .rx-steps li { counter-increment: rx; display: flex; align-items: center; gap: 10px; font-size: var(--t-14); font-weight: 600; }
+        .rx-proto { margin-top: 14px; font-size: var(--t-12); color: var(--ink-3); }
         .rx-steps li::before {
             content: counter(rx); flex-shrink: 0;
             width: 28px; height: 28px; border-radius: 50%; display: grid; place-items: center;
@@ -1636,15 +1637,6 @@
             background: rgba(255, 255, 255, .86); border: 1px solid #D5E5F6; border-radius: var(--r-lg);
             padding: 16px; box-shadow: 0 12px 30px rgba(47, 111, 224, .08);
         }
-        .rx-drop { border: 2px dashed #9CBCE4; border-radius: var(--r-md); background: #F4F8FE; transition: border-color .2s ease, background .2s ease; }
-        .rx-drop.is-over { border-color: #2F6FE0; background: #E5EFFD; }
-        .rx-drop:has(input:focus-visible) { outline: 2.5px solid var(--forest-500); outline-offset: 2px; }
-        .rx-drop-label { display: grid; justify-items: center; gap: 4px; padding: 18px 14px; text-align: center; font-size: var(--t-14); cursor: pointer; }
-        .rx-drop-label .icon { width: 28px; height: 28px; color: #2F6FE0; margin-bottom: 2px; }
-        .rx-drop-label u { color: #2A58B0; text-underline-offset: 3px; }
-        .rx-drop-label small { font-size: var(--t-12); color: var(--ink-3); }
-        .rx-mouse { display: none; }
-        @media (hover: hover) and (pointer: fine) { .rx-mouse { display: inline; } .rx-touch { display: none; } }
         .rx-files { list-style: none; display: grid; gap: 6px; padding: 0 10px; }
         .rx-files:not(:empty) { padding-bottom: 10px; }
         .rx-file { display: flex; align-items: center; gap: 10px; padding: 4px 4px 4px 6px; background: #fff; border: 1px solid var(--line); border-radius: var(--r-sm); font-size: var(--t-14); }
@@ -1660,9 +1652,8 @@
         .rx-check input { width: 20px; height: 20px; margin-top: 1px; flex-shrink: 0; accent-color: var(--forest-700); }
         .rx-err { font-size: var(--t-14); font-weight: 600; color: var(--sale); }
         .rx-err:empty { display: none; }
-        .rx-note { font-size: var(--t-12); color: var(--ink-3); text-align: center; }
         .rx-submit { width: 100%; }
-        .addr-field [aria-invalid="true"], .rx-drop[aria-invalid="true"] { border-color: var(--sale) !important; }
+        .addr-field [aria-invalid="true"] { border-color: var(--sale) !important; }
         .addr-field textarea {
             width: 100%; min-height: 88px; padding: 12px 14px; resize: vertical;
             border-radius: var(--r-md); border: 1.5px solid var(--line-2); background: var(--surface); font: inherit; font-size: var(--t-16);
@@ -1852,6 +1843,7 @@
             *, *::before, *::after { animation-duration: .01ms !important; transition-duration: .01ms !important; }
         }
     </style>
+    <link rel="stylesheet" href="fg-receta.css">
 </head>
 <body>
     <!-- Íconos duotono (degradé + brillo), set propio -->
@@ -1985,6 +1977,9 @@
 
     <a class="skip-link" href="#catalogo">Ir al catálogo</a>
 
+    <!-- RECETA RÁPIDA: franja de arriba con el envío desplegable (fg-receta.js) -->
+    <div id="rx-quick"></div>
+
     <!-- HEADER -->
     <header class="global-header">
         <div class="header-inner">
@@ -2010,6 +2005,9 @@
                 <div class="search-suggest" id="search-suggest" role="listbox" aria-label="Sugerencias de búsqueda" hidden></div>
             </form>
 
+            <button class="header-rx" type="button" data-rx-open>
+                <svg class="rxi" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 8.5h3.2L9 5.8h6l1.8 2.7H20a1 1 0 0 1 1 1V18a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V9.5a1 1 0 0 1 1-1z"/><circle cx="12" cy="13.5" r="3.6"/></svg>Enviar receta
+            </button>
             <button class="header-icon-btn header-desk" type="button" data-account-open="favs" aria-label="Mis favoritos">
                 <svg class="icon" aria-hidden="true"><use href="#i-heart"/></svg>
                 <span class="count-badge" data-fav-count hidden>0</span>
@@ -2270,56 +2268,17 @@
             <div class="rx-intro">
                 <span class="rx-ico ico-tile" aria-hidden="true"><svg class="duo"><use href="#d-rx"/></svg></span>
                 <p class="rx-kicker">Medicamentos con receta</p>
-                <h2 class="rx-title" id="rx-title">Subí tu receta y te la <em>preparamos</em></h2>
-                <p class="rx-sub">Un farmacéutico la revisa, te confirma el precio y la cobertura de tu obra social, y la recibís en tu casa o la retirás en la farmacia.</p>
+                <h2 class="rx-title" id="rx-title">Sacale una foto a tu receta y te la <em>preparamos</em></h2>
+                <p class="rx-sub">Un farmacéutico la revisa y te escribe por WhatsApp con el precio y la cobertura de tu obra social. Solo te pedimos el celular, sin email ni contraseñas.</p>
                 <ol class="rx-steps">
-                    <li>Subí una foto o un PDF de la receta</li>
-                    <li>Te confirmamos precio y cobertura</li>
+                    <li>Sacale una foto o subí el archivo</li>
+                    <li>Te llega un WhatsApp con el precio y la cobertura</li>
                     <li>Pagás y la recibís o la retirás</li>
                 </ol>
+                <p class="rx-proto">Prototipo: la receta no sale de tu navegador y no se envía ningún WhatsApp.</p>
             </div>
-            <form class="rx-form" id="rx-form" novalidate>
-                <div class="rx-drop" id="rx-drop">
-                    <input type="file" id="rx-file" class="sr-only" accept="image/*,application/pdf" multiple aria-describedby="rx-file-help">
-                    <label class="rx-drop-label" for="rx-file">
-                        <svg class="icon" aria-hidden="true"><use href="#i-upload"/></svg>
-                        <b><span class="rx-touch">Sacá una foto o </span><span class="rx-mouse">Arrastrá tu receta o </span><u>elegí un archivo</u></b>
-                        <small id="rx-file-help">JPG, PNG o PDF · hasta 10 MB · máximo 3 archivos</small>
-                    </label>
-                    <ul class="rx-files" id="rx-files"></ul>
-                </div>
-                <div class="rx-grid">
-                    <div class="addr-field">
-                        <label for="rx-os">Obra social o prepaga</label>
-                        <select id="rx-os">
-                            <option value="">Elegí una opción</option>
-                            <option>Particular (sin cobertura)</option><option>OSDE</option><option>Swiss Medical</option><option>Galeno</option>
-                            <option>Medifé</option><option>PAMI</option><option>IOMA</option><option>OSECAC</option><option>Otra</option>
-                        </select>
-                    </div>
-                    <div class="addr-field" id="rx-member-field">
-                        <label for="rx-member">N.º de afiliado</label>
-                        <input id="rx-member" type="text" inputmode="numeric" autocomplete="off" placeholder="Como figura en tu credencial">
-                    </div>
-                    <div class="addr-field rx-wide">
-                        <label for="rx-store">Farmacia que la prepara</label>
-                        <select id="rx-store"></select>
-                    </div>
-                </div>
-                <label class="rx-check"><input type="checkbox" id="rx-consent"><span>Autorizo a un farmacéutico de la red a revisar mi receta para cotizarla.</span></label>
-                <p class="rx-err" id="rx-err" aria-live="polite"></p>
-                <button class="addr-submit rx-submit" type="submit"><svg class="icon" aria-hidden="true"><use href="#i-upload"/></svg>Enviar receta</button>
-                <p class="rx-note">Prototipo: los archivos no salen de tu navegador.</p>
-            </form>
-            <div class="rx-done" id="rx-done" hidden tabindex="-1">
-                <span class="rx-done-ico" aria-hidden="true"><svg class="icon"><use href="#i-check"/></svg></span>
-                <h3>Recibimos tu receta</h3>
-                <p>Código <span class="rx-code" id="rx-code"></span>. <span id="rx-done-text"></span></p>
-                <div class="rx-done-actions">
-                    <button class="addr-submit" type="button" data-account-open="rx">Ver mis recetas</button>
-                    <button class="text-btn" type="button" id="rx-again">Subir otra receta</button>
-                </div>
-            </div>
+            <div id="rx-app"></div>
+            <div id="rx-club"></div>
         </section>
 
         <!-- PREGUNTAS FRECUENTES -->
@@ -2345,7 +2304,9 @@
                 <details class="faq-item" name="faq"><summary>¿Puedo retirar en una farmacia?</summary>
                     <p>Sí. En el checkout elegí “Retiro en farmacia” y la sucursal: es gratis y queda listo en unos 30 minutos si la farmacia está abierta. Te mostramos el horario de cada una.</p></details>
                 <details class="faq-item" name="faq"><summary>¿Cómo compro un medicamento con receta?</summary>
-                    <p>Subí la foto o el PDF en “Subí tu receta”. Un farmacéutico la revisa, te confirma precio y cobertura de tu obra social, y después la pagás y la recibís. Los medicamentos de venta bajo receta no se pueden agregar directo al carrito.</p></details>
+                    <p>Tocá “Enviar receta”, arriba de todo, y sacale una foto (o subí el PDF). Solo te pedimos el celular: un farmacéutico la revisa y te escribe por WhatsApp con el precio y la cobertura de tu obra social. Después la pagás y la recibís o la retirás. Los medicamentos de venta bajo receta no se pueden agregar directo al carrito.</p></details>
+                <details class="faq-item" name="faq"><summary>¿Qué descuentos tengo con mi obra social?</summary>
+                    <p>Guardá tu obra social y tu plan en “Tu obra social”, en el apartado de recetas, y te mostramos los descuentos de tu plan en medicamentos, dermocosmética, bebés y más. Tus datos quedan guardados en este dispositivo y los podés borrar cuando quieras.</p></details>
                 <details class="faq-item" name="faq"><summary>¿Qué medios de pago aceptan?</summary>
                     <p>Tarjetas de crédito en 3 cuotas sin interés, débito, Mercado Pago y efectivo si retirás en la farmacia.</p></details>
                 <details class="faq-item" name="faq"><summary>¿Cómo uso un cupón de descuento?</summary>
@@ -2415,6 +2376,9 @@
     <nav class="bottom-nav" aria-label="Navegación principal">
         <a class="nav-item" href="#" aria-current="page"><svg class="icon" aria-hidden="true"><use href="#i-home"/></svg>Inicio</a>
         <a class="nav-item" href="#catalogo"><svg class="icon" aria-hidden="true"><use href="#i-grid"/></svg>Catálogo</a>
+        <button class="nav-item nav-rx" type="button" data-rx-open>
+            <span class="nav-rx-ico" aria-hidden="true"><svg class="rxi" viewBox="0 0 24 24"><path d="M4 8.5h3.2L9 5.8h6l1.8 2.7H20a1 1 0 0 1 1 1V18a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V9.5a1 1 0 0 1 1-1z"/><circle cx="12" cy="13.5" r="3.6"/></svg></span>Receta
+        </button>
         <button class="nav-item" type="button" data-account-open="favs">
             <svg class="icon" aria-hidden="true"><use href="#i-heart"/></svg>Favoritos
             <span class="count-badge" data-fav-count hidden>0</span>
@@ -2510,6 +2474,7 @@
 
     <script src="productos-reales.js"></script>
     <script src="fg-shop.js"></script>
+    <script src="fg-receta.js"></script>
     <script>
         // ── CONFIGURACIÓN ──
         const FREE_SHIPPING_FROM = 15000;
@@ -3459,8 +3424,7 @@
             }
             // La más cercana queda elegida para "Retiro en farmacia" y para las recetas
             const near = nearestPharmacy();
-            if (near) FGShop.setStore(near.id);
-            renderRxStores();
+            if (near) { FGShop.setStore(near.id); FGReceta.setStore(near.id); }
             // Actualiza la farmacia en todas las tarjetas, la portada y las pestañas de farmacias
             renderHero(false);
             renderStores();
@@ -3515,91 +3479,9 @@
             addrPanel.scrollIntoView({ behavior: reduceMotion() ? 'auto' : 'smooth', block: 'start' });
             if (!address) setTimeout(() => document.getElementById('addr-street').focus({ preventScroll: true }), 350);
         });
-        // ── RECETAS ──
-        const rxForm = document.getElementById('rx-form');
-        const rxInput = document.getElementById('rx-file');
-        const rxDrop = document.getElementById('rx-drop');
-        const rxFilesEl = document.getElementById('rx-files');
-        const rxErr = document.getElementById('rx-err');
-        const rxOs = document.getElementById('rx-os');
-        const rxMember = document.getElementById('rx-member');
-        const rxStore = document.getElementById('rx-store');
-        const rxConsent = document.getElementById('rx-consent');
-        let rxFiles = [];
-        const kb = n => n < 1048576 ? `${Math.max(1, Math.round(n / 1024))} KB` : `${(n / 1048576).toFixed(1).replace('.', ',')} MB`;
-
-        function renderRxStores() {
-            const near = nearestPharmacy(), cur = rxStore.value;
-            rxStore.innerHTML = PHARMACIES.map(f => {
-                const st = FGShop.openStatus(f.id);
-                return `<option value="${f.id}">${esc(f.name)}${near && near.id === f.id ? ' (la más cercana)' : ''} · ${st.short}</option>`;
-            }).join('');
-            rxStore.value = cur || (near || PHARMACIES[0]).id;
-        }
-        function renderRxFiles() {
-            rxFilesEl.innerHTML = rxFiles.map((r, i) => `<li class="rx-file">
-                ${r.url ? `<img src="${r.url}" alt="">` : '<span class="rx-pdf" aria-hidden="true">PDF</span>'}
-                <span class="rx-file-name"><b>${esc(r.file.name)}</b><small>${kb(r.file.size)}</small></span>
-                <button class="rx-file-rm" type="button" data-rx-rm="${i}" aria-label="Quitar ${esc(r.file.name)}"><svg class="icon" aria-hidden="true"><use href="#i-x"/></svg></button></li>`).join('');
-        }
-        function addRxFiles(list) {
-            const problems = [];
-            for (const f of list) {
-                if (rxFiles.length >= 3) { problems.push('Podés subir hasta 3 archivos.'); break; }
-                if (!/^image\/|^application\/pdf$/.test(f.type)) { problems.push(`${f.name}: solo se aceptan JPG, PNG o PDF.`); continue; }
-                if (f.size > 10 * 1048576) { problems.push(`${f.name}: supera los 10 MB.`); continue; }
-                rxFiles.push({ file: f, url: f.type.startsWith('image/') ? URL.createObjectURL(f) : null });
-            }
-            renderRxFiles();
-            rxErr.textContent = problems.join(' ');
-            if (rxFiles.length) rxDrop.removeAttribute('aria-invalid');
-        }
-        rxInput.addEventListener('change', () => { addRxFiles(rxInput.files); rxInput.value = ''; });
-        ['dragenter', 'dragover'].forEach(ev => rxDrop.addEventListener(ev, e => { e.preventDefault(); rxDrop.classList.add('is-over'); }));
-        ['dragleave', 'drop'].forEach(ev => rxDrop.addEventListener(ev, () => rxDrop.classList.remove('is-over')));
-        rxDrop.addEventListener('drop', e => { e.preventDefault(); addRxFiles(e.dataTransfer.files); });
-        rxFilesEl.addEventListener('click', e => {
-            const b = e.target.closest('[data-rx-rm]');
-            if (!b) return;
-            const [r] = rxFiles.splice(Number(b.dataset.rxRm), 1);
-            if (r.url) URL.revokeObjectURL(r.url);
-            renderRxFiles();
-            rxInput.focus();
-        });
-        const syncMember = () => { document.getElementById('rx-member-field').hidden = !rxOs.value || rxOs.value.startsWith('Particular'); };
-        rxOs.addEventListener('change', syncMember);
-        syncMember();
-
-        rxForm.addEventListener('submit', e => {
-            e.preventDefault();
-            const invalid = [];
-            [rxDrop, rxOs, rxMember, rxConsent].forEach(el => el.removeAttribute('aria-invalid'));
-            if (!rxFiles.length) invalid.push([rxDrop, rxInput, 'Subí al menos una foto o PDF de la receta.']);
-            if (!rxOs.value) invalid.push([rxOs, rxOs, 'Elegí tu obra social o “Particular”.']);
-            else if (!rxOs.value.startsWith('Particular') && rxMember.value.replace(/\D/g, '').length < 4) invalid.push([rxMember, rxMember, 'Ingresá tu número de afiliado.']);
-            if (!rxConsent.checked) invalid.push([rxConsent, rxConsent, 'Necesitamos tu autorización para revisar la receta.']);
-            if (invalid.length) {
-                invalid.forEach(([el]) => el.setAttribute('aria-invalid', 'true'));
-                rxErr.textContent = invalid.map(x => x[2]).join(' ');
-                invalid[0][1].focus();
-                return;
-            }
-            // Solo se guardan los nombres de los archivos: las imágenes no salen del navegador
-            const rec = FGShop.rx.add({ files: rxFiles.map(r => r.file.name), os: rxOs.value, store: rxStore.value });
-            rxFiles.forEach(r => r.url && URL.revokeObjectURL(r.url));
-            rxFiles = []; renderRxFiles(); rxForm.reset(); syncMember(); renderRxStores();
-            rxErr.textContent = '';
-            document.getElementById('rx-code').textContent = rec.id;
-            document.getElementById('rx-done-text').textContent = `${pharmById.get(rec.store).name} la revisa y te avisamos en unos minutos con el precio y la cobertura.`;
-            rxForm.hidden = true;
-            const done = document.getElementById('rx-done');
-            done.hidden = false; done.focus();
-        });
-        document.getElementById('rx-again').addEventListener('click', () => {
-            document.getElementById('rx-done').hidden = true;
-            rxForm.hidden = false;
-            rxInput.focus();
-        });
+        // ── RECETAS: fg-receta.js arma la franja de arriba, el formulario y "Tu obra social" ──
+        // "Ver productos" en un descuento de la obra social filtra el catálogo por esa categoría
+        document.addEventListener('fg:categoria', e => { if (CATEGORIES[e.detail]) setCategory(e.detail); });
 
         // ── BOTÓN DE ARREPENTIMIENTO (Res. 424/2020) ──
         const regretDialog = document.getElementById('regret-dialog');

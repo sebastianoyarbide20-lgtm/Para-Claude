@@ -134,6 +134,9 @@
 
 <a class="skip-link" href="#catalogo">Ir al catálogo</a>
 
+<!-- RECETA RÁPIDA: franja de arriba con el envío desplegable (fg-receta.js) -->
+<div id="rx-quick"></div>
+
 <!-- HEADER -->
 <header class="global-header">
     <div class="header-inner">
@@ -159,6 +162,9 @@
             <div class="search-suggest" id="search-suggest" role="listbox" aria-label="Sugerencias de búsqueda" hidden></div>
         </form>
 
+        <button class="header-rx" type="button" data-rx-open>
+            <svg class="rxi" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 8.5h3.2L9 5.8h6l1.8 2.7H20a1 1 0 0 1 1 1V18a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V9.5a1 1 0 0 1 1-1z"/><circle cx="12" cy="13.5" r="3.6"/></svg>Enviar receta
+        </button>
         <button class="header-icon-btn header-desk" type="button" data-account-open="favs" aria-label="Mis favoritos">
             <svg class="icon" aria-hidden="true"><use href="#i-heart"/></svg>
             <span class="count-badge" data-fav-count hidden>0</span>
@@ -418,70 +424,24 @@
         <div class="rx-intro">
             <span class="rx-ico ico-tile" aria-hidden="true"><svg class="duo"><use href="#d-rx"/></svg></span>
             <p class="rx-kicker">Medicamentos con receta</p>
-            <h2 class="rx-title" id="rx-title">Subí tu receta y te la <em>preparamos</em></h2>
-            <p class="rx-sub">Un farmacéutico la revisa, te confirma el precio y la cobertura de tu obra social, y la recibís en tu casa o la retirás en la farmacia.</p>
+            <h2 class="rx-title" id="rx-title">Sacale una foto a tu receta y te la <em>preparamos</em></h2>
+            <p class="rx-sub">Un farmacéutico la revisa y te escribe por WhatsApp con el precio y la cobertura de tu obra social. Solo te pedimos el celular, sin email ni contraseñas.</p>
             <ol class="rx-steps">
-                <li>Subí una foto o un PDF de la receta</li>
-                <li>Te confirmamos precio y cobertura</li>
+                <li>Sacale una foto o subí el archivo</li>
+                <li>Te llega un WhatsApp con el precio y la cobertura</li>
                 <li>Pagás y la recibís o la retirás</li>
             </ol>
         </div>
-        {%- comment -%} Se envía con el formulario de contacto de la tienda: llega al email de FarmaGlass. {%- endcomment -%}
-        {%- form 'contact', id: 'rx-form', class: 'rx-form', novalidate: 'novalidate' -%}
-            <input type="hidden" name="contact[Tipo]" value="Receta">
-            <input type="hidden" name="contact[Código]" id="rx-code-field">
-            <input type="hidden" name="contact[Farmacia]" id="rx-store-field">
-            <input type="hidden" name="contact[Archivos]" id="rx-files-field">
-            <div class="rx-drop" id="rx-drop">
-                <input type="file" id="rx-file" class="sr-only" accept="image/*,application/pdf" multiple aria-describedby="rx-file-help">
-                <label class="rx-drop-label" for="rx-file">
-                    <svg class="icon" aria-hidden="true"><use href="#i-upload"/></svg>
-                    <b><span class="rx-touch">Sacá una foto o </span><span class="rx-mouse">Arrastrá tu receta o </span><u>elegí un archivo</u></b>
-                    <small id="rx-file-help">JPG, PNG o PDF · hasta 10 MB · máximo 3 archivos</small>
-                </label>
-                <ul class="rx-files" id="rx-files"></ul>
-            </div>
-            <div class="rx-grid">
-                <div class="addr-field">
-                    <label for="rx-email">Email</label>
-                    <input id="rx-email" name="contact[email]" type="email" inputmode="email" autocomplete="email" placeholder="nombre@correo.com" value="{{ customer.email }}">
-                </div>
-                <div class="addr-field">
-                    <label for="rx-phone">Celular</label>
-                    <input id="rx-phone" name="contact[Celular]" type="tel" inputmode="tel" autocomplete="tel" placeholder="11 2345-6789">
-                </div>
-                <div class="addr-field">
-                    <label for="rx-os">Obra social o prepaga</label>
-                    <select id="rx-os" name="contact[Obra social]">
-                        <option value="">Elegí una opción</option>
-                        <option>Particular (sin cobertura)</option><option>OSDE</option><option>Swiss Medical</option><option>Galeno</option>
-                        <option>Medifé</option><option>PAMI</option><option>IOMA</option><option>OSECAC</option><option>Otra</option>
-                    </select>
-                </div>
-                <div class="addr-field" id="rx-member-field">
-                    <label for="rx-member">N.º de afiliado</label>
-                    <input id="rx-member" name="contact[Afiliado]" type="text" inputmode="numeric" autocomplete="off" placeholder="Como figura en tu credencial">
-                </div>
-                <div class="addr-field rx-wide">
-                    <label for="rx-store">Farmacia que la prepara</label>
-                    <select id="rx-store"></select>
-                </div>
-            </div>
-            <label class="rx-check"><input type="checkbox" id="rx-consent" name="contact[Autorización]" value="Sí"><span>Autorizo a un farmacéutico de la red a revisar mi receta para cotizarla.</span></label>
-            <p class="rx-err" id="rx-err" aria-live="polite"></p>
-            {%- if form.errors -%}<div class="rx-err" data-form-errors="rx" hidden>{{ form.errors | default_errors }}</div>{%- endif -%}
-            <button class="addr-submit rx-submit" type="submit"><svg class="icon" aria-hidden="true"><use href="#i-upload"/></svg>Enviar receta</button>
-            <p class="rx-note">La foto no viaja con el formulario: si el farmacéutico la necesita, te la pide por email.</p>
+        <div id="rx-app"></div>
+        <div id="rx-club"></div>
+        {%- comment -%}
+          fg-receta-tienda.js completa este formulario y lo envía: la receta llega al email de la tienda con el celular,
+          la obra social y los enlaces a las fotos. El cliente no escribe su email: va el de su cuenta o el de la tienda.
+        {%- endcomment -%}
+        {%- form 'contact', id: 'rx-send', class: 'rx-send', hidden: 'hidden' -%}
+            <input type="hidden" name="contact[email]" value="{% if customer %}{{ customer.email }}{% else %}{{ shop.email }}{% endif %}">
+            {%- if form.errors -%}<div data-rx-errors hidden>{{ form.errors | default_errors }}</div>{%- endif -%}
         {%- endform -%}
-        <div class="rx-done" id="rx-done" hidden tabindex="-1">
-            <span class="rx-done-ico" aria-hidden="true"><svg class="icon"><use href="#i-check"/></svg></span>
-            <h3>Recibimos tu receta</h3>
-            <p>Código <span class="rx-code" id="rx-code"></span>. <span id="rx-done-text"></span></p>
-            <div class="rx-done-actions">
-                <button class="addr-submit" type="button" data-account-open="rx">Ver mis recetas</button>
-                <button class="text-btn" type="button" id="rx-again">Subir otra receta</button>
-            </div>
-        </div>
     </section>
 
     <!-- PREGUNTAS FRECUENTES -->
@@ -507,7 +467,9 @@
             <details class="faq-item" name="faq"><summary>¿Puedo retirar en una farmacia?</summary>
                 <p>Sí. En el checkout elegí “Retiro en farmacia” y la sucursal: es gratis y queda listo en unos 30 minutos si la farmacia está abierta. Te mostramos el horario de cada una.</p></details>
             <details class="faq-item" name="faq"><summary>¿Cómo compro un medicamento con receta?</summary>
-                <p>Subí la foto o el PDF en “Subí tu receta”. Un farmacéutico la revisa, te confirma precio y cobertura de tu obra social, y después la pagás y la recibís. Los medicamentos de venta bajo receta no se pueden agregar directo al carrito.</p></details>
+                <p>Tocá “Enviar receta”, arriba de todo, y sacale una foto (o subí el PDF). Solo te pedimos el celular: un farmacéutico la revisa y te escribe por WhatsApp con el precio y la cobertura de tu obra social. Después la pagás y la recibís o la retirás. Los medicamentos de venta bajo receta no se pueden agregar directo al carrito.</p></details>
+            <details class="faq-item" name="faq"><summary>¿Qué descuentos tengo con mi obra social?</summary>
+                <p>Guardá tu obra social y tu plan en “Tu obra social”, en el apartado de recetas, y te mostramos los descuentos de tu plan en medicamentos, dermocosmética, bebés y más. Tus datos quedan guardados en este dispositivo y los podés borrar cuando quieras.</p></details>
             <details class="faq-item" name="faq"><summary>¿Qué medios de pago aceptan?</summary>
                 <p>Tarjetas de crédito en 3 cuotas sin interés, débito, Mercado Pago y efectivo si retirás en la farmacia.</p></details>
             <details class="faq-item" name="faq"><summary>¿Cómo uso un cupón de descuento?</summary>
@@ -582,6 +544,9 @@
 <nav class="bottom-nav" aria-label="Navegación principal">
     <a class="nav-item" href="{{ routes.root_url }}" aria-current="page"><svg class="icon" aria-hidden="true"><use href="#i-home"/></svg>Inicio</a>
     <a class="nav-item" href="#catalogo"><svg class="icon" aria-hidden="true"><use href="#i-grid"/></svg>Catálogo</a>
+    <button class="nav-item nav-rx" type="button" data-rx-open>
+        <span class="nav-rx-ico" aria-hidden="true"><svg class="rxi" viewBox="0 0 24 24"><path d="M4 8.5h3.2L9 5.8h6l1.8 2.7H20a1 1 0 0 1 1 1V18a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V9.5a1 1 0 0 1 1-1z"/><circle cx="12" cy="13.5" r="3.6"/></svg></span>Receta
+    </button>
     <button class="nav-item" type="button" data-account-open="favs">
         <svg class="icon" aria-hidden="true"><use href="#i-heart"/></svg>Favoritos
         <span class="count-badge" data-fav-count hidden>0</span>
@@ -680,7 +645,26 @@
 <button class="to-top" type="button" id="to-top" aria-label="Volver arriba"><svg class="icon" aria-hidden="true"><use href="#i-up"/></svg></button>
 
 {% render 'farmaglass-datos' %}
+{%- comment -%} Recetas: los convenios de obras sociales son los bloques de esta sección (editor del tema) {%- endcomment -%}
+{%- assign rx_product = all_products['receta-para-cotizar'] -%}
+<script>
+    window.FG_RECETA = {
+        convenios: [
+            {%- for block in section.blocks -%}
+            {%- if block.type == 'convenio' -%}
+            {"os": {{ block.settings.title | json }}, "plan": {{ block.settings.plan | json }}, "medicamentos": {{ block.settings.medicamentos | json }}, "dermocosmetica": {{ block.settings.dermocosmetica | json }}, "cuidado": {{ block.settings.cuidado | json }}, "bebes": {{ block.settings.bebes | json }}, "nutricion": {{ block.settings.nutricion | json }}, "farmacia": {{ block.settings.farmacia | json }}}{% unless forloop.last %},{% endunless %}
+            {%- endif -%}
+            {%- endfor -%}
+        ],
+        note: {{ section.settings.convenios_nota | json }},
+        login: {% if customer %}null{% else %}{{ routes.account_login_url | json }}{% endif %},
+        customerName: {{ customer.first_name | json }},
+        variant: {{ rx_product.selected_or_first_available_variant.id | json }}
+    };
+</script>
 <script src="{{ 'fg-shop.js' | asset_url }}" defer></script>
+<script src="{{ 'fg-receta-tienda.js' | asset_url }}" defer></script>
+<script src="{{ 'fg-receta.js' | asset_url }}" defer></script>
 <script src="{{ 'farmaglass-home.js' | asset_url }}" defer></script>
 
 {% schema %}
@@ -688,6 +672,102 @@
   "name": "FarmaGlass · portada",
   "tag": "div",
   "class": "fg-home",
-  "settings": []
+  "max_blocks": 50,
+  "settings": [
+    {
+      "type": "header",
+      "content": "Recetas y obras sociales"
+    },
+    {
+      "type": "paragraph",
+      "content": "Cada convenio es un bloque de esta sección: obra social, plan y el descuento de cada categoría. Los clientes lo ven al elegir su obra social y en \"Tu obra social\"."
+    },
+    {
+      "type": "textarea",
+      "id": "convenios_nota",
+      "label": "Nota debajo de los descuentos",
+      "default": "Descuentos de referencia: te confirmamos la cobertura exacta por WhatsApp al cotizar tu receta."
+    }
+  ],
+  "blocks": [
+    {
+      "type": "convenio",
+      "name": "Convenio de obra social",
+      "settings": [
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Obra social o prepaga",
+          "default": "OSDE"
+        },
+        {
+          "type": "text",
+          "id": "plan",
+          "label": "Plan",
+          "info": "Dejalo vacío si la obra social no tiene planes. Cada plan va en su propio bloque."
+        },
+        {
+          "type": "range",
+          "id": "medicamentos",
+          "label": "Medicamentos con receta",
+          "min": 0,
+          "max": 100,
+          "step": 5,
+          "unit": "%",
+          "default": 40
+        },
+        {
+          "type": "range",
+          "id": "dermocosmetica",
+          "label": "Dermocosmética",
+          "min": 0,
+          "max": 100,
+          "step": 5,
+          "unit": "%",
+          "default": 0
+        },
+        {
+          "type": "range",
+          "id": "cuidado",
+          "label": "Cuidado personal",
+          "min": 0,
+          "max": 100,
+          "step": 5,
+          "unit": "%",
+          "default": 0
+        },
+        {
+          "type": "range",
+          "id": "bebes",
+          "label": "Bebés",
+          "min": 0,
+          "max": 100,
+          "step": 5,
+          "unit": "%",
+          "default": 0
+        },
+        {
+          "type": "range",
+          "id": "nutricion",
+          "label": "Nutrición",
+          "min": 0,
+          "max": 100,
+          "step": 5,
+          "unit": "%",
+          "default": 0
+        },
+        {
+          "type": "range",
+          "id": "farmacia",
+          "label": "Farmacia y botiquín",
+          "min": 0,
+          "max": 100,
+          "step": 5,
+          "unit": "%",
+          "default": 0
+        }
+      ]
+    }
+  ]
 }
 {% endschema %}

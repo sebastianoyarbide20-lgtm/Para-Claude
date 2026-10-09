@@ -1,0 +1,267 @@
+/* FarmaGlass · recetas (fg-receta.js): la franja de arriba con el envío rápido, el formulario con foto o archivo,
+   la cámara y "Tu obra social". Usa los tokens de la web (--forest-*, --r-*, --t-*, --ink-*, --line, --sun). */
+.rxq [hidden], .rxf-wrap [hidden], .rxc [hidden], .rx-cam [hidden] { display: none !important; }
+.rxi { width: 20px; height: 20px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; flex-shrink: 0; }
+.rxi-wa { width: 18px; height: 18px; flex-shrink: 0; }
+.addr-submit .rxi { width: 18px; height: 18px; color: var(--lime); }
+.rx-submit:disabled { opacity: .7; cursor: progress; transform: none; }
+
+/* ── LA FRANJA DE ARRIBA ── */
+.rxq { position: relative; z-index: 151; }
+.rxq-bar {
+    background: linear-gradient(100deg, var(--forest-900) 0%, var(--forest-800) 62%, #0E5A44 100%);
+    color: #fff;
+}
+.rxq-in {
+    max-width: var(--max-w); margin: 0 auto; padding: 6px var(--gutter);
+    display: flex; align-items: center; gap: 10px; min-height: 52px;
+}
+.rxq-ico {
+    width: 32px; height: 32px; border-radius: 10px; flex-shrink: 0;
+    display: grid; place-items: center; color: var(--lime);
+    background: rgba(184, 240, 74, .12); box-shadow: inset 0 0 0 1px rgba(184, 240, 74, .28);
+}
+.rxq-ico .rxi { width: 18px; height: 18px; }
+.rxq-text {
+    flex: 1; min-width: 0; font-size: var(--t-14); line-height: 1.3; color: rgba(255, 255, 255, .86);
+    display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;
+}
+.rxq-text b { color: #fff; }
+.rxq-short { display: none; }
+@media (max-width: 639px) {
+    .rxq-ico { display: none; }
+    .rxq-text { display: grid; }
+    .rxq-long { display: none; }
+    .rxq-short { display: block; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+}
+.rxq-toggle {
+    display: inline-flex; align-items: center; gap: 6px; flex-shrink: 0;
+    min-height: 40px; padding: 0 12px 0 16px; border-radius: var(--r-pill);
+    background: var(--sun); color: var(--forest-900); font-size: var(--t-14); font-weight: 800; white-space: nowrap;
+    box-shadow: 0 4px 14px rgba(245, 183, 0, .3);
+    transition: background .2s ease, transform .2s var(--ease-out);
+}
+.rxq-toggle:hover { background: var(--sun-deep); }
+.rxq-toggle:focus-visible { outline-color: var(--sun); outline-offset: 3px; }
+.rxq-toggle .rxi-chev { width: 18px; height: 18px; stroke-width: 2.6; transition: transform .25s var(--ease-out); }
+.rxq-toggle[aria-expanded="true"] .rxi-chev { transform: rotate(180deg); }
+.rxq-panel {
+    background: linear-gradient(180deg, #E6F1FF 0%, #F5FAFF 70%, var(--bg) 100%);
+    border-bottom: 1px solid #D5E5F6;
+    animation: rxq-in .32s var(--ease-out);
+}
+@keyframes rxq-in { from { opacity: 0; transform: translateY(-8px); } }
+.rxq-panel-in { max-width: var(--max-w); margin: 0 auto; padding: 14px var(--gutter) 18px; display: grid; gap: 10px; }
+.rxq-head { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+.rxq-title { font-family: var(--font-display); font-size: var(--t-20); font-weight: 800; letter-spacing: -.02em; color: var(--ink); }
+.rxq-close {
+    width: 44px; height: 44px; border-radius: 50%; flex-shrink: 0;
+    display: grid; place-items: center; color: var(--ink-2); background: rgba(255, 255, 255, .7);
+}
+.rxq-close:hover { background: #fff; color: var(--ink); }
+.rxq-more { justify-self: center; text-align: center; font-size: var(--t-14); font-weight: 600; color: #2A58B0; text-underline-offset: 3px; padding: 6px 2px; }
+
+/* ── EL FORMULARIO: foto o archivo, celular y obra social ── */
+.rxf-wrap { display: grid; min-width: 0; }
+.rxf-data { display: grid; gap: 12px; min-width: 0; }
+.rxf-step { display: flex; align-items: center; gap: 8px; font-size: var(--t-14); font-weight: 800; color: var(--ink); }
+.rxf-step > span {
+    width: 24px; height: 24px; border-radius: 50%; flex-shrink: 0; display: grid; place-items: center;
+    background: #2A58B0; color: #fff; font-size: var(--t-12);
+}
+.rxf-step small { margin-left: auto; font-size: var(--t-12); font-weight: 600; color: var(--ink-3); font-variant-numeric: tabular-nums; }
+.rxf-pickzone {
+    display: grid; gap: 10px; padding: 12px;
+    border: 2px dashed #9CBCE4; border-radius: var(--r-md); background: #F4F8FE;
+    transition: border-color .2s ease, background .2s ease;
+}
+.rxf-pickzone.is-over { border-color: #2F6FE0; background: #E5EFFD; }
+.rxf-pickzone[aria-invalid="true"] { border-color: var(--sale); }
+.rxf-pick { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 8px; }
+.rxf-btn {
+    position: relative; display: flex; align-items: center; justify-content: center; gap: 8px;
+    min-height: 56px; padding: 0 12px; border-radius: var(--r-md);
+    font-size: var(--t-16); font-weight: 800; cursor: pointer; text-align: center;
+    transition: background .2s ease, border-color .2s ease, transform .2s var(--ease-out);
+}
+.rxf-btn .rxi { width: 22px; height: 22px; }
+.rxf-btn:hover { transform: translateY(-1px); }
+.rxf-cam { background: #2F6FE0; color: #fff; box-shadow: 0 6px 16px rgba(47, 111, 224, .28); }
+.rxf-cam:hover { background: #2A58B0; }
+.rxf-up { background: #fff; color: #2A58B0; border: 1.5px solid #9CBCE4; }
+.rxf-up:hover { border-color: #2F6FE0; }
+.rxf-up:has(input:focus-visible) { outline: 2.5px solid var(--forest-500); outline-offset: 2px; }
+.rxf-sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; opacity: 0; }
+.rxf-help { font-size: var(--t-12); color: var(--ink-3); text-align: center; }
+@media (max-width: 479px) {
+    .rxf-btn { flex-direction: column; gap: 4px; min-height: 76px; padding: 8px; font-size: var(--t-14); }
+    .rxf-btn .rxi { width: 26px; height: 26px; }
+}
+.rxf-tips { display: none; }
+@media (min-width: 768px) {
+    .rxf-tips {
+        display: grid; gap: 8px; list-style: none; margin-top: 4px; padding-top: 12px; border-top: 1px solid #D5E5F6;
+        font-size: var(--t-14); color: var(--ink-2);
+    }
+    .rxf-tips li { display: flex; gap: 8px; align-items: flex-start; }
+    .rxf-tips li::before {
+        content: ''; flex-shrink: 0; width: 18px; height: 18px; margin-top: 1px; border-radius: 50%;
+        background: #fff url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%232A58B0' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m5 12 5 5L20 7'/%3E%3C/svg%3E") center / 11px no-repeat;
+        box-shadow: inset 0 0 0 1.5px #9CBCE4;
+    }
+}
+.rxf-mouse { display: none; }
+@media (hover: hover) and (pointer: fine) { .rxf-mouse { display: inline; } }
+.rxf-pickzone .rx-files { padding: 0; }
+.rxf-pickzone .rx-files:not(:empty) { padding-bottom: 0; }
+.rxf-wa-tag {
+    display: inline-flex; align-items: center; gap: 4px; margin-left: 4px; vertical-align: 1px;
+    padding: 1px 8px 1px 4px; border-radius: var(--r-pill);
+    background: #E7F9EE; color: #11743F; font-size: var(--t-12); font-weight: 700;
+}
+.rxf-wa-tag .rxi-wa { width: 14px; height: 14px; }
+.rxf-perks {
+    font-size: var(--t-14); line-height: 1.5; color: var(--forest-800);
+    background: var(--forest-50); border: 1px solid var(--forest-100); border-radius: var(--r-md); padding: 10px 12px;
+}
+.rxf-perks:empty { display: none; }
+.rxf-perks b { color: var(--forest-900); }
+.rxf-save {
+    background: #FFF8DB; border: 1.5px dashed var(--sun-deep); border-radius: var(--r-md); padding: 10px 12px;
+}
+.rxf-save b { color: var(--forest-900); }
+.rxf-wa { display: flex; align-items: center; justify-content: center; gap: 8px; font-size: var(--t-14); color: var(--ink-2); text-align: left; }
+.rxf-wa b { color: #11743F; }
+.rx-check [aria-invalid="true"] { outline: 2px solid var(--sale); outline-offset: 2px; }
+
+/* El rápido: en la pantalla grande, la receta a la izquierda y los datos a la derecha */
+.rxq .rx-form, .rxq .rx-done { box-shadow: 0 12px 30px rgba(47, 111, 224, .1); }
+@media (min-width: 768px) {
+    .rxf-quick { grid-template-columns: minmax(0, .9fr) minmax(0, 1.1fr); gap: 18px; align-items: start; padding: 18px; }
+    .rxf-quick .rxf-pickzone { min-height: 100%; align-content: start; }
+}
+
+/* Recibida */
+.rxf-done .rx-done-ico .rxi { width: 28px; height: 28px; stroke-width: 3; }
+.rxd-wa {
+    display: flex; align-items: flex-start; gap: 10px; width: 100%;
+    background: #E7F9EE; border: 1px solid #BFEBCF; border-radius: var(--r-md); padding: 10px 12px;
+}
+.rx-done p.rxd-wa { color: var(--ink); }
+.rxd-wa .rxi-wa { width: 22px; height: 22px; margin-top: 1px; }
+.rxd-invite {
+    display: grid; gap: 10px; justify-items: start; width: 100%;
+    background: #FFF8DB; border: 1.5px dashed var(--sun-deep); border-radius: var(--r-md); padding: 12px;
+}
+.rxd-invite p { color: var(--ink); }
+.rxd-invite p .rxi { width: 18px; height: 18px; vertical-align: -4px; color: var(--forest-700); }
+.rxd-invite a { color: var(--forest-700); font-weight: 700; }
+
+/* ── LA CÁMARA (computadora) ── */
+.rx-cam {
+    border: none; padding: 0; margin: auto; color: #fff; background: #0C1512;
+    width: min(720px, calc(100vw - 24px)); max-height: calc(100dvh - 24px);
+    border-radius: var(--r-xl); box-shadow: var(--shadow-lg); overflow: auto;
+}
+.rx-cam::backdrop { background: rgba(6, 42, 32, .7); -webkit-backdrop-filter: blur(4px); backdrop-filter: blur(4px); }
+.rx-cam-in { display: grid; gap: 12px; padding: 16px; }
+.rx-cam-top { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+.rx-cam-top h2 { font-family: var(--font-display); font-size: var(--t-20); font-weight: 800; letter-spacing: -.02em; }
+.rx-cam-x { width: 44px; height: 44px; border-radius: 50%; display: grid; place-items: center; color: #fff; background: rgba(255, 255, 255, .1); }
+.rx-cam-x:hover { background: rgba(255, 255, 255, .18); }
+.rx-cam-view { position: relative; aspect-ratio: 4 / 3; border-radius: var(--r-lg); overflow: hidden; background: #000; }
+.rx-cam-view video, .rx-cam-view img { width: 100%; height: 100%; object-fit: cover; }
+.rx-cam-guide {
+    position: absolute; inset: 8% 12%; border-radius: 14px; pointer-events: none;
+    border: 2px dashed rgba(255, 255, 255, .7); box-shadow: 0 0 0 999px rgba(0, 0, 0, .22);
+}
+.rx-cam-view img:not([hidden]) + .rx-cam-guide { display: none; }
+.rx-cam-tip { font-size: var(--t-14); color: rgba(255, 255, 255, .78); }
+.rx-cam .rx-err { color: #FF9C94; }
+.rx-cam-actions { display: flex; flex-wrap: wrap; align-items: center; justify-content: flex-end; gap: 8px 16px; }
+.rx-cam .addr-submit { background: var(--sun); color: var(--forest-900); }
+.rx-cam .addr-submit:hover { background: var(--sun-deep); }
+.rx-cam .addr-submit .rxi { color: var(--forest-900); }
+.rx-cam .text-btn { color: #fff; }
+
+/* ── TU OBRA SOCIAL: quedar ingresado y ver los descuentos ── */
+.rxc { min-width: 0; scroll-margin-top: calc(var(--header-full, 125px) + 12px); }
+.rxc-card {
+    display: grid; gap: 14px; align-content: start;
+    background: var(--surface); border: 1px solid #D5E5F6; border-radius: var(--r-lg);
+    padding: 18px 16px; box-shadow: 0 12px 30px rgba(47, 111, 224, .08);
+}
+.rxc-head { display: flex; align-items: flex-start; gap: 12px; }
+.rxc-avatar {
+    width: 48px; height: 48px; border-radius: 50%; flex-shrink: 0; display: grid; place-items: center;
+    background: linear-gradient(145deg, #2F6FE0, var(--forest-700)); color: #fff;
+    font-family: var(--font-display); font-size: var(--t-20); font-weight: 800;
+}
+.rxc-avatar.is-icon { border-radius: 16px; }
+.rxc-avatar .rxi { width: 24px; height: 24px; }
+.rxc-kicker { font-size: var(--t-12); font-weight: 700; letter-spacing: .06em; text-transform: uppercase; color: #2A58B0; }
+.rxc-title { font-family: var(--font-display); font-size: var(--t-20); font-weight: 800; letter-spacing: -.02em; line-height: 1.15; margin-top: 2px; }
+.rxc-title:focus { outline: none; }
+.rxc-lead { font-size: var(--t-14); color: var(--ink-2); margin-top: 6px; max-width: 62ch; }
+.rxc-id { font-size: var(--t-14); color: var(--ink-2); margin-top: 2px; }
+.rxc-chips { display: flex; flex-wrap: wrap; gap: 6px; list-style: none; margin-top: 10px; }
+.rxc-chips li {
+    font-size: var(--t-12); font-weight: 700; color: #2A58B0;
+    background: #F4F8FE; border: 1px solid #D5E5F6; border-radius: var(--r-pill); padding: 3px 10px;
+}
+.rxc-form { display: grid; gap: 12px; }
+.rxc-sub { font-size: var(--t-16); font-weight: 800; }
+.rxc-perks { list-style: none; display: grid; gap: 8px; grid-template-columns: minmax(0, 1fr); }
+.rxc-perk {
+    display: grid; grid-template-columns: auto minmax(0, 1fr); align-items: center; gap: 0 12px;
+    background: linear-gradient(150deg, var(--forest-50), #fff); border: 1px solid var(--forest-100);
+    border-radius: var(--r-md); padding: 10px 8px 10px 12px;
+}
+.rxc-pct {
+    display: block; grid-row: span 2; min-width: 64px; text-align: center; white-space: nowrap;
+    font-family: var(--font-display); font-size: var(--t-28); font-weight: 800; line-height: 1; letter-spacing: -.03em; color: var(--forest-800);
+    font-variant-numeric: tabular-nums;
+}
+.rxc-pct small { display: block; font-family: var(--font-body); font-size: var(--t-12); font-weight: 700; letter-spacing: 0; color: var(--forest-700); margin-bottom: 2px; }
+.rxc-pct span { font-size: .55em; margin-left: 1px; }
+.rxc-what { display: grid; min-width: 0; }
+.rxc-what strong { font-size: var(--t-14); }
+.rxc-what small { font-size: var(--t-12); color: var(--ink-3); }
+.rxc-what { align-self: end; }
+.rxc-perk .text-btn { grid-column: 2; justify-self: start; align-self: start; min-height: 36px; white-space: nowrap; display: inline-flex; align-items: center; }
+.rxc-empty { font-size: var(--t-14); color: var(--ink-2); background: var(--bg); border-radius: var(--r-md); padding: 12px; }
+.rxc-note { font-size: var(--t-12); color: var(--ink-3); }
+.rxc-news { display: flex; align-items: center; gap: 8px; font-size: var(--t-14); color: var(--ink-2); }
+.rxc-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 18px; }
+.rxc-account { font-size: var(--t-14); color: var(--ink-2); padding-top: 10px; border-top: 1px solid var(--line); }
+.rxc-account a { color: var(--forest-700); font-weight: 700; text-underline-offset: 3px; }
+
+/* En el apartado #receta, "Tu obra social" ocupa todo el ancho */
+.rx > .rxc { grid-column: 1 / -1; }
+@media (min-width: 600px) {
+    .rxc-perks { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media (min-width: 900px) {
+    .rxc-card { padding: 24px; }
+    .rxc-card:not(.is-in) { grid-template-columns: minmax(0, .8fr) minmax(0, 1.2fr); column-gap: 32px; }
+    .rxc-card:not(.is-in) > :not(.rxc-head):not(.rxc-form) { grid-column: 1 / -1; }
+    .rxc-perks { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+}
+
+/* ── ACCESOS: el botón del encabezado y el de la barra de abajo ── */
+.header-rx {
+    display: none; align-items: center; gap: 6px; flex-shrink: 0;
+    min-height: 40px; padding: 0 14px; border-radius: var(--r-pill);
+    background: #EAF2FD; color: #2A58B0; font-size: var(--t-14); font-weight: 800; white-space: nowrap;
+    box-shadow: inset 0 0 0 1px #C9DCF5;
+    transition: background .2s ease;
+}
+.header-rx:hover { background: #DCE9FB; }
+.header-rx .rxi { width: 18px; height: 18px; }
+@media (min-width: 1024px) { .header-rx { display: inline-flex; } }
+.bottom-nav .nav-item { min-width: 0; flex: 1 1 0; }
+.nav-rx { color: #2A58B0; }
+.nav-rx .rxi { width: 22px; height: 22px; }
+.nav-rx-ico { display: grid; place-items: center; width: 34px; height: 26px; border-radius: var(--r-pill); background: #EAF2FD; }
+.nav-rx-ico .rxi { width: 20px; height: 20px; }
+.rx-send { display: none !important; }

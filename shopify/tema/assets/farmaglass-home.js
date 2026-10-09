@@ -920,8 +920,7 @@ function renderAddress() {
     }
     // La más cercana queda elegida para "Retiro en farmacia" y para las recetas
     const near = nearestPharmacy();
-    if (near) FGShop.setStore(near.id);
-    renderRxStores();
+    if (near) { FGShop.setStore(near.id); FGReceta.setStore(near.id); }
     // Actualiza la farmacia en todas las tarjetas, la portada y las pestañas de farmacias
     renderHero(false);
     renderStores();
@@ -976,63 +975,9 @@ document.getElementById('addr-btn').addEventListener('click', () => {
     addrPanel.scrollIntoView({ behavior: reduceMotion() ? 'auto' : 'smooth', block: 'start' });
     if (!address) setTimeout(() => document.getElementById('addr-street').focus({ preventScroll: true }), 350);
 });
-// ── RECETAS ──
-const rxForm = document.getElementById('rx-form');
-const rxInput = document.getElementById('rx-file');
-const rxDrop = document.getElementById('rx-drop');
-const rxFilesEl = document.getElementById('rx-files');
-const rxErr = document.getElementById('rx-err');
-const rxOs = document.getElementById('rx-os');
-const rxMember = document.getElementById('rx-member');
-const rxStore = document.getElementById('rx-store');
-const rxConsent = document.getElementById('rx-consent');
-const rxEmail = document.getElementById('rx-email');
-const rxPhone = document.getElementById('rx-phone');
-rxForm.noValidate = true;
-let rxFiles = [];
-const kb = n => n < 1048576 ? `${Math.max(1, Math.round(n / 1024))} KB` : `${(n / 1048576).toFixed(1).replace('.', ',')} MB`;
-
-function renderRxStores() {
-    const near = nearestPharmacy(), cur = rxStore.value;
-    rxStore.innerHTML = PHARMACIES.map(f => {
-        const st = FGShop.openStatus(f.id);
-        return `<option value="${f.id}">${esc(f.name)}${near && near.id === f.id ? ' (la más cercana)' : ''} · ${st.short}</option>`;
-    }).join('');
-    rxStore.value = cur || (near || PHARMACIES[0]).id;
-}
-function renderRxFiles() {
-    rxFilesEl.innerHTML = rxFiles.map((r, i) => `<li class="rx-file">
-        ${r.url ? `<img src="${r.url}" alt="">` : '<span class="rx-pdf" aria-hidden="true">PDF</span>'}
-        <span class="rx-file-name"><b>${esc(r.file.name)}</b><small>${kb(r.file.size)}</small></span>
-        <button class="rx-file-rm" type="button" data-rx-rm="${i}" aria-label="Quitar ${esc(r.file.name)}"><svg class="icon" aria-hidden="true"><use href="#i-x"/></svg></button></li>`).join('');
-}
-function addRxFiles(list) {
-    const problems = [];
-    for (const f of list) {
-        if (rxFiles.length >= 3) { problems.push('Podés subir hasta 3 archivos.'); break; }
-        if (!/^image\/|^application\/pdf$/.test(f.type)) { problems.push(`${f.name}: solo se aceptan JPG, PNG o PDF.`); continue; }
-        if (f.size > 10 * 1048576) { problems.push(`${f.name}: supera los 10 MB.`); continue; }
-        rxFiles.push({ file: f, url: f.type.startsWith('image/') ? URL.createObjectURL(f) : null });
-    }
-    renderRxFiles();
-    rxErr.textContent = problems.join(' ');
-    if (rxFiles.length) rxDrop.removeAttribute('aria-invalid');
-}
-rxInput.addEventListener('change', () => { addRxFiles(rxInput.files); rxInput.value = ''; });
-['dragenter', 'dragover'].forEach(ev => rxDrop.addEventListener(ev, e => { e.preventDefault(); rxDrop.classList.add('is-over'); }));
-['dragleave', 'drop'].forEach(ev => rxDrop.addEventListener(ev, () => rxDrop.classList.remove('is-over')));
-rxDrop.addEventListener('drop', e => { e.preventDefault(); addRxFiles(e.dataTransfer.files); });
-rxFilesEl.addEventListener('click', e => {
-    const b = e.target.closest('[data-rx-rm]');
-    if (!b) return;
-    const [r] = rxFiles.splice(Number(b.dataset.rxRm), 1);
-    if (r.url) URL.revokeObjectURL(r.url);
-    renderRxFiles();
-    rxInput.focus();
-});
-const syncMember = () => { document.getElementById('rx-member-field').hidden = !rxOs.value || rxOs.value.startsWith('Particular'); };
-rxOs.addEventListener('change', syncMember);
-syncMember();
+// ── RECETAS: fg-receta.js arma la franja de arriba, el formulario y "Tu obra social" (envío: fg-receta-tienda.js) ──
+// "Ver productos" en un descuento de la obra social filtra el catálogo por esa categoría
+document.addEventListener('fg:categoria', e => { if (CATEGORIES[e.detail]) setCategory(e.detail); });
 
 // Los formularios de la tienda recargan la página: lo que hay que mostrar al volver queda en la sesión
 const pending = {
@@ -1042,47 +987,6 @@ const pending = {
 };
 const code = prefix => prefix + '-' + String(Math.floor(Math.random() * 1e6)).padStart(6, '0');
 const sending = (form, text) => { const b = form.querySelector('[type="submit"]'); b.disabled = true; b.lastChild.textContent = text; };
-
-rxForm.addEventListener('submit', e => {
-    e.preventDefault();
-    const invalid = [];
-    [rxDrop, rxOs, rxMember, rxEmail, rxPhone, rxConsent].forEach(el => el.removeAttribute('aria-invalid'));
-    if (!rxOs.value) invalid.push([rxOs, rxOs, 'Elegí tu obra social o “Particular”.']);
-    else if (!rxOs.value.startsWith('Particular') && rxMember.value.replace(/\D/g, '').length < 4) invalid.push([rxMember, rxMember, 'Ingresá tu número de afiliado.']);
-    if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(rxEmail.value.trim())) invalid.push([rxEmail, rxEmail, 'Ingresá tu email para que te respondamos.']);
-    if (rxPhone.value.replace(/\D/g, '').length < 8) invalid.push([rxPhone, rxPhone, 'Ingresá un celular con código de área.']);
-    if (!rxConsent.checked) invalid.push([rxConsent, rxConsent, 'Necesitamos tu autorización para revisar la receta.']);
-    if (invalid.length) {
-        invalid.forEach(([el]) => el.setAttribute('aria-invalid', 'true'));
-        rxErr.textContent = invalid.map(x => x[2]).join(' ');
-        invalid[0][1].focus();
-        return;
-    }
-    // Viaja el nombre de los archivos; la foto se la pide el farmacéutico por email si la necesita
-    const r = { kind: 'rx', id: code('RX'), store: rxStore.value, os: rxOs.value, email: rxEmail.value.trim(), files: rxFiles.map(x => x.file.name) };
-    document.getElementById('rx-code-field').value = r.id;
-    document.getElementById('rx-store-field').value = pharmById.get(r.store).name;
-    document.getElementById('rx-files-field').value = r.files.join(', ') || 'Sin archivos';
-    pending.set(r);
-    sending(rxForm, 'Enviando tu receta…');
-    rxForm.submit();
-});
-function showRxDone(r) {
-    const rec = FGShop.rx.add({ id: r.id, files: r.files, os: r.os, store: r.store });
-    document.getElementById('rx-code').textContent = rec.id;
-    document.getElementById('rx-done-text').textContent = `${pharmById.get(rec.store).name} la revisa y te escribe a ${r.email} con el precio y la cobertura.`;
-    rxForm.hidden = true;
-    const done = document.getElementById('rx-done');
-    done.hidden = false;
-    document.getElementById('receta').scrollIntoView({ behavior: 'auto' });
-    done.focus({ preventScroll: true });
-}
-document.getElementById('rx-again').addEventListener('click', () => {
-    document.getElementById('rx-done').hidden = true;
-    rxForm.hidden = false;
-    rxFiles = []; renderRxFiles(); rxForm.reset(); syncMember(); renderRxStores();
-    rxInput.focus();
-});
 
 // ── BOTÓN DE ARREPENTIMIENTO (Res. 424/2020) ──
 const regretDialog = document.getElementById('regret-dialog');
@@ -1137,14 +1041,12 @@ function showRegretDone(r) {
     if (!r) return;
     if (new URLSearchParams(location.search).get('contact_posted') === 'true') {
         pending.clear();
-        if (r.kind === 'rx') showRxDone(r);
         if (r.kind === 'regret') showRegretDone(r);
         return;
     }
     const errors = document.querySelector(`[data-form-errors="${r.kind}"]`);
     if (!errors) return;
     pending.clear();
-    if (r.kind === 'rx') { rxErr.textContent = errors.textContent.trim(); document.getElementById('receta').scrollIntoView({ behavior: 'auto' }); }
     if (r.kind === 'regret') { openRegret(); document.getElementById('regret-err').textContent = errors.textContent.trim(); }
 })();
 

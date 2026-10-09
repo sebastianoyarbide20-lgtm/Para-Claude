@@ -10,6 +10,7 @@ Todo es HTML, CSS y JavaScript sin dependencias. Para verla, abrí `farmacia_v2.
 | `farmacia_v2.html` | Web principal: catálogo, ofertas, farmacias de la red, recetas y ayuda |
 | `farmacia-centro.html` · `farmacia-plaza.html` · `farmacia-norte.html` · `farmacia-parque.html` | Página de cada farmacia, con su estilo, su línea propia y los productos reales que despacha |
 | `fg-shop.js` | Carrito, checkout, pedidos, favoritos, cupones y "Mi cuenta", compartidos por todas las páginas |
+| `fg-receta.js` · `fg-receta.css` | La receta de la web principal: la franja de arriba con el envío rápido, el formulario con foto o archivo y "Tu obra social" |
 | `farmacias-red.js` | Datos y utilidades de las páginas de farmacia |
 | `productos-reales.js` | 58 productos reales de farmacia y cosmética con precio, oferta e imagen: 34 del catálogo y 24 de las líneas de cada farmacia |
 | `scripts/actualizar-productos.js` | Actualiza precios e imágenes de esos productos |
@@ -38,7 +39,21 @@ y un banner propio en la portada de la web principal:
 - **Catálogo**: orden por precio, descuento o valoración; filtros de envío gratis, farmacia más cercana y favoritos.
 - **Producto**: favorito, compartir, cuotas, productos relacionados y enlace directo (`#producto-4`).
 - **Dirección**: escrita o con "Usar mi ubicación actual"; muestra la farmacia más cercana y si está abierta.
-- **Recetas**: carga de foto o PDF con obra social; queda "En revisión" en Mi cuenta.
+- **Recetas** (`fg-receta.js`):
+  - **Franja de arriba de todo** con el botón "Enviar receta", que despliega un formulario rápido. También se abre
+    desde "Receta" en la barra de abajo (celular) y "Enviar receta" en el encabezado (computadora).
+  - **Sacar foto o subir archivo**: en el celular, "Sacar foto" abre la cámara del teléfono; en la computadora, la cámara
+    web con vista previa, "Repetir" y "Usar esta foto". También se puede subir o arrastrar una foto o un PDF
+    (hasta 3 archivos de 10 MB). Las fotos de más de 1,5 MB se achican antes de enviarlas.
+  - **Solo el celular, sin email**: la confirmación, el precio y la cobertura llegan por WhatsApp, y así lo avisa
+    el formulario y la confirmación.
+  - **Obra social y plan**: al elegirlos, se ven los descuentos de ese plan. Sin plan se ven los máximos de la
+    obra social ("hasta").
+  - **Quedate ingresado / "Tu obra social"**: guarda nombre, celular, obra social, plan y n.º de afiliado en el
+    dispositivo. Los formularios se completan solos, la franja saluda con el descuento en medicamentos, y la tarjeta
+    muestra todos los descuentos del plan, con "Ver productos" (filtra el catálogo) y "Enviar receta". Los datos se
+    editan o se borran con "Salir y olvidar mis datos".
+  - **Seguimiento**: la receta queda en Mi cuenta con su código. Los convenios del prototipo son de ejemplo.
 - **Botón de arrepentimiento** con código de trámite, preguntas frecuentes y "Volver arriba".
 
 ## Productos reales
@@ -77,8 +92,10 @@ que es una copia de Horizon sin publicar. Los archivos están en `shopify/tema/`
 | `assets/farmaglass.css` | Los estilos de la web, con unos pocos agregados al final |
 | `assets/farmaglass-home.js` | El script de la web, con los datos de la tienda |
 | `assets/fg-shop.js` | El carrito, los cupones y "Mi cuenta", conectados a Shopify |
+| `assets/fg-receta.js` · `assets/fg-receta.css` | La receta de la portada (copia de la del prototipo) |
+| `assets/fg-receta-tienda.js` | El envío de la receta a la tienda: sube las fotos y manda el aviso por el formulario de contacto |
 | `templates/collection.farmacia-*.json` | La página de cada farmacia, asignada a su colección |
-| `layout/farmacia.liquid` · `sections/farmacia-*.liquid` · `assets/farmacia-*.css` · `assets/farmacia-*.js` | Las páginas de farmacia del prototipo, generadas con `node shopify/construir-farmacias.js` |
+| `layout/farmacia.liquid` · `sections/farmacia-*.liquid` · `assets/farmacia-*.css` · `assets/farmacia-*.js` | Las páginas de farmacia del prototipo, generadas con `node shopify/construir-farmacias.js` (que también copia `farmacias-red.js`, `fg-receta.js` y `fg-receta.css`) |
 | `assets/farmacias-red.js` · `assets/farmaglass-productos.js` | Las utilidades de las farmacias (copia de las del prototipo) y la capa que les pasa los productos de la tienda |
 
 Qué cambia respecto de la web:
@@ -90,8 +107,10 @@ Qué cambia respecto de la web:
 - **Carrito y cupones**: son el carrito de Shopify (API Ajax) y los códigos `NUEVO20` y `FARMA10` de la tienda.
   "Iniciar compra" lleva al pago de Shopify, donde se eligen la entrega y el medio de pago.
 - **Mi cuenta**: los pedidos son los de la cuenta del cliente, con su estado y el enlace al seguimiento.
-- **Recetas y botón de arrepentimiento**: llegan al email de la tienda por el formulario de contacto, con un código.
-  La foto de la receta no viaja con el formulario: si el farmacéutico la necesita, se la pide al cliente por email.
+- **Recetas**: llegan al email de la tienda por el formulario de contacto, con el código, el celular, la obra social,
+  el plan, la farmacia y los enlaces a las fotos. El cliente no escribe su email: el formulario usa el de su cuenta
+  o, si no entró, el de la tienda. Más abajo está cómo funciona.
+- **Botón de arrepentimiento**: llega al email de la tienda por el formulario de contacto, con un código.
 - **Newsletter**: da de alta al cliente como suscriptor, con la etiqueta `newsletter`.
 - **Páginas de farmacia**: cada colección de farmacia usa la plantilla con su mundo (por ejemplo, la colección
   "Farmacia del Centro" usa `collection.farmacia-centro`), con los productos y el carrito de la tienda.
@@ -99,6 +118,24 @@ Qué cambia respecto de la web:
   `node shopify/construir-farmacias.js` y se suben los archivos. Las demás páginas usan el diseño de Horizon.
 - **Sin valoraciones**: la tienda no tiene reseñas, así que no se muestran estrellas.
 
+### Recetas en la tienda
+
+- **Las fotos**: la tienda tiene un producto oculto, **Receta para cotizar** (`receta-para-cotizar`). Tiene estado
+  "No listado", precio $ 0, no lleva envío ni stock y no aparece en el catálogo. Al enviar, las fotos se suben como
+  archivos de una línea de ese producto (`cart/add.js`): Shopify las guarda y devuelve un enlace a cada una. Enseguida
+  la línea se quita del carrito. Si el producto no existe o la subida falla, la receta llega igual, con los nombres
+  de los archivos y el aviso de pedir la foto por WhatsApp. **No hay que borrar ese producto ni cambiarle el identificador.**
+- **El aviso**: el email de la tienda trae, además, un enlace `wa.me` para escribirle al cliente por WhatsApp.
+  El WhatsApp con la confirmación, el precio y la cobertura lo manda el equipo de la farmacia. Para automatizarlo,
+  hace falta una app de WhatsApp Business.
+- **Los convenios**: en el editor del tema, la sección de la portada tiene un bloque **Convenio de obra social** por
+  cada obra social y plan. Cada bloque lleva el porcentaje de descuento en medicamentos con receta, dermocosmética,
+  cuidado personal, bebés, nutrición y farmacia, más la nota que se muestra debajo de los descuentos.
+  Vienen cargados con valores de ejemplo, que hay que reemplazar por los convenios reales.
+- **"Tu obra social"**: los datos del cliente quedan guardados en su dispositivo, igual que en el prototipo. Si no
+  entró a su cuenta, el apartado le ofrece "Ingresá o creá tu cuenta" para ver sus pedidos en cualquier dispositivo.
+
+Después de cambiar `fg-receta.js`, `fg-receta.css` o una página de farmacia, se corre `node shopify/construir-farmacias.js`.
 Para actualizar el tema se suben los archivos de `shopify/tema/` al tema, por ejemplo con Shopify CLI:
 `shopify theme push --path shopify/tema --theme <id del tema> --nodelete`. Para usarlo, se publica desde
 Tienda online → Temas.
