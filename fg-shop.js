@@ -183,7 +183,7 @@ window.FGShop = (() => {
         },
     };
     const rxStatus = (r, now = Date.now()) => (now - r.date) / 60000 < 3
-        ? { label: 'En revisión', k: 'wait' } : { label: 'Aprobada · lista para comprar', k: 'ok' };
+        ? { label: 'En revisión', k: 'wait' } : { label: 'Cotizada · mirá tu WhatsApp', k: 'ok' };
 
     // ── PINTADO DE CONTADORES Y BOTONES ──
     function paint() {
@@ -575,10 +575,10 @@ window.FGShop = (() => {
                 return `<li class="fgs-order">
                     <div class="fgs-order-top"><b>Receta ${esc(r.id)}</b><span class="fgs-chip ${st.k}">${st.label}</span></div>
                     <p class="fgs-order-meta">${dateText(r.date)} · ${plural(r.files.length, 'archivo', 'archivos')} · ${esc(r.os)}</p>
-                    <p class="fgs-order-meta">La prepara ${esc(PHARM[r.store]?.name || 'la farmacia')}</p>
+                    <p class="fgs-order-meta">La prepara ${esc(PHARM[r.store]?.name || 'la farmacia')}${r.phone ? ` · te escribimos al ${esc(r.phone)}` : ''}</p>
                 </li>`;
-            }).join('')}</ul><a class="fgs-ghost" href="${here('receta', `${HOME}#receta`)}" data-fgs-close>${ico('doc')}Subir otra receta</a>`
-                : empty('doc', 'No subiste recetas', 'Subí la foto de tu receta: un farmacéutico la revisa y te confirma precio y cobertura.', 'Subir una receta', here('receta', `${HOME}#receta`));
+            }).join('')}</ul><a class="fgs-ghost" href="${here('receta', `${HOME}#receta`)}" data-fgs-close>${ico('doc')}Enviar otra receta</a>`
+                : empty('doc', 'Todavía no enviaste recetas', 'Sacale una foto a tu receta: un farmacéutico la revisa y te escribe por WhatsApp con el precio y la cobertura.', 'Enviar una receta', here('receta', `${HOME}#receta`));
         }
         const body = `<p class="fgs-note">${ico('lock')}Prototipo: tus pedidos, favoritos y recetas se guardan solo en este navegador.</p>
             <div class="fgs-tabs" role="tablist" aria-label="Secciones de tu cuenta">${tabs.map(([id, label, n]) =>

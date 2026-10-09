@@ -3,8 +3,268 @@
   "sections": {
     "portada": {
       "type": "farmaglass-home",
-      "settings": {}
+      "settings": {
+        "convenios_nota": "Descuentos de referencia: te confirmamos la cobertura exacta por WhatsApp al cotizar tu receta."
+      },
+      "blocks": {
+        "osde-210": {
+          "type": "convenio",
+          "settings": {
+            "title": "OSDE",
+            "plan": "210",
+            "medicamentos": 40,
+            "dermocosmetica": 10,
+            "cuidado": 0,
+            "bebes": 10,
+            "nutricion": 0,
+            "farmacia": 0
+          }
+        },
+        "osde-310": {
+          "type": "convenio",
+          "settings": {
+            "title": "OSDE",
+            "plan": "310",
+            "medicamentos": 40,
+            "dermocosmetica": 15,
+            "cuidado": 0,
+            "bebes": 10,
+            "nutricion": 0,
+            "farmacia": 0
+          }
+        },
+        "osde-410": {
+          "type": "convenio",
+          "settings": {
+            "title": "OSDE",
+            "plan": "410",
+            "medicamentos": 50,
+            "dermocosmetica": 15,
+            "cuidado": 5,
+            "bebes": 10,
+            "nutricion": 0,
+            "farmacia": 0
+          }
+        },
+        "osde-450": {
+          "type": "convenio",
+          "settings": {
+            "title": "OSDE",
+            "plan": "450",
+            "medicamentos": 50,
+            "dermocosmetica": 20,
+            "cuidado": 5,
+            "bebes": 15,
+            "nutricion": 0,
+            "farmacia": 0
+          }
+        },
+        "osde-510": {
+          "type": "convenio",
+          "settings": {
+            "title": "OSDE",
+            "plan": "510",
+            "medicamentos": 60,
+            "dermocosmetica": 20,
+            "cuidado": 10,
+            "bebes": 15,
+            "nutricion": 0,
+            "farmacia": 0
+          }
+        },
+        "swiss-medical-smg02": {
+          "type": "convenio",
+          "settings": {
+            "title": "Swiss Medical",
+            "plan": "SMG02",
+            "medicamentos": 40,
+            "dermocosmetica": 10,
+            "cuidado": 0,
+            "bebes": 0,
+            "nutricion": 0,
+            "farmacia": 0
+          }
+        },
+        "swiss-medical-smg20": {
+          "type": "convenio",
+          "settings": {
+            "title": "Swiss Medical",
+            "plan": "SMG20",
+            "medicamentos": 50,
+            "dermocosmetica": 15,
+            "cuidado": 0,
+            "bebes": 10,
+            "nutricion": 0,
+            "farmacia": 0
+          }
+        },
+        "swiss-medical-smg30": {
+          "type": "convenio",
+          "settings": {
+            "title": "Swiss Medical",
+            "plan": "SMG30",
+            "medicamentos": 50,
+            "dermocosmetica": 15,
+            "cuidado": 5,
+            "bebes": 10,
+            "nutricion": 0,
+            "farmacia": 0
+          }
+        },
+        "swiss-medical-smg40": {
+          "type": "convenio",
+          "settings": {
+            "title": "Swiss Medical",
+            "plan": "SMG40",
+            "medicamentos": 60,
+            "dermocosmetica": 20,
+            "cuidado": 10,
+            "bebes": 15,
+            "nutricion": 0,
+            "farmacia": 0
+          }
+        },
+        "galeno-azul-220": {
+          "type": "convenio",
+          "settings": {
+            "title": "Galeno",
+            "plan": "Azul 220",
+            "medicamentos": 40,
+            "dermocosmetica": 10,
+            "cuidado": 0,
+            "bebes": 0,
+            "nutricion": 0,
+            "farmacia": 0
+          }
+        },
+        "galeno-plata-330": {
+          "type": "convenio",
+          "settings": {
+            "title": "Galeno",
+            "plan": "Plata 330",
+            "medicamentos": 45,
+            "dermocosmetica": 10,
+            "cuidado": 0,
+            "bebes": 10,
+            "nutricion": 0,
+            "farmacia": 0
+          }
+        },
+        "galeno-oro-440": {
+          "type": "convenio",
+          "settings": {
+            "title": "Galeno",
+            "plan": "Oro 440",
+            "medicamentos": 50,
+            "dermocosmetica": 15,
+            "cuidado": 5,
+            "bebes": 10,
+            "nutricion": 0,
+            "farmacia": 0
+          }
+        },
+        "medife-bronce": {
+          "type": "convenio",
+          "settings": {
+            "title": "Medifé",
+            "plan": "Bronce",
+            "medicamentos": 40,
+            "dermocosmetica": 0,
+            "cuidado": 0,
+            "bebes": 0,
+            "nutricion": 0,
+            "farmacia": 0
+          }
+        },
+        "medife-plata": {
+          "type": "convenio",
+          "settings": {
+            "title": "Medifé",
+            "plan": "Plata",
+            "medicamentos": 40,
+            "dermocosmetica": 10,
+            "cuidado": 0,
+            "bebes": 5,
+            "nutricion": 0,
+            "farmacia": 0
+          }
+        },
+        "medife-oro": {
+          "type": "convenio",
+          "settings": {
+            "title": "Medifé",
+            "plan": "Oro",
+            "medicamentos": 50,
+            "dermocosmetica": 15,
+            "cuidado": 5,
+            "bebes": 10,
+            "nutricion": 0,
+            "farmacia": 0
+          }
+        },
+        "pami": {
+          "type": "convenio",
+          "settings": {
+            "title": "PAMI",
+            "plan": "Afiliado PAMI",
+            "medicamentos": 50,
+            "dermocosmetica": 0,
+            "cuidado": 10,
+            "bebes": 0,
+            "nutricion": 0,
+            "farmacia": 0
+          }
+        },
+        "ioma": {
+          "type": "convenio",
+          "settings": {
+            "title": "IOMA",
+            "plan": "Afiliado IOMA",
+            "medicamentos": 40,
+            "dermocosmetica": 0,
+            "cuidado": 5,
+            "bebes": 0,
+            "nutricion": 0,
+            "farmacia": 0
+          }
+        },
+        "osecac": {
+          "type": "convenio",
+          "settings": {
+            "title": "OSECAC",
+            "plan": "Afiliado OSECAC",
+            "medicamentos": 40,
+            "dermocosmetica": 5,
+            "cuidado": 10,
+            "bebes": 0,
+            "nutricion": 0,
+            "farmacia": 0
+          }
+        }
+      },
+      "block_order": [
+        "osde-210",
+        "osde-310",
+        "osde-410",
+        "osde-450",
+        "osde-510",
+        "swiss-medical-smg02",
+        "swiss-medical-smg20",
+        "swiss-medical-smg30",
+        "swiss-medical-smg40",
+        "galeno-azul-220",
+        "galeno-plata-330",
+        "galeno-oro-440",
+        "medife-bronce",
+        "medife-plata",
+        "medife-oro",
+        "pami",
+        "ioma",
+        "osecac"
+      ]
     }
   },
-  "order": ["portada"]
+  "order": [
+    "portada"
+  ]
 }

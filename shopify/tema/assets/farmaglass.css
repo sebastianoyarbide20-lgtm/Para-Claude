@@ -1624,15 +1624,6 @@ body {
     background: rgba(255, 255, 255, .86); border: 1px solid #D5E5F6; border-radius: var(--r-lg);
     padding: 16px; box-shadow: 0 12px 30px rgba(47, 111, 224, .08);
 }
-.rx-drop { border: 2px dashed #9CBCE4; border-radius: var(--r-md); background: #F4F8FE; transition: border-color .2s ease, background .2s ease; }
-.rx-drop.is-over { border-color: #2F6FE0; background: #E5EFFD; }
-.rx-drop:has(input:focus-visible) { outline: 2.5px solid var(--forest-500); outline-offset: 2px; }
-.rx-drop-label { display: grid; justify-items: center; gap: 4px; padding: 18px 14px; text-align: center; font-size: var(--t-14); cursor: pointer; }
-.rx-drop-label .icon { width: 28px; height: 28px; color: #2F6FE0; margin-bottom: 2px; }
-.rx-drop-label u { color: #2A58B0; text-underline-offset: 3px; }
-.rx-drop-label small { font-size: var(--t-12); color: var(--ink-3); }
-.rx-mouse { display: none; }
-@media (hover: hover) and (pointer: fine) { .rx-mouse { display: inline; } .rx-touch { display: none; } }
 .rx-files { list-style: none; display: grid; gap: 6px; padding: 0 10px; }
 .rx-files:not(:empty) { padding-bottom: 10px; }
 .rx-file { display: flex; align-items: center; gap: 10px; padding: 4px 4px 4px 6px; background: #fff; border: 1px solid var(--line); border-radius: var(--r-sm); font-size: var(--t-14); }
@@ -1648,9 +1639,8 @@ body {
 .rx-check input { width: 20px; height: 20px; margin-top: 1px; flex-shrink: 0; accent-color: var(--forest-700); }
 .rx-err { font-size: var(--t-14); font-weight: 600; color: var(--sale); }
 .rx-err:empty { display: none; }
-.rx-note { font-size: var(--t-12); color: var(--ink-3); text-align: center; }
 .rx-submit { width: 100%; }
-.addr-field [aria-invalid="true"], .rx-drop[aria-invalid="true"] { border-color: var(--sale) !important; }
+.addr-field [aria-invalid="true"] { border-color: var(--sale) !important; }
 .addr-field textarea {
     width: 100%; min-height: 88px; padding: 12px 14px; resize: vertical;
     border-radius: var(--r-md); border: 1.5px solid var(--line-2); background: var(--surface); font: inherit; font-size: var(--t-16);

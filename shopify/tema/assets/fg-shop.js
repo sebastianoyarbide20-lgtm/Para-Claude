@@ -226,8 +226,8 @@ const db = {
             return rec;
         },
     };
-    // La respuesta del farmacéutico llega por email
-    const rxStatus = () => ({ label: 'Enviada · te respondemos por email', k: 'wait' });
+    // La respuesta del farmacéutico llega por WhatsApp
+    const rxStatus = () => ({ label: 'Enviada · te escribimos por WhatsApp', k: 'wait' });
 
     // ── PINTADO DE CONTADORES Y BOTONES ──
     function paint() {
@@ -459,10 +459,10 @@ const db = {
                 return `<li class="fgs-order">
                     <div class="fgs-order-top"><b>Receta ${esc(r.id)}</b><span class="fgs-chip ${st.k}">${st.label}</span></div>
                     <p class="fgs-order-meta">${dateText(r.date)} · ${plural(r.files.length, 'archivo', 'archivos')} · ${esc(r.os)}</p>
-                    <p class="fgs-order-meta">La prepara ${esc(PHARM[r.store]?.name || 'la farmacia')}</p>
+                    <p class="fgs-order-meta">La prepara ${esc(PHARM[r.store]?.name || 'la farmacia')}${r.phone ? ` · te escribimos al ${esc(r.phone)}` : ''}</p>
                 </li>`;
-            }).join('')}</ul><a class="fgs-ghost" href="${here('receta', `${HOME}#receta`)}" data-fgs-close>${ico('doc')}Subir otra receta</a>`
-                : empty('doc', 'No subiste recetas', 'Subí la foto de tu receta: un farmacéutico la revisa y te confirma precio y cobertura.', 'Subir una receta', here('receta', `${HOME}#receta`));
+            }).join('')}</ul><a class="fgs-ghost" href="${here('receta', `${HOME}#receta`)}" data-fgs-close>${ico('doc')}Enviar otra receta</a>`
+                : empty('doc', 'Todavía no enviaste recetas', 'Sacale una foto a tu receta: un farmacéutico la revisa y te escribe por WhatsApp con el precio y la cobertura.', 'Enviar una receta', here('receta', `${HOME}#receta`));
         }
         const body = `<p class="fgs-note">${ico('lock')}<span>${CUSTOMER ? `Hola, ${esc(CUSTOMER.name || CUSTOMER.email)}. Tus pedidos vienen de <a href="${esc(SHOP.account)}">tu cuenta</a>` : 'Tus pedidos están en tu cuenta de la tienda'}; los favoritos y las recetas enviadas se guardan en este navegador.</span></p>
             <div class="fgs-tabs" role="tablist" aria-label="Secciones de tu cuenta">${tabs.map(([id, label, n]) =>
