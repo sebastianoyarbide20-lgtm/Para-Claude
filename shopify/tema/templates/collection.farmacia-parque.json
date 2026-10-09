@@ -1,0 +1,12 @@
+{
+  "layout": "farmacia",
+  "sections": {
+    "pagina": {
+      "type": "farmacia-parque",
+      "settings": {}
+    }
+  },
+  "order": [
+    "pagina"
+  ]
+}

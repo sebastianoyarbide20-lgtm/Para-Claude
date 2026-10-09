@@ -1,0 +1,211 @@
+{%- comment -%}
+  Farmacia Parque Caballito · Generado por shopify/construir-farmacias.js a partir de farmacia-parque.html: no editar a mano.
+  Los productos salen de la tienda: snippet farmaglass-datos → farmaglass-productos.js → farmacias-red.js.
+{%- endcomment -%}
+<header class="top"><div class="wrap">
+    <a class="brand" href="#" id="brand"><span>Parque Caballito</span></a>
+    <div style="display:flex;gap:8px">
+        <button class="soft" type="button" data-cart-open>Carrito <b data-cart-count hidden>0</b></button>
+        <a class="soft" href="{{ routes.root_url }}#farmacias" aria-label="Volver a FarmaGlass">←<span class="long"> FarmaGlass</span></a>
+    </div>
+</div></header>
+
+<main class="wrap">
+    <section class="scene" aria-labelledby="hero-title">
+        <div class="scene-art" aria-hidden="true">
+            <svg viewBox="0 0 1200 520" preserveAspectRatio="xMidYMid slice">
+                <defs>
+                    <pattern id="checks" width="28" height="28" patternUnits="userSpaceOnUse" patternTransform="skewX(-30)">
+                        <rect width="28" height="28" fill="#FFF4E6"/><rect width="14" height="14" fill="#E8896A"/><rect x="14" y="14" width="14" height="14" fill="#E8896A"/>
+                    </pattern>
+                </defs>
+                <circle cx="1040" cy="92" r="52" fill="#F6C760"/>
+                <circle cx="1040" cy="92" r="72" fill="#F6C760" opacity=".25"/>
+                <g class="cloud" fill="#fff" opacity=".95"><ellipse cx="120" cy="80" rx="60" ry="22"/><ellipse cx="160" cy="66" rx="40" ry="26"/><ellipse cx="88" cy="70" rx="30" ry="18"/></g>
+                <g class="cloud c2" fill="#fff" opacity=".8"><ellipse cx="420" cy="130" rx="50" ry="18"/><ellipse cx="450" cy="118" rx="32" ry="20"/></g>
+                <g class="kite"><path d="M900 60 L930 100 L900 150 L870 100 Z" fill="#B5532A"/><path d="M900 60 L900 150 M870 100 L930 100" stroke="#FFF4E6" stroke-width="3"/>
+                    <path d="M900 150 C 880 190, 930 210, 900 250 C 880 280, 920 300, 905 330" stroke="#3A5230" stroke-width="2" fill="none"/>
+                    <path d="M893 190 l14 6 M896 236 l12 -6 M898 280 l14 4" stroke="#F7C9A8" stroke-width="6" stroke-linecap="round"/></g>
+                <path d="M0 360 Q 260 300 520 350 T 1200 330 V520 H0Z" fill="#A9C98E"/>
+                <path d="M0 410 Q 300 370 620 405 T 1200 395 V520 H0Z" fill="#8DB572"/>
+                <g><rect x="140" y="270" width="14" height="90" rx="6" fill="#7A5634"/><circle cx="147" cy="250" r="56" fill="#6E9A57"/><circle cx="118" cy="272" r="34" fill="#5E8A49"/><circle cx="180" cy="266" r="30" fill="#7BA864"/></g>
+                <g><rect x="1110" y="300" width="12" height="80" rx="6" fill="#7A5634"/><circle cx="1116" cy="282" r="46" fill="#6E9A57"/><circle cx="1094" cy="300" r="26" fill="#5E8A49"/></g>
+                <g fill="#7A5634"><rect x="300" y="380" width="120" height="10" rx="4"/><rect x="300" y="362" width="120" height="8" rx="4"/><rect x="308" y="390" width="8" height="26" rx="3"/><rect x="404" y="390" width="8" height="26" rx="3"/></g>
+                <path d="M600 470 L1060 470 L1010 410 L650 410 Z" fill="url(#checks)" opacity=".95"/>
+                <g fill="#F7C9A8"><circle cx="520" cy="440" r="5"/><circle cx="560" cy="455" r="4"/><circle cx="240" cy="450" r="5"/></g>
+                <g fill="#fff"><circle cx="530" cy="438" r="2"/><circle cx="250" cy="448" r="2"/></g>
+            </svg>
+            <div class="picnic" id="packs"></div>
+        </div>
+        <div class="story">
+            <span class="kicker">Parque Familia · frente a Parque Rivadavia</span>
+            <h1 id="hero-title">Bebés felices, familias <span class="scribble">tranquilas<svg viewBox="0 0 200 14" preserveAspectRatio="none" aria-hidden="true"><path d="M2 9 C 40 3, 70 13, 100 7 S 160 3, 198 8" stroke="#B5532A" stroke-width="3" fill="none" stroke-linecap="round"/></svg></span></h1>
+            <p>Higiene y cuidado suave para los más chicos y toda la casa. Pasá por el local o te lo llevamos en 2 horas.</p>
+            <div class="deal" id="deal"></div>
+        </div>
+    </section>
+
+    <section aria-labelledby="who-title">
+        <div class="sec-head">
+            <p class="hand">Empecemos por acá</p>
+            <h2 id="who-title">¿Para quién buscás?</h2>
+        </div>
+        <div class="who filters" role="group" aria-label="Filtrar productos">
+            <button type="button" data-for="bebe" aria-pressed="false">
+                <svg viewBox="0 0 80 80" aria-hidden="true"><circle cx="40" cy="42" r="28" fill="#F7C9A8"/><path d="M40 14c-4 0-6 4-3 6 3 2 6-1 4-4" stroke="#8F3E1D" stroke-width="3" fill="none" stroke-linecap="round"/><circle cx="31" cy="42" r="3" fill="#2E3326"/><circle cx="49" cy="42" r="3" fill="#2E3326"/><path d="M33 52c4 4 10 4 14 0" stroke="#2E3326" stroke-width="3" fill="none" stroke-linecap="round"/><circle cx="26" cy="50" r="4" fill="#E8896A" opacity=".5"/><circle cx="54" cy="50" r="4" fill="#E8896A" opacity=".5"/></svg>
+                Bebés y chicos
+            </button>
+            <button type="button" data-for="familia" aria-pressed="false">
+                <svg viewBox="0 0 80 80" aria-hidden="true"><circle cx="28" cy="38" r="18" fill="#F7C9A8"/><path d="M12 32c2-12 26-14 32-2" fill="#8F3E1D"/><circle cx="54" cy="44" r="16" fill="#E8B48E"/><path d="M40 38c2-10 24-12 28 0" fill="#3A5230"/><circle cx="23" cy="40" r="2.4" fill="#2E3326"/><circle cx="33" cy="40" r="2.4" fill="#2E3326"/><circle cx="50" cy="46" r="2.2" fill="#2E3326"/><circle cx="59" cy="46" r="2.2" fill="#2E3326"/><path d="M24 47c3 3 7 3 10 0M51 53c2 2 6 2 8 0" stroke="#2E3326" stroke-width="2.5" fill="none" stroke-linecap="round"/></svg>
+                Toda la familia
+            </button>
+            <button type="button" data-for="todos" aria-pressed="true">
+                <svg viewBox="0 0 80 80" aria-hidden="true"><path d="M40 66s-24-14-24-32c0-10 8-16 16-16 4 0 7 2 8 5 1-3 4-5 8-5 8 0 16 6 16 16 0 18-24 32-24 32z" fill="#B5532A"/><path d="M28 30c2-4 6-6 10-5" stroke="#fff" stroke-width="3" fill="none" stroke-linecap="round" opacity=".7"/></svg>
+                Ver todo
+            </button>
+        </div>
+        <ul class="grid" id="grid"></ul>
+    </section>
+
+    <section id="marcas" aria-labelledby="marcas-title">
+        <div class="sec-head">
+            <p class="hand">Colgadas al sol</p>
+            <h2 id="marcas-title">Marcas que elegimos para la familia</h2>
+            <p>Las que tenemos siempre en el local, con los precios del catálogo de FarmaGlass.</p>
+        </div>
+        <div class="line-wrap">
+            <svg viewBox="0 0 1200 60" preserveAspectRatio="none" aria-hidden="true"><path d="M0 14 Q 600 52 1200 14" stroke="#7A5634" stroke-width="3" fill="none"/></svg>
+            <ul class="clothes" id="brands"></ul>
+        </div>
+        <p class="note"><a href="{{ routes.root_url }}#catalogo">Ver todo el catálogo de FarmaGlass</a></p>
+    </section>
+
+    <section id="estaciones" aria-labelledby="est-title">
+        <div class="sec-head">
+            <p class="hand">El parque cambia, nosotros también</p>
+            <h2 id="est-title">Las cuatro estaciones del parque</h2>
+            <p>Elegí una estación y te contamos qué llevar. Arrancamos por la de hoy.</p>
+        </div>
+        <div class="seasons" id="seasons" data-season="primavera">
+            <div class="season-pick" role="tablist" aria-label="Estaciones del año" id="season-pick"></div>
+            <div class="season-card" role="tabpanel" id="season-panel" tabindex="0">
+                <svg class="season-art" viewBox="0 0 400 260" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+                    <rect class="s-sky" width="400" height="260"/>
+                    <g class="s-rays" stroke="#F6C760" stroke-width="4" stroke-linecap="round"><path d="M320 16v-12M320 104v12M272 60h-12M368 60h12M286 26l-9-9M354 94l9 9M354 26l9-9M286 94l-9 9"/></g>
+                    <circle class="s-sun" cx="320" cy="60" r="30"/>
+                    <g class="s-cloud"><ellipse cx="90" cy="54" rx="40" ry="15"/><ellipse cx="116" cy="44" rx="26" ry="17"/><ellipse cx="68" cy="47" rx="20" ry="12"/></g>
+                    <g class="s-cloud"><ellipse cx="230" cy="88" rx="30" ry="11"/><ellipse cx="248" cy="80" rx="18" ry="12"/></g>
+                    <g class="s-drop" stroke="#9AAAB5" stroke-width="3" stroke-linecap="round"><path d="M60 82l-4 10M100 98l-4 10M200 72l-4 10M240 112l-4 10M300 102l-4 10M352 132l-4 10M30 122l-4 10M190 120l-4 10"/></g>
+                    <path class="s-hill" d="M0 190 Q 120 150 240 180 T 400 170 V260 H0Z"/>
+                    <path class="s-hill2" d="M0 222 Q 140 196 280 214 T 400 208 V260 H0Z"/>
+                    <rect x="142" y="128" width="14" height="84" rx="6" fill="#7A5634"/>
+                    <g class="s-branch" stroke="#7A5634" stroke-width="5" stroke-linecap="round" fill="none"><path d="M149 140 120 104M149 150 182 112M128 114 112 100M170 124 192 104M149 132 150 90"/></g>
+                    <circle class="s-crown" cx="149" cy="102" r="46"/><circle class="s-crown2" cx="120" cy="124" r="28"/><circle class="s-crown2" cx="180" cy="120" r="26"/>
+                    <g class="s-flower" fill="#F7A8C4"><circle cx="128" cy="90" r="5"/><circle cx="160" cy="78" r="5"/><circle cx="176" cy="110" r="5"/><circle cx="112" cy="122" r="5"/><circle cx="148" cy="120" r="5"/><circle cx="190" cy="128" r="4"/><circle cx="140" cy="70" r="4"/></g>
+                    <g class="s-leaf" fill="#C2652B"><path d="M210 150q8-8 14 0-8 8-14 0z"/><path d="M90 168q8-8 14 0-8 8-14 0z"/><path d="M228 198q8-8 14 0-8 8-14 0z"/><path d="M60 214q8-8 14 0-8 8-14 0z"/><path d="M176 186q8-8 14 0-8 8-14 0z"/></g>
+                    <g fill="#7A5634"><rect x="252" y="196" width="80" height="7" rx="3"/><rect x="252" y="184" width="80" height="6" rx="3"/><rect x="258" y="203" width="6" height="18" rx="2"/><rect x="320" y="203" width="6" height="18" rx="2"/></g>
+                </svg>
+                <div class="season-text" id="season-text"></div>
+            </div>
+        </div>
+        <p class="note" style="margin-top:12px">Consejos generales para salir al parque. Para cada chico, seguí las indicaciones de su pediatra.</p>
+    </section>
+
+    <section id="mochila" aria-labelledby="bag-title">
+        <div class="sec-head">
+            <p class="hand">Antes de salir</p>
+            <h2 id="bag-title">La mochila para el parque</h2>
+            <p>Marcá lo que ya tenés en casa y sumamos al carrito solo lo que te falta.</p>
+        </div>
+        <div class="bag">
+            <div class="bag-art">
+                <svg viewBox="0 0 200 220" aria-hidden="true">
+                    <path d="M70 40c0-22 60-22 60 0v14H116V42c0-10-32-10-32 0v12H70z" fill="#3A5230"/>
+                    <rect x="30" y="50" width="140" height="160" rx="40" fill="#4E6B3D"/>
+                    <rect x="50" y="120" width="100" height="70" rx="22" fill="#6E9A57"/>
+                    <rect x="50" y="120" width="100" height="18" rx="9" fill="#5E8A49"/>
+                    <circle cx="100" cy="129" r="5" fill="#F6C760"/>
+                    <rect x="56" y="70" width="88" height="36" rx="18" fill="#CFE3B8"/>
+                    <path d="M72 88h56" stroke="#4E6B3D" stroke-width="4" stroke-linecap="round" stroke-dasharray="2 8"/>
+                    <circle cx="152" cy="74" r="10" fill="#B5532A"/>
+                </svg>
+                <span class="bag-count" id="bag-count" aria-hidden="true">0</span>
+            </div>
+            <div>
+                <p class="check-head" aria-hidden="true">✓ Ya lo tengo</p>
+                <ul class="checklist" id="checklist"></ul>
+                <button class="bag-go" type="button" id="bag-go"></button>
+            </div>
+        </div>
+    </section>
+
+    <section id="toallitas" aria-labelledby="toa-title">
+        <div class="sec-head">
+            <p class="hand">Las cuentas de la casa</p>
+            <h2 id="toa-title">¿Cuánto te duran las toallitas?</h2>
+            <p>Contanos cuántos cambios hacés por día y te decimos cuánto rinde cada paquete y cuántos necesitás para el mes.</p>
+        </div>
+        <div class="wipes">
+            <div class="wipes-form">
+                <label for="cambios">Cambios de pañal por día <output id="cambios-out">6</output></label>
+                <input type="range" id="cambios" min="2" max="12" value="6">
+                <label for="porcambio">Toallitas por cambio <output id="porcambio-out">2</output></label>
+                <input type="range" id="porcambio" min="1" max="5" value="2">
+                <p class="per-day" id="per-day" aria-live="polite"></p>
+            </div>
+            <ul class="wipes-packs" id="wipes"></ul>
+        </div>
+    </section>
+
+    <section aria-labelledby="tips-title">
+        <div class="sec-head">
+            <p class="hand">De nuestro mostrador</p>
+            <h2 id="tips-title">Consejos del farmacéutico</h2>
+        </div>
+        <div class="tips">
+            <article class="tip"><h3>Cambio de pañal</h3><p>Limpiá con óleo calcáreo, dejá secar y aplicá una capa fina de crema para paspaduras.</p></article>
+            <article class="tip"><h3>Baño sin llanto</h3><p>Agua tibia, shampoo suave y baños cortos de 5 a 10 minutos.</p></article>
+            <article class="tip"><h3>Salidas al parque</h3><p>Protector solar, repelente y toallitas en la mochila. Evitá el sol fuerte del mediodía.</p></article>
+        </div>
+    </section>
+
+    <section class="visit" id="visitanos" aria-labelledby="visit-title" style="margin-top:64px">
+        <div>
+            <h2 id="visit-title">Te esperamos frente al parque</h2>
+            <p id="visit-street"></p>
+            <table class="week"><caption class="sr">Horario de la semana</caption><tbody id="week"></tbody></table>
+            <p class="now" id="visit-now"></p>
+            <div class="visit-actions" id="visit-actions"></div>
+        </div>
+        <div class="map" aria-hidden="true">
+            <svg viewBox="0 0 400 240" width="100%">
+                <rect width="400" height="240" fill="#EEF2E4"/>
+                <rect x="140" y="40" width="200" height="150" rx="30" fill="#A9C98E"/>
+                <circle cx="190" cy="90" r="14" fill="#8DB572"/><circle cx="270" cy="120" r="18" fill="#8DB572"/><circle cx="230" cy="70" r="10" fill="#8DB572"/><circle cx="300" cy="80" r="12" fill="#8DB572"/>
+                <path d="M200 160 q 20 -30 50 -10" stroke="#fff" stroke-width="5" fill="none" stroke-dasharray="2 8" stroke-linecap="round"/>
+                <text x="240" y="125" text-anchor="middle" font-family="Arial" font-size="11" fill="#3A5230">Parque Rivadavia</text>
+                <rect x="0" y="200" width="400" height="18" fill="#fff"/><rect x="110" y="0" width="16" height="240" fill="#fff"/>
+                <text x="230" y="213" font-family="Arial" font-size="11" fill="#5C6352">Av. Rivadavia</text>
+                <path d="M118 158c-12 0-22 10-22 22 0 16 22 34 22 34s22-18 22-34c0-12-10-22-22-22z" fill="#B5532A"/><circle cx="118" cy="180" r="7" fill="#fff"/>
+            </svg>
+        </div>
+    </section>
+</main>
+
+<svg class="grass" viewBox="0 0 1200 60" preserveAspectRatio="none" aria-hidden="true"><path d="M0 60 V30 Q 30 10 60 30 T 120 30 T 180 30 T 240 30 T 300 30 T 360 30 T 420 30 T 480 30 T 540 30 T 600 30 T 660 30 T 720 30 T 780 30 T 840 30 T 900 30 T 960 30 T 1020 30 T 1080 30 T 1140 30 T 1200 30 V60Z" fill="#8DB572"/></svg>
+<footer>Farmacia Parque Caballito forma parte de la red FarmaGlass · <button class="foot-link" type="button" data-account-open="orders">Mis pedidos</button></footer>
+
+{% render 'farmaglass-datos' %}
+<script src="{{ 'farmaglass-productos.js' | asset_url }}" defer></script>
+<script src="{{ 'fg-shop.js' | asset_url }}" defer></script>
+<script src="{{ 'farmacias-red.js' | asset_url }}" defer></script>
+<script src="{{ 'farmacia-parque.js' | asset_url }}" defer></script>
+
+{% schema %}
+{
+  "name": "Farmacia Parque Caballito",
+  "tag": "div",
+  "class": "fg-farmacia",
+  "settings": []
+}
+{% endschema %}

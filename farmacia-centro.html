@@ -206,6 +206,53 @@
         .shelf-note { text-align: center; color: var(--muted); font-style: italic; font-size: 14px; margin-top: 16px; }
         .shelf-note a { color: var(--navy); font-weight: 700; font-style: normal; text-underline-offset: 3px; }
 
+        /* ── Recortables: fórmulas de la botica en cupones troquelados ── */
+        .coupons { list-style: none; display: grid; gap: 30px 22px; }
+        .coupon { position: relative; display: flex; flex-direction: column; gap: 10px; padding: 26px 20px 20px; background: var(--paper); border: 2px dashed var(--ink); box-shadow: 6px 6px 0 rgba(20, 40, 75, .07); transform: rotate(-.6deg); }
+        .coupon:nth-child(2) { transform: rotate(.7deg); }
+        .coupon:nth-child(3) { transform: rotate(-.3deg); }
+        .scissors { position: absolute; top: -17px; left: 20px; padding: 0 6px; background: var(--ivory); font-size: 24px; line-height: 1; color: var(--ink); }
+        .coupon-n { color: var(--brass-text); }
+        .coupon h3 { font-family: var(--serif); font-weight: 400; font-size: 1.7rem; line-height: 1.05; color: var(--navy); }
+        .recipe { list-style: none; display: grid; gap: 4px; font-size: 15px; }
+        .recipe li { display: flex; align-items: flex-end; }
+        .recipe span { min-width: 0; }
+        .recipe i { flex: 1; min-width: 16px; margin: 0 6px 6px; border-bottom: 2px dotted var(--line); }
+        .recipe b { font-family: var(--sans); font-size: 14px; white-space: nowrap; font-variant-numeric: tabular-nums; }
+        .how { font-style: italic; color: var(--muted); font-size: 14px; border-top: 1px solid var(--line); padding-top: 10px; }
+        .coupon-foot { margin-top: auto; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 10px; padding-top: 12px; border-top: 3px double var(--ink); }
+        .coupon-foot small { display: block; font-family: var(--sans); font-size: 11px; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; color: var(--brass-text); }
+        .coupon-foot b { font-family: var(--serif); font-weight: 400; font-size: 1.7rem; line-height: 1; color: var(--navy); }
+        .coupon-foot s { margin-left: 8px; font-size: 13px; color: var(--muted); }
+
+        /* ── Cotizaciones del mostrador: la página de bolsa del diario ── */
+        .market { background: var(--paper); border-top: 3px solid var(--ink); border-bottom: 3px solid var(--ink); padding: 14px 0 10px; }
+        .market-sum { display: flex; flex-wrap: wrap; gap: 4px 18px; padding: 0 10px 12px; border-bottom: 1px solid var(--ink); font-family: var(--sans); font-size: 13px; font-weight: 600; }
+        .market-sum b { font-family: var(--serif); font-weight: 400; font-size: 1.15rem; color: var(--navy); }
+        .market-sum .down { color: var(--sale); }
+        .quotes { width: 100%; border-collapse: collapse; font-size: 15px; }
+        .quotes th, .quotes td { padding: 9px 10px; text-align: left; border-bottom: 1px dotted var(--line); vertical-align: middle; }
+        .quotes thead th { font-family: var(--sans); font-size: 11px; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; color: var(--brass-text); border-bottom: 1px solid var(--ink); padding-top: 6px; padding-bottom: 6px; }
+        .quotes thead button { display: inline-flex; align-items: center; gap: 4px; min-height: 36px; font: inherit; letter-spacing: inherit; text-transform: inherit; color: inherit; }
+        .quotes thead button::after { content: '↕'; opacity: .45; }
+        .quotes th[aria-sort="ascending"] button::after { content: '▲'; opacity: 1; }
+        .quotes th[aria-sort="descending"] button::after { content: '▼'; opacity: 1; }
+        .quotes thead button:hover { color: var(--sale); }
+        .quotes tbody tr:nth-child(odd) { background: rgba(233, 207, 114, .08); }
+        .quotes tbody th { font-weight: 400; }
+        .q-name { display: block; font-family: var(--serif); font-size: 1.05rem; line-height: 1.15; color: var(--navy); }
+        .q-brand { color: var(--muted); font-size: 12px; font-style: italic; }
+        .quotes .num { text-align: right; font-variant-numeric: tabular-nums; white-space: nowrap; }
+        .quotes td.num b { font-family: var(--sans); font-size: 15px; }
+        .quotes .was { display: block; font-size: 12px; color: var(--muted); }
+        .var { font-family: var(--sans); font-size: 13px; font-weight: 700; }
+        .var.down { color: var(--sale); }
+        .var.flat { color: var(--muted); }
+        .pedir { min-height: 40px; padding: 0 12px; border: 1px solid var(--navy); border-radius: 3px; font-family: var(--sans); font-size: 13px; font-weight: 700; color: var(--navy); }
+        .pedir:hover { background: var(--navy); color: #fff; }
+        .col-list { display: none; }
+        .market-foot { padding: 10px 10px 0; font-style: italic; font-size: 13px; color: var(--muted); }
+
         /* ── El consultorio: cartas de lectores ── */
         .letters { display: grid; gap: 22px; }
         .letter { position: relative; background: var(--paper); border: 1px solid var(--line); padding: 24px 22px 18px; box-shadow: 0 14px 26px rgba(20, 40, 75, .06); }
@@ -259,12 +306,15 @@
             .ear { width: 190px; }
             .lead-body { grid-template-columns: minmax(0, .9fr) minmax(0, 1.1fr); align-items: start; }
             .letters { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+            .col-list { display: table-cell; }
+            .quotes .was { display: none; }
             .chronicle { grid-template-columns: repeat(3, 1fr); }
             .year + .year { border-top: 0; border-left: 1px solid var(--line); }
         }
         @media (min-width: 780px) {
             .drawers { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; padding: 18px; }
             .shelf-grid { grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 0 16px; }
+            .coupons { grid-template-columns: repeat(3, minmax(0, 1fr)); }
             .bottle::before { left: -16px; right: -16px; }
             .visit { grid-template-columns: 1fr 1fr; }
         }
@@ -301,7 +351,7 @@
             <div class="ears-mobile"><p class="ear" data-ear="left"></p><p class="ear" data-ear="right"></p></div>
             <div class="rules"></div>
             <nav class="np-nav" aria-label="Secciones de la gaceta">
-                <a href="#portada">Portada</a><a href="#cajonera">La cajonera</a><a href="#vitrina">La vitrina</a><a href="#consultorio">Consultorio</a><a href="#visitanos">Visitanos</a>
+                <a href="#portada">Portada</a><a href="#cajonera">La cajonera</a><a href="#vitrina">La vitrina</a><a href="#recortables">Recortables</a><a href="#cotizaciones">Cotizaciones</a><a href="#consultorio">Consultorio</a><a href="#visitanos">Visitanos</a>
             </nav>
         </div>
     </header>
@@ -340,8 +390,10 @@
                     <ol>
                         <li><a href="#cajonera">La cajonera <span>pág. 2</span></a></li>
                         <li><a href="#vitrina">La vitrina <span>pág. 3</span></a></li>
-                        <li><a href="#consultorio">El consultorio <span>pág. 4</span></a></li>
-                        <li><a href="#visitanos">Horarios y visitas <span>pág. 5</span></a></li>
+                        <li><a href="#recortables">Fórmulas para recortar <span>pág. 4</span></a></li>
+                        <li><a href="#cotizaciones">Cotizaciones del mostrador <span>pág. 5</span></a></li>
+                        <li><a href="#consultorio">El consultorio <span>pág. 6</span></a></li>
+                        <li><a href="#visitanos">Horarios y visitas <span>pág. 7</span></a></li>
                     </ol>
                 </section>
                 <blockquote class="pull">«Una botica se elige por la confianza, y la confianza se gana mostrador a mostrador.»<cite>Don Ernesto, fundador · 1962</cite></blockquote>
@@ -368,9 +420,42 @@
             <p class="shelf-note">Precios del catálogo de FarmaGlass · <a href="farmacia_v2.html#catalogo">Ver todo el catálogo</a></p>
         </section>
 
-        <section id="consultorio" aria-labelledby="cons-title">
+        <section id="recortables" aria-labelledby="rec-title">
             <header class="sec-head">
                 <p class="sec-num smallcaps">Página 4</p>
+                <h2 id="rec-title">Fórmulas para recortar</h2>
+                <p>Las combinaciones que más recomendamos en el mostrador. Recortá la que necesites y te la preparamos junta.</p>
+            </header>
+            <ul class="coupons" id="coupons"></ul>
+            <p class="signature">Sugerencias de uso orientativas. Ante cualquier duda, consultá a tu farmacéutico.</p>
+        </section>
+
+        <section id="cotizaciones" aria-labelledby="quote-title">
+            <header class="sec-head">
+                <p class="sec-num smallcaps">Página 5</p>
+                <h2 id="quote-title">Cotizaciones del mostrador</h2>
+                <p>Cómo cierran hoy los precios de la botica frente a su precio de lista. Tocá una columna para ordenar.</p>
+            </header>
+            <div class="market">
+                <p class="market-sum" id="market-sum"></p>
+                <table class="quotes">
+                    <caption class="sr">Precios de hoy de la Farmacia del Centro, comparados con el precio de lista</caption>
+                    <thead><tr>
+                        <th scope="col" aria-sort="none"><button type="button" data-sort="name">Producto</button></th>
+                        <th scope="col" class="num col-list">Anterior</th>
+                        <th scope="col" class="num" aria-sort="none"><button type="button" data-sort="price">Hoy</button></th>
+                        <th scope="col" class="num" aria-sort="descending"><button type="button" data-sort="off">Var.</button></th>
+                        <th scope="col"><span class="sr">Pedir</span></th>
+                    </tr></thead>
+                    <tbody id="quotes"></tbody>
+                </table>
+                <p class="market-foot" id="market-foot"></p>
+            </div>
+        </section>
+
+        <section id="consultorio" aria-labelledby="cons-title">
+            <header class="sec-head">
+                <p class="sec-num smallcaps">Página 6</p>
                 <h2 id="cons-title">El consultorio</h2>
                 <p>Preguntas de los vecinos, respondidas en el mostrador.</p>
             </header>
@@ -402,7 +487,7 @@
 
         <section id="visitanos" aria-labelledby="visit-title">
             <header class="sec-head">
-                <p class="sec-num smallcaps">Página 5</p>
+                <p class="sec-num smallcaps">Página 7</p>
                 <h2 id="visit-title">Visitanos</h2>
                 <p>Te esperamos en el mismo mostrador de siempre.</p>
             </header>
@@ -491,6 +576,76 @@
                 </div>
             </li>`;
         }).join('');
+
+        // Todo lo que despacha la botica: su línea y las marcas de la vitrina
+        const stock = new Map([...s.items, ...shelf].map(p => [p.id, p]));
+        const full = p => p.fullName || `${p.name} (${p.size})`;
+        const plainName = p => p.fullName ? p.name : shortName(p);
+
+        // Recortables: fórmulas de la botica que se suman juntas al pedido
+        const FORMULAS = [
+            { title: 'Manos de invierno', ids: [27, 104], how: 'De noche, crema en manos y codos, y una capa fina de vaselina en los nudillos resecos.' },
+            { title: 'Pies frescos', ids: [103, 118], how: 'Lavá con jabón neutro, secá bien entre los dedos y terminá con un poco de talco.' },
+            { title: 'El rostro de siempre', ids: [15, 102, 18], how: 'Limpiá con un gel suave, pasá agua de rosas con un algodón y cerrá con una bruma de agua termal.' },
+        ].map(f => ({ ...f, items: f.ids.map(id => stock.get(id)).filter(Boolean) })).filter(f => f.items.length >= 2);
+        document.getElementById('recortables').hidden = !FORMULAS.length;
+        document.getElementById('coupons').innerHTML = FORMULAS.map((f, i) => {
+            const t = FG.total(f.items), list = FG.totalList(f.items);
+            return `<li class="coupon">
+                <span class="scissors" aria-hidden="true">✂</span>
+                <p class="smallcaps coupon-n">Fórmula n.º ${i + 1}</p>
+                <h3>${FG.esc(f.title)}</h3>
+                <ul class="recipe">${f.items.map(p => `<li><span>${FG.esc(p.brand)} · ${FG.esc(plainName(p))}</span><i aria-hidden="true"></i><b>${FG.fmt(p.price)}</b></li>`).join('')}</ul>
+                <p class="how">${FG.esc(f.how)}</p>
+                <div class="coupon-foot">
+                    <p><small>La fórmula completa</small><b>${FG.fmt(t)}</b>${list > t ? `<s><span class="sr">Antes </span>${FG.fmt(list)}</s>` : ''}</p>
+                    <button class="btn" type="button" data-formula="${i}">Agregar la fórmula</button>
+                </div>
+            </li>`;
+        }).join('');
+        document.getElementById('coupons').addEventListener('click', e => {
+            const b = e.target.closest('[data-formula]');
+            if (b) FG.addAll(FORMULAS[Number(b.dataset.formula)].items, `productos de "${FORMULAS[Number(b.dataset.formula)].title}"`);
+        });
+
+        // Cotizaciones del mostrador: precio de hoy frente al de lista, ordenable
+        const quotes = [...stock.values()];
+        const quoteBody = document.getElementById('quotes');
+        const SORTS = {
+            name: (a, b) => plainName(a).localeCompare(plainName(b), 'es'),
+            price: (a, b) => a.price - b.price,
+            off: (a, b) => FG.off(a) - FG.off(b) || b.price - a.price,
+        };
+        let sortKey = 'off', sortDir = -1;
+        function paintQuotes() {
+            const rows = quotes.slice().sort((a, b) => SORTS[sortKey](a, b) * sortDir);
+            quoteBody.innerHTML = rows.map(p => {
+                const d = FG.off(p);
+                return `<tr>
+                    <th scope="row"><span class="q-name">${FG.esc(plainName(p))}</span><span class="q-brand">${FG.esc(p.brand)}${p.size ? ` · ${FG.esc(p.size)}` : ''}</span></th>
+                    <td class="num col-list">${d > 0 ? FG.fmt(p.list) : '—'}</td>
+                    <td class="num"><b>${FG.fmt(p.price)}</b>${d > 0 ? `<s class="was"><span class="sr">Antes </span>${FG.fmt(p.list)}</s>` : ''}</td>
+                    <td class="num"><span class="var ${d > 0 ? 'down' : 'flat'}">${d > 0 ? `▼ ${d} %` : '='}</span><span class="sr">${d > 0 ? ' de descuento' : ' sin cambios'}</span></td>
+                    <td><button class="pedir" type="button" data-add="${p.id}" aria-label="Agregar ${FG.esc(full(p))} a mi pedido">Pedir</button></td>
+                </tr>`;
+            }).join('');
+            document.querySelectorAll('.quotes thead th[aria-sort]').forEach(th => {
+                const k = th.querySelector('[data-sort]').dataset.sort;
+                th.setAttribute('aria-sort', k === sortKey ? (sortDir > 0 ? 'ascending' : 'descending') : 'none');
+            });
+        }
+        document.querySelector('.quotes thead').addEventListener('click', e => {
+            const b = e.target.closest('[data-sort]');
+            if (!b) return;
+            const k = b.dataset.sort;
+            sortDir = k === sortKey ? -sortDir : (k === 'off' ? -1 : 1);
+            sortKey = k;
+            paintQuotes();
+        });
+        paintQuotes();
+        const down = quotes.filter(p => FG.off(p) > 0), best = down.slice().sort((a, b) => FG.off(b) - FG.off(a))[0];
+        document.getElementById('market-sum').innerHTML = `<span>Cotizaciones: <b>${quotes.length}</b></span><span class="down">En baja: <b>${down.length}</b></span><span>Sin cambios: <b>${quotes.length - down.length}</b></span>${best ? `<span>La mayor baja: ${FG.esc(plainName(best))} <b class="down">−${FG.off(best)} %</b></span>` : ''}`;
+        document.getElementById('market-foot').textContent = `Cierre de mostrador del ${now.toLocaleDateString('es-AR', { day: 'numeric', month: 'long', year: 'numeric' })} · Precios en pesos argentinos.`;
 
         // Visitanos: tarjeta y horario de la semana
         document.getElementById('visit-card').innerHTML = `

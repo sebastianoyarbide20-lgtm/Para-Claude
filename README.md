@@ -21,10 +21,10 @@ y un banner propio en la portada de la web principal:
 
 | Farmacia | Concepto | Lo que tiene la página |
 | --- | --- | --- |
-| Farmacia del Centro | "La Gaceta de la Botica": un diario de 1962 | Cabecera con fecha y edición, nota principal con letra capital y sello de precio, cajonera de madera con plaquitas de bronce, vitrina con estantes y etiquetas colgantes, consultorio de cartas y horario de época |
-| Plaza Palermo | "After Hours": la noche de una farmacia 24 h | Reloj en vivo, deslizador "¿A qué hora lo necesitás?" que muestra qué farmacias de la red están abiertas, rutina de noche en 2 preguntas, cartas holográficas, collage de polaroids y cartel de neón |
-| Belgrano Norte | "Training Club": una app de entrenamiento | Marcador LED, armador de kit por deporte, fichas técnicas, calculadora de hidratación orientativa y el plan en una pista de atletismo |
-| Parque Caballito | "Un día en el parque": un libro ilustrado | Escena con barrilete y picnic, selector con dibujos, tendedero de marcas, mochila para el parque con checklist y notas del farmacéutico |
+| Farmacia del Centro | "La Gaceta de la Botica": un diario de 1962 | Cabecera con fecha y edición, nota principal con letra capital y sello de precio, cajonera de madera con plaquitas de bronce, vitrina con estantes y etiquetas colgantes, fórmulas para recortar (cupones troquelados que suman la fórmula completa), cotizaciones del mostrador (la página de bolsa del diario, ordenable), consultorio de cartas y horario de época |
+| Plaza Palermo | "After Hours": la noche de una farmacia 24 h | Reloj en vivo, deslizador "¿A qué hora lo necesitás?" que muestra qué farmacias de la red están abiertas, rutina de noche en 2 preguntas, cartas holográficas, collage de polaroids, diccionario de ingredientes con pestañas de neón que encuentra los productos que los llevan, el ritual de noche con temporizador y cartel de neón |
+| Belgrano Norte | "Training Club": una app de entrenamiento | Marcador LED, armador de kit por deporte, fichas técnicas, tabla de rendimiento (precio por comprimido, sobre o 100 g), calculadora de hidratación orientativa, el plan en una pista de atletismo y elongación de 3 minutos con cronómetro LED |
+| Parque Caballito | "Un día en el parque": un libro ilustrado | Escena con barrilete y picnic, selector con dibujos, tendedero de marcas, las cuatro estaciones del parque (la escena cambia y arranca por la de hoy), mochila para el parque con checklist, cuánto duran las toallitas y notas del farmacéutico |
 
 ## Funciones
 
@@ -77,6 +77,9 @@ que es una copia de Horizon sin publicar. Los archivos están en `shopify/tema/`
 | `assets/farmaglass.css` | Los estilos de la web, con unos pocos agregados al final |
 | `assets/farmaglass-home.js` | El script de la web, con los datos de la tienda |
 | `assets/fg-shop.js` | El carrito, los cupones y "Mi cuenta", conectados a Shopify |
+| `templates/collection.farmacia-*.json` | La página de cada farmacia, asignada a su colección |
+| `layout/farmacia.liquid` · `sections/farmacia-*.liquid` · `assets/farmacia-*.css` · `assets/farmacia-*.js` | Las páginas de farmacia del prototipo, generadas con `node shopify/construir-farmacias.js` |
+| `assets/farmacias-red.js` · `assets/farmaglass-productos.js` | Las utilidades de las farmacias (copia de las del prototipo) y la capa que les pasa los productos de la tienda |
 
 Qué cambia respecto de la web:
 
@@ -90,7 +93,10 @@ Qué cambia respecto de la web:
 - **Recetas y botón de arrepentimiento**: llegan al email de la tienda por el formulario de contacto, con un código.
   La foto de la receta no viaja con el formulario: si el farmacéutico la necesita, se la pide al cliente por email.
 - **Newsletter**: da de alta al cliente como suscriptor, con la etiqueta `newsletter`.
-- **Páginas de farmacia**: son sus colecciones en la tienda. Las demás páginas de la tienda usan el diseño de Horizon.
+- **Páginas de farmacia**: cada colección de farmacia usa la plantilla con su mundo (por ejemplo, la colección
+  "Farmacia del Centro" usa `collection.farmacia-centro`), con los productos y el carrito de la tienda.
+  Se generan a partir de `farmacia-*.html`: después de cambiar una página, se corre
+  `node shopify/construir-farmacias.js` y se suben los archivos. Las demás páginas usan el diseño de Horizon.
 - **Sin valoraciones**: la tienda no tiene reseñas, así que no se muestran estrellas.
 
 Para actualizar el tema se suben los archivos de `shopify/tema/` al tema, por ejemplo con Shopify CLI:

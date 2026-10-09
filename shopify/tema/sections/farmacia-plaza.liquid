@@ -1,0 +1,149 @@
+{%- comment -%}
+  Farmacia Plaza Palermo · Generado por shopify/construir-farmacias.js a partir de farmacia-plaza.html: no editar a mano.
+  Los productos salen de la tienda: snippet farmaglass-datos → farmaglass-productos.js → farmacias-red.js.
+{%- endcomment -%}
+<nav class="nav" aria-label="Farmacia Plaza Palermo"><div class="wrap">
+    <a class="brand" href="#" id="brand"><span>Plaza Palermo</span></a>
+    <p class="clock" aria-live="off"><time id="clock">--:--:--</time><small>Abierto ahora</small></p>
+    <button class="pill" type="button" data-cart-open>Carrito <b data-cart-count hidden>0</b></button>
+    <a class="pill" href="{{ routes.root_url }}#farmacias" aria-label="Volver a FarmaGlass">←<span class="long"> FarmaGlass</span></a>
+</div></nav>
+
+<header class="hero">
+    <span class="moon" aria-hidden="true"></span>
+    <div class="wrap hero-grid">
+        <div>
+            <p class="kicker">Plaza Lab · Palermo · 24 h</p>
+            <h1 class="neon-title"><span class="glow">Skincare de <span class="flick">n</span>oche,</span> <mark>entrega</mark> de noche</h1>
+            <p class="sub">Sérums, brumas y labiales que elegimos para tu rutina. Pedí a las 3 de la mañana y lo tenés en la puerta en 2 horas.</p>
+            <div class="hero-ctas">
+                <a class="cta primary" href="#rutina">Armá tu rutina</a>
+                <a class="cta ghost" href="#hora">¿A qué hora lo necesitás?</a>
+            </div>
+        </div>
+        <article class="holo" id="holo" aria-labelledby="holo-title">
+            <div class="holo-in" id="holo-in"></div>
+            <span class="sticker off" id="holo-off" hidden></span>
+            <span class="sticker note">Lo más pedido de noche</span>
+        </article>
+    </div>
+    <div class="marquee" aria-hidden="true"><div id="marquee"></div></div>
+</header>
+
+<main class="wrap">
+    <section class="hour" id="hora" aria-labelledby="hora-title">
+        <div class="hour-grid">
+            <div>
+                <p class="kicker">Nunca cerramos</p>
+                <h2 class="h2" id="hora-title">¿A qué hora lo necesitás?</h2>
+                <label class="sr" for="hour">Hora del pedido</label>
+                <input class="range" type="range" id="hour" min="0" max="23" step="1">
+                <div class="range-scale" aria-hidden="true"><span>00</span><span>06</span><span>12</span><span>18</span><span>23</span></div>
+                <p class="hour-big" aria-hidden="true"><span id="hour-big">--</span>:00</p>
+                <p class="hour-eta" id="hour-eta" aria-live="polite"></p>
+            </div>
+            <div>
+                <p class="lead" style="margin:0 0 12px">Así está la red de FarmaGlass a esa hora:</p>
+                <ul class="net" id="net"></ul>
+            </div>
+        </div>
+    </section>
+
+    <section class="quiz" id="rutina" aria-labelledby="rutina-title">
+        <form id="quiz" onsubmit="return false">
+            <p class="kicker">Tu rutina en 2 preguntas</p>
+            <h2 class="h2" id="rutina-title">Armamos tu rutina de noche</h2>
+            <p class="lead">Elegí tu tipo de piel y lo que querés mejorar. Te proponemos tres pasos con productos de Plaza.</p>
+            <fieldset class="q">
+                <legend><span>01</span>Tu piel es…</legend>
+                <div class="chips">
+                    <label class="chip"><input type="radio" name="piel" value="seca"><span>Seca</span></label>
+                    <label class="chip"><input type="radio" name="piel" value="mixta" checked><span>Mixta</span></label>
+                    <label class="chip"><input type="radio" name="piel" value="grasa"><span>Grasa</span></label>
+                    <label class="chip"><input type="radio" name="piel" value="sensible"><span>Sensible</span></label>
+                </div>
+            </fieldset>
+            <fieldset class="q">
+                <legend><span>02</span>Querés mejorar…</legend>
+                <div class="chips">
+                    <label class="chip"><input type="radio" name="foco" value="hidratacion" checked><span>Hidratación</span></label>
+                    <label class="chip"><input type="radio" name="foco" value="granitos"><span>Granitos</span></label>
+                    <label class="chip"><input type="radio" name="foco" value="manchas"><span>Manchas</span></label>
+                    <label class="chip"><input type="radio" name="foco" value="ojeras"><span>Ojeras</span></label>
+                </div>
+            </fieldset>
+        </form>
+        <div class="routine-card" id="routine" aria-live="polite"></div>
+    </section>
+
+    <section class="sec" id="lab" aria-labelledby="lab-title">
+        <p class="kicker">Colección Plaza Lab</p>
+        <h2 class="h2" id="lab-title">Las cartas de la noche</h2>
+        <p class="lead">La selección de Plaza: brumas, sérums y labiales para tu rutina de noche.</p>
+        <ul class="tcards" id="bento"></ul>
+    </section>
+
+    <section class="sec" id="marcas" aria-labelledby="marcas-title">
+        <p class="kicker">Collage</p>
+        <h2 class="h2" id="marcas-title">Marcas que amamos</h2>
+        <p class="lead">Dermocosmética de farmacia, con precios de noche y de día.</p>
+        <ul class="collage" id="brands"></ul>
+        <p class="note">Precios del catálogo de FarmaGlass · <a href="{{ routes.root_url }}#catalogo">Ver todo el catálogo</a></p>
+    </section>
+
+    <section class="sec" id="ingredientes" aria-labelledby="ing-title">
+        <p class="kicker">Diccionario de la noche</p>
+        <h2 class="h2" id="ing-title">¿Qué lleva tu skincare?</h2>
+        <p class="lead">Elegí un ingrediente: te contamos qué hace y en qué productos de Plaza lo encontrás.</p>
+        <div class="dict">
+            <div class="dict-tabs" role="tablist" aria-label="Ingredientes" id="dict-tabs"></div>
+            <div class="dict-panel" role="tabpanel" id="dict-panel" tabindex="0"></div>
+        </div>
+        <p class="note">Información orientativa sobre ingredientes cosméticos. Si tu piel es sensible, probá cada producto primero en una zona chica.</p>
+    </section>
+
+    <section class="night" id="ritual" aria-labelledby="night-title">
+        <p class="kicker">La noche, paso a paso</p>
+        <h2 class="h2" id="night-title">Tu rutina de noche en 3 pasos</h2>
+        <div class="ritual">
+            <ol class="timeline" id="timeline">
+                <li><span class="phase p1" aria-hidden="true"></span><div><time>22:00</time><b>Limpiá</b><span>Desmaquillate y limpiá la cara con agua micelar o un gel suave.</span></div></li>
+                <li><span class="phase p2" aria-hidden="true"></span><div><time>22:05</time><b>Tratá</b><span>Unas gotas de sérum y el contorno de ojos con toques suaves.</span></div></li>
+                <li><span class="phase" aria-hidden="true"></span><div><time>22:10</time><b>Hidratá</b><span>Una crema liviana o la mascarilla Lumiglow una vez por semana.</span></div></li>
+            </ol>
+            <div class="timer">
+                <div class="ring" id="ring" aria-hidden="true"><span class="ring-time" id="ring-time">2:00</span><span class="ring-step" id="ring-step">Ritual de 2 minutos</span></div>
+                <p class="timer-tip" id="ritual-tip">Dejá el celular en el lavabo y seguí el anillo: te avisa cuándo pasar al paso siguiente.</p>
+                <div class="timer-ctrl">
+                    <button class="routine-add" type="button" id="ritual-go">Empezar el ritual</button>
+                    <button class="pill" type="button" id="ritual-next" hidden>Siguiente paso</button>
+                    <button class="pill" type="button" id="ritual-reset" hidden>Reiniciar</button>
+                </div>
+                <p class="sr" id="ritual-live" aria-live="polite"></p>
+            </div>
+        </div>
+    </section>
+
+    <section class="sign" aria-label="Datos de la farmacia">
+        <p class="neon" aria-hidden="true">ABIER<span class="flick">T</span>O 24 H</p>
+        <p class="sr">Abierto las 24 horas, todos los días.</p>
+        <div class="info" id="info"></div>
+    </section>
+</main>
+
+<footer>Farmacia Plaza Palermo forma parte de la red FarmaGlass · <button class="foot-link" type="button" data-account-open="orders">Mis pedidos</button></footer>
+
+{% render 'farmaglass-datos' %}
+<script src="{{ 'farmaglass-productos.js' | asset_url }}" defer></script>
+<script src="{{ 'fg-shop.js' | asset_url }}" defer></script>
+<script src="{{ 'farmacias-red.js' | asset_url }}" defer></script>
+<script src="{{ 'farmacia-plaza.js' | asset_url }}" defer></script>
+
+{% schema %}
+{
+  "name": "Farmacia Plaza Palermo",
+  "tag": "div",
+  "class": "fg-farmacia",
+  "settings": []
+}
+{% endschema %}
