@@ -204,6 +204,8 @@ sin precios. La idea es la misma de la web: cada farmacia es un mundo, y las pie
 - **Productos**: `img/productos/` tiene 41 fotos de producto recortadas (sin fondo, en WebP), de las mismas fuentes que
   `productos-reales.js`. Las imágenes pertenecen a sus marcas.
 - **Reels**: van sin música; se le agrega un audio de la biblioteca de Instagram al publicarlos. La portada es el último cuadro.
+- **Vistas generales**: `exportados/bateria.jpg` muestra las 10 piezas juntas y `exportados/perfil.jpg`, cómo queda el perfil
+  con las 5 publicaciones nuevas y la presentación ya publicada (Instagram recorta cada una a 3:4 en la grilla).
 
 **Calendario sugerido** (una semana, de jueves a miércoles; hora de Buenos Aires):
 
