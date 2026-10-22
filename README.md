@@ -168,10 +168,11 @@ la estrella es la web, dibujada en un celular con las farmacias de la red, el bo
 
 | Archivo | Qué es |
 | --- | --- |
-| `story.png` | Story de 1080 × 1920: "Tu farmacia de siempre, ahora online." con el celular y cuatro beneficios a los costados (receta por WhatsApp, envío en 2 horas o retiro, 4 farmacias de tu barrio y seguimiento en vivo) |
-| `post.png` | Publicación de 1080 × 1350 (4:5): "Sin filas. Sin vueltas. Tu farmacia, online." con los 3 pasos (elegí tu farmacia, pedí o mandá tu receta, recibilo en 2 horas) y "Link en la bio" |
+| `story.png` · `story.jpg` | Story de 1080 × 1920: "Tu farmacia de siempre, ahora online." con el celular y cuatro beneficios a los costados (receta por WhatsApp, envío en 2 horas o retiro, 4 farmacias de tu barrio y seguimiento en vivo) |
+| `post.png` · `post.jpg` | Publicación de 1080 × 1350 (4:5): "Sin filas. Sin vueltas. Tu farmacia, online." con los 3 pasos (elegí tu farmacia, pedí o mandá tu receta, recibilo en 2 horas) y "Link en la bio" |
 | `presentacion.html` | El diseño editable de las dos piezas. Abierto en el navegador las muestra lado a lado |
-| `exportar.js` | Vuelve a generar los PNG: `node marketing/presentacion/exportar.js`. Necesita Playwright |
+| `exportar.js` | Vuelve a generar los PNG y los JPG: `node marketing/presentacion/exportar.js`. Necesita Playwright. Los JPG son los que se publican: Instagram, por API, solo acepta JPG |
 
 - La web del celular es una sola plantilla (`#phone-ui`) que se copia en las dos piezas: si cambia la web, se cambia una vez.
-- En la story, debajo de "Tocá el enlace y conocé la web", queda el lugar para el sticker de enlace, arriba de la barra de respuesta.
+- Las dos piezas cierran con "link en la bio", porque al publicar por API (Metricool) no se puede agregar el sticker de enlace a la story.
+  El perfil de Instagram tiene que tener el enlace a la web en la bio.

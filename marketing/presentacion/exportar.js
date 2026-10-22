@@ -1,6 +1,6 @@
 // FarmaGlass · exporta la presentación de Instagram (presentacion.html) a PNG.
 //
-//   node marketing/presentacion/exportar.js   → story.png (1080 × 1920) y post.png (1080 × 1350)
+//   node marketing/presentacion/exportar.js   → story.png/.jpg (1080 × 1920) y post.png/.jpg (1080 × 1350)
 //
 // Necesita Playwright (npm i -D playwright).
 
@@ -19,7 +19,10 @@ const DIR = __dirname;
     await page.evaluate(() => document.fonts.ready);
     for (const [id, file] of [['story', 'story.png'], ['post', 'post.png']]) {
         await page.locator('#' + id).screenshot({ path: path.join(DIR, file) });
-        console.log(file + ' listo');
+        // Instagram publica por API solo imágenes JPG: se exporta también en ese formato
+        const jpg = file.replace('.png', '.jpg');
+        await page.locator('#' + id).screenshot({ path: path.join(DIR, jpg), type: 'jpeg', quality: 95 });
+        console.log(file + ' y ' + jpg + ' listos');
     }
     await browser.close();
 })();
