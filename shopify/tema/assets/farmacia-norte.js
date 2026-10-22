@@ -190,7 +190,7 @@
 
     // Pie: datos, horario y accesos
     document.getElementById('foot').innerHTML = `
-        <div><h3 class="up">Belgrano Norte</h3><p>${FG.esc(s.street)}</p><p>${st.text}</p>
+        <div><h3 class="up">Arroyito Norte</h3><p>${FG.esc(s.street)}</p><p>${st.text}</p>
             <div class="foot-links"><a href="${FG.mapsUrl(s)}" target="_blank" rel="noopener">Cómo llegar ↗</a><a href="${FG.telUrl(s)}">Tel. ${s.phone}</a></div></div>
         <div><h3 class="up">Horario</h3><table><caption class="sr">Horario de la semana</caption><tbody>${FG.week('norte').map(d => `<tr class="${d.today ? 'today' : ''}"><td>${d.label}${d.today ? ' · hoy' : ''}</td><td>${d.hours}</td></tr>`).join('')}</tbody></table></div>
         <div><h3 class="up">Tu cuenta</h3><div class="foot-links"><button type="button" data-account-open="orders">Mis pedidos</button><a href="${FG.home}#farmacias">Volver a FarmaGlass</a></div><p style="margin-top:10px">Parte de la red FarmaGlass</p></div>`;

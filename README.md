@@ -17,15 +17,16 @@ Todo es HTML, CSS y JavaScript sin dependencias. Para verla, abrí `farmacia_v2.
 
 ## Las farmacias de la red
 
+Las cuatro farmacias están en barrios de Rosario (Santa Fe) y la red entrega en Rosario y Gran Rosario.
 Cada farmacia tiene una página que es su propio mundo, con estructura, tipografía e interacciones distintas,
 y un banner propio en la portada de la web principal:
 
-| Farmacia | Concepto | Lo que tiene la página |
-| --- | --- | --- |
-| Farmacia del Centro | "La Gaceta de la Botica": un diario de 1962 | Cabecera con fecha y edición, nota principal con letra capital y sello de precio, cajonera de madera con plaquitas de bronce, vitrina con estantes y etiquetas colgantes, fórmulas para recortar (cupones troquelados que suman la fórmula completa), cotizaciones del mostrador (la página de bolsa del diario, ordenable), consultorio de cartas y horario de época |
-| Plaza Palermo | "After Hours": la noche de una farmacia 24 h | Reloj en vivo, deslizador "¿A qué hora lo necesitás?" que muestra qué farmacias de la red están abiertas, rutina de noche en 2 preguntas, cartas holográficas, collage de polaroids, diccionario de ingredientes con pestañas de neón que encuentra los productos que los llevan, el ritual de noche con temporizador y cartel de neón |
-| Belgrano Norte | "Training Club": una app de entrenamiento | Marcador LED, armador de kit por deporte, fichas técnicas, tabla de rendimiento (precio por comprimido, sobre o 100 g), calculadora de hidratación orientativa, el plan en una pista de atletismo y elongación de 3 minutos con cronómetro LED |
-| Parque Caballito | "Un día en el parque": un libro ilustrado | Escena con barrilete y picnic, selector con dibujos, tendedero de marcas, las cuatro estaciones del parque (la escena cambia y arranca por la de hoy), mochila para el parque con checklist, cuánto duran las toallitas y notas del farmacéutico |
+| Farmacia | Barrio y dirección | Concepto | Lo que tiene la página |
+| --- | --- | --- | --- |
+| Farmacia del Centro | Centro · Córdoba 1450, sobre el Paseo del Siglo | "La Gaceta de la Botica": un diario de 1962 | Cabecera con fecha y edición, nota principal con letra capital y sello de precio, cajonera de madera con plaquitas de bronce, vitrina con estantes y etiquetas colgantes, fórmulas para recortar (cupones troquelados que suman la fórmula completa), cotizaciones del mostrador (la página de bolsa del diario, ordenable), consultorio de cartas y horario de época |
+| Plaza Pichincha | Pichincha · Güemes 2050, el barrio de la noche rosarina | "After Hours": la noche de una farmacia 24 h | Reloj en vivo, deslizador "¿A qué hora lo necesitás?" que muestra qué farmacias de la red están abiertas, rutina de noche en 2 preguntas, cartas holográficas, collage de polaroids, diccionario de ingredientes con pestañas de neón que encuentra los productos que los llevan, el ritual de noche con temporizador y cartel de neón |
+| Arroyito Norte | Arroyito · Av. Alberdi 650, cerca de la costanera | "Training Club": una app de entrenamiento | Marcador LED, armador de kit por deporte, fichas técnicas, tabla de rendimiento (precio por comprimido, sobre o 100 g), calculadora de hidratación orientativa, el plan en una pista de atletismo y elongación de 3 minutos con cronómetro LED |
+| Barrio Parque | Barrio Parque · Av. Pellegrini 2600, frente al Parque Independencia | "Un día en el parque": un libro ilustrado | Escena con barrilete y picnic, selector con dibujos, tendedero de marcas, las cuatro estaciones del parque (la escena cambia y arranca por la de hoy), mochila para el parque con checklist, cuánto duran las toallitas y notas del farmacéutico |
 
 ## Funciones
 
@@ -38,7 +39,8 @@ y un banner propio en la portada de la web principal:
 - **Buscador con sugerencias** de productos, categorías y farmacias, búsquedas recientes y atajo `/`.
 - **Catálogo**: orden por precio, descuento o valoración; filtros de envío gratis, farmacia más cercana y favoritos.
 - **Producto**: favorito, compartir, cuotas, productos relacionados y enlace directo (`#producto-4`).
-- **Dirección**: escrita o con "Usar mi ubicación actual"; muestra la farmacia más cercana y si está abierta.
+- **Dirección**: escrita (barrios de Rosario y localidades del Gran Rosario) o con "Usar mi ubicación actual";
+  muestra la farmacia más cercana y si está abierta. Las coordenadas de farmacias y barrios son aproximadas.
 - **Recetas** (`fg-receta.js`):
   - **Franja de arriba de todo** con el botón "Enviar receta", que despliega un formulario rápido. También se abre
     desde "Receta" en la barra de abajo (celular) y "Enviar receta" en el encabezado (computadora).

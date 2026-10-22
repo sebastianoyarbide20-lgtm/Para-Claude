@@ -11,7 +11,7 @@
 
     // Cabecera de diario: fecha, estado de hoy y número de edición
     document.getElementById('logo').innerHTML = FG.logo(s, 58, 'DM Serif Display, Georgia, serif');
-    document.getElementById('date').textContent = `Recoleta, ${now.toLocaleDateString('es-AR', { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' })}`;
+    document.getElementById('date').textContent = `Rosario, ${now.toLocaleDateString('es-AR', { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' })}`;
     document.querySelectorAll('[data-ear="left"]').forEach(e => { e.innerHTML = `<b>Hoy</b>${st.text}`; });
     document.querySelectorAll('[data-ear="right"]').forEach(e => { e.innerHTML = `<b>Año ${year}</b>Edición n.º ${edition}`; });
 
@@ -148,5 +148,5 @@
         `<tr class="${d.today ? 'today' : ''}"><td>${d.label}</td><td class="${d.hours === 'Cerrado' ? 'closed' : ''}">${d.hours}</td></tr>`).join('');
     const ws = document.getElementById('week-status');
     ws.textContent = st.text; ws.classList.toggle('on', st.open);
-    document.getElementById('colophon').textContent = `Gaceta de la Botica · Año ${year} · Edición n.º ${edition} · Impresa en Recoleta, Av. Callao 1450`;
+    document.getElementById('colophon').textContent = `Gaceta de la Botica · Año ${year} · Edición n.º ${edition} · Impresa en Rosario, Córdoba 1450`;
 })();

@@ -9,7 +9,7 @@ const path = require('path');
 
 const ROOT = path.join(__dirname, '..');
 const THEME = path.join(__dirname, 'tema');
-const IDS = { centro: 'Farmacia del Centro', plaza: 'Farmacia Plaza Palermo', norte: 'Farmacia Belgrano Norte', parque: 'Farmacia Parque Caballito' };
+const IDS = { centro: 'Farmacia del Centro', plaza: 'Farmacia Plaza Pichincha', norte: 'Farmacia Arroyito Norte', parque: 'Farmacia Barrio Parque' };
 const write = (file, body) => { fs.mkdirSync(path.dirname(path.join(THEME, file)), { recursive: true }); fs.writeFileSync(path.join(THEME, file), body); };
 const between = (s, a, b, from = 0) => {
     const i = s.indexOf(a, from), j = s.indexOf(b, i + a.length);

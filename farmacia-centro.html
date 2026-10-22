@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Farmacia del Centro · La Gaceta de la Botica · Recoleta</title>
-    <meta name="description" content="Farmacia del Centro, botica tradicional desde 1962 en Recoleta: agua de rosas, caléndula, glicerina, vaselina y dermocosmética de farmacia.">
+    <title>Farmacia del Centro · La Gaceta de la Botica · Rosario</title>
+    <meta name="description" content="Farmacia del Centro, botica tradicional desde 1962 en el centro de Rosario: agua de rosas, caléndula, glicerina, vaselina y dermocosmética de farmacia.">
     <meta name="theme-color" content="#14284B">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -344,7 +344,7 @@
                     <div class="np-seal" id="logo"></div>
                     <p class="np-kicker smallcaps"><span>Botica tradicional</span><span>Fundada en 1962</span></p>
                     <h1 class="np-title">Farmacia del Centro</h1>
-                    <p class="np-motto">Atendida por farmacéuticos, en la misma esquina de Callao</p>
+                    <p class="np-motto">Atendida por farmacéuticos, sobre el Paseo del Siglo</p>
                 </div>
                 <div class="ears"><p class="ear" data-ear="right"></p></div>
             </div>
@@ -361,7 +361,7 @@
             <article class="lead">
                 <p class="kicker smallcaps">El producto de la semana</p>
                 <h2 id="lead-title">Agua de rosas, <i>el tónico de siempre</i></h2>
-                <p class="byline">Por el equipo de farmacéuticos de la botica · Recoleta</p>
+                <p class="byline">Por el equipo de farmacéuticos de la botica · Centro, Rosario</p>
                 <div class="lead-body">
                     <figure class="plate">
                         <div class="plate-frame"><img id="lead-img" alt="" width="300" height="300"></div>
@@ -462,12 +462,12 @@
             <div class="letters">
                 <article class="letter">
                     <p class="q">¿Vaselina sólida o líquida? Nunca sé cuál llevar.</p>
-                    <p class="from">— Marta, de Barrio Norte</p>
+                    <p class="from">— Marta, de Echesortu</p>
                     <p class="a"><b>Responde la botica.</b> La sólida es más densa y protege labios, codos y talones resecos. La líquida se extiende mejor: va bien para masajes o para hidratar el cuerpo después de la ducha.</p>
                 </article>
                 <article class="letter">
                     <p class="q">¿El agua de rosas sirve como tónico?</p>
-                    <p class="from">— Julián, de Recoleta</p>
+                    <p class="from">— Julián, de Pichincha</p>
                     <p class="a"><b>Responde la botica.</b> Sí. Después de limpiar la cara, pasala con un algodón o aplicala en bruma. Refresca y deja la piel suave. Si tu piel es muy sensible, probala antes en una zona chica.</p>
                 </article>
                 <article class="letter">
@@ -480,7 +480,7 @@
         </section>
 
         <section class="chronicle" aria-label="Nuestra historia">
-            <div class="year"><b>1962</b><p>Don Ernesto abre la botica en la esquina de Callao, con un mostrador de roble que todavía usamos.</p></div>
+            <div class="year"><b>1962</b><p>Don Ernesto abre la botica sobre calle Córdoba, con un mostrador de roble que todavía usamos.</p></div>
             <div class="year"><b>1988</b><p>Sumamos la cajonera de clásicos: caléndula, agua de rosas, glicerina y vaselina, siempre a mano.</p></div>
             <div class="year"><b>2026</b><p>La tercera generación de farmacéuticos te atiende en el local y por FarmaGlass.</p></div>
         </section>
@@ -522,7 +522,7 @@
 
         // Cabecera de diario: fecha, estado de hoy y número de edición
         document.getElementById('logo').innerHTML = FG.logo(s, 58, 'DM Serif Display, Georgia, serif');
-        document.getElementById('date').textContent = `Recoleta, ${now.toLocaleDateString('es-AR', { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' })}`;
+        document.getElementById('date').textContent = `Rosario, ${now.toLocaleDateString('es-AR', { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' })}`;
         document.querySelectorAll('[data-ear="left"]').forEach(e => { e.innerHTML = `<b>Hoy</b>${st.text}`; });
         document.querySelectorAll('[data-ear="right"]').forEach(e => { e.innerHTML = `<b>Año ${year}</b>Edición n.º ${edition}`; });
 
@@ -659,7 +659,7 @@
             `<tr class="${d.today ? 'today' : ''}"><td>${d.label}</td><td class="${d.hours === 'Cerrado' ? 'closed' : ''}">${d.hours}</td></tr>`).join('');
         const ws = document.getElementById('week-status');
         ws.textContent = st.text; ws.classList.toggle('on', st.open);
-        document.getElementById('colophon').textContent = `Gaceta de la Botica · Año ${year} · Edición n.º ${edition} · Impresa en Recoleta, Av. Callao 1450`;
+        document.getElementById('colophon').textContent = `Gaceta de la Botica · Año ${year} · Edición n.º ${edition} · Impresa en Rosario, Córdoba 1450`;
     </script>
 </body>
 </html>

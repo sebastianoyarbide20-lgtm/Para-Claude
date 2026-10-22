@@ -3,16 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Farmacia Plaza Palermo · After Hours 24 h</title>
-    <meta name="description" content="Farmacia Plaza Palermo, abierta las 24 horas: skincare de noche, entrega a cualquier hora y tu rutina en dos preguntas.">
+    <title>Farmacia Plaza Pichincha · After Hours 24 h</title>
+    <meta name="description" content="Farmacia Plaza Pichincha, abierta las 24 horas: skincare de noche, entrega a cualquier hora y tu rutina en dos preguntas.">
     <meta name="theme-color" content="#1C0A2B">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@500;700;800;900&family=Space+Mono:wght@400;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
         /* ================================================================
-         *  FARMACIA PLAZA PALERMO · "After Hours"
-         *  Una farmacia que nunca cierra, contada como la noche de Palermo:
+         *  FARMACIA PLAZA PICHINCHA · "After Hours"
+         *  Una farmacia que nunca cierra, contada como la noche de Pichincha:
          *  cielo estrellado, carteles de neón, reloj en vivo, cartas
          *  holográficas y un collage de polaroids. Interacciones: qué está
          *  abierto a cada hora y tu rutina en dos preguntas.
@@ -289,8 +289,8 @@
     </style>
 </head>
 <body>
-    <nav class="nav" aria-label="Farmacia Plaza Palermo"><div class="wrap">
-        <a class="brand" href="#" id="brand"><span>Plaza Palermo</span></a>
+    <nav class="nav" aria-label="Farmacia Plaza Pichincha"><div class="wrap">
+        <a class="brand" href="#" id="brand"><span>Plaza Pichincha</span></a>
         <p class="clock" aria-live="off"><time id="clock">--:--:--</time><small>Abierto ahora</small></p>
         <button class="pill" type="button" data-cart-open>Carrito <b data-cart-count hidden>0</b></button>
         <a class="pill" href="farmacia_v2.html#farmacias" aria-label="Volver a FarmaGlass">←<span class="long"> FarmaGlass</span></a>
@@ -300,7 +300,7 @@
         <span class="moon" aria-hidden="true"></span>
         <div class="wrap hero-grid">
             <div>
-                <p class="kicker">Plaza Lab · Palermo · 24 h</p>
+                <p class="kicker">Plaza Lab · Pichincha · 24 h</p>
                 <h1 class="neon-title"><span class="glow">Skincare de <span class="flick">n</span>oche,</span> <mark>entrega</mark> de noche</h1>
                 <p class="sub">Sérums, brumas y labiales que elegimos para tu rutina. Pedí a las 3 de la mañana y lo tenés en la puerta en 2 horas.</p>
                 <div class="hero-ctas">
@@ -418,7 +418,7 @@
         </section>
     </main>
 
-    <footer>Farmacia Plaza Palermo forma parte de la red FarmaGlass · <button class="foot-link" type="button" data-account-open="orders">Mis pedidos</button> · Prototipo: datos ilustrativos</footer>
+    <footer>Farmacia Plaza Pichincha forma parte de la red FarmaGlass · <button class="foot-link" type="button" data-account-open="orders">Mis pedidos</button> · Prototipo: datos ilustrativos</footer>
 
     <script src="productos-reales.js"></script>
     <script src="fg-shop.js"></script>
@@ -469,7 +469,7 @@
             : h < 8 ? 'linear-gradient(160deg, #3B1A56, #C2185B 60%, #FF9E6B)'
             : h < 18 ? 'linear-gradient(160deg, #6A3FD6, #C2185B 70%, #FF5FA2)'
             : 'linear-gradient(160deg, #2B1240, #8E1145 55%, #FF7A59)';
-        const NAMES = { centro: 'Farmacia del Centro', plaza: 'Plaza Palermo', norte: 'Belgrano Norte', parque: 'Parque Caballito' };
+        const NAMES = { centro: 'Farmacia del Centro', plaza: 'Plaza Pichincha', norte: 'Arroyito Norte', parque: 'Barrio Parque' };
         const hourInput = document.getElementById('hour');
         function paintHour() {
             const h = Number(hourInput.value), at = new Date(); at.setHours(h, 0, 0, 0);

@@ -232,7 +232,7 @@ window.FGReceta = (() => {
             <div class="rx-grid">
                 <div class="addr-field${full ? '' : ' rx-wide'}">
                     <label for="${id('phone')}">Celular <span class="rxf-wa-tag">${I.wa}WhatsApp</span></label>
-                    <input id="${id('phone')}" type="tel" inputmode="tel" autocomplete="tel-national" placeholder="Ej.: 11 2345-6789" data-rx="phone" value="${esc(p?.phone || '')}">
+                    <input id="${id('phone')}" type="tel" inputmode="tel" autocomplete="tel-national" placeholder="Ej.: 341 555-1234" data-rx="phone" value="${esc(p?.phone || '')}">
                 </div>
                 <div class="addr-field">
                     <label for="${id('os')}">Obra social o prepaga</label>
@@ -350,7 +350,7 @@ window.FGReceta = (() => {
         const invalid = [];
         f.root.querySelectorAll('[aria-invalid]').forEach(el => el.removeAttribute('aria-invalid'));
         if (!f.files.length) invalid.push(['[data-rx-pick]', '[data-rx-cam]', 'Sacale una foto a la receta o subí el archivo.']);
-        if (!phoneOk(v.phone)) invalid.push(['[data-rx="phone"]', '[data-rx="phone"]', 'Ingresá tu celular con código de área, por ejemplo 11 2345-6789: ahí te llega el WhatsApp.']);
+        if (!phoneOk(v.phone)) invalid.push(['[data-rx="phone"]', '[data-rx="phone"]', 'Ingresá tu celular con código de área, por ejemplo 341 555-1234: ahí te llega el WhatsApp.']);
         if (!v.os) invalid.push(['[data-rx="os"]', '[data-rx="os"]', 'Elegí tu obra social o “Particular”.']);
         else if (v.os === OTHER && !v.osOther) invalid.push(['[data-rx="osOther"]', '[data-rx="osOther"]', 'Contanos cuál es tu obra social.']);
         if (!v.consent) invalid.push(['[data-rx="consent"]', '[data-rx="consent"]', 'Necesitamos tu autorización para revisar la receta.']);
@@ -496,7 +496,7 @@ window.FGReceta = (() => {
                 <div class="addr-field"><label for="rxc-name">¿Cómo te llamás? <span class="optional">(opcional)</span></label>
                     <input id="rxc-name" type="text" autocomplete="given-name" data-rxc="name" value="${esc(p?.name || '')}"></div>
                 <div class="addr-field"><label for="rxc-phone">Celular <span class="rxf-wa-tag">${I.wa}WhatsApp</span></label>
-                    <input id="rxc-phone" type="tel" inputmode="tel" autocomplete="tel-national" placeholder="Ej.: 11 2345-6789" data-rxc="phone" value="${esc(p?.phone || '')}"></div>
+                    <input id="rxc-phone" type="tel" inputmode="tel" autocomplete="tel-national" placeholder="Ej.: 341 555-1234" data-rxc="phone" value="${esc(p?.phone || '')}"></div>
                 <div class="addr-field"><label for="rxc-os">Obra social o prepaga</label>
                     <select id="rxc-os" data-rxc="os">${opt('', p?.os, 'Elegí una opción')}${OBRAS.map(o => opt(o, p?.os)).join('')}${opt(OTHER, p?.os, 'Otra obra social')}${opt(NONE, p?.os)}</select></div>
                 <div class="addr-field" data-rxc-plan-field><label for="rxc-plan">Plan</label><select id="rxc-plan" data-rxc="plan"></select></div>
@@ -580,7 +580,7 @@ window.FGReceta = (() => {
             e.preventDefault();
             const errs = [];
             club.querySelectorAll('[aria-invalid]').forEach(el => el.removeAttribute('aria-invalid'));
-            if (!phoneOk(cv('phone'))) errs.push(['phone', 'Ingresá tu celular con código de área, por ejemplo 11 2345-6789.']);
+            if (!phoneOk(cv('phone'))) errs.push(['phone', 'Ingresá tu celular con código de área, por ejemplo 341 555-1234.']);
             if (!cv('os')) errs.push(['os', 'Elegí tu obra social o “Particular”.']);
             else if (cv('os') === OTHER && !cv('osOther')) errs.push(['osOther', 'Contanos cuál es tu obra social.']);
             if (errs.length) {
