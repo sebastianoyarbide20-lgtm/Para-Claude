@@ -139,3 +139,24 @@ Después de cambiar `fg-receta.js`, `fg-receta.css` o una página de farmacia, s
 Para actualizar el tema se suben los archivos de `shopify/tema/` al tema, por ejemplo con Shopify CLI:
 `shopify theme push --path shopify/tema --theme <id del tema> --nodelete`. Para usarlo, se publica desde
 Tienda online → Temas.
+
+## Publicidad: story de Instagram
+
+En `marketing/instagram-story/` está la story que publicita la web, armada con la misma identidad: el verde de marca,
+el titular en Bricolage Grotesque con el acento en cursiva de Instrument Serif, el sol para la acción principal,
+el rojo solo para los descuentos y los íconos duotono de la web.
+
+| Archivo | Qué es |
+| --- | --- |
+| `story.png` | La story fija, en 1080 × 1920 |
+| `story.mp4` | La misma story animada (8 s, 30 fps, H.264): entra el titular, el sello, se reparten las tarjetas y aparece el cupón |
+| `story.html` | El diseño editable. Abierto en el navegador se ve animado y achicado a la ventana |
+| `exportar.js` | Vuelve a generar el PNG y el MP4: `node marketing/instagram-story/exportar.js` (o `--png` para el PNG solo). Necesita Playwright y ffmpeg |
+| `guia-instagram.jpg` | Cómo se ve en Instagram y las zonas de arriba y de abajo que tapa la interfaz |
+
+- **El mensaje**: "La farmacia de tu barrio, en 2 horas", con el sello de envío gratis desde $ 15.000, las 4 farmacias de
+  la red, tres productos reales en oferta (Nido 3 2x1, CeraVe y La Roche-Posay con 40 % off), la receta por WhatsApp,
+  las 3 cuotas y el cupón `NUEVO20`.
+- **Zonas seguras**: arriba queda libre la barra del perfil y abajo, la de respuesta. Entre "Tocá el enlace y pedí ahora"
+  y la barra de respuesta queda el lugar para el **sticker de enlace** a la tienda, que se agrega al publicar.
+- Los precios son los de `productos-reales.js`. Si cambian, se actualizan en `story.html` y se vuelve a exportar.

@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html lang="es-AR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>FarmaGlass · Instagram Story</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,700;12..96,800&family=Inter:wght@500;600;700&family=Instrument+Serif:ital@1&display=swap" rel="stylesheet">
+    <style>
+        /* ================================================================
+         *  FARMAGLASS — INSTAGRAM STORY (1080 × 1920)
+         *  Los mismos tokens de la web: verde de marca, crema cálido,
+         *  sol para la acción principal, rojo solo para descuentos y
+         *  lima para el acento en cursiva.
+         *  Zonas seguras de Instagram: los 250 px de arriba (barra de
+         *  progreso y perfil) y los 250 px de abajo (respuesta) quedan
+         *  sin texto.
+         * ================================================================ */
+        :root {
+            --forest-900: #062A20;
+            --forest-800: #0A3D2E;
+            --forest-700: #0B5D45;
+            --forest-500: #139A6B;
+            --mint:       #5FE0A8;
+            --lime:       #B8F04A;
+            --sun:        #FFD23F;
+            --sun-deep:   #F5B700;
+            --sale:       #C4302B;
+            --new:        #5B34C4;
+            --bg:         #F6F4EC;
+            --ink:        #10261F;
+            --ink-3:      #5E6D66;
+
+            --font-body: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            --font-display: 'Bricolage Grotesque', 'Inter', sans-serif;
+            --font-serif: 'Instrument Serif', Georgia, serif;
+            --ease-out: cubic-bezier(.16, 1, .3, 1);
+            --ease-back: cubic-bezier(.34, 1.56, .64, 1);
+        }
+
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+        /* Vista previa: la story se achica para entrar en la ventana.
+           Con ?export se ve a tamaño real, para exportar PNG y MP4. */
+        html, body { height: 100%; }
+        body {
+            background: #0E1512;
+            font-family: var(--font-body);
+            -webkit-font-smoothing: antialiased;
+            display: grid; place-items: center;
+            overflow: hidden;
+        }
+        .stage { width: calc(1080px * var(--k, 1)); height: calc(1920px * var(--k, 1)); }
+        .story {
+            width: 1080px; height: 1920px;
+            transform: scale(var(--k, 1)); transform-origin: 0 0;
+            position: relative; overflow: hidden;
+            color: var(--bg);
+            background:
+                radial-gradient(60% 34% at 92% 6%, rgba(184, 240, 74, .26) 0%, rgba(184, 240, 74, 0) 70%),
+                radial-gradient(70% 40% at -6% 58%, rgba(19, 154, 107, .55) 0%, rgba(19, 154, 107, 0) 70%),
+                radial-gradient(80% 30% at 100% 100%, rgba(11, 93, 69, .9) 0%, rgba(11, 93, 69, 0) 70%),
+                linear-gradient(170deg, #0A3D2E 0%, #062A20 46%, #041F17 100%);
+        }
+        body.export { display: block; background: #062A20; }
+        body.export .stage { width: 1080px; height: 1920px; }
+
+        /* Trama de puntos, como el fondo de la web */
+        .story::before {
+            content: ""; position: absolute; inset: 0; pointer-events: none;
+            background: radial-gradient(circle, rgba(246, 244, 236, .09) 1.6px, transparent 2.2px) 0 0 / 36px 36px;
+            -webkit-mask: linear-gradient(180deg, #000 0%, rgba(0,0,0,.25) 45%, #000 100%);
+                    mask: linear-gradient(180deg, #000 0%, rgba(0,0,0,.25) 45%, #000 100%);
+        }
+
+        /* Manchas de luz detrás de las tarjetas de vidrio */
+        .glow { position: absolute; border-radius: 50%; filter: blur(70px); pointer-events: none; }
+        .glow-a { width: 520px; height: 520px; left: 300px; top: 860px; background: rgba(95, 224, 168, .34); }
+        .glow-b { width: 360px; height: 360px; left: 640px; top: 1060px; background: rgba(255, 210, 63, .2); }
+
+        .content { position: absolute; inset: 0; padding: 0 72px; }
+
+        /* ── MARCA ── */
+        .brand { position: absolute; top: 200px; left: 72px; right: 72px; display: flex; align-items: center; justify-content: space-between; }
+        .logo { display: flex; align-items: center; gap: 18px; }
+        .logo-icon {
+            width: 84px; height: 84px; border-radius: 26px;
+            display: grid; place-items: center;
+            background: linear-gradient(145deg, var(--forest-500), var(--forest-800));
+            box-shadow: inset 0 2px 0 rgba(255,255,255,.28), inset 0 0 0 2px rgba(255,255,255,.08), 0 14px 32px rgba(0, 0, 0, .3);
+        }
+        .logo-icon svg { width: 46px; height: 46px; fill: none; stroke: #fff; stroke-width: 2.6; stroke-linejoin: round; }
+        .logo-text { font-family: var(--font-display); font-weight: 800; font-size: 58px; letter-spacing: -.025em; color: var(--bg); }
+        .logo-text span { color: var(--mint); }
+        .brand-pill {
+            display: flex; align-items: center; gap: 12px;
+            padding: 14px 24px; border-radius: 999px;
+            font-size: 26px; font-weight: 600; color: rgba(246, 244, 236, .92);
+            background: rgba(255, 255, 255, .08);
+            border: 1.5px solid rgba(255, 255, 255, .16);
+            -webkit-backdrop-filter: blur(12px); backdrop-filter: blur(12px);
+        }
+        .brand-pill i { width: 14px; height: 14px; border-radius: 50%; background: var(--lime); box-shadow: 0 0 0 6px rgba(184, 240, 74, .2); }
+
+        /* ── TITULAR ── */
+        .headline { position: absolute; top: 312px; left: 72px; right: 40px; }
+        .headline h1 {
+            font-family: var(--font-display); font-weight: 800;
+            font-size: 120px; line-height: .94; letter-spacing: -.035em;
+            color: var(--bg);
+        }
+        .headline h1 .line { display: block; }
+        .headline h1 em {
+            display: block;
+            font-family: var(--font-serif); font-style: italic; font-weight: 400;
+            font-size: 156px; line-height: .9; letter-spacing: -.01em;
+            color: var(--lime);
+            margin-top: 6px;
+        }
+        .underline { display: block; width: 432px; height: 26px; margin: -4px 0 0 18px; }
+        .underline path { fill: none; stroke: var(--sun); stroke-width: 9; stroke-linecap: round; stroke-dasharray: 520; stroke-dashoffset: 0; }
+
+        /* ── FARMACIAS DE LA RED ── */
+        .network { position: absolute; top: 746px; left: 72px; right: 72px; display: flex; align-items: center; gap: 22px; }
+        .marks { display: flex; }
+        .marks svg { width: 66px; height: 66px; margin-right: -14px; filter: drop-shadow(0 6px 10px rgba(0,0,0,.28)); }
+        .marks svg:last-child { margin-right: 0; }
+        .network p { font-size: 29px; line-height: 1.25; color: rgba(246, 244, 236, .82); font-weight: 500; }
+        .network p b { color: var(--bg); font-weight: 700; }
+
+        /* ── TARJETAS DE PRODUCTO ── */
+        .deck { position: absolute; top: 856px; left: 0; right: 0; height: 500px; }
+        .card {
+            position: absolute; top: 0;
+            width: 304px; height: 416px; padding: 18px 18px 22px;
+            border-radius: 38px;
+            background: #fff;
+            color: var(--ink);
+            box-shadow: 0 2px 0 rgba(255,255,255,.6) inset, 0 30px 60px rgba(0, 0, 0, .38), 0 6px 14px rgba(0, 0, 0, .18);
+            display: flex; flex-direction: column;
+        }
+        .card-img { flex: 1; display: grid; place-items: center; min-height: 0; border-radius: 26px; background: linear-gradient(180deg, #fff 0%, #F3F5EF 100%); overflow: hidden; }
+        .card-img img { width: 86%; height: 86%; object-fit: contain; mix-blend-mode: multiply; }
+        .card-brand { margin-top: 14px; font-size: 22px; font-weight: 600; color: var(--ink-3); }
+        .card-name { font-family: var(--font-display); font-weight: 800; font-size: 27px; line-height: 1.05; letter-spacing: -.015em; margin-top: 2px; }
+        .card-prices { display: flex; align-items: baseline; gap: 12px; margin-top: 10px; }
+        .card-new { font-family: var(--font-display); font-weight: 800; font-size: 38px; letter-spacing: -.02em; color: var(--sale); }
+        .card-old { font-size: 22px; color: var(--ink-3); text-decoration: line-through; }
+        .card-note { font-size: 22px; font-weight: 600; color: var(--ink-3); }
+        .badge {
+            position: absolute; top: 34px; left: 34px; z-index: 1;
+            padding: 8px 16px; border-radius: 12px;
+            font-family: var(--font-display); font-weight: 800; font-size: 28px; letter-spacing: -.01em;
+            color: #fff; background: var(--sale);
+            box-shadow: 0 6px 14px rgba(196, 48, 43, .35);
+        }
+        .badge.violet { background: var(--new); box-shadow: 0 6px 14px rgba(91, 52, 196, .35); }
+
+        .card-left  { left: 86px;  --r: -9deg; transform: translate(0, 46px) rotate(var(--r)); }
+        .card-right { right: 86px; --r: 8deg;  transform: translate(0, 52px) rotate(var(--r)); }
+        .card-right .card-brand, .card-right .card-name { text-align: right; }
+        .card-right .card-prices { justify-content: flex-end; }
+        .card-mid   { left: 365px; --r: -2deg;  transform: translate(0, 0) rotate(var(--r)); width: 350px; height: 466px; padding: 20px 20px 24px; z-index: 2; }
+        .card-mid .card-new { font-size: 46px; }
+
+        /* Sello de envío junto al titular, como el sello de precio de la portada */
+        .stamp {
+            position: absolute; z-index: 3; top: 360px; right: 54px;
+            width: 240px; height: 240px; border-radius: 50%;
+            display: grid; place-items: center;
+            background: radial-gradient(circle at 32% 26%, #FFE680 0%, var(--sun) 46%, var(--sun-deep) 100%);
+            color: var(--forest-900);
+            box-shadow: 0 18px 40px rgba(0, 0, 0, .35), inset 0 3px 0 rgba(255,255,255,.55), inset 0 -6px 0 rgba(0,0,0,.08);
+            transform: rotate(-10deg);
+        }
+        .stamp::before { content: ""; position: absolute; inset: 36px; border-radius: 50%; border: 2px dashed rgba(6, 42, 32, .3); }
+        .stamp-ring { position: absolute; inset: 0; width: 100%; height: 100%; animation: spin 22s linear infinite; }
+        .stamp-ring text { font-family: var(--font-body); font-weight: 700; font-size: 15px; fill: var(--forest-900); }
+        .stamp-core { position: relative; text-align: center; line-height: 1; }
+        .stamp-core svg { width: 32px; height: 32px; display: block; margin: 0 auto 4px; fill: none; stroke: var(--forest-900); stroke-width: 2.3; stroke-linecap: round; stroke-linejoin: round; }
+        .stamp-core small { display: block; font-size: 15px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; }
+        .stamp-core b { display: block; font-family: var(--font-display); font-weight: 800; font-size: 44px; letter-spacing: -.035em; line-height: .95; margin: 1px 0 3px; }
+        .stamp-core span { display: block; font-size: 16px; font-weight: 700; }
+
+        /* ── BENEFICIOS ── */
+        .perks {
+            position: absolute; top: 1370px; left: 72px; right: 72px;
+            display: grid; grid-template-columns: repeat(3, 1fr);
+            border-radius: 30px;
+            background: rgba(255, 255, 255, .08);
+            border: 1.5px solid rgba(255, 255, 255, .15);
+            -webkit-backdrop-filter: blur(18px) saturate(140%); backdrop-filter: blur(18px) saturate(140%);
+            box-shadow: inset 0 1.5px 0 rgba(255,255,255,.12);
+        }
+        .perk { display: flex; align-items: center; gap: 14px; padding: 20px 18px; font-size: 24px; font-weight: 600; line-height: 1.18; color: rgba(246, 244, 236, .95); }
+        .perk + .perk { border-left: 1.5px solid rgba(255, 255, 255, .12); }
+        .perk svg { width: 54px; height: 54px; flex-shrink: 0; }
+
+        /* ── CUPÓN ── */
+        .coupon {
+            position: absolute; top: 1494px; left: 72px; right: 72px; height: 116px;
+            display: flex; align-items: stretch;
+            color: var(--forest-900);
+            filter: drop-shadow(0 18px 30px rgba(0, 0, 0, .35));
+        }
+        .coupon-main, .coupon-code {
+            position: relative; overflow: hidden;
+            background: linear-gradient(135deg, #FFE16B 0%, var(--sun) 50%, var(--sun-deep) 100%);
+        }
+        .coupon-main {
+            flex: 1; display: flex; align-items: center; gap: 20px; padding: 0 30px;
+            border-radius: 26px 10px 10px 26px;
+            -webkit-mask: radial-gradient(circle 16px at 100% 50%, transparent 15.5px, #000 16px);
+                    mask: radial-gradient(circle 16px at 100% 50%, transparent 15.5px, #000 16px);
+        }
+        .coupon-code {
+            width: 286px; display: grid; place-content: center; text-align: center;
+            border-radius: 10px 26px 26px 10px;
+            border-left: 4px dashed rgba(6, 42, 32, .35);
+            -webkit-mask: radial-gradient(circle 16px at 0 50%, transparent 15.5px, #000 16px);
+                    mask: radial-gradient(circle 16px at 0 50%, transparent 15.5px, #000 16px);
+        }
+        .coupon-off { font-family: var(--font-display); font-weight: 800; font-size: 76px; letter-spacing: -.045em; line-height: 1; white-space: nowrap; }
+        .coupon-off small { font-size: 46px; }
+        .coupon-txt { font-size: 25px; font-weight: 600; line-height: 1.15; }
+        .coupon-code small { font-size: 18px; font-weight: 700; letter-spacing: .2em; text-transform: uppercase; opacity: .75; }
+        .coupon-code b { font-family: var(--font-display); font-weight: 800; font-size: 46px; letter-spacing: .03em; line-height: 1.05; }
+        .shine {
+            position: absolute; top: -20%; bottom: -20%; left: -40%; width: 22%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,.65), transparent);
+            transform: skewX(-18deg); opacity: 0;
+        }
+
+        /* Llamado a la acción. Debajo queda libre el lugar del sticker de enlace (1690–1770 px) */
+        .cta { position: absolute; top: 1636px; left: 0; right: 0; text-align: center; font-size: 26px; font-weight: 600; letter-spacing: .02em; color: rgba(246, 244, 236, .78); }
+        .cta svg { width: 30px; height: 30px; vertical-align: -8px; margin-left: 6px; fill: none; stroke: var(--lime); stroke-width: 2.6; stroke-linecap: round; stroke-linejoin: round; }
+
+        /* ── ANIMACIÓN (para el video; el PNG usa el estado final) ── */
+        @keyframes spin { to { transform: rotate(360deg); } }
+        @keyframes rise { from { opacity: 0; transform: translateY(70px); } to { opacity: 1; transform: none; } }
+        @keyframes drop { from { opacity: 0; transform: translateY(-40px); } to { opacity: 1; transform: none; } }
+        @keyframes fade { from { opacity: 0; } to { opacity: 1; } }
+        @keyframes draw { from { stroke-dashoffset: 520; } to { stroke-dashoffset: 0; } }
+        @keyframes deal {
+            from { opacity: 0; transform: translate(var(--fx, 0), 260px) rotate(0deg) scale(.86); }
+            to   { opacity: 1; transform: translate(0, var(--ty, 0)) rotate(var(--r)) scale(1); }
+        }
+        @keyframes pop { 0% { opacity: 0; transform: scale(.2) rotate(-60deg); } 70% { opacity: 1; transform: scale(1.08) rotate(-6deg); } 100% { opacity: 1; transform: scale(1) rotate(-10deg); } }
+        @keyframes float { 0%, 100% { translate: 0 0; } 50% { translate: 0 -12px; } }
+        @keyframes sweep { 0% { left: -40%; opacity: 0; } 10% { opacity: 1; } 60% { left: 120%; opacity: 1; } 100% { left: 120%; opacity: 0; } }
+        @keyframes nudge { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(10px); } }
+        @keyframes glowin { from { opacity: 0; transform: scale(.6); } to { opacity: 1; transform: none; } }
+
+        .anim .glow       { animation: glowin 1.6s var(--ease-out) both; }
+        .anim .brand      { animation: drop .8s var(--ease-out) .15s both; }
+        .anim .headline .line { animation: rise .9s var(--ease-out) both; }
+        .anim .headline .line:nth-child(1) { animation-delay: .35s; }
+        .anim .headline .line:nth-child(2) { animation-delay: .5s; }
+        .anim .headline em    { animation: rise 1s var(--ease-out) .7s both; }
+        .anim .underline path { animation: draw .9s var(--ease-out) 1.35s both; }
+        .anim .network    { animation: fade .8s ease 1.3s both; }
+        .anim .card-left  { --ty: 46px; --fx: 300px;  animation: deal 1s var(--ease-out) 1.65s both, float 4.2s ease-in-out 2.7s infinite; }
+        .anim .card-right { --ty: 52px; --fx: -300px; animation: deal 1s var(--ease-out) 1.8s both, float 4.6s ease-in-out 2.9s infinite; }
+        .anim .card-mid   { animation: deal 1s var(--ease-out) 1.5s both, float 4s ease-in-out 2.5s infinite; }
+        .anim .stamp      { animation: pop .8s var(--ease-back) 1.2s both; }
+        .anim .perks      { animation: rise .8s var(--ease-out) 2.7s both; }
+        .anim .coupon     { animation: rise .8s var(--ease-out) 2.95s both; }
+        .anim .shine      { animation: sweep 1.6s ease-in-out 4s 2; }
+        .anim .cta        { animation: fade .6s ease 3.4s both; }
+        .anim .cta svg    { animation: nudge 1.2s ease-in-out 3.6s infinite; }
+    </style>
+</head>
+<body>
+    <div class="stage">
+    <article class="story" id="story" aria-label="FarmaGlass: la farmacia de tu barrio, en 2 horas">
+        <!-- Íconos duotono de la web -->
+        <svg width="0" height="0" style="position:absolute" aria-hidden="true">
+            <defs>
+                <linearGradient id="gd-green" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#5FE0A8"/><stop offset="1" stop-color="#0B7A55"/></linearGradient>
+                <linearGradient id="gd-lime" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#E2FF8F"/><stop offset="1" stop-color="#6FC21F"/></linearGradient>
+                <linearGradient id="gd-sun" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#FFE680"/><stop offset="1" stop-color="#F29A00"/></linearGradient>
+                <linearGradient id="gd-sky" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#8FD3FF"/><stop offset="1" stop-color="#2F6FE0"/></linearGradient>
+                <linearGradient id="gd-violet" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#C6A8FF"/><stop offset="1" stop-color="#6A3FD6"/></linearGradient>
+                <linearGradient id="gd-shine" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#fff" stop-opacity=".85"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></linearGradient>
+            </defs>
+            <symbol id="d-rx" viewBox="0 0 48 48">
+                <path d="M12 4h17l11 11v27a3 3 0 0 1-3 3H12a3 3 0 0 1-3-3V7a3 3 0 0 1 3-3z" fill="url(#gd-sky)"/>
+                <path d="M29 4v9a2 2 0 0 0 2 2h9z" fill="#fff" opacity=".55"/>
+                <rect x="13" y="8" width="12" height="3" rx="1.5" fill="url(#gd-shine)"/>
+                <path d="M16 22v14M16 22h5a4 4 0 0 1 0 8h-5M20 30l8 8M28 30l-8 8" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+                <circle cx="36" cy="38" r="7" fill="url(#gd-green)"/><path d="m33 38 2 2 4-4" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+            </symbol>
+            <symbol id="d-card" viewBox="0 0 48 48">
+                <rect x="4" y="12" width="36" height="24" rx="5" fill="url(#gd-violet)" transform="rotate(-8 22 24)"/>
+                <rect x="8" y="14" width="36" height="24" rx="5" fill="url(#gd-sky)"/>
+                <rect x="8" y="19" width="36" height="5" fill="#10261F" opacity=".35"/>
+                <rect x="13" y="28" width="8" height="6" rx="1.5" fill="url(#gd-sun)"/>
+                <rect x="10" y="15.5" width="24" height="2.5" rx="1.25" fill="url(#gd-shine)"/>
+            </symbol>
+            <symbol id="d-shield" viewBox="0 0 48 48">
+                <path d="M24 3 7 9v12c0 11 7.3 18.6 17 22 9.7-3.4 17-11 17-22V9z" fill="url(#gd-green)"/>
+                <path d="M24 3v40c-9.7-3.4-17-11-17-22V9z" fill="#fff" opacity=".14"/>
+                <path d="M16 23l6 6 11-12" stroke="#fff" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+            </symbol>
+        </svg>
+
+        <div class="glow glow-a"></div>
+        <div class="glow glow-b"></div>
+
+        <div class="content">
+            <header class="brand">
+                <div class="logo">
+                    <span class="logo-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 3h6v6h6v6h-6v6H9v-6H3V9h6z"/></svg></span>
+                    <span class="logo-text">Farma<span>Glass</span></span>
+                </div>
+                <span class="brand-pill"><i></i>CABA y GBA</span>
+            </header>
+
+            <div class="headline">
+                <h1>
+                    <span class="line">La farmacia</span>
+                    <span class="line">de tu barrio,</span>
+                    <em>en 2 horas.</em>
+                </h1>
+                <svg class="underline" viewBox="0 0 432 26" aria-hidden="true"><path d="M6 18C90 6 200 4 426 12"/></svg>
+            </div>
+
+            <div class="stamp" aria-label="Envío gratis desde 15.000 pesos, en 2 horas">
+                <svg class="stamp-ring" viewBox="0 0 240 240" aria-hidden="true">
+                    <defs><path id="ring" d="M120 120m-99 0a99 99 0 1 1 198 0a99 99 0 1 1-198 0"/></defs>
+                    <text><textPath href="#ring" textLength="616" lengthAdjust="spacing">RECIBILO HOY ✦ EN 2 HORAS ✦ RECIBILO HOY ✦ EN 2 HORAS ✦</textPath></text>
+                </svg>
+                <div class="stamp-core" aria-hidden="true">
+                    <svg viewBox="0 0 24 24"><path d="M3 6h11v10H3zM14 10h4l3 3v3h-7"/><circle cx="7" cy="18" r="1.8"/><circle cx="17.5" cy="18" r="1.8"/></svg>
+                    <small>Envío</small>
+                    <b>gratis</b>
+                    <span>desde $ 15.000</span>
+                </div>
+            </div>
+
+            <div class="network">
+                <!-- Las marcas de las 4 farmacias, con la forma y los colores de la web -->
+                <div class="marks" aria-hidden="true">
+                    <svg viewBox="0 0 48 48"><path d="M6 45V24a18 18 0 0 1 36 0v21z" fill="#14284B"/><circle cx="39" cy="9" r="6" fill="#C9A227" stroke="#FBF6EA" stroke-width="2.5"/><text x="24" y="37" text-anchor="middle" font-size="22" font-family="Georgia, serif" fill="#fff">C</text></svg>
+                    <svg viewBox="0 0 48 48"><path d="M24 3c12 0 21 8 21 20 0 13-9 22-21 22S3 37 3 25C3 12 12 3 24 3z" fill="#C2185B"/><circle cx="39" cy="9" r="6" fill="#FFD23F" stroke="#FFF0F6" stroke-width="2.5"/><text x="24" y="32" text-anchor="middle" font-size="22" font-family="Arial Black, sans-serif" fill="#fff">P</text></svg>
+                    <svg viewBox="0 0 48 48"><path d="M24 2l19 11v22L24 46 5 35V13z" fill="#1F4FD8"/><circle cx="39" cy="9" r="6" fill="#FF7A2E" stroke="#EEF3FF" stroke-width="2.5"/><text x="24" y="32" text-anchor="middle" font-size="22" font-family="Impact, Arial Narrow, sans-serif" fill="#fff">N</text></svg>
+                    <svg viewBox="0 0 48 48"><path d="M4 44V24C4 12 12 4 24 4h20v20c0 12-8 20-20 20z" fill="#4E6B3D"/><circle cx="39" cy="9" r="6" fill="#B5532A" stroke="#F8F1E4" stroke-width="2.5"/><text x="24" y="32" text-anchor="middle" font-size="22" font-family="Verdana, sans-serif" fill="#fff">P</text></svg>
+                </div>
+                <p><b>4 farmacias de la red</b><br>Recoleta · Palermo · Belgrano · Caballito</p>
+            </div>
+
+            <div class="deck">
+                <article class="card card-left">
+                    <span class="badge violet">2x1</span>
+                    <div class="card-img"><img src="https://www.mundonuevo.com.ar/wp-content/uploads/2023/08/NIDO3_800g-removebg-preview-600x600.png" alt="Nido 3" referrerpolicy="no-referrer"></div>
+                    <p class="card-brand">Nestlé</p>
+                    <p class="card-name">Nido 3 · 2 latas</p>
+                    <p class="card-prices"><span class="card-new">$ 28.900</span></p>
+                </article>
+                <article class="card card-right">
+                    <span class="badge">−40 %</span>
+                    <div class="card-img"><img src="https://farmacityar.vtexassets.com/arquivos/ids/246641-500-500" alt="La Roche-Posay Effaclar" referrerpolicy="no-referrer"></div>
+                    <p class="card-brand">La Roche-Posay</p>
+                    <p class="card-name">Effaclar gel</p>
+                    <p class="card-prices"><span class="card-new">$ 45.097</span></p>
+                </article>
+                <article class="card card-mid">
+                    <span class="badge">−40 %</span>
+                    <div class="card-img"><img src="https://farmacityar.vtexassets.com/arquivos/ids/288607-500-500" alt="CeraVe crema hidratante" referrerpolicy="no-referrer"></div>
+                    <p class="card-brand">CeraVe</p>
+                    <p class="card-name">Crema hidratante</p>
+                    <p class="card-prices"><span class="card-new">$ 28.538</span><span class="card-old">$ 47.563</span></p>
+                </article>
+
+            </div>
+
+            <ul class="perks" role="list">
+                <li class="perk"><svg aria-hidden="true"><use href="#d-rx"/></svg>Receta por<br>WhatsApp</li>
+                <li class="perk"><svg aria-hidden="true"><use href="#d-card"/></svg>3 cuotas<br>sin interés</li>
+                <li class="perk"><svg aria-hidden="true"><use href="#d-shield"/></svg>Farmacias<br>habilitadas</li>
+            </ul>
+
+            <div class="coupon">
+                <div class="coupon-main">
+                    <span class="coupon-off">20<small> %</small> OFF</span>
+                    <span class="coupon-txt">en tu primera<br>compra online</span>
+                    <span class="shine"></span>
+                </div>
+                <div class="coupon-code">
+                    <small>Código</small>
+                    <b>NUEVO20</b>
+                    <span class="shine"></span>
+                </div>
+            </div>
+
+            <p class="cta">Tocá el enlace y pedí ahora<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M6 13l6 6 6-6"/></svg></p>
+        </div>
+    </article>
+    </div>
+
+    <script>
+        // ?export muestra la story a tamaño real (para el PNG); ?anim, además, la anima (para el video).
+        // Sin parámetros, se anima y se achica para entrar en la ventana.
+        const params = new URLSearchParams(location.search);
+        const story = document.getElementById('story');
+        if (params.has('export')) document.body.classList.add('export');
+        if (!params.has('export') || params.has('anim')) story.classList.add('anim');
+        function fit() {
+            if (document.body.classList.contains('export')) return;
+            const k = Math.min(innerWidth / 1080, innerHeight / 1920) * .96;
+            document.documentElement.style.setProperty('--k', k);
+        }
+        fit();
+        addEventListener('resize', fit);
+    </script>
+</body>
+</html>
