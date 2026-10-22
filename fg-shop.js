@@ -11,7 +11,7 @@
 window.FGShop = (() => {
     const FREE_FROM = 15000, SHIP_COST = 1990, MAX_QTY = 10, HOME = 'farmacia_v2.html';
     const K = { cart: 'fg-cart', coupon: 'fg-coupon', orders: 'fg-orders', favs: 'fg-favs', rx: 'fg-recetas', address: 'fg-address', contact: 'fg-contact' };
-    const ZONES = ['Palermo', 'Belgrano', 'Caballito', 'Recoleta', 'Almagro', 'Villa Urquiza', 'San Isidro', 'Vicente López', 'Avellaneda'];
+    const ZONES = ['Pichincha', 'Arroyito', 'Barrio Parque', 'Centro', 'Echesortu', 'Fisherton', 'Granadero Baigorria', 'Funes', 'Villa Gobernador Gálvez'];
 
     const db = {
         get(k, d) { try { const v = JSON.parse(localStorage.getItem(k)); return v ?? d; } catch { return d; } },
@@ -29,10 +29,10 @@ window.FGShop = (() => {
 
     // ── FARMACIAS: horario real para saber si están abiertas ──
     const PHARM = {
-        centro: { name: 'Farmacia del Centro', street: 'Av. Callao 1450, Recoleta', days: [1, 2, 3, 4, 5, 6], from: 8, to: 21 },
-        plaza: { name: 'Farmacia Plaza Palermo', street: 'Av. Santa Fe 3720, Palermo', allDay: true },
-        norte: { name: 'Farmacia Belgrano Norte', street: 'Av. Cabildo 2300, Belgrano', days: [0, 1, 2, 3, 4, 5, 6], from: 7, to: 23 },
-        parque: { name: 'Farmacia Parque Caballito', street: 'Av. Rivadavia 5200, Caballito', days: [1, 2, 3, 4, 5, 6], from: 8, to: 22 },
+        centro: { name: 'Farmacia del Centro', street: 'Córdoba 1450, Centro', days: [1, 2, 3, 4, 5, 6], from: 8, to: 21 },
+        plaza: { name: 'Farmacia Plaza Pichincha', street: 'Güemes 2050, Pichincha', allDay: true },
+        norte: { name: 'Farmacia Arroyito Norte', street: 'Av. Alberdi 650, Arroyito', days: [0, 1, 2, 3, 4, 5, 6], from: 7, to: 23 },
+        parque: { name: 'Farmacia Barrio Parque', street: 'Av. Pellegrini 2600, Barrio Parque', days: [1, 2, 3, 4, 5, 6], from: 8, to: 22 },
     };
     const DAY = ['el domingo', 'el lunes', 'el martes', 'el miércoles', 'el jueves', 'el viernes', 'el sábado'];
     function openStatus(id, now = new Date()) {
@@ -401,7 +401,7 @@ window.FGShop = (() => {
                     ${opt('mode', 'retiro', coMode, 'store', 'Retiro en farmacia', 'Gratis · listo en 30 min')}
                 </div>
                 <div class="fgs-when" data-when="envio">
-                    ${field('street', 'Calle y número', `<input id="fgs-street" name="street" autocomplete="street-address" placeholder="Ej.: Av. Corrientes 1234" value="${esc(street)}">`)}
+                    ${field('street', 'Calle y número', `<input id="fgs-street" name="street" autocomplete="street-address" placeholder="Ej.: Bv. Oroño 1234" value="${esc(street)}">`)}
                     <div class="fgs-row">
                         ${field('zone', 'Barrio o localidad', `<select id="fgs-zone" name="zone" autocomplete="address-level2"><option value="">Elegí una opción</option>${ZONES.map(z => `<option${z === a.zone ? ' selected' : ''}>${z}</option>`).join('')}</select>`)}
                         ${field('floor', 'Piso y depto. <span>(opcional)</span>', '<input id="fgs-floor" name="floor" autocomplete="address-line2" placeholder="Ej.: 3.º B">')}
@@ -420,7 +420,7 @@ window.FGShop = (() => {
                 ${field('name', 'Nombre y apellido', `<input id="fgs-name" name="name" autocomplete="name" value="${esc(c.name || '')}">`)}
                 <div class="fgs-row">
                     ${field('email', 'Email', `<input id="fgs-email" name="email" type="email" inputmode="email" autocomplete="email" placeholder="nombre@correo.com" value="${esc(c.email || '')}">`)}
-                    ${field('phone', 'Celular', `<input id="fgs-phone" name="phone" type="tel" inputmode="tel" autocomplete="tel" placeholder="11 2345-6789" value="${esc(c.phone || '')}">`)}
+                    ${field('phone', 'Celular', `<input id="fgs-phone" name="phone" type="tel" inputmode="tel" autocomplete="tel" placeholder="341 555-1234" value="${esc(c.phone || '')}">`)}
                 </div>
             </fieldset>
             <fieldset class="fgs-fs"><legend><span class="fgs-n">3</span>Pago</legend>
@@ -462,7 +462,7 @@ window.FGShop = (() => {
         const v = n => (f.elements[n]?.value || '').trim();
         const errs = {};
         if (coMode === 'envio') {
-            if (!v('street') || !/\d/.test(v('street'))) errs.street = 'Ingresá la calle y el número, por ejemplo: Av. Corrientes 1234.';
+            if (!v('street') || !/\d/.test(v('street'))) errs.street = 'Ingresá la calle y el número, por ejemplo: Bv. Oroño 1234.';
             if (!v('zone')) errs.zone = 'Elegí tu barrio o localidad.';
         }
         if (v('name').length < 3) errs.name = 'Ingresá tu nombre y apellido.';

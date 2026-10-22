@@ -28,10 +28,10 @@ const db = {
 
     // ── FARMACIAS: horario real para saber si están abiertas ──
     const PHARM = {
-        centro: { name: 'Farmacia del Centro', street: 'Av. Callao 1450, Recoleta', days: [1, 2, 3, 4, 5, 6], from: 8, to: 21 },
-        plaza: { name: 'Farmacia Plaza Palermo', street: 'Av. Santa Fe 3720, Palermo', allDay: true },
-        norte: { name: 'Farmacia Belgrano Norte', street: 'Av. Cabildo 2300, Belgrano', days: [0, 1, 2, 3, 4, 5, 6], from: 7, to: 23 },
-        parque: { name: 'Farmacia Parque Caballito', street: 'Av. Rivadavia 5200, Caballito', days: [1, 2, 3, 4, 5, 6], from: 8, to: 22 },
+        centro: { name: 'Farmacia del Centro', street: 'Córdoba 1450, Centro', days: [1, 2, 3, 4, 5, 6], from: 8, to: 21 },
+        plaza: { name: 'Farmacia Plaza Pichincha', street: 'Güemes 2050, Pichincha', allDay: true },
+        norte: { name: 'Farmacia Arroyito Norte', street: 'Av. Alberdi 650, Arroyito', days: [0, 1, 2, 3, 4, 5, 6], from: 7, to: 23 },
+        parque: { name: 'Farmacia Barrio Parque', street: 'Av. Pellegrini 2600, Barrio Parque', days: [1, 2, 3, 4, 5, 6], from: 8, to: 22 },
     };
     const DAY = ['el domingo', 'el lunes', 'el martes', 'el miércoles', 'el jueves', 'el viernes', 'el sábado'];
     function openStatus(id, now = new Date()) {

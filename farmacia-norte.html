@@ -3,15 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Farmacia Belgrano Norte · Norte Training Club</title>
-    <meta name="description" content="Farmacia Belgrano Norte: armá tu kit para entrenar, calculá tu hidratación y encontrá suplementos, protección solar y alivio muscular.">
+    <title>Farmacia Arroyito Norte · Norte Training Club</title>
+    <meta name="description" content="Farmacia Arroyito Norte: armá tu kit para entrenar, calculá tu hidratación y encontrá suplementos, protección solar y alivio muscular.">
     <meta name="theme-color" content="#0B1B3F">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@0,600;0,700;0,800;1,800;1,900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
         /* ================================================================
-         *  FARMACIA BELGRANO NORTE · "Norte Training Club"
+         *  FARMACIA ARROYITO NORTE · "Norte Training Club"
          *  La farmacia como una app de entrenamiento: marcador LED de
          *  estadio, armador de kit por deporte, fichas técnicas de cada
          *  producto, calculadora de hidratación y el plan en una pista.
@@ -270,7 +270,7 @@
     <header class="hero">
         <div class="wrap">
             <div class="bar">
-                <a class="brand up" href="#" id="brand"><span>Belgrano Norte</span></a>
+                <a class="brand up" href="#" id="brand"><span>Arroyito Norte</span></a>
                 <nav class="menu" aria-label="Secciones"><a href="#kit">Kit</a><a href="#linea">Línea</a><a href="#rendimiento">Rendimiento</a><a href="#hidratacion">Hidratación</a><a href="#plan">Plan</a><a href="#elongacion">Elongá</a></nav>
                 <nav class="links" aria-label="Accesos">
                     <button type="button" data-cart-open>Carrito <b data-cart-count hidden>0</b></button>
@@ -615,7 +615,7 @@
 
         // Pie: datos, horario y accesos
         document.getElementById('foot').innerHTML = `
-            <div><h3 class="up">Belgrano Norte</h3><p>${FG.esc(s.street)}</p><p>${st.text}</p>
+            <div><h3 class="up">Arroyito Norte</h3><p>${FG.esc(s.street)}</p><p>${st.text}</p>
                 <div class="foot-links"><a href="${FG.mapsUrl(s)}" target="_blank" rel="noopener">Cómo llegar ↗</a><a href="${FG.telUrl(s)}">Tel. ${s.phone}</a></div></div>
             <div><h3 class="up">Horario</h3><table><caption class="sr">Horario de la semana</caption><tbody>${FG.week('norte').map(d => `<tr class="${d.today ? 'today' : ''}"><td>${d.label}${d.today ? ' · hoy' : ''}</td><td>${d.hours}</td></tr>`).join('')}</tbody></table></div>
             <div><h3 class="up">Tu cuenta</h3><div class="foot-links"><button type="button" data-account-open="orders">Mis pedidos</button><a href="${FG.home}#farmacias">Volver a FarmaGlass</a></div><p style="margin-top:10px">Parte de la red FarmaGlass · Prototipo: datos ilustrativos</p></div>`;

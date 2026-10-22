@@ -45,7 +45,7 @@
         : h < 8 ? 'linear-gradient(160deg, #3B1A56, #C2185B 60%, #FF9E6B)'
         : h < 18 ? 'linear-gradient(160deg, #6A3FD6, #C2185B 70%, #FF5FA2)'
         : 'linear-gradient(160deg, #2B1240, #8E1145 55%, #FF7A59)';
-    const NAMES = { centro: 'Farmacia del Centro', plaza: 'Plaza Palermo', norte: 'Belgrano Norte', parque: 'Parque Caballito' };
+    const NAMES = { centro: 'Farmacia del Centro', plaza: 'Plaza Pichincha', norte: 'Arroyito Norte', parque: 'Barrio Parque' };
     const hourInput = document.getElementById('hour');
     function paintHour() {
         const h = Number(hourInput.value), at = new Date(); at.setHours(h, 0, 0, 0);

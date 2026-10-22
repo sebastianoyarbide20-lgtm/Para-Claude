@@ -4,8 +4,8 @@
 window.FG = (() => {
     const STORES = {
         centro: {
-            name: 'Farmacia del Centro', zone: 'Recoleta', rating: 4.9, line: 'Botica del Centro', short: 'BOTICA', letter: 'C', shape: 'arch',
-            tagline: 'Botica tradicional desde 1962', hours: 'Lun a sáb · 8 a 21 h', street: 'Av. Callao 1450, Recoleta', phone: '11 4800-1962',
+            name: 'Farmacia del Centro', zone: 'Centro', rating: 4.9, line: 'Botica del Centro', short: 'BOTICA', letter: 'C', shape: 'arch',
+            tagline: 'Botica tradicional desde 1962', hours: 'Lun a sáb · 8 a 21 h', street: 'Córdoba 1450, Centro', phone: '341 421-1962',
             colors: { primary: '#14284B', accent: '#C9A227', bg: '#FBF6EA', ink: '#1B2238', sale: '#9B2335' }, labelFont: 'Georgia, serif',
             products: [
                 [101, 'Crema de caléndula', '100 g', 6900, 6900, 'jar', 'Crema suave de caléndula para pieles sensibles e irritadas.'],
@@ -17,8 +17,8 @@ window.FG = (() => {
             ],
         },
         plaza: {
-            name: 'Farmacia Plaza Palermo', zone: 'Palermo', rating: 4.7, line: 'Plaza Lab', short: 'PLAZA LAB', letter: 'P', shape: 'blob',
-            tagline: 'Abierta 24 h en el corazón de Palermo', hours: 'Todos los días · 24 h', street: 'Av. Santa Fe 3720, Palermo', phone: '11 4777-2424',
+            name: 'Farmacia Plaza Pichincha', zone: 'Pichincha', rating: 4.7, line: 'Plaza Lab', short: 'PLAZA LAB', letter: 'P', shape: 'blob',
+            tagline: 'Abierta 24 h en el corazón de Pichincha', hours: 'Todos los días · 24 h', street: 'Güemes 2050, Pichincha', phone: '341 440-2424',
             colors: { primary: '#C2185B', accent: '#FFD23F', bg: '#FFF0F6', ink: '#2B1240', sale: '#C2185B' }, labelFont: 'Arial Black, sans-serif',
             products: [
                 [105, 'Sérum vitamina C', '30 ml', 14900, 11920, 'dropper', 'Sérum antioxidante con vitamina C al 10 % para dar luminosidad.'],
@@ -30,8 +30,8 @@ window.FG = (() => {
             ],
         },
         norte: {
-            name: 'Farmacia Belgrano Norte', zone: 'Belgrano', rating: 4.6, line: 'Norte Active', short: 'NORTE', letter: 'N', shape: 'hex',
-            tagline: 'Rendimiento y bienestar para tu día', hours: 'Lun a dom · 7 a 23 h', street: 'Av. Cabildo 2300, Belgrano', phone: '11 4788-2300',
+            name: 'Farmacia Arroyito Norte', zone: 'Arroyito', rating: 4.6, line: 'Norte Active', short: 'NORTE', letter: 'N', shape: 'hex',
+            tagline: 'Rendimiento y bienestar para tu día', hours: 'Lun a dom · 7 a 23 h', street: 'Av. Alberdi 650, Arroyito', phone: '341 453-0650',
             colors: { primary: '#1F4FD8', accent: '#FF7A2E', bg: '#EEF3FF', ink: '#0B1B3F', sale: '#C2410C' }, labelFont: 'Impact, Arial Narrow, sans-serif',
             products: [
                 [109, 'Magnesio + B6', '60 comp.', 9800, 8330, 'bottle', 'Suplemento dietario de magnesio con vitamina B6.'],
@@ -43,8 +43,8 @@ window.FG = (() => {
             ],
         },
         parque: {
-            name: 'Farmacia Parque Caballito', zone: 'Caballito', rating: 4.8, line: 'Parque Familia', short: 'FAMILIA', letter: 'P', shape: 'leaf',
-            tagline: 'Cuidamos a toda la familia, frente al parque', hours: 'Lun a sáb · 8 a 22 h', street: 'Av. Rivadavia 5200, Caballito', phone: '11 4902-5200',
+            name: 'Farmacia Barrio Parque', zone: 'Barrio Parque', rating: 4.8, line: 'Parque Familia', short: 'FAMILIA', letter: 'P', shape: 'leaf',
+            tagline: 'Cuidamos a toda la familia, frente al parque', hours: 'Lun a sáb · 8 a 22 h', street: 'Av. Pellegrini 2600, Barrio Parque', phone: '341 482-2600',
             colors: { primary: '#4E6B3D', accent: '#B5532A', bg: '#F8F1E4', ink: '#2E3326', sale: '#B5532A' }, labelFont: 'Verdana, sans-serif',
             products: [
                 [113, 'Shampoo bebé sin lágrimas', '400 ml', 6400, 6400, 'bottle', 'Shampoo suave para bebés, fórmula sin lágrimas.'],
@@ -128,7 +128,7 @@ window.FG = (() => {
 
     // Abierta o cerrada según el horario y la hora actual
     const status = id => FGShop.openStatus(id);
-    const mapsUrl = s => 'https://www.google.com/maps/search/?api=1&query=' + encodeURIComponent(`${s.street}, Buenos Aires`);
+    const mapsUrl = s => 'https://www.google.com/maps/search/?api=1&query=' + encodeURIComponent(`${s.street}, Rosario, Santa Fe`);
     const telUrl = s => 'tel:+54' + s.phone.replace(/\D/g, '');
 
     // Horario de la semana (lunes a domingo) con el día de hoy marcado

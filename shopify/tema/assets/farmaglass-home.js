@@ -30,37 +30,37 @@ const byId = new Map(PRODUCTS.map(p => [p.id, p]));
 // ── FARMACIAS (prototipo) ──
 // Identidad de cada farmacia (ver hojas de estilo en Figma: "FarmaGlass · Farmacias de la red")
 const PHARMACIES = [
-    { id: 'centro', name: 'Farmacia del Centro', zone: 'Recoleta', rating: 4.9, recommended: true,
+    { id: 'centro', name: 'Farmacia del Centro', zone: 'Centro', rating: 4.9, recommended: true,
       style: 'Clásica · boticaria', tagline: 'Botica tradicional desde 1962', line: 'Botica del Centro', short: 'BOTICA',
-      hours: 'Lun a sáb · 8 a 21 h', street: 'Av. Callao 1450, Recoleta', letter: 'C', shape: 'arch',
+      hours: 'Lun a sáb · 8 a 21 h', street: 'Córdoba 1450, Centro', letter: 'C', shape: 'arch',
       colors: { primary: '#14284B', accent: '#C9A227', bg: '#FBF6EA', ink: '#1B2238', sale: '#9B2335' }, labelFont: 'Georgia, serif',
       banner: { eyebrow: 'Selección Botica del Centro', title: 'Clásicos de botica, como siempre', text: 'Caléndula, agua de rosas, glicerina y vaselina elegidas por nuestros farmacéuticos.', featured: 101, cta: 'Ver la botica' } },
-    { id: 'plaza', name: 'Farmacia Plaza Palermo', zone: 'Palermo', rating: 4.7,
-      style: 'Urbana · pop', tagline: 'Abierta 24 h en el corazón de Palermo', line: 'Plaza Lab', short: 'PLAZA LAB',
-      hours: 'Todos los días · 24 h', street: 'Av. Santa Fe 3720, Palermo', letter: 'P', shape: 'blob',
+    { id: 'plaza', name: 'Farmacia Plaza Pichincha', zone: 'Pichincha', rating: 4.7,
+      style: 'Urbana · pop', tagline: 'Abierta 24 h en el corazón de Pichincha', line: 'Plaza Lab', short: 'PLAZA LAB',
+      hours: 'Todos los días · 24 h', street: 'Güemes 2050, Pichincha', letter: 'P', shape: 'blob',
       colors: { primary: '#C2185B', accent: '#FFD23F', bg: '#FFF0F6', ink: '#2B1240', sale: '#C2185B' }, labelFont: 'Arial Black, sans-serif',
       banner: { eyebrow: 'Plaza Lab · 24 h', title: 'Skincare de noche, entrega de noche', text: 'Sérums, brumas y labiales con entrega a cualquier hora.', featured: 108, cta: 'Ver Plaza Lab' } },
-    { id: 'norte', name: 'Farmacia Belgrano Norte', zone: 'Belgrano', rating: 4.6,
+    { id: 'norte', name: 'Farmacia Arroyito Norte', zone: 'Arroyito', rating: 4.6,
       style: 'Deportiva · activa', tagline: 'Rendimiento y bienestar para tu día', line: 'Norte Active', short: 'NORTE',
-      hours: 'Lun a dom · 7 a 23 h', street: 'Av. Cabildo 2300, Belgrano', letter: 'N', shape: 'hex',
+      hours: 'Lun a dom · 7 a 23 h', street: 'Av. Alberdi 650, Arroyito', letter: 'N', shape: 'hex',
       colors: { primary: '#1F4FD8', accent: '#FF7A2E', bg: '#EEF3FF', ink: '#0B1B3F', sale: '#C2410C' }, labelFont: 'Impact, Arial Narrow, sans-serif',
       banner: { eyebrow: 'Norte Active', title: 'Recuperá energía para entrenar', text: 'Suplementos, hidratación y alivio muscular para tu rutina.', featured: 112, cta: 'Ver Norte Active' } },
-    { id: 'parque', name: 'Farmacia Parque Caballito', zone: 'Caballito', rating: 4.8,
+    { id: 'parque', name: 'Farmacia Barrio Parque', zone: 'Barrio Parque', rating: 4.8,
       style: 'Familiar · natural', tagline: 'Cuidamos a toda la familia, frente al parque', line: 'Parque Familia', short: 'FAMILIA',
-      hours: 'Lun a sáb · 8 a 22 h', street: 'Av. Rivadavia 5200, Caballito', letter: 'P', shape: 'leaf',
+      hours: 'Lun a sáb · 8 a 22 h', street: 'Av. Pellegrini 2600, Barrio Parque', letter: 'P', shape: 'leaf',
       colors: { primary: '#4E6B3D', accent: '#B5532A', bg: '#F8F1E4', ink: '#2E3326', sale: '#B5532A' }, labelFont: 'Verdana, sans-serif',
       banner: { eyebrow: 'Parque Familia', title: 'Bebés felices, familias tranquilas', text: 'Higiene y cuidado suave para los más chicos y toda la casa.', featured: 113, cta: 'Ver Parque Familia' } },
 ];
 const pharmById = new Map(PHARMACIES.map(f => [f.id, f]));
 // Página de cada farmacia en la tienda: su colección
-const PHARM_URL = { centro: 'farmacia-del-centro', plaza: 'farmacia-plaza-palermo', norte: 'farmacia-belgrano-norte', parque: 'farmacia-parque-caballito' };
+const PHARM_URL = { centro: 'farmacia-del-centro', plaza: 'farmacia-plaza-pichincha', norte: 'farmacia-arroyito-norte', parque: 'farmacia-barrio-parque' };
 const pharmUrl = id => `${SHOP.collections}/${PHARM_URL[id]}`;
 // Coordenadas aproximadas (prototipo) para calcular distancias reales cuando se usa la ubicación
-const PHARM_GEO = { centro: [-34.5947, -58.3937], plaza: [-34.5869, -58.4113], norte: [-34.5604, -58.4565], parque: [-34.6182, -58.4370] };
+const PHARM_GEO = { centro: [-32.9460, -60.6370], plaza: [-32.9335, -60.6475], norte: [-32.9150, -60.6800], parque: [-32.9535, -60.6600] };
 const ZONE_GEO = {
-    'Palermo': [-34.5889, -58.4306], 'Belgrano': [-34.5627, -58.4583], 'Caballito': [-34.6187, -58.4404],
-    'Recoleta': [-34.5875, -58.3974], 'Almagro': [-34.6092, -58.4211], 'Villa Urquiza': [-34.5733, -58.4877],
-    'San Isidro': [-34.4708, -58.5276], 'Vicente López': [-34.5266, -58.4797], 'Avellaneda': [-34.6625, -58.3653],
+    'Pichincha': [-32.9355, -60.6500], 'Arroyito': [-32.9170, -60.6760], 'Barrio Parque': [-32.9560, -60.6640],
+    'Centro': [-32.9468, -60.6393], 'Echesortu': [-32.9420, -60.6680], 'Fisherton': [-32.9300, -60.7330],
+    'Granadero Baigorria': [-32.8580, -60.7090], 'Funes': [-32.9160, -60.8110], 'Villa Gobernador Gálvez': [-33.0300, -60.6330],
 };
 function haversineKm([la1, lo1], [la2, lo2]) {
     const r = Math.PI / 180, a = Math.sin((la2 - la1) * r / 2) ** 2 + Math.cos(la1 * r) * Math.cos(la2 * r) * Math.sin((lo2 - lo1) * r / 2) ** 2;
@@ -704,7 +704,7 @@ const BANNERS = {
     centro(f, tag, c) {
         const date = new Date().toLocaleDateString('es-AR', { day: 'numeric', month: 'long', year: 'numeric' });
         return `<div class="sb sb-centro">
-            <div class="sbc-top">${logoSVG(f, 40)}<p class="store-name">${esc(f.name)}</p><span class="sbc-date">Recoleta · ${date}</span></div>
+            <div class="sbc-top">${logoSVG(f, 40)}<p class="store-name">${esc(f.name)}</p><span class="sbc-date">Rosario · ${date}</span></div>
             <div class="sbc-body">
                 <div class="sbc-text">
                     <p class="sbc-kicker">${esc(f.banner.eyebrow)}</p>
@@ -726,7 +726,7 @@ const BANNERS = {
         return `<div class="sb sb-plaza">
             <span class="sbp-moon" aria-hidden="true"></span><span class="sbp-24" aria-hidden="true">24</span>
             <div class="sbp-text">
-                <div class="sbp-top">${logoSVG(f, 40)}<div><p class="store-name">Plaza Palermo</p><p class="sbp-clock"><time data-live-clock>${hhmm(new Date())}</time> · Abierto ahora</p></div></div>
+                <div class="sbp-top">${logoSVG(f, 40)}<div><p class="store-name">Plaza Pichincha</p><p class="sbp-clock"><time data-live-clock>${hhmm(new Date())}</time> · Abierto ahora</p></div></div>
                 <p class="sbp-kicker">${esc(f.banner.eyebrow)}</p>
                 <${tag} class="sbp-title">${title}</${tag}>
                 <p class="sbp-lead">${esc(f.banner.text)}</p>
@@ -744,7 +744,7 @@ const BANNERS = {
         const title = esc(f.banner.title).replace('energía', '<i>energía</i>');
         return `<div class="sb sb-norte">
             <div class="sbn-main">
-                <div class="sbn-top">${logoSVG(f, 40)}<p class="store-name">Belgrano Norte</p><span class="sbn-tag">Training Club</span></div>
+                <div class="sbn-top">${logoSVG(f, 40)}<p class="store-name">Arroyito Norte</p><span class="sbn-tag">Training Club</span></div>
                 <${tag} class="sbn-title">${title}</${tag}>
                 <p class="sbn-lead">${esc(f.banner.text)}</p>
                 <div class="sbn-actions">${c.add(c.feat, `<span>Sumar · ${fmt(c.feat.price)}</span>`, 'sbn-btn')}<a class="sbn-link" href="${c.page}">Armá tu kit →</a></div>
@@ -777,7 +777,7 @@ const BANNERS = {
                 <path d="M430 390 L770 390 L735 340 L470 340 Z" fill="url(#sbk-checks)"/>
             </svg>
             <div class="sbk-card">
-                <div class="sbk-top">${logoSVG(f, 40)}<div><p class="store-name">Parque Caballito</p><p class="sbk-hand">frente a Parque Rivadavia</p></div></div>
+                <div class="sbk-top">${logoSVG(f, 40)}<div><p class="store-name">Barrio Parque</p><p class="sbk-hand">frente al Parque Independencia</p></div></div>
                 <${tag} class="sbk-title">${title}</${tag}>
                 <p class="sbk-lead">${esc(f.banner.text)}</p>
                 <div class="sbk-deal"><span class="sbk-deal-name">${esc(shortProduct(c.feat))}</span><span class="sbk-bubble">${c.d > 0 ? `<s><span class="sr-only">Antes </span>${fmt(c.feat.listPrice)}</s>` : ''}${fmt(c.feat.price)}</span>${c.d > 0 ? `<em>−${c.d} %</em>` : ''}</div>
@@ -931,7 +931,7 @@ addrForm.addEventListener('submit', e => {
     const street = document.getElementById('addr-street');
     const zone = document.getElementById('addr-zone');
     const msg = document.getElementById('addr-msg');
-    if (!street.value.trim() || !/\d/.test(street.value)) { msg.textContent = 'Ingresá la calle y el número, por ejemplo: Av. Corrientes 1234.'; street.focus(); return; }
+    if (!street.value.trim() || !/\d/.test(street.value)) { msg.textContent = 'Ingresá la calle y el número, por ejemplo: Bv. Oroño 1234.'; street.focus(); return; }
     if (!zone.value) { msg.textContent = 'Elegí tu barrio o localidad.'; zone.focus(); return; }
     msg.textContent = '';
     address = { street: street.value.trim(), zone: zone.value };
@@ -951,7 +951,7 @@ geoBtn.addEventListener('click', () => {
         done();
         const here = [pos.coords.latitude, pos.coords.longitude];
         const [zone, km] = Object.entries(ZONE_GEO).map(([z, g]) => [z, haversineKm(here, g)]).sort((a, b) => a[1] - b[1])[0];
-        if (km > 25) { msg.textContent = 'Todavía no llegamos a tu zona: por ahora entregamos en CABA y GBA.'; return; }
+        if (km > 25) { msg.textContent = 'Todavía no llegamos a tu zona: por ahora entregamos en Rosario y Gran Rosario.'; return; }
         msg.textContent = '';
         // Se guarda redondeada (unos 100 m) y solo en este navegador
         address = { street: 'Mi ubicación actual', zone, geo: here.map(n => Math.round(n * 1000) / 1000) };
