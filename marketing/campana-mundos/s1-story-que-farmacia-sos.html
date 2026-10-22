@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="es-AR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>S1 · ¿Qué farmacia sos?</title>
+    <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,700;12..96,800&family=Inter:wght@400;500;600;700&family=Instrument+Serif:ital@1&family=DM+Serif+Display:ital@0;1&family=Libre+Caslon+Text:ital@1&family=Unbounded:wght@800;900&family=Space+Mono:wght@700&family=Barlow+Condensed:ital,wght@0,800;1,900&family=Fredoka:wght@600;700&family=Caveat:wght@700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="comun.css">
+    <style>
+        /* Story 1080 × 1920: un juego para que cada uno elija su mundo. Se responde contestando la story con una letra. */
+        .art { color: var(--cream);
+            background:
+                radial-gradient(60% 30% at 92% 4%, rgba(184, 240, 74, .24) 0%, rgba(184, 240, 74, 0) 70%),
+                radial-gradient(70% 36% at -6% 62%, rgba(19, 154, 107, .5) 0%, rgba(19, 154, 107, 0) 70%),
+                linear-gradient(170deg, #0A3D2E 0%, #062A20 46%, #041F17 100%); }
+        .art::before { content: ""; position: absolute; inset: 0; background: radial-gradient(circle, rgba(246, 244, 236, .09) 1.6px, transparent 2.2px) 0 0 / 36px 36px; }
+
+        .head { position: absolute; top: 200px; left: 64px; right: 64px; display: flex; justify-content: space-between; align-items: center; }
+        .head .fg-sello { font-size: 46px; }
+        .pill { padding: 12px 22px; border-radius: 999px; font-size: 24px; font-weight: 600; background: rgba(255,255,255,.08); border: 1.5px solid rgba(255,255,255,.16); }
+        h1 { position: absolute; top: 318px; left: 64px; right: 40px; font-family: var(--f-display); font-weight: 800; font-size: 118px; line-height: .94; letter-spacing: -.04em; }
+        h1 em { font-family: var(--f-serif); font-style: italic; font-weight: 400; font-size: 146px; color: var(--lime); letter-spacing: -.01em; }
+        .lede { position: absolute; top: 590px; left: 64px; right: 64px; font-size: 31px; line-height: 1.3; color: rgba(246,244,236,.84); }
+        .lede b { color: var(--cream); }
+
+        .grid { position: absolute; top: 690px; left: 52px; right: 52px; display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+        .tile { position: relative; height: 448px; border-radius: 34px; overflow: hidden; padding: 26px 26px 0; box-shadow: 0 24px 50px rgba(0,0,0,.35); }
+        .tile .letter { position: absolute; top: 20px; right: 20px; width: 64px; height: 64px; border-radius: 50%; display: grid; place-items: center; font-family: var(--f-display); font-weight: 800; font-size: 38px; z-index: 3; }
+        .tile .who { position: absolute; left: 24px; right: 24px; bottom: 20px; display: flex; align-items: center; gap: 12px; z-index: 3; }
+        .tile .who svg.marca { width: 48px; height: 48px; }
+        .tile .who span { font-size: 20px; font-weight: 700; line-height: 1.15; }
+        .tile .who small { display: block; font-weight: 500; font-size: 17px; opacity: .78; }
+        .tile img.prod { position: absolute; z-index: 2; }
+
+        /* A · Centro: tapa de diario */
+        .t-centro { background: radial-gradient(120% 90% at 50% 30%, var(--c-paper), var(--c-ivory) 70%, #F0E5C8); color: var(--c-ink); }
+        .t-centro .kick { font-size: 15px; font-weight: 700; letter-spacing: .2em; color: var(--c-brass-text); text-transform: uppercase; }
+        .t-centro .rule { height: 6px; border-top: 3px solid var(--c-ink); border-bottom: 1px solid var(--c-ink); margin: 10px 0 12px; width: 74%; }
+        .t-centro h2 { font-family: var(--c-serif); font-weight: 400; font-size: 60px; line-height: .95; color: var(--c-navy); }
+        .t-centro h2 i { font-family: 'Libre Caslon Text', serif; font-size: 30px; color: var(--c-muted); display: block; margin-top: 10px; }
+        .t-centro img.prod { width: 150px; height: 170px; right: 26px; bottom: 82px; }
+        .t-centro .letter { background: var(--c-navy); color: var(--c-ivory); }
+        .t-centro .who { border-top: 1px solid var(--c-line); padding-top: 12px; }
+
+        /* B · Plaza: noche y neón */
+        .t-plaza { color: #fff; background: radial-gradient(1.4px 1.4px at 20% 20%, #fff 50%, transparent 51%), radial-gradient(1.2px 1.2px at 70% 12%, #fff 50%, transparent 51%), radial-gradient(1.2px 1.2px at 40% 60%, #fff 50%, transparent 51%),
+            radial-gradient(320px 260px at 90% 10%, rgba(194, 24, 91, .7), transparent 70%), linear-gradient(180deg, var(--p-night), var(--p-plum)); }
+        .t-plaza .kick { font-family: var(--p-mono); font-size: 16px; letter-spacing: .12em; color: var(--p-yellow); }
+        .t-plaza h2 { font-family: var(--p-display); font-weight: 900; font-size: 44px; line-height: 1.04; letter-spacing: -.04em; margin-top: 14px; max-width: 330px; color: #FFE4F0; text-shadow: 0 0 4px #fff, 0 0 16px var(--p-pink), 0 0 34px var(--p-magenta); }
+        .t-plaza .moon { position: absolute; top: 262px; left: 60px; width: 54px; height: 54px; border-radius: 50%; background: radial-gradient(circle at 35% 35%, #FFF9E0, #F2DFA0 70%); box-shadow: 0 0 40px rgba(255, 236, 170, .45); }
+        .t-plaza img.prod { width: 100px; height: 190px; right: 60px; bottom: 82px; transform: rotate(8deg); }
+        .t-plaza .letter { background: var(--p-yellow); color: var(--p-plum); }
+
+        /* C · Norte: club de entrenamiento */
+        .t-norte { color: #fff; background: repeating-linear-gradient(-62deg, rgba(255,255,255,.07) 0 20px, transparent 20px 50px), linear-gradient(160deg, var(--n-cobalt), var(--n-deep) 70%, var(--n-night)); }
+        .t-norte .kick { display: inline-block; font-family: var(--n-display); font-weight: 800; font-size: 19px; letter-spacing: .06em; text-transform: uppercase; background: var(--n-orange); color: var(--n-night); padding: 2px 10px; transform: skewX(-10deg); }
+        .t-norte h2 { font-family: var(--n-display); font-style: italic; font-weight: 900; font-size: 76px; line-height: .86; text-transform: uppercase; margin-top: 14px; }
+        .t-norte h2 b { color: var(--n-orange); font-weight: 900; }
+        .t-norte .led { position: absolute; left: 26px; top: 230px; padding: 6px 12px; border-radius: 8px; background: radial-gradient(rgba(255, 122, 46, .14) 1px, transparent 1.6px) 0 0 / 5px 5px, var(--n-black); font-family: var(--n-display); font-weight: 800; font-size: 34px; letter-spacing: .06em; color: var(--n-orange); text-shadow: 0 0 8px rgba(255, 122, 46, .8); box-shadow: inset 0 0 0 2px #2A3550; }
+        .t-norte img.prod { width: 150px; height: 190px; right: 24px; bottom: 80px; transform: rotate(6deg); }
+        .t-norte .letter { background: #fff; color: var(--n-cobalt); }
+        .t-norte .who svg.marca { background: #fff; border-radius: 12px; padding: 4px; }
+
+        /* D · Parque: libro ilustrado */
+        .t-parque { color: var(--k-ink); background: linear-gradient(180deg, var(--k-sky) 0%, #E9F3E6 60%, var(--k-leaf) 100%); }
+        .t-parque svg.scene { position: absolute; inset: 0; width: 100%; height: 100%; z-index: 0; }
+        .t-parque .kick, .t-parque h2 { position: relative; z-index: 1; }
+        .t-parque .kick { display: inline-block; font-family: var(--k-display); font-weight: 600; font-size: 18px; background: var(--k-leaf); color: var(--k-deep); padding: 4px 14px; border-radius: 999px; }
+        .t-parque h2 { font-family: var(--k-display); font-weight: 700; font-size: 60px; line-height: 1; color: var(--k-deep); margin-top: 14px; }
+        .t-parque h2 i { display: block; font-family: var(--k-hand); font-style: normal; font-size: 40px; color: var(--k-terra); margin-top: 4px; }
+        .t-parque img.prod { width: 92px; height: 200px; right: 70px; bottom: 82px; transform: rotate(-5deg); }
+        .t-parque .letter { background: var(--k-terra); color: #fff; }
+        .t-parque .who { background: rgba(255, 252, 245, .9); border-radius: 18px; padding: 8px 10px; left: 14px; right: 14px; bottom: 12px; }
+
+        .answer { position: absolute; top: 1640px; left: 64px; right: 64px; text-align: center; font-family: var(--f-display); font-weight: 800; font-size: 38px; letter-spacing: -.02em; }
+        .answer em { font-family: var(--f-serif); font-style: italic; font-weight: 400; color: var(--lime); font-size: 44px; }
+        .answer small { display: block; font-family: var(--f-body); font-weight: 600; font-size: 25px; color: rgba(246,244,236,.75); letter-spacing: 0; margin-top: 8px; }
+        .answer small b { color: var(--sun); }
+    </style>
+</head>
+<body>
+<div class="stage">
+<article class="art" data-w="1080" data-h="1920" aria-label="¿Qué farmacia sos vos? Elegí entre los 4 mundos de la red FarmaGlass">
+    <header class="head"><span class="fg-sello claro" data-sello></span><span class="pill">4 farmacias · 4 mundos</span></header>
+    <h1>¿Qué farmacia<br><em>sos vos?</em></h1>
+    <p class="lede">Cada farmacia de la red tiene su mundo. <b>¿Cuál es el tuyo?</b></p>
+
+    <div class="grid">
+        <section class="tile t-centro">
+            <p class="kick">Botica · 1962</p><div class="rule"></div>
+            <h2>Clásica de botica<i>la de siempre</i></h2>
+            <img class="prod" src="img/productos/centro-104.webp" alt="">
+            <span class="letter">A</span>
+            <p class="who"><svg class="marca"><use href="#m-centro"/></svg><span>Farmacia del Centro<small>Recoleta</small></span></p>
+        </section>
+        <section class="tile t-plaza">
+            <p class="kick">PLAZA LAB · 24 H</p>
+            <h2>Noctámbula del skin&shy;care</h2>
+            <span class="moon"></span>
+            <img class="prod" src="img/productos/plaza-108.webp" alt="">
+            <span class="letter">B</span>
+            <p class="who"><svg class="marca"><use href="#m-plaza"/></svg><span>Plaza Palermo<small>Palermo · 24 h</small></span></p>
+        </section>
+        <section class="tile t-norte">
+            <p class="kick">Training Club</p>
+            <h2>Siempre<br><b>en marcha</b></h2>
+            <p class="led">2 H</p>
+            <img class="prod" src="img/productos/norte-35.webp" alt="">
+            <span class="letter">C</span>
+            <p class="who"><svg class="marca"><use href="#m-norte"/></svg><span>Belgrano Norte<small>Belgrano</small></span></p>
+        </section>
+        <section class="tile t-parque">
+            <svg class="scene" viewBox="0 0 456 448" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+                <circle cx="390" cy="200" r="36" fill="#F6C760"/><circle cx="390" cy="200" r="52" fill="#F6C760" opacity=".25"/>
+                <g transform="translate(-650 176) scale(.9)"><path d="M900 60 L930 100 L900 150 L870 100 Z" fill="#B5532A"/><path d="M900 60 L900 150 M870 100 L930 100" stroke="#FFF4E6" stroke-width="3"/><path d="M900 150 C 880 190, 930 210, 900 250" stroke="#3A5230" stroke-width="2" fill="none"/></g>
+                <path d="M0 330 Q 120 300 240 322 T 456 310 V448 H0Z" fill="#A9C98E"/>
+                <path d="M0 370 Q 140 345 280 366 T 456 360 V448 H0Z" fill="#8DB572"/>
+            </svg>
+            <p class="kick">Parque Familia</p>
+            <h2>Familiera<i>de picnic y barrilete</i></h2>
+            <img class="prod" src="img/productos/parque-113.webp" alt="">
+            <span class="letter">D</span>
+            <p class="who"><svg class="marca"><use href="#m-parque"/></svg><span>Parque Caballito<small>Caballito</small></span></p>
+        </section>
+    </div>
+
+    <p class="answer">Respondé esta story con tu letra <em>A, B, C o D</em><small>y conocé su página: <b>link en la bio</b></small></p>
+</article>
+</div>
+<script src="comun.js"></script>
+</body>
+</html>

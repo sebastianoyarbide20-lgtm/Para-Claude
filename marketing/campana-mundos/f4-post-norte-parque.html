@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="es-AR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>F4 · Norte y Parque</title>
+    <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,700;12..96,800&family=Inter:wght@400;500;600;700&family=Barlow+Condensed:ital,wght@0,600;0,700;0,800;1,800;1,900&family=Fredoka:wght@500;600;700&family=Caveat:wght@600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="comun.css">
+    <style>
+        /* Publicación 1080 × 1350: dos mundos en una pieza. Arriba, el Training Club de Belgrano Norte;
+           abajo, el libro ilustrado de Parque Caballito. Los separa una diagonal y los une la franja de la red. */
+        .art { background: var(--k-cream); }
+
+        /* ── NORTE ── */
+        .norte {
+            position: absolute; left: 0; right: 0; top: 0; height: 660px; z-index: 2; color: #fff;
+            clip-path: polygon(0 0, 100% 0, 100% 86%, 0 100%);
+            background:
+                repeating-linear-gradient(-62deg, rgba(255,255,255,.06) 0 26px, transparent 26px 64px),
+                radial-gradient(70% 60% at 85% 30%, #2E63F0 0%, rgba(46, 99, 240, 0) 70%),
+                linear-gradient(160deg, var(--n-cobalt) 0%, var(--n-deep) 60%, var(--n-night) 100%);
+        }
+        .n-kick { position: absolute; top: 56px; left: 60px; display: flex; align-items: center; gap: 14px; }
+        .n-kick svg.marca { width: 58px; height: 58px; padding: 6px; border-radius: 16px; background: #fff; box-shadow: 0 8px 18px rgba(6,11,26,.3); }
+        .n-kick span { font-family: var(--n-display); font-weight: 800; font-size: 26px; letter-spacing: .08em; text-transform: uppercase; }
+        .n-kick em { font-style: normal; background: var(--n-orange); color: var(--n-night); padding: 3px 12px; transform: skewX(-10deg); font-family: var(--n-display); font-weight: 800; font-size: 20px; letter-spacing: .06em; }
+        .n-title { position: absolute; top: 132px; left: 56px; font-family: var(--n-display); font-style: italic; font-weight: 900; font-size: 148px; line-height: .86; text-transform: uppercase; letter-spacing: -.01em; }
+        .n-title b { display: block; color: var(--n-orange); font-weight: 900; }
+        .n-sub { position: absolute; top: 410px; left: 60px; width: 470px; font-size: 24px; line-height: 1.35; color: rgba(255,255,255,.88); }
+
+        /* Marcador LED */
+        .board { position: absolute; left: 56px; top: 500px; display: grid; grid-template-columns: repeat(3, auto); gap: 4px; padding: 5px; border-radius: 12px; background: #1A2234; box-shadow: 0 20px 40px rgba(6, 11, 26, .45), inset 0 0 0 2px #2A3550; }
+        .cell { padding: 10px 18px 8px; border-radius: 7px; background: radial-gradient(rgba(255, 122, 46, .12) 1px, transparent 1.6px) 0 0 / 6px 6px, var(--n-black); }
+        .cell small { display: block; font-family: var(--n-display); font-weight: 700; font-size: 15px; letter-spacing: .16em; text-transform: uppercase; color: #8EA0C9; }
+        .led { font-family: var(--n-display); font-weight: 800; font-size: 40px; line-height: 1.05; letter-spacing: .06em; color: var(--n-orange); text-shadow: 0 0 8px rgba(255, 122, 46, .8), 0 0 20px rgba(255, 122, 46, .35); }
+        .led.on { color: var(--n-led-on); text-shadow: 0 0 8px rgba(107, 245, 154, .7); }
+
+        .n-art { position: absolute; right: 40px; top: 120px; width: 470px; height: 440px; }
+        .n-art::before { content: ""; position: absolute; inset: 30px 10px 40px 40px; background: var(--n-orange); transform: skewX(-12deg) rotate(-6deg); border-radius: 18px; box-shadow: 0 30px 50px rgba(6,11,26,.4); }
+        .n-art img { position: absolute; }
+        .n-art .a { width: 260px; height: 330px; left: 140px; top: 40px; }
+        .n-art .b { width: 230px; height: 170px; left: 20px; top: 250px; transform: rotate(-8deg); }
+        .n-art .c { width: 120px; height: 290px; right: 0; top: 140px; transform: rotate(9deg); }
+        .n-tag { position: absolute; right: 70px; top: 110px; background: var(--n-night); color: var(--n-orange); font-family: var(--n-display); font-style: italic; font-weight: 900; font-size: 30px; padding: 6px 16px; transform: skewX(-12deg) rotate(-4deg); box-shadow: 0 10px 20px rgba(0,0,0,.3); }
+
+        /* ── PARQUE ── */
+        .parque { position: absolute; left: 0; right: 0; top: 520px; bottom: 120px; z-index: 1; overflow: hidden;
+            background: linear-gradient(180deg, var(--k-sky) 0%, #E9F3E6 52%, var(--k-leaf) 100%); }
+        .parque svg.scene { position: absolute; inset: 0; width: 100%; height: 100%; }
+        .card { position: absolute; left: 52px; top: 210px; width: 520px; padding: 30px 32px 30px; border-radius: 34px; background: var(--k-paper); color: var(--k-ink); box-shadow: 0 22px 44px rgba(46, 51, 38, .16); }
+        .card .pill { display: inline-flex; align-items: center; gap: 10px; background: var(--k-leaf); color: var(--k-deep); padding: 6px 16px 6px 8px; border-radius: 999px; font-family: var(--k-display); font-weight: 600; font-size: 20px; }
+        .card .pill svg.marca { width: 34px; height: 34px; }
+        .card h2 { font-family: var(--k-display); font-weight: 700; font-size: 62px; line-height: 1.02; color: var(--k-deep); margin-top: 16px; letter-spacing: -.01em; }
+        .scribble { position: relative; color: var(--k-terra); white-space: nowrap; }
+        .scribble svg { position: absolute; left: 0; bottom: -12px; width: 100%; height: 16px; }
+        .card p { font-family: var(--k-hand); font-weight: 700; font-size: 32px; color: var(--k-terra); margin-top: 18px; line-height: 1.1; }
+
+        .packs { position: absolute; right: 50px; bottom: 82px; display: flex; align-items: flex-end; gap: 12px; }
+        .frame { background: #fff; border-radius: 28px; padding: 12px; box-shadow: 0 18px 30px rgba(46, 51, 38, .2); }
+        .frame img { width: 116px; height: 150px; }
+        .frame.big img { width: 150px; height: 200px; }
+        .frame:nth-child(1) { transform: rotate(-6deg); } .frame:nth-child(3) { transform: rotate(5deg); }
+
+        .seam { position: absolute; z-index: 3; left: 630px; top: 524px; width: 166px; height: 166px; border-radius: 50%; display: grid; place-content: center; text-align: center;
+            background: #fff; color: var(--fg-ink); box-shadow: 0 18px 40px rgba(6, 11, 26, .35), inset 0 0 0 6px var(--n-orange), inset 0 0 0 12px #fff, inset 0 0 0 18px var(--k-sage); transform: rotate(-6deg); }
+        .seam b { font-family: var(--f-display); font-weight: 800; font-size: 44px; line-height: .95; letter-spacing: -.02em; }
+        .seam small { font-size: 13px; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; color: #5E6D66; }
+
+        /* ── Franja de la red ── */
+        .band { position: absolute; left: 0; right: 0; bottom: 0; height: 120px; z-index: 4; display: flex; align-items: center; justify-content: space-between; padding: 0 50px; color: var(--cream);
+            background: linear-gradient(90deg, var(--forest-900), var(--forest-800)); }
+        .band .fg-sello { font-size: 36px; }
+        .band p { font-family: var(--f-display); font-weight: 800; font-size: 31px; letter-spacing: -.02em; line-height: 1.05; text-align: center; }
+        .band p em { font-family: var(--f-serif); font-style: italic; font-weight: 400; font-size: 36px; color: var(--lime); }
+        .band .bio { font-size: 21px; font-weight: 600; text-align: right; line-height: 1.25; color: rgba(246,244,236,.8); }
+        .band .bio b { color: var(--sun); font-weight: 700; }
+    </style>
+</head>
+<body>
+<div class="stage">
+<article class="art" data-w="1080" data-h="1350" aria-label="Belgrano Norte y Parque Caballito: dos farmacias, dos mundos, una sola web">
+    <section class="norte">
+        <p class="n-kick"><svg class="marca"><use href="#m-norte"/></svg><span>Belgrano Norte</span><em>Training Club</em></p>
+        <h2 class="n-title">Recuperá<b>energía</b></h2>
+        <p class="n-sub">Suplementos, hidratación y alivio muscular para tu rutina.</p>
+        <div class="board">
+            <div class="cell"><small>Horario</small><p class="led">07–23</p></div>
+            <div class="cell"><small>Ahora</small><p class="led on">Abierta</p></div>
+            <div class="cell"><small>Envío</small><p class="led">2 H</p></div>
+        </div>
+        <div class="n-art">
+            <img class="prod a" src="img/productos/norte-112.webp" alt="Pure Wellness colágeno Flex">
+            <img class="prod b" src="img/productos/norte-109.webp" alt="Magnesio 102">
+            <img class="prod c" src="img/productos/norte-122.webp" alt="Dermaglós Sport FPS 50">
+        </div>
+        <p class="n-tag">Armá tu kit</p>
+    </section>
+
+    <section class="parque">
+        <svg class="scene" viewBox="0 0 1080 710" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+            <defs>
+                <pattern id="checks" width="34" height="34" patternUnits="userSpaceOnUse" patternTransform="skewX(-30)">
+                    <rect width="34" height="34" fill="#FFF4E6"/><rect width="17" height="17" fill="#E8896A"/><rect x="17" y="17" width="17" height="17" fill="#E8896A"/>
+                </pattern>
+            </defs>
+            <circle cx="930" cy="250" r="62" fill="#F6C760"/><circle cx="930" cy="250" r="88" fill="#F6C760" opacity=".25"/>
+            <g fill="#fff" opacity=".95"><ellipse cx="640" cy="230" rx="70" ry="24"/><ellipse cx="684" cy="214" rx="46" ry="28"/><ellipse cx="604" cy="220" rx="34" ry="20"/></g>
+            <g transform="translate(-60 160)"><path d="M900 60 L934 104 L900 160 L866 104 Z" fill="#B5532A"/><path d="M900 60 L900 160 M866 104 L934 104" stroke="#FFF4E6" stroke-width="3.5"/>
+                <path d="M900 160 C 878 200, 932 222, 900 262 C 880 292, 922 312, 906 344" stroke="#3A5230" stroke-width="2.5" fill="none"/>
+                <path d="M892 200 l16 7 M895 248 l14 -7 M898 294 l16 5" stroke="#F7C9A8" stroke-width="7" stroke-linecap="round"/></g>
+            <path d="M0 520 Q 270 460 540 505 T 1080 488 V710 H0Z" fill="#A9C98E"/>
+            <path d="M0 580 Q 300 540 620 575 T 1080 565 V710 H0Z" fill="#8DB572"/>
+            <g><rect x="1010" y="450" width="14" height="90" rx="6" fill="#7A5634"/><circle cx="1017" cy="430" r="52" fill="#6E9A57"/><circle cx="992" cy="452" r="30" fill="#5E8A49"/></g>
+            <path d="M560 668 L1060 668 L1010 600 L610 600 Z" fill="url(#checks)" opacity=".95"/>
+            <g fill="#F7C9A8"><circle cx="90" cy="640" r="6"/><circle cx="140" cy="660" r="5"/><circle cx="420" cy="650" r="6"/></g>
+        </svg>
+        <div class="card">
+            <span class="pill"><svg class="marca"><use href="#m-parque"/></svg>Parque Caballito · frente al parque</span>
+            <h2>Bebés felices, familias <span class="scribble">tranquilas<svg viewBox="0 0 200 14" preserveAspectRatio="none" aria-hidden="true"><path d="M2 9 C 40 3, 70 13, 100 7 S 160 3, 198 8" stroke="#B5532A" stroke-width="3.5" fill="none" stroke-linecap="round"/></svg></span></h2>
+            <p>Todo para salir al parque.</p>
+        </div>
+        <div class="packs">
+            <span class="frame"><img class="prod" src="img/productos/parque-113.webp" alt="Aveno shampoo bebés"></span>
+            <span class="frame big"><img class="prod" src="img/productos/parque-22.webp" alt="La Roche-Posay Anthelios infantil"></span>
+            <span class="frame"><img class="prod" src="img/productos/parque-115.webp" alt="Hipoglós"></span>
+        </div>
+    </section>
+
+    <p class="seam"><small>Mundos</small><b>3 y 4</b><small>de 4</small></p>
+
+    <footer class="band">
+        <span class="fg-sello claro" data-sello></span>
+        <p>Dos farmacias, dos mundos.<br><em>Una sola web.</em></p>
+        <p class="bio">Conocé sus páginas:<br><b>link en la bio</b></p>
+    </footer>
+</article>
+</div>
+<script src="comun.js"></script>
+</body>
+</html>

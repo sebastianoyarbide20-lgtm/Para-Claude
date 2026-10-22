@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="es-AR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>F1 · Reel 4 farmacias, 4 mundos</title>
+    <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,700;12..96,800&family=Inter:wght@400;500;600;700&family=Instrument+Serif:ital@1&family=DM+Serif+Display:ital@0;1&family=Libre+Caslon+Text:ital,wght@0,400;1,400&family=Unbounded:wght@700;800;900&family=Space+Mono:wght@700&family=Barlow+Condensed:ital,wght@0,700;0,800;1,800;1,900&family=Fredoka:wght@500;600;700&family=Caveat:wght@700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="comun.css">
+    <style>
+        /* Reel 1080 × 1920, 14 s: un gancho, los 4 mundos uno por uno (cada uno entra a su manera)
+           y, al final, la cámara se aleja y quedan los cuatro juntos con el cierre de la campaña.
+           Sin animación (PNG y portada) se ve el cuadro final. */
+        .art { background: radial-gradient(70% 40% at 50% 50%, #0B5D45 0%, #062A20 60%, #041F17 100%); }
+
+        /* Gancho */
+        .intro { position: absolute; inset: 0; display: grid; place-content: center; text-align: center; color: var(--cream); opacity: 0; }
+        .intro p { font-family: var(--f-display); font-weight: 800; font-size: 150px; line-height: .95; letter-spacing: -.045em; }
+        .intro p em { font-family: var(--f-serif); font-style: italic; font-weight: 400; color: var(--lime); font-size: 172px; letter-spacing: -.01em; }
+        .intro .fg-sello { font-size: 54px; margin: 0 auto 60px; }
+
+        /* Cada mundo: .scene (posición y zoom final) > .wipe (cómo entra) > contenido */
+        .scene { position: absolute; left: 0; top: 0; width: 1080px; height: 1920px; overflow: hidden; transform-origin: 0 0; border-radius: 64px; box-shadow: 0 40px 80px rgba(0,0,0,.45); }
+        .wipe { position: absolute; inset: 0; overflow: hidden; }
+        .sA { z-index: 1; transform: translate(24px, 50px) scale(.47); }
+        .sB { z-index: 2; transform: translate(548px, 50px) scale(.47); }
+        .sC { z-index: 3; transform: translate(24px, 968px) scale(.47); }
+        .sD { z-index: 4; transform: translate(548px, 968px) scale(.47); }
+        .lbl { position: absolute; z-index: 20; top: 196px; left: 60px; display: inline-flex; align-items: center; gap: 14px; padding: 10px 24px 10px 10px; border-radius: 999px; background: rgba(6, 42, 32, .82); color: var(--cream); font-size: 26px; font-weight: 600; box-shadow: 0 10px 24px rgba(0,0,0,.25); }
+        .lbl b { display: grid; place-items: center; width: 52px; height: 52px; border-radius: 50%; background: var(--lime); color: var(--forest-900); font-family: var(--f-display); font-weight: 800; font-size: 28px; }
+
+        /* ── MUNDO 1 · Farmacia del Centro, La Gaceta ── */
+        .sA .wipe { background: radial-gradient(140% 80% at 50% 30%, var(--c-paper) 0%, var(--c-ivory) 60%, #EFE3C4 100%); color: var(--c-ink); font-family: var(--c-text); }
+        .sA .wipe.grano { --grano: .2; }
+        .a-top { position: absolute; top: 300px; left: 60px; right: 60px; text-align: center; }
+        .a-top .k { font-family: var(--f-body); font-size: 20px; font-weight: 700; letter-spacing: .22em; color: var(--c-brass-text); text-transform: uppercase; }
+        .a-top h2 { font-family: var(--c-serif); font-weight: 400; font-size: 108px; line-height: .95; color: var(--c-navy); margin-top: 14px; white-space: nowrap; }
+        .a-top .rule { height: 9px; border-top: 4px solid var(--c-ink); border-bottom: 1.5px solid var(--c-ink); margin-top: 18px; }
+        .a-top nav { display: flex; justify-content: center; gap: 30px; padding: 12px 0; border-bottom: 1.5px solid var(--c-ink); font-family: var(--f-body); font-size: 19px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; }
+        .a-head { position: absolute; top: 600px; left: 60px; right: 60px; }
+        .a-head .k { font-family: var(--f-body); font-size: 20px; font-weight: 800; letter-spacing: .2em; color: var(--c-red); text-transform: uppercase; }
+        .a-head h3 { font-family: var(--c-serif); font-weight: 400; font-size: 128px; line-height: .96; margin-top: 12px; }
+        .a-head h3 em { color: var(--c-brass-lo); }
+        .a-fig { position: absolute; top: 1010px; left: 50%; width: 460px; margin-left: -230px; }
+        .arch { height: 520px; border-radius: 230px 230px 8px 8px; padding: 14px; background: #fff; box-shadow: 0 0 0 2px var(--c-line), 0 24px 44px rgba(78, 49, 32, .2); }
+        .arch div { height: 100%; border-radius: 216px 216px 4px 4px; display: grid; place-items: end center; padding-bottom: 26px; background: radial-gradient(70% 55% at 50% 60%, #FFF6E6 0%, #F2E5C7 100%); }
+        .arch img { height: 410px; width: 320px; }
+        .a-fig .stamp { position: absolute; top: 20px; right: -70px; width: 190px; height: 190px; border-radius: 50%; display: grid; place-content: center; text-align: center; color: var(--c-red); border: 5px double var(--c-red); background: rgba(255, 253, 247, .94); transform: rotate(-12deg); font-family: var(--f-body); }
+        .a-fig .stamp small { font-size: 15px; font-weight: 800; letter-spacing: .14em; text-transform: uppercase; }
+        .a-fig .stamp b { font-family: var(--c-serif); font-weight: 400; font-size: 60px; line-height: 1; }
+        .a-fig p { text-align: center; font-style: italic; font-size: 22px; color: var(--c-muted); margin-top: 14px; }
+
+        /* ── MUNDO 2 · Plaza Palermo, After Hours ── */
+        .sB .wipe { color: #fff; background:
+            radial-gradient(1.6px 1.6px at 12% 8%, #fff 50%, transparent 51%), radial-gradient(1.2px 1.2px at 34% 14%, #fff 50%, transparent 51%), radial-gradient(2px 2px at 56% 5%, #FFE8F2 50%, transparent 51%),
+            radial-gradient(1.2px 1.2px at 8% 46%, #fff 50%, transparent 51%), radial-gradient(1.4px 1.4px at 92% 52%, #fff 50%, transparent 51%), radial-gradient(1.6px 1.6px at 20% 76%, #FFF6C9 50%, transparent 51%),
+            radial-gradient(760px 520px at 96% 12%, rgba(194, 24, 91, .6), transparent 70%), radial-gradient(700px 520px at 0% 82%, rgba(183, 156, 255, .3), transparent 70%),
+            linear-gradient(180deg, var(--p-night) 0%, var(--p-plum) 100%); }
+        .b-moon { position: absolute; top: 290px; right: 80px; width: 150px; height: 150px; border-radius: 50%; background: radial-gradient(circle at 35% 35%, #FFF9E0, #F2DFA0 70%); box-shadow: 0 0 100px rgba(255, 236, 170, .45), inset -26px -22px 0 rgba(0,0,0,.07); }
+        .b-copy { position: absolute; top: 330px; left: 60px; right: 60px; }
+        .b-copy .k { font-family: var(--p-mono); font-weight: 700; font-size: 22px; letter-spacing: .16em; color: var(--p-yellow); }
+        .b-copy h3 { font-family: var(--p-display); font-weight: 900; font-size: 116px; line-height: 1.02; letter-spacing: -.045em; margin-top: 22px; }
+        .b-copy .glow { color: #FFE4F0; text-shadow: 0 0 4px #fff, 0 0 18px var(--p-pink), 0 0 40px var(--p-magenta), 0 0 70px var(--p-magenta); }
+        .b-copy mark { background: var(--p-magenta); color: #fff; padding: 0 .12em; border-radius: .16em; box-shadow: 0 0 40px rgba(194,24,91,.75); }
+        .holo { position: absolute; left: 50%; top: 940px; width: 420px; margin-left: -210px; border-radius: 34px; padding: 5px; transform: rotate(-4deg);
+            background: conic-gradient(from 200deg, var(--p-pink), var(--p-yellow), var(--p-cyan), var(--p-lilac), var(--p-pink)); box-shadow: 0 40px 80px rgba(0,0,0,.5), 0 0 50px rgba(255,95,162,.3); }
+        .holo > div { position: relative; border-radius: 30px; overflow: hidden; background: linear-gradient(160deg, #fff, var(--p-pink-soft)); color: var(--p-plum); padding: 20px 22px 24px; }
+        .holo > div::after { content: ""; position: absolute; inset: 0; mix-blend-mode: overlay; opacity: .5; background: linear-gradient(115deg, transparent 30%, rgba(255,255,255,.9) 45%, rgba(183,156,255,.6) 52%, transparent 65%); }
+        .holo .top { display: flex; justify-content: space-between; font-family: var(--p-mono); font-size: 17px; font-weight: 700; }
+        .holo .ph { height: 300px; display: grid; place-items: center; margin-top: 10px; border-radius: 22px; background: #fff; }
+        .holo .ph img { height: 270px; width: 130px; }
+        .holo h4 { font-family: var(--p-display); font-weight: 700; font-size: 27px; line-height: 1.15; margin-top: 14px; }
+        .b-tape { position: absolute; left: -40px; right: -40px; top: 1470px; transform: rotate(-3deg); background: var(--p-yellow); color: var(--p-plum); font-family: var(--p-display); font-weight: 800; font-size: 28px; padding: 16px 0; white-space: nowrap; overflow: hidden; box-shadow: 0 14px 30px rgba(0,0,0,.35); }
+
+        /* ── MUNDO 3 · Belgrano Norte, Training Club ── */
+        .sC .wipe { color: #fff; background: repeating-linear-gradient(-62deg, rgba(255,255,255,.06) 0 30px, transparent 30px 74px), radial-gradient(80% 40% at 90% 30%, #2E63F0 0%, rgba(46, 99, 240, 0) 70%), linear-gradient(170deg, var(--n-cobalt) 0%, var(--n-deep) 55%, var(--n-night) 100%); }
+        .c-k { position: absolute; top: 320px; left: 60px; font-style: normal; font-family: var(--n-display); font-weight: 800; font-size: 28px; letter-spacing: .06em; text-transform: uppercase; background: var(--n-orange); color: var(--n-night); padding: 4px 16px; transform: skewX(-10deg); }
+        .c-title { position: absolute; top: 390px; left: 54px; font-family: var(--n-display); font-style: italic; font-weight: 900; font-size: 196px; line-height: .84; text-transform: uppercase; }
+        .c-title b { display: block; color: var(--n-orange); font-weight: 900; }
+        .c-art { position: absolute; right: 40px; top: 1010px; width: 560px; height: 470px; }
+        .c-art::before { content: ""; position: absolute; inset: 40px 20px 40px 60px; background: var(--n-orange); transform: skewX(-12deg) rotate(-6deg); border-radius: 22px; box-shadow: 0 30px 50px rgba(6,11,26,.4); }
+        .c-art img { position: absolute; }
+        .c-art .a { width: 300px; height: 380px; left: 170px; top: 40px; }
+        .c-art .b { width: 260px; height: 190px; left: 30px; top: 270px; transform: rotate(-8deg); }
+        .c-board { position: absolute; left: 54px; top: 1520px; display: grid; grid-template-columns: repeat(3, auto); gap: 5px; padding: 6px; border-radius: 14px; background: #1A2234; box-shadow: 0 24px 50px rgba(6, 11, 26, .5), inset 0 0 0 2px #2A3550; }
+        .c-board div { padding: 12px 22px 10px; border-radius: 8px; background: radial-gradient(rgba(255, 122, 46, .12) 1px, transparent 1.6px) 0 0 / 7px 7px, var(--n-black); }
+        .c-board small { display: block; font-family: var(--n-display); font-weight: 700; font-size: 17px; letter-spacing: .16em; text-transform: uppercase; color: #8EA0C9; }
+        .c-board p { font-family: var(--n-display); font-weight: 800; font-size: 50px; line-height: 1.05; letter-spacing: .05em; color: var(--n-orange); text-shadow: 0 0 8px rgba(255, 122, 46, .8), 0 0 20px rgba(255, 122, 46, .35); }
+        .c-board p.on { color: var(--n-led-on); text-shadow: 0 0 8px rgba(107, 245, 154, .7); }
+
+        /* ── MUNDO 4 · Parque Caballito, un día en el parque ── */
+        .sD .wipe { color: var(--k-ink); background: linear-gradient(180deg, var(--k-sky) 0%, #E9F3E6 50%, var(--k-leaf) 100%); }
+        .sD svg.scene-art { position: absolute; inset: 0; width: 100%; height: 100%; }
+        .d-card { position: absolute; top: 330px; left: 54px; right: 54px; padding: 40px 44px 40px; border-radius: 44px; background: var(--k-paper); box-shadow: 0 26px 50px rgba(46, 51, 38, .16); }
+        .d-card .pill { display: inline-flex; align-items: center; gap: 12px; background: var(--k-leaf); color: var(--k-deep); padding: 8px 20px 8px 10px; border-radius: 999px; font-family: var(--k-display); font-weight: 600; font-size: 26px; }
+        .d-card .pill svg.marca { width: 42px; height: 42px; }
+        .d-card h3 { font-family: var(--k-display); font-weight: 700; font-size: 112px; line-height: 1; color: var(--k-deep); margin-top: 20px; }
+        .scribble { position: relative; color: var(--k-terra); white-space: nowrap; }
+        .scribble svg { position: absolute; left: 0; bottom: -14px; width: 100%; height: 20px; }
+        .d-card p { font-family: var(--k-hand); font-weight: 700; font-size: 46px; color: var(--k-terra); margin-top: 26px; }
+        .d-packs { position: absolute; left: 50%; top: 1230px; transform: translateX(-50%); display: flex; align-items: flex-end; gap: 18px; }
+        .d-packs span { background: #fff; border-radius: 34px; padding: 16px; box-shadow: 0 22px 34px rgba(46, 51, 38, .22); }
+        .d-packs img { width: 170px; height: 220px; }
+        .d-packs span.big img { width: 220px; height: 290px; }
+        .d-packs span:nth-child(1) { transform: rotate(-6deg); } .d-packs span:nth-child(3) { transform: rotate(5deg); }
+
+        /* Cierre */
+        .close { position: absolute; z-index: 10; left: 110px; right: 110px; top: 770px; height: 380px; border-radius: 48px; display: grid; place-content: center; justify-items: center; text-align: center; gap: 10px; color: var(--cream);
+            background: linear-gradient(160deg, #0A3D2E, #041F17); border: 2px solid rgba(255,255,255,.14); box-shadow: 0 40px 90px rgba(0,0,0,.55); }
+        .close .fg-sello { font-size: 44px; }
+        .close h2 { font-family: var(--f-display); font-weight: 800; font-size: 72px; line-height: 1; letter-spacing: -.035em; margin-top: 12px; }
+        .close h2 em { display: block; font-family: var(--f-serif); font-style: italic; font-weight: 400; font-size: 92px; color: var(--lime); letter-spacing: -.01em; }
+        .close p { font-size: 26px; font-weight: 600; color: rgba(246,244,236,.8); }
+        .close p b { color: var(--sun); }
+
+        /* ── ANIMACIÓN ── */
+        @keyframes intro { 0% { opacity: 1; } 78% { opacity: 1; } 79% { opacity: 0; } 100% { opacity: 0; } }
+        @keyframes pop { from { opacity: 0; transform: translateY(60px) scale(.94); } to { opacity: 1; transform: none; } }
+        @keyframes shrinkA { from { transform: none; border-radius: 0; } to { transform: translate(24px, 50px) scale(.47); border-radius: 64px; } }
+        @keyframes shrinkB { from { transform: none; border-radius: 0; } to { transform: translate(548px, 50px) scale(.47); border-radius: 64px; } }
+        @keyframes shrinkC { from { transform: none; border-radius: 0; } to { transform: translate(24px, 968px) scale(.47); border-radius: 64px; } }
+        @keyframes shrinkD { from { transform: none; border-radius: 0; } to { transform: translate(548px, 968px) scale(.47); border-radius: 64px; } }
+        @keyframes inA { from { opacity: 0; transform: scale(1.08); } to { opacity: 1; transform: none; } }
+        @keyframes inB { from { clip-path: circle(0% at 86% 19%); } to { clip-path: circle(150% at 86% 19%); } }
+        @keyframes inC { from { clip-path: polygon(0 0, 0 0, -30% 100%, -30% 100%); } to { clip-path: polygon(0 0, 140% 0, 110% 100%, -30% 100%); } }
+        @keyframes inD { from { clip-path: inset(100% 0 0 0); } to { clip-path: inset(0 0 0 0); } }
+        @keyframes rise { from { opacity: 0; transform: translateY(80px); } to { opacity: 1; transform: none; } }
+        @keyframes slam { from { opacity: 0; transform: translateX(-140px) skewX(-10deg); } to { opacity: 1; transform: none; } }
+        @keyframes tilt { from { opacity: 0; transform: rotate(-16deg) translateY(120px); } to { opacity: 1; transform: rotate(-4deg); } }
+        @keyframes closeIn { from { opacity: 0; transform: scale(.8); } to { opacity: 1; transform: none; } }
+        @keyframes fade { from { opacity: 0; } to { opacity: 1; } }
+
+        .anim .intro { animation: intro 14s linear both; }
+        .anim .intro .l1 { animation: pop .5s var(--ease, cubic-bezier(.16,1,.3,1)) .05s both; }
+        .anim .intro .l2 { animation: pop .5s cubic-bezier(.16,1,.3,1) .5s both; }
+        .anim .intro .fg-sello { animation: fade .4s ease 0s both; }
+
+        .anim .sA { animation: shrinkA 1s cubic-bezier(.65,0,.35,1) 11s both; }
+        .anim .sB { animation: shrinkB 1s cubic-bezier(.65,0,.35,1) 11s both; }
+        .anim .sC { animation: shrinkC 1s cubic-bezier(.65,0,.35,1) 11s both; }
+        .anim .sD { animation: shrinkD 1s cubic-bezier(.65,0,.35,1) 11s both; }
+        .anim .sA .wipe { animation: inA .55s cubic-bezier(.16,1,.3,1) 1.5s both; }
+        .anim .sB .wipe { animation: inB .7s cubic-bezier(.65,0,.35,1) 3.9s both; }
+        .anim .sC .wipe { animation: inC .6s cubic-bezier(.65,0,.35,1) 6.3s both; }
+        .anim .sD .wipe { animation: inD .7s cubic-bezier(.65,0,.35,1) 8.7s both; }
+
+        .anim .sA .a-head { animation: rise .8s cubic-bezier(.16,1,.3,1) 1.8s both; }
+        .anim .sA .a-fig { animation: rise .8s cubic-bezier(.16,1,.3,1) 2.1s both; }
+        .anim .sB .b-copy h3 { animation: rise .8s cubic-bezier(.16,1,.3,1) 4.3s both; }
+        .anim .sB .holo { animation: tilt .9s cubic-bezier(.16,1,.3,1) 4.6s both; }
+        .anim .sC .c-title { animation: slam .6s cubic-bezier(.16,1,.3,1) 6.6s both; }
+        .anim .sC .c-art { animation: rise .8s cubic-bezier(.16,1,.3,1) 6.9s both; }
+        .anim .sC .c-board { animation: fade .4s ease 7.3s both; }
+        .anim .sD .d-card { animation: rise .8s cubic-bezier(.16,1,.3,1) 9.1s both; }
+        /* Los productos del parque están girados: suben con translate para no pisar el giro */
+        @keyframes riseT { from { opacity: 0; translate: 0 90px; } to { opacity: 1; translate: 0 0; } }
+        .anim .sD .d-packs span { animation: riseT .7s cubic-bezier(.16,1,.3,1) both; }
+        .anim .sD .d-packs span:nth-child(1) { animation-delay: 9.4s; } .anim .sD .d-packs span:nth-child(2) { animation-delay: 9.55s; } .anim .sD .d-packs span:nth-child(3) { animation-delay: 9.7s; }
+        .anim .close { animation: closeIn .7s cubic-bezier(.34,1.56,.64,1) 11.8s both; }
+    </style>
+</head>
+<body>
+<div class="stage">
+<article class="art" data-w="1080" data-h="1920" data-dur="14" aria-label="Reel: 4 farmacias, 4 mundos, una sola web">
+    <div class="intro">
+        <span class="fg-sello claro" data-sello></span>
+        <p class="l1">4 farmacias.</p>
+        <p class="l2"><em>4 mundos.</em></p>
+    </div>
+
+    <section class="scene sA"><div class="wipe grano">
+        <span class="lbl"><b>1</b>Farmacia del Centro · La Gaceta</span>
+        <div class="a-top"><p class="k">Botica tradicional ✦ Fundada en 1962</p><h2>Farmacia del Centro</h2><div class="rule"></div><nav><span>Portada</span><span>La cajonera</span><span>La vitrina</span><span>Recortables</span></nav></div>
+        <div class="a-head"><p class="k">Selección Botica del Centro</p><h3>Clásicos de botica, <em>como siempre.</em></h3></div>
+        <figure class="a-fig"><div class="arch"><div><img class="prod" src="img/productos/centro-102.webp" alt=""></div></div><p class="stamp"><small>Recoleta</small><b>1962</b><small>Botica</small></p><p>Fig. 1 — Agua de rosas, el tónico de siempre</p></figure>
+    </div></section>
+
+    <section class="scene sB"><div class="wipe">
+        <span class="lbl"><b>2</b>Plaza Palermo · After Hours</span>
+        <div class="b-moon"></div>
+        <div class="b-copy"><p class="k">PLAZA LAB · PALERMO · 24 H</p><h3><span class="glow">Skincare de noche,</span> <mark>entrega</mark> <span class="glow">de noche</span></h3></div>
+        <div class="holo"><div><p class="top"><span>PL-108</span><span>★ Favorito</span></p><div class="ph"><img class="prod" src="img/productos/plaza-108.webp" alt=""></div><h4>Caviahue · Bruma facial Hidratermal</h4></div></div>
+        <div class="b-tape">Abierto 24 h ✦ Plaza Lab ✦ Entrega en 2 h ✦ Skincare de noche ✦ Abierto 24 h ✦ Plaza Lab ✦ Entrega en 2 h ✦</div>
+    </div></section>
+
+    <section class="scene sC"><div class="wipe">
+        <span class="lbl"><b>3</b>Belgrano Norte · Training Club</span>
+        <p class="c-k">Norte Training Club</p>
+        <h3 class="c-title">Recuperá<b>energía</b>para<br>entrenar</h3>
+        <div class="c-art"><img class="prod a" src="img/productos/norte-112.webp" alt=""><img class="prod b" src="img/productos/norte-109.webp" alt=""></div>
+        <div class="c-board"><div><small>Horario</small><p>07–23</p></div><div><small>Ahora</small><p class="on">Abierta</p></div><div><small>Envío</small><p>2 H</p></div></div>
+    </div></section>
+
+    <section class="scene sD"><div class="wipe">
+        <svg class="scene-art" viewBox="0 0 1080 1920" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+            <defs><pattern id="checks" width="40" height="40" patternUnits="userSpaceOnUse" patternTransform="skewX(-30)"><rect width="40" height="40" fill="#FFF4E6"/><rect width="20" height="20" fill="#E8896A"/><rect x="20" y="20" width="20" height="20" fill="#E8896A"/></pattern></defs>
+            <circle cx="900" cy="1010" r="84" fill="#F6C760"/><circle cx="900" cy="1010" r="120" fill="#F6C760" opacity=".22"/>
+            <g fill="#fff" opacity=".95"><ellipse cx="300" cy="1060" rx="86" ry="28"/><ellipse cx="352" cy="1042" rx="56" ry="34"/><ellipse cx="256" cy="1050" rx="40" ry="24"/></g>
+            <g transform="translate(-280 900)"><path d="M900 60 L938 108 L900 170 L862 108 Z" fill="#B5532A"/><path d="M900 60 L900 170 M862 108 L938 108" stroke="#FFF4E6" stroke-width="4"/><path d="M900 170 C 876 214, 936 238, 900 282" stroke="#3A5230" stroke-width="2.6" fill="none"/><path d="M891 214 l18 8 M894 266 l16 -8" stroke="#F7C9A8" stroke-width="8" stroke-linecap="round"/></g>
+            <path d="M0 1320 Q 300 1250 600 1300 T 1080 1280 V1920 H0Z" fill="#A9C98E"/>
+            <path d="M0 1420 Q 330 1370 680 1410 T 1080 1398 V1920 H0Z" fill="#8DB572"/>
+            <g><rect x="90" y="1200" width="18" height="120" rx="8" fill="#7A5634"/><circle cx="99" cy="1172" r="70" fill="#6E9A57"/><circle cx="64" cy="1204" r="40" fill="#5E8A49"/><circle cx="140" cy="1196" r="36" fill="#7BA864"/></g>
+            <path d="M140 1640 L940 1640 L880 1540 L200 1540 Z" fill="url(#checks)" opacity=".95"/>
+        </svg>
+        <span class="lbl"><b>4</b>Parque Caballito · Un día en el parque</span>
+        <div class="d-card"><span class="pill"><svg class="marca"><use href="#m-parque"/></svg>Parque Familia · frente al parque</span>
+            <h3>Bebés felices, familias <span class="scribble">tranquilas<svg viewBox="0 0 200 14" preserveAspectRatio="none" aria-hidden="true"><path d="M2 9 C 40 3, 70 13, 100 7 S 160 3, 198 8" stroke="#B5532A" stroke-width="3" fill="none" stroke-linecap="round"/></svg></span></h3>
+            <p>Higiene y cuidado suave para los más chicos.</p></div>
+        <div class="d-packs"><span><img class="prod" src="img/productos/parque-113.webp" alt=""></span><span class="big"><img class="prod" src="img/productos/parque-nido.webp" alt=""></span><span><img class="prod" src="img/productos/parque-115.webp" alt=""></span></div>
+    </div></section>
+
+    <div class="close">
+        <span class="fg-sello claro" data-sello></span>
+        <h2>4 farmacias. 4 mundos.<em>Una sola web.</em></h2>
+        <p>Conocelas en <b>el link de la bio</b></p>
+    </div>
+</article>
+</div>
+<script src="comun.js"></script>
+</body>
+</html>

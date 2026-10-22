@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="es-AR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>S3 · ¿A qué hora lo necesitás?</title>
+    <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,800&family=Inter:wght@400;500;600;700&family=Unbounded:wght@600;700;800;900&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="comun.css">
+    <style>
+        /* Story 1080 × 1920: el selector "¿A qué hora lo necesitás?" de Plaza Palermo, a las 3 de la mañana */
+        .art { color: #fff;
+            background:
+                radial-gradient(1.6px 1.6px at 10% 6%, #fff 50%, transparent 51%), radial-gradient(1.2px 1.2px at 34% 12%, #fff 50%, transparent 51%),
+                radial-gradient(2px 2px at 52% 4%, #FFE8F2 50%, transparent 51%), radial-gradient(1.2px 1.2px at 70% 16%, #fff 50%, transparent 51%),
+                radial-gradient(1.4px 1.4px at 6% 34%, #fff 50%, transparent 51%), radial-gradient(1.2px 1.2px at 94% 38%, #fff 50%, transparent 51%),
+                radial-gradient(1.6px 1.6px at 18% 70%, #FFF6C9 50%, transparent 51%), radial-gradient(1.2px 1.2px at 88% 74%, #fff 50%, transparent 51%),
+                radial-gradient(1.2px 1.2px at 46% 92%, #fff 50%, transparent 51%), radial-gradient(1.6px 1.6px at 76% 96%, #fff 50%, transparent 51%),
+                radial-gradient(760px 520px at 96% 14%, rgba(194, 24, 91, .58), transparent 70%),
+                radial-gradient(700px 520px at 0% 80%, rgba(183, 156, 255, .28), transparent 70%),
+                linear-gradient(180deg, var(--p-night) 0%, var(--p-plum) 100%);
+        }
+        .art.grano { --grano: .2; }
+        .moon { position: absolute; top: 300px; right: 72px; width: 150px; height: 150px; border-radius: 50%;
+            background: radial-gradient(circle at 35% 35%, #FFF9E0, #F2DFA0 70%); box-shadow: 0 0 100px rgba(255, 236, 170, .45), inset -26px -22px 0 rgba(0,0,0,.07); }
+        .moon::before, .moon::after { content: ""; position: absolute; border-radius: 50%; background: rgba(180, 150, 90, .2); }
+        .moon::before { width: 36px; height: 36px; top: 50px; left: 46px; } .moon::after { width: 22px; height: 22px; top: 98px; left: 92px; }
+
+        .head { position: absolute; top: 196px; left: 64px; right: 64px; display: flex; justify-content: space-between; align-items: center; }
+        .who { display: flex; align-items: center; gap: 16px; font-family: var(--p-display); font-weight: 800; font-size: 32px; }
+        .who svg.marca { width: 60px; height: 60px; }
+        .head .fg-red { background: rgba(255,255,255,.1); border: 1.5px solid rgba(255,255,255,.18); color: rgba(255,255,255,.9); font-size: 18px; padding: 8px 18px 8px 8px; }
+        .head .fg-red .fg-sello { font-size: 24px; }
+
+        .kick { position: absolute; top: 330px; left: 64px; font-family: var(--p-mono); font-weight: 700; font-size: 22px; letter-spacing: .16em; color: var(--p-yellow); }
+        h1 { position: absolute; top: 374px; left: 64px; right: 64px; font-family: var(--p-display); font-weight: 900; font-size: 94px; line-height: 1.02; letter-spacing: -.045em; color: #FFE4F0;
+            text-shadow: 0 0 4px #fff, 0 0 18px var(--p-pink), 0 0 40px var(--p-magenta), 0 0 70px var(--p-magenta); }
+
+        /* La tarjeta del horario, como en la web */
+        .hour { position: absolute; top: 640px; left: 52px; right: 52px; padding: 40px 40px 36px; border-radius: 44px; overflow: hidden; isolation: isolate;
+            background: radial-gradient(520px 320px at 100% 0%, rgba(255, 95, 162, .45), transparent 70%), linear-gradient(160deg, #3A1557 0%, #241038 60%, #1A0A2B 100%);
+            border: 1.5px solid rgba(255,255,255,.14); box-shadow: 0 40px 80px rgba(0,0,0,.45); }
+        .hour-k { font-family: var(--p-mono); font-weight: 700; font-size: 20px; letter-spacing: .16em; color: rgba(255,255,255,.65); }
+        .track { position: relative; height: 12px; margin: 30px 8px 0; border-radius: 6px; background: rgba(255,255,255,.18); }
+        .track::before { content: ""; position: absolute; left: 0; top: 0; bottom: 0; width: 13%; border-radius: 6px; background: linear-gradient(90deg, var(--p-pink), var(--p-magenta)); box-shadow: 0 0 18px var(--p-pink); }
+        .thumb { position: absolute; left: 13%; top: 50%; width: 40px; height: 40px; margin: -20px 0 0 -20px; border-radius: 50%; background: #fff; box-shadow: 0 0 0 8px rgba(255, 95, 162, .35), 0 0 30px var(--p-pink); }
+        .ticks { display: flex; justify-content: space-between; margin: 16px 0 0; font-family: var(--p-mono); font-size: 19px; color: rgba(255,255,255,.55); }
+        .big { font-family: var(--p-mono); font-weight: 700; font-size: 236px; line-height: 1; letter-spacing: -.02em; margin-top: 18px; color: #fff; text-shadow: 0 0 30px rgba(255,255,255,.35), 0 0 70px rgba(255, 95, 162, .45); }
+        .eta { font-family: var(--p-display); font-weight: 700; font-size: 34px; margin-top: 8px; }
+        .eta b { color: var(--p-yellow); }
+        .net-k { font-size: 21px; color: rgba(255,255,255,.75); margin-top: 30px; }
+        .net { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 14px; }
+        .net span { display: flex; align-items: center; justify-content: space-between; gap: 10px; padding: 14px 16px; border-radius: 16px; background: rgba(255,255,255,.07); font-size: 20px; font-weight: 600; color: rgba(255,255,255,.6); }
+        .net span i { font-family: var(--p-mono); font-style: normal; font-size: 15px; padding: 4px 10px; border-radius: 8px; background: rgba(255,255,255,.08); color: rgba(255,255,255,.55); }
+        .net span.on { background: rgba(255, 95, 162, .22); color: #fff; box-shadow: inset 0 0 0 2px var(--p-pink), 0 0 26px rgba(255, 95, 162, .35); }
+        .net span.on i { background: rgba(107, 245, 154, .2); color: #6BF59A; }
+
+        /* Carta holográfica con lo más pedido de noche */
+        .holo { position: absolute; left: 64px; top: 1336px; width: 330px; border-radius: 30px; padding: 4px; transform: rotate(-5deg); z-index: 2;
+            background: conic-gradient(from 200deg, var(--p-pink), var(--p-yellow), var(--p-cyan), var(--p-lilac), var(--p-pink)); box-shadow: 0 30px 70px rgba(0,0,0,.5), 0 0 40px rgba(255,95,162,.3); }
+        .holo-in { position: relative; border-radius: 26px; overflow: hidden; background: linear-gradient(160deg, #fff, var(--p-pink-soft)); color: var(--p-plum); padding: 16px 18px 20px; }
+        .holo-in::after { content: ""; position: absolute; inset: 0; mix-blend-mode: overlay; opacity: .5; background: linear-gradient(115deg, transparent 30%, rgba(255,255,255,.9) 45%, rgba(183,156,255,.6) 52%, transparent 65%); }
+        .holo-top { display: flex; justify-content: space-between; font-family: var(--p-mono); font-size: 14px; font-weight: 700; }
+        .holo-art { height: 210px; display: grid; place-items: center; margin-top: 8px; border-radius: 18px; background: #fff; }
+        .holo-art img { height: 190px; width: 90px; }
+        .holo h3 { font-family: var(--p-display); font-weight: 700; font-size: 21px; line-height: 1.15; margin-top: 12px; }
+        .note { position: absolute; z-index: 3; left: 236px; top: 1300px; background: #fff; color: var(--p-magenta); padding: 10px 18px; border-radius: 999px; font-family: var(--p-display); font-weight: 800; font-size: 18px; transform: rotate(8deg); box-shadow: 0 10px 24px rgba(0,0,0,.35); }
+
+        .neon { position: absolute; right: 64px; top: 1388px; text-align: center; font-family: var(--p-display); font-weight: 900; font-size: 60px; line-height: 1.04; padding: 22px 30px 20px; border-radius: 26px; border: 3px solid var(--p-pink); color: #FFE4F0;
+            background: rgba(20, 7, 31, .5); text-shadow: 0 0 4px #fff, 0 0 14px var(--p-pink), 0 0 34px var(--p-magenta); box-shadow: 0 0 14px var(--p-pink), 0 0 50px rgba(194,24,91,.65), inset 0 0 22px rgba(255,95,162,.4); }
+        .neon .off { color: rgba(255, 228, 240, .28); text-shadow: none; }
+
+        .foot { position: absolute; top: 1590px; right: 64px; text-align: right; font-family: var(--p-display); font-weight: 700; font-size: 28px; line-height: 1.25; }
+        .foot b { color: var(--p-yellow); }
+    </style>
+</head>
+<body>
+<div class="stage">
+<article class="art grano" data-w="1080" data-h="1920" aria-label="Plaza Palermo: a las 3 de la mañana, la única abierta de la red">
+    <div class="moon"></div>
+    <header class="head"><span class="who"><svg class="marca"><use href="#m-plaza"/></svg>Plaza Palermo</span><span class="fg-red"><span class="fg-sello claro" data-sello></span>Red de farmacias</span></header>
+    <p class="kick">NUNCA CERRAMOS</p>
+    <h1>¿A qué hora<br>lo necesitás?</h1>
+
+    <section class="hour">
+        <p class="hour-k">ARRASTRÁ LA HORA</p>
+        <div class="track"><span class="thumb"></span></div>
+        <p class="ticks"><span>00</span><span>06</span><span>12</span><span>18</span><span>23</span></p>
+        <p class="big">03:00</p>
+        <p class="eta">Pedí a las 03:00 y llega a las <b>05:00</b></p>
+        <p class="net-k">Así está la red de FarmaGlass a esa hora:</p>
+        <div class="net">
+            <span>Farmacia del Centro <i>Cerrada</i></span>
+            <span class="on">Plaza Palermo <i>Abierta</i></span>
+            <span>Belgrano Norte <i>Cerrada</i></span>
+            <span>Parque Caballito <i>Cerrada</i></span>
+        </div>
+    </section>
+
+    <div class="holo"><div class="holo-in">
+        <p class="holo-top"><span>PL-108</span><span>★ Favorito</span></p>
+        <div class="holo-art"><img class="prod" src="img/productos/plaza-108.webp" alt="Caviahue bruma facial Hidratermal"></div>
+        <h3>Caviahue · Bruma facial Hidratermal</h3>
+    </div></div>
+    <span class="note">Lo más pedido de noche</span>
+
+    <p class="neon" aria-label="Abierto 24 h">ABIER<span class="off">T</span>O<br>24 H</p>
+
+    <p class="foot">Conocé su página:<br><b>link en la bio</b></p>
+</article>
+</div>
+<script src="comun.js"></script>
+</body>
+</html>

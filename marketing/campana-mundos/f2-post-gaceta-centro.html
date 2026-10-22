@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="es-AR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>F2 · La Gaceta de la Botica</title>
+    <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,700;12..96,800&family=Inter:wght@400;500;600;700&family=DM+Serif+Display:ital@0;1&family=Libre+Caslon+Text:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="comun.css">
+    <style>
+        /* Publicación 1080 × 1350: la tapa de "La Gaceta de la Botica", apoyada en el mostrador de roble */
+        .art {
+            background:
+                repeating-linear-gradient(92deg, rgba(255,255,255,.035) 0 3px, transparent 3px 13px),
+                repeating-linear-gradient(88deg, rgba(0,0,0,.08) 0 1px, transparent 1px 37px),
+                radial-gradient(120% 70% at 50% 0%, var(--c-wood-hi) 0%, var(--c-wood-2) 45%, var(--c-wood) 100%);
+        }
+        .paper {
+            position: absolute; left: 44px; top: 40px; width: 992px; height: 1270px;
+            transform: rotate(-1.4deg);
+            background:
+                linear-gradient(90deg, rgba(0,0,0,0) 49.6%, rgba(120, 96, 50, .10) 50%, rgba(0,0,0,0) 50.4%),
+                radial-gradient(140% 90% at 50% 40%, var(--c-paper) 0%, var(--c-ivory) 70%, #F1E7CC 100%);
+            color: var(--c-ink);
+            padding: 34px 46px 30px;
+            box-shadow: 0 2px 0 #E9DDBE, 0 30px 60px rgba(30, 16, 8, .55), 0 8px 16px rgba(30, 16, 8, .35);
+            font-family: var(--c-text);
+        }
+        .paper.grano { --grano: .22; }
+
+        .top { display: flex; justify-content: space-between; align-items: center; font-family: var(--f-body); font-size: 17px; font-weight: 600; letter-spacing: .02em; color: var(--c-muted); }
+        .top em { font-family: var(--c-text); font-style: italic; font-weight: 400; font-size: 18px; color: var(--c-ink); }
+        .top .tag { padding: 4px 12px; border: 1.5px solid var(--c-navy); color: var(--c-navy); letter-spacing: .14em; text-transform: uppercase; font-size: 14px; font-weight: 700; }
+
+        .mast { display: grid; grid-template-columns: 200px 1fr 200px; align-items: end; margin-top: 12px; }
+        .box { border: 1.5px solid var(--c-ink); padding: 8px 10px; text-align: center; font-family: var(--f-body); }
+        .box small { display: block; font-size: 13px; font-weight: 700; letter-spacing: .16em; color: var(--c-brass-text); text-transform: uppercase; }
+        .box span { display: block; font-size: 15px; font-weight: 600; margin-top: 2px; }
+        .mast-mid { text-align: center; }
+        .mast-mid svg.marca { width: 58px; height: 58px; display: block; margin: 0 auto 6px; }
+        .mast-mid .kick { font-family: var(--f-body); font-size: 14px; font-weight: 700; letter-spacing: .22em; color: var(--c-brass-text); text-transform: uppercase; }
+        .title { font-family: var(--c-serif); font-weight: 400; font-size: 101px; line-height: .92; color: var(--c-navy); letter-spacing: -.014em; text-align: center; margin-top: 10px; white-space: nowrap; }
+        .sub { font-style: italic; font-size: 20px; color: var(--c-muted); text-align: center; margin-top: 8px; }
+
+        .rule2 { height: 7px; border-top: 3px solid var(--c-ink); border-bottom: 1px solid var(--c-ink); margin-top: 14px; }
+        .nav { display: flex; justify-content: center; gap: 26px; padding: 9px 0; border-bottom: 1px solid var(--c-ink); font-family: var(--f-body); font-size: 15px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; }
+
+        .extra { display: flex; align-items: center; gap: 16px; margin-top: 22px; }
+        .extra b { font-family: var(--f-body); font-size: 16px; font-weight: 800; letter-spacing: .3em; color: #fff; background: var(--c-red); padding: 5px 12px 5px 15px; }
+        .extra span { flex: 1; height: 1px; background: var(--c-ink); opacity: .5; }
+        .extra i { font-size: 17px; color: var(--c-muted); }
+
+        h2.head { font-family: var(--c-serif); font-weight: 400; font-size: 84px; line-height: .98; color: var(--c-ink); letter-spacing: -.012em; margin-top: 14px; }
+        .circled { position: relative; display: inline-block; }
+        .circled svg { position: absolute; left: -26px; top: -14px; width: calc(100% + 52px); height: calc(100% + 26px); overflow: visible; }
+        .circled svg path { fill: none; stroke: var(--c-red); stroke-width: 4.5; stroke-linecap: round; opacity: .9; }
+        .deck { font-style: italic; font-size: 25px; line-height: 1.38; color: #3A3F52; margin-top: 16px; max-width: 880px; }
+
+        .cols { display: grid; grid-template-columns: 330px 1fr; gap: 34px; margin-top: 26px; padding-top: 24px; border-top: 1px solid var(--c-line); }
+        .fig { position: relative; }
+        .arch { height: 372px; border-radius: 165px 165px 6px 6px; padding: 10px; background: #fff; box-shadow: 0 0 0 1.5px var(--c-line), 0 14px 26px rgba(78, 49, 32, .16); }
+        .arch-in { height: 100%; border-radius: 156px 156px 3px 3px; display: grid; place-items: end center; padding-bottom: 18px;
+            background: radial-gradient(70% 55% at 50% 60%, #FFF6E6 0%, #F2E5C7 100%); }
+        .arch-in img { height: 300px; width: 240px; }
+        .fig figcaption { font-style: italic; font-size: 16px; color: var(--c-muted); margin-top: 10px; text-align: center; }
+        .stamp { position: absolute; right: -24px; top: 6px; width: 140px; height: 140px; border-radius: 50%; display: grid; place-content: center; text-align: center;
+            color: var(--c-red); border: 4px double var(--c-red); background: rgba(255, 253, 247, .92); transform: rotate(-12deg); font-family: var(--f-body); }
+        .stamp small { font-size: 12px; font-weight: 800; letter-spacing: .14em; text-transform: uppercase; }
+        .stamp b { font-family: var(--c-serif); font-weight: 400; font-size: 44px; line-height: 1; }
+
+        .body p { font-size: 22.5px; line-height: 1.52; text-align: justify; hyphens: auto; }
+        .body p:first-child::first-letter { float: left; font-family: var(--c-serif); font-size: 112px; line-height: .78; padding: 8px 12px 0 0; color: var(--c-navy); }
+        .index { margin-top: 18px; border: 1.5px solid var(--c-ink); padding: 12px 16px 10px; }
+        .index h3 { font-family: var(--f-body); font-size: 14px; font-weight: 800; letter-spacing: .2em; color: var(--c-brass-text); text-transform: uppercase; padding-bottom: 6px; border-bottom: 1px solid var(--c-line); }
+        .index ol { columns: 2; column-gap: 26px; margin-top: 6px; }
+        .index li { display: flex; justify-content: space-between; gap: 10px; font-size: 18px; padding: 4px 0; border-bottom: 1px dotted var(--c-line); break-inside: avoid; }
+        .index li i { color: var(--c-muted); font-size: 15px; }
+
+        .foot { position: absolute; left: 46px; right: 46px; bottom: 28px; display: flex; align-items: center; justify-content: space-between; padding-top: 14px; border-top: 3px double var(--c-ink); }
+        .foot .read { font-family: var(--c-serif); font-size: 31px; color: var(--c-navy); }
+        .foot .read em { font-family: var(--c-text); font-size: 20px; color: var(--c-muted); display: block; }
+        .foot .fg-red { background: var(--c-navy); color: var(--c-ivory); font-size: 20px; padding: 10px 22px 10px 10px; }
+        .foot .fg-red .fg-sello { font-size: 26px; }
+    </style>
+</head>
+<body>
+<div class="stage">
+<article class="art" data-w="1080" data-h="1350" aria-label="La Gaceta de la Botica: la botica de 1962 ahora atiende online">
+    <div class="paper grano">
+        <div class="top"><span class="tag">4 farmacias · 4 mundos — N.º 1</span><em>Recoleta · Edición especial</em><span>Av. Callao 1450</span></div>
+
+        <header class="mast">
+            <div class="box"><small>Hoy</small><span>Abierta online</span></div>
+            <div class="mast-mid">
+                <svg class="marca"><use href="#m-centro"/></svg>
+                <p class="kick">Botica tradicional ✦ Fundada en 1962</p>
+            </div>
+            <div class="box"><small>Año LXV</small><span>Edición n.º 23.580</span></div>
+        </header>
+        <h1 class="title">Farmacia del Centro</h1>
+        <p class="sub">Atendida por farmacéuticos, en la misma esquina de Callao</p>
+        <div class="rule2"></div>
+        <nav class="nav"><span>Portada</span><span>La cajonera</span><span>La vitrina</span><span>Recortables</span><span>Consultorio</span></nav>
+
+        <p class="extra"><b>EXTRA</b><span></span><i>Página 1</i></p>
+        <h2 class="head">La botica de 1962 ahora atiende <span class="circled">online<svg viewBox="0 0 300 120" preserveAspectRatio="none" aria-hidden="true"><path d="M30 64C24 26 120 8 196 12c70 4 104 30 92 62-12 30-90 44-168 40C50 110 8 92 22 56 30 36 70 22 110 18"/></svg></span></h2>
+        <p class="deck">Los mismos farmacéuticos, el mostrador de roble y la cajonera de siempre. Ahora también en tu celular, con envío a tu casa en 2 horas.</p>
+
+        <div class="cols">
+            <figure class="fig">
+                <div class="arch"><div class="arch-in"><img class="prod" src="img/productos/centro-102.webp" alt="Veganis agua de rosas"></div></div>
+                <p class="stamp"><small>Recoleta</small><b>1962</b><small>Botica</small></p>
+                <figcaption>Fig. 1 — Agua de rosas, el tónico de siempre</figcaption>
+            </figure>
+            <div class="body">
+                <p>Desde que Don Ernesto abrió la botica en la esquina de Callao, la caléndula, el agua de rosas y la vaselina se despachan igual: con un consejo. Hoy la Gaceta suma su página en FarmaGlass, con la cajonera de los clásicos, la vitrina del mostrador y las fórmulas para recortar.</p>
+                <div class="index">
+                    <h3>En esta edición</h3>
+                    <ol><li>La cajonera <i>pág. 2</i></li><li>La vitrina <i>pág. 3</i></li><li>Recortables <i>pág. 4</i></li><li>Cotizaciones <i>pág. 5</i></li><li>Consultorio <i>pág. 6</i></li><li>Visitanos <i>pág. 7</i></li></ol>
+                </div>
+            </div>
+        </div>
+
+        <footer class="foot">
+            <p class="read">Leé la Gaceta completa<em>en su página de FarmaGlass · link en la bio</em></p>
+            <span class="fg-red"><span class="fg-sello claro" data-sello></span>Red de farmacias</span>
+        </footer>
+    </div>
+</article>
+</div>
+<script src="comun.js"></script>
+</body>
+</html>

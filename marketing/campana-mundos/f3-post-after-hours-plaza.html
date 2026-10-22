@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="es-AR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>F3 · After Hours</title>
+    <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,700;12..96,800&family=Inter:wght@400;500;600;700&family=Unbounded:wght@500;700;800;900&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="comun.css">
+    <style>
+        /* Publicación 1080 × 1350: la noche de Plaza Palermo, una farmacia que no cierra */
+        .art {
+            color: #fff;
+            background:
+                radial-gradient(1.6px 1.6px at 12% 8%, #fff 50%, transparent 51%), radial-gradient(1.2px 1.2px at 30% 18%, #fff 50%, transparent 51%),
+                radial-gradient(2px 2px at 46% 6%, #FFE8F2 50%, transparent 51%), radial-gradient(1.2px 1.2px at 64% 24%, #fff 50%, transparent 51%),
+                radial-gradient(1.4px 1.4px at 8% 40%, #fff 50%, transparent 51%), radial-gradient(1.2px 1.2px at 92% 44%, #fff 50%, transparent 51%),
+                radial-gradient(1.6px 1.6px at 22% 62%, #FFF6C9 50%, transparent 51%), radial-gradient(1.2px 1.2px at 86% 70%, #fff 50%, transparent 51%),
+                radial-gradient(1.2px 1.2px at 4% 88%, #fff 50%, transparent 51%), radial-gradient(1.6px 1.6px at 58% 94%, #fff 50%, transparent 51%),
+                radial-gradient(680px 460px at 92% 12%, rgba(194, 24, 91, .62), transparent 70%),
+                radial-gradient(620px 480px at 0% 78%, rgba(183, 156, 255, .30), transparent 70%),
+                radial-gradient(520px 380px at 70% 92%, rgba(255, 95, 162, .22), transparent 70%),
+                linear-gradient(180deg, var(--p-night) 0%, var(--p-plum) 100%);
+        }
+        .art.grano { --grano: .22; }
+        .moon { position: absolute; top: 132px; right: 92px; width: 118px; height: 118px; border-radius: 50%;
+            background: radial-gradient(circle at 35% 35%, #FFF9E0, #F2DFA0 70%); box-shadow: 0 0 80px rgba(255, 236, 170, .45), inset -22px -18px 0 rgba(0,0,0,.07); }
+        .moon::before, .moon::after { content: ""; position: absolute; border-radius: 50%; background: rgba(180, 150, 90, .2); }
+        .moon::before { width: 30px; height: 30px; top: 40px; left: 36px; } .moon::after { width: 18px; height: 18px; top: 78px; left: 74px; }
+
+        .head { position: absolute; top: 52px; left: 64px; right: 64px; display: flex; justify-content: space-between; align-items: center; }
+        .who { display: flex; align-items: center; gap: 16px; font-family: var(--p-display); font-weight: 800; font-size: 30px; }
+        .who svg.marca { width: 58px; height: 58px; }
+        .clock { display: flex; align-items: center; gap: 12px; padding: 10px 20px; border-radius: 999px; background: rgba(255,255,255,.08); border: 1.5px solid rgba(255,255,255,.16); font-family: var(--p-mono); font-weight: 700; font-size: 22px; }
+        .clock i { width: 13px; height: 13px; border-radius: 50%; background: #6BF59A; box-shadow: 0 0 0 5px rgba(107,245,154,.2), 0 0 14px #6BF59A; }
+        .clock b { color: var(--p-yellow); letter-spacing: .04em; }
+        .clock span { font-size: 16px; letter-spacing: .14em; opacity: .85; }
+
+        .copy { position: absolute; top: 168px; left: 64px; right: 64px; }
+        .kick { font-family: var(--p-mono); font-weight: 700; font-size: 20px; letter-spacing: .16em; color: var(--p-yellow); }
+        h1 { font-family: var(--p-display); font-weight: 900; font-size: 112px; line-height: 1.0; letter-spacing: -.045em; margin-top: 16px; }
+        h1 .glow { color: #FFE4F0; text-shadow: 0 0 4px #fff, 0 0 18px var(--p-pink), 0 0 40px var(--p-magenta), 0 0 70px var(--p-magenta); }
+        h1 mark { display: inline-block; background: var(--p-magenta); color: #fff; padding: 0 .14em .04em; border-radius: .16em; box-shadow: 0 0 40px rgba(194,24,91,.75); transform: rotate(-1.5deg); }
+        .sub { font-size: 27px; line-height: 1.38; color: rgba(255,255,255,.86); margin-top: 22px; max-width: 800px; }
+        .sub b { color: #fff; }
+
+        /* Cinta amarilla, como la de la web */
+        .marquee { position: absolute; left: -40px; right: -40px; top: 640px; transform: rotate(-3deg); background: var(--p-yellow); color: var(--p-plum); font-family: var(--p-display); font-weight: 800; font-size: 24px; padding: 14px 0; white-space: nowrap; overflow: hidden; box-shadow: 0 14px 30px rgba(0,0,0,.35); z-index: 3; }
+        .marquee span { display: inline-block; padding-right: 28px; }
+
+        /* Polaroids de la rutina de noche, pegadas con cinta */
+        .pola { position: absolute; z-index: 2; width: 300px; padding: 16px 16px 20px; background: #FFF7FB; color: var(--p-plum); border-radius: 6px; box-shadow: 0 30px 60px rgba(0,0,0,.5), 0 6px 14px rgba(0,0,0,.3); }
+        .pola .ph { height: 268px; display: grid; place-items: center; border-radius: 3px; background: linear-gradient(160deg, #fff 0%, var(--p-pink-soft) 100%); }
+        .pola .ph img { height: 230px; width: 220px; }
+        .pola p { font-family: var(--p-mono); font-weight: 700; font-size: 17px; margin-top: 14px; display: flex; justify-content: space-between; }
+        .pola p b { font-family: var(--p-display); font-weight: 800; font-size: 30px; letter-spacing: -.02em; }
+        .pola p span { color: var(--p-magenta); align-self: center; }
+        .tape { position: absolute; top: -18px; left: 50%; width: 120px; height: 36px; margin-left: -60px; opacity: .88; transform: rotate(-4deg); }
+        .p1 { left: 52px; top: 730px; transform: rotate(-7deg); } .p1 .tape { background: var(--p-lilac); }
+        .p2 { left: 390px; top: 700px; transform: rotate(2deg); z-index: 4; } .p2 .tape { background: var(--p-yellow); transform: rotate(3deg); }
+        .p3 { left: 728px; top: 742px; transform: rotate(8deg); } .p3 .tape { background: var(--p-cyan); }
+
+        /* Cartel de neón */
+        .neon { position: absolute; left: 64px; bottom: 62px; font-family: var(--p-display); font-weight: 900; font-size: 50px; line-height: 1; padding: 18px 26px 16px; border-radius: 22px; border: 3px solid var(--p-pink); color: #FFE4F0; z-index: 5;
+            background: rgba(20, 7, 31, .55);
+            text-shadow: 0 0 4px #fff, 0 0 14px var(--p-pink), 0 0 34px var(--p-magenta); box-shadow: 0 0 14px var(--p-pink), 0 0 50px rgba(194,24,91,.65), inset 0 0 22px rgba(255,95,162,.4); }
+        .neon .off { color: rgba(255, 228, 240, .28); text-shadow: none; }
+        .side { position: absolute; right: 64px; bottom: 64px; z-index: 5; display: grid; justify-items: end; gap: 14px; }
+        .side .bio { font-family: var(--p-display); font-weight: 700; font-size: 24px; line-height: 1.25; color: #fff; text-align: right; }
+        .side .bio b { color: var(--p-yellow); }
+        .side .fg-red { background: rgba(255,255,255,.1); border: 1.5px solid rgba(255,255,255,.18); color: rgba(255,255,255,.9); font-size: 19px; padding: 9px 20px 9px 9px; }
+        .side .fg-red .fg-sello { font-size: 25px; }
+        .num { position: absolute; top: 268px; right: 60px; font-family: var(--p-mono); font-size: 14px; letter-spacing: .1em; color: rgba(255,255,255,.55); writing-mode: vertical-rl; }
+    </style>
+</head>
+<body>
+<div class="stage">
+<article class="art grano" data-w="1080" data-h="1350" aria-label="Plaza Palermo: ¿3 AM y sin sérum? Abierto 24 horas">
+    <div class="moon"></div>
+    <header class="head">
+        <span class="who"><svg class="marca"><use href="#m-plaza"/></svg>Plaza Palermo</span>
+        <span class="clock"><i></i><b>03:12</b><span>ABIERTO AHORA</span></span>
+    </header>
+
+    <div class="copy">
+        <p class="kick">PLAZA LAB · PALERMO · 24 H</p>
+        <h1><span class="glow">¿3 AM y</span><br><mark>sin sérum?</mark></h1>
+        <p class="sub">Plaza Palermo no cierra nunca. <b>Skincare de noche, entrega de noche</b>: pedí a cualquier hora y te llega en 2 horas.</p>
+    </div>
+    <p class="num">4 FARMACIAS · 4 MUNDOS — N.º 2</p>
+
+    <div class="marquee"><span>Abierto 24 h ✦ Plaza Lab ✦ Entrega en 2 h ✦ Skincare de noche ✦ Abierto 24 h ✦ Plaza Lab ✦ Entrega en 2 h ✦ Skincare de noche ✦</span></div>
+
+    <figure class="pola p1"><span class="tape"></span><div class="ph"><img class="prod" src="img/productos/plaza-11.webp" alt="La Roche-Posay Effaclar gel"></div><p><b>Limpiá</b><span>22:00</span></p></figure>
+    <figure class="pola p2"><span class="tape"></span><div class="ph"><img class="prod" src="img/productos/plaza-17.webp" alt="Bioderma Hydrabio sérum"></div><p><b>Tratá</b><span>22:05</span></p></figure>
+    <figure class="pola p3"><span class="tape"></span><div class="ph"><img class="prod" src="img/productos/plaza-12.webp" alt="CeraVe crema hidratante"></div><p><b>Hidratá</b><span>22:10</span></p></figure>
+
+    <p class="neon" aria-label="Abierto 24 h">ABIER<span class="off">T</span>O 24 H</p>
+    <div class="side">
+        <p class="bio">Conocé su página:<br><b>link en la bio</b></p>
+        <span class="fg-red"><span class="fg-sello claro" data-sello></span>Red de farmacias</span>
+    </div>
+</article>
+</div>
+<script src="comun.js"></script>
+</body>
+</html>

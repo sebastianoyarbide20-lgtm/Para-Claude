@@ -176,3 +176,42 @@ la estrella es la web, dibujada en un celular con las farmacias de la red, el bo
 - La web del celular es una sola plantilla (`#phone-ui`) que se copia en las dos piezas: si cambia la web, se cambia una vez.
 - Las dos piezas cierran con "link en la bio", porque al publicar por API (Metricool) no se puede agregar el sticker de enlace a la story.
   El perfil de Instagram tiene que tener el enlace a la web en la bio.
+
+## Campaña "4 farmacias, 4 mundos"
+
+En `marketing/campana-mundos/` está la batería de presentación de la red: **5 publicaciones (3 posts y 2 reels) y 5 stories**,
+sin precios. La idea es la misma de la web: cada farmacia es un mundo, y las piezas usan el estilo de su página
+(tipografías, colores, componentes y productos reales recortados). Todas llevan el sello FarmaGlass y cierran con "link en la bio".
+
+| Pieza | Formato | Qué muestra |
+| --- | --- | --- |
+| `f1-reel-cuatro-mundos` | Reel 9:16, 14 s | Gancho "4 farmacias. 4 mundos.", cada mundo entra a su manera (el diario aparece, la noche se abre desde la luna, el Training Club barre en diagonal, el parque sube) y la cámara se aleja hasta la grilla de los cuatro con "Una sola web." |
+| `f2-post-gaceta-centro` | Post 4:5 | La tapa de "La Gaceta de la Botica" sobre el mostrador de roble: "La botica de 1962 ahora atiende *online*", con el sumario de su página |
+| `f3-post-after-hours-plaza` | Post 4:5 | "¿3 AM y sin sérum?": la rutina de noche de Plaza en polaroids (limpiá, tratá, hidratá), la cinta amarilla y el neón "Abierto 24 h" |
+| `f4-post-norte-parque` | Post 4:5 | Dos mundos en una pieza: el Training Club de Belgrano Norte (marcador LED, "Recuperá energía") y el libro ilustrado de Parque Caballito ("Bebés felices, familias tranquilas") |
+| `f5-reel-todo-en-una-bolsa` | Reel 9:16, 10 s | La bolsa de FarmaGlass se llena con productos de las 4 farmacias y aparecen las categorías y el sello "En tu puerta en 2 h" |
+| `s1-story-que-farmacia-sos` | Story | "¿Qué farmacia sos vos?": cuatro tarjetas, cada una en su estilo. Se responde contestando la story con una letra (no necesita stickers) |
+| `s2-story-cajonera-centro` | Story | "Abrí la cajonera": la cajonera de madera con placas de bronce y los 6 clásicos de botica |
+| `s3-story-24h-plaza` | Story | "¿A qué hora lo necesitás?": el selector de la web a las 03:00, con la red y Plaza como la única abierta |
+| `s4-story-kit-norte` | Story | "Elegí tu deporte. Armamos tu kit.": antes, durante y después, y el marcador LED para elongar |
+| `s5-story-mochila-parque` | Story | "¿Salen al parque?": la mochila con su lista y la escena ilustrada, en primavera |
+
+- **Exportar**: `node marketing/campana-mundos/exportar.js` (o, por ejemplo, `… exportar.js f2 s3` para algunas).
+  Deja todo en `exportados/`: PNG y JPG de cada pieza fija, y MP4 (H.264, 30 fps) más la portada en JPG de cada reel.
+  Necesita Playwright y, para los reels, ffmpeg. Cada pieza abierta en el navegador se ve achicada; los reels, animados.
+- **Base común**: `comun.css` (tokens de la marca y de cada farmacia, sello FarmaGlass, botón "link en la bio")
+  y `comun.js` (marcas de las farmacias, vista previa y modo de exportación).
+- **Productos**: `img/productos/` tiene 41 fotos de producto recortadas (sin fondo, en WebP), de las mismas fuentes que
+  `productos-reales.js`. Las imágenes pertenecen a sus marcas.
+- **Reels**: van sin música; se le agrega un audio de la biblioteca de Instagram al publicarlos. La portada es el último cuadro.
+
+**Calendario sugerido** (una semana, de jueves a miércoles; hora de Buenos Aires):
+
+| Día | Feed | Stories |
+| --- | --- | --- |
+| Jueves | F1 · Reel "4 farmacias, 4 mundos" (19:00) | S1 · ¿Qué farmacia sos? (19:30) |
+| Viernes | F2 · La Gaceta (12:30) | S2 · La cajonera (13:00) |
+| Sábado | — | S5 · La mochila para el parque (10:00) |
+| Domingo | F4 · Norte y Parque (11:00) | S4 · Armá tu kit (18:00) |
+| Lunes | F3 · After Hours (21:30) | S3 · ¿A qué hora lo necesitás? (23:30) |
+| Miércoles | F5 · Reel "Todo en una bolsa" (19:00) | — |
