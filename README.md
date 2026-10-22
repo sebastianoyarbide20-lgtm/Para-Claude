@@ -160,3 +160,18 @@ el rojo solo para los descuentos y los íconos duotono de la web.
 - **Zonas seguras**: arriba queda libre la barra del perfil y abajo, la de respuesta. Entre "Tocá el enlace y pedí ahora"
   y la barra de respuesta queda el lugar para el **sticker de enlace** a la tienda, que se agrega al publicar.
 - Los precios son los de `productos-reales.js`. Si cambian, se actualizan en `story.html` y se vuelve a exportar.
+
+## Presentación de la plataforma en Instagram
+
+En `marketing/presentacion/` están la story y la publicación que **presentan FarmaGlass sin precios ni productos**:
+la estrella es la web, dibujada en un celular con las farmacias de la red, el botón de receta y el seguimiento del pedido.
+
+| Archivo | Qué es |
+| --- | --- |
+| `story.png` | Story de 1080 × 1920: "Tu farmacia de siempre, ahora online." con el celular y cuatro beneficios a los costados (receta por WhatsApp, envío en 2 horas o retiro, 4 farmacias de tu barrio y seguimiento en vivo) |
+| `post.png` | Publicación de 1080 × 1350 (4:5): "Sin filas. Sin vueltas. Tu farmacia, online." con los 3 pasos (elegí tu farmacia, pedí o mandá tu receta, recibilo en 2 horas) y "Link en la bio" |
+| `presentacion.html` | El diseño editable de las dos piezas. Abierto en el navegador las muestra lado a lado |
+| `exportar.js` | Vuelve a generar los PNG: `node marketing/presentacion/exportar.js`. Necesita Playwright |
+
+- La web del celular es una sola plantilla (`#phone-ui`) que se copia en las dos piezas: si cambia la web, se cambia una vez.
+- En la story, debajo de "Tocá el enlace y conocé la web", queda el lugar para el sticker de enlace, arriba de la barra de respuesta.

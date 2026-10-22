@@ -1,0 +1,503 @@
+<!DOCTYPE html>
+<html lang="es-AR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>FarmaGlass · Presentación en Instagram</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,700;12..96,800&family=Inter:wght@400;500;600;700&family=Instrument+Serif:ital@1&display=swap" rel="stylesheet">
+    <style>
+        /* ================================================================
+         *  FARMAGLASS — PRESENTACIÓN EN INSTAGRAM
+         *  Una story (1080 × 1920) y una publicación (1080 × 1350) que
+         *  presentan la plataforma sin precios ni productos: la estrella
+         *  es la web, dibujada en un celular.
+         *  Mismos tokens que la web y que la story de ofertas.
+         * ================================================================ */
+        :root {
+            --forest-900: #062A20;
+            --forest-800: #0A3D2E;
+            --forest-700: #0B5D45;
+            --forest-500: #139A6B;
+            --forest-100: #DDF2E5;
+            --forest-50:  #EFF8F1;
+            --mint:       #5FE0A8;
+            --lime:       #B8F04A;
+            --sun:        #FFD23F;
+            --sun-deep:   #F5B700;
+            --bg:         #F6F4EC;
+            --surface:    #FFFFFF;
+            --ink:        #10261F;
+            --ink-2:      #4A5C55;
+            --ink-3:      #5E6D66;
+            --line:       #E3E6DD;
+            --rx-blue:    #2F5BD3;
+
+            --font-body: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            --font-display: 'Bricolage Grotesque', 'Inter', sans-serif;
+            --font-serif: 'Instrument Serif', Georgia, serif;
+        }
+
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+        ul, ol { list-style: none; }
+
+        /* Vista previa: las dos piezas, achicadas para entrar en la ventana.
+           Con ?export se ven a tamaño real, para exportar los PNG. */
+        html, body { min-height: 100%; }
+        body {
+            background: #0E1512; color: var(--bg);
+            font-family: var(--font-body);
+            -webkit-font-smoothing: antialiased;
+            display: flex; align-items: center; justify-content: center; gap: calc(80px * var(--k, 1));
+            min-height: 100vh; padding: 2vh 2vw;
+        }
+        .frame { position: relative; flex-shrink: 0; }
+        .frame-story { width: calc(1080px * var(--k, 1)); height: calc(1920px * var(--k, 1)); }
+        .frame-post  { width: calc(1080px * var(--k, 1)); height: calc(1350px * var(--k, 1)); }
+        .art { position: absolute; top: 0; left: 0; width: 1080px; transform: scale(var(--k, 1)); transform-origin: 0 0; overflow: hidden; }
+        body.export { display: block; padding: 0; background: #062A20; }
+        body.export .frame { width: 1080px; height: auto; }
+        body.export .art { position: relative; transform: none; }
+
+        /* ── FONDO DE MARCA ── */
+        .art {
+            background:
+                radial-gradient(60% 34% at 92% 6%, rgba(184, 240, 74, .24) 0%, rgba(184, 240, 74, 0) 70%),
+                radial-gradient(70% 40% at -6% 60%, rgba(19, 154, 107, .5) 0%, rgba(19, 154, 107, 0) 70%),
+                radial-gradient(80% 30% at 100% 100%, rgba(11, 93, 69, .9) 0%, rgba(11, 93, 69, 0) 70%),
+                linear-gradient(170deg, #0A3D2E 0%, #062A20 46%, #041F17 100%);
+        }
+        .art::before {
+            content: ""; position: absolute; inset: 0; pointer-events: none;
+            background: radial-gradient(circle, rgba(246, 244, 236, .09) 1.6px, transparent 2.2px) 0 0 / 36px 36px;
+            -webkit-mask: linear-gradient(180deg, #000 0%, rgba(0,0,0,.25) 45%, #000 100%);
+                    mask: linear-gradient(180deg, #000 0%, rgba(0,0,0,.25) 45%, #000 100%);
+        }
+        .glow { position: absolute; border-radius: 50%; filter: blur(80px); pointer-events: none; }
+
+        /* ── MARCA ── */
+        .brand { position: absolute; left: 72px; right: 72px; display: flex; align-items: center; justify-content: space-between; z-index: 2; }
+        .logo { display: flex; align-items: center; gap: 18px; }
+        .logo-icon {
+            width: 84px; height: 84px; border-radius: 26px;
+            display: grid; place-items: center;
+            background: linear-gradient(145deg, var(--forest-500), var(--forest-800));
+            box-shadow: inset 0 2px 0 rgba(255,255,255,.28), inset 0 0 0 2px rgba(255,255,255,.08), 0 14px 32px rgba(0, 0, 0, .3);
+        }
+        .logo-icon svg { width: 46px; height: 46px; fill: none; stroke: #fff; stroke-width: 2.6; stroke-linejoin: round; }
+        .logo-text { font-family: var(--font-display); font-weight: 800; font-size: 58px; letter-spacing: -.025em; color: var(--bg); }
+        .logo-text span { color: var(--mint); }
+        .pill {
+            display: flex; align-items: center; gap: 12px;
+            padding: 14px 24px; border-radius: 999px;
+            font-size: 26px; font-weight: 600; color: rgba(246, 244, 236, .92);
+            background: rgba(255, 255, 255, .08);
+            border: 1.5px solid rgba(255, 255, 255, .16);
+            -webkit-backdrop-filter: blur(12px); backdrop-filter: blur(12px);
+        }
+        .pill i { width: 14px; height: 14px; border-radius: 50%; background: var(--lime); box-shadow: 0 0 0 6px rgba(184, 240, 74, .2); }
+
+        /* ── TITULAR ── */
+        .headline { position: absolute; left: 72px; right: 40px; z-index: 2; }
+        .headline h1 { font-family: var(--font-display); font-weight: 800; letter-spacing: -.035em; line-height: .94; color: var(--bg); }
+        .headline h1 > span { display: block; }
+        .headline h1 em { display: block; font-family: var(--font-serif); font-style: italic; font-weight: 400; letter-spacing: -.01em; line-height: .92; color: var(--lime); margin-top: 8px; }
+        .underline { display: block; height: 26px; margin: -2px 0 0 14px; overflow: visible; }
+        .underline path { fill: none; stroke: var(--sun); stroke-width: 9; stroke-linecap: round; }
+        .lede { font-size: 32px; line-height: 1.3; font-weight: 500; color: rgba(246, 244, 236, .82); }
+        .lede b { color: var(--bg); font-weight: 700; }
+
+        /* ── CELULAR ── */
+        .phone {
+            position: absolute; z-index: 1;
+            padding: 14px; border-radius: calc(54px * var(--s) + 14px);
+            background: linear-gradient(150deg, #2A3A34 0%, #0C1714 40%, #050C0A 100%);
+            box-shadow:
+                inset 0 0 0 2px rgba(255, 255, 255, .14),
+                inset 0 2px 0 rgba(255, 255, 255, .22),
+                0 50px 100px rgba(0, 0, 0, .5), 0 14px 30px rgba(0, 0, 0, .3);
+        }
+        .phone::after {
+            content: ""; position: absolute; inset: 14px; border-radius: calc(54px * var(--s)); pointer-events: none;
+            background: linear-gradient(115deg, rgba(255,255,255,.22) 0%, rgba(255,255,255,0) 26%, rgba(255,255,255,0) 70%, rgba(255,255,255,.06) 100%);
+        }
+        .screen { position: relative; width: calc(390px * var(--s)); height: calc(844px * var(--s)); border-radius: calc(54px * var(--s)); overflow: hidden; background: var(--bg); }
+        .ui { position: absolute; top: 0; left: 0; width: 390px; height: 844px; transform: scale(var(--s)); transform-origin: 0 0; color: var(--ink); font-size: 14px; line-height: 1.35; }
+        .ui svg.i { width: 18px; height: 18px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; flex-shrink: 0; }
+
+        .ui-status { height: 50px; display: flex; align-items: center; justify-content: space-between; padding: 6px 30px 0 34px; background: var(--forest-900); color: #fff; font-weight: 700; font-size: 15px; position: relative; }
+        .ui-status::after { content: ""; position: absolute; top: 11px; left: 50%; width: 118px; height: 34px; margin-left: -59px; border-radius: 20px; background: #000; }
+        .ui-status .sys { display: flex; gap: 6px; align-items: center; }
+        .ui-status .sys svg { height: 12px; fill: #fff; }
+
+        .ui-rx { display: flex; align-items: center; justify-content: space-between; gap: 10px; padding: 8px 14px 12px 16px; background: linear-gradient(90deg, var(--forest-900), #0B4A37); color: #fff; }
+        .ui-rx b { display: block; font-size: 14px; }
+        .ui-rx small { display: block; font-size: 12px; opacity: .8; }
+        .ui-rx span.btn { display: flex; align-items: center; gap: 4px; padding: 8px 14px; border-radius: 999px; background: var(--sun); color: var(--forest-900); font-weight: 700; font-size: 13px; white-space: nowrap; box-shadow: 0 4px 12px rgba(255, 210, 63, .35); }
+
+        .ui-head { display: flex; align-items: center; gap: 10px; padding: 12px 16px 8px; }
+        .ui-logo { width: 34px; height: 34px; border-radius: 11px; display: grid; place-items: center; background: linear-gradient(145deg, var(--forest-500), var(--forest-800)); box-shadow: inset 0 1px 0 rgba(255,255,255,.25), 0 4px 12px rgba(11, 93, 69, .3); }
+        .ui-logo svg { width: 18px; height: 18px; fill: none; stroke: #fff; stroke-width: 2.6; stroke-linejoin: round; }
+        .ui-word { font-family: var(--font-display); font-weight: 800; font-size: 20px; letter-spacing: -.02em; color: var(--forest-800); }
+        .ui-word span { color: var(--forest-500); }
+        .ui-head .icons { margin-left: auto; display: flex; gap: 14px; color: var(--forest-800); }
+        .ui-head .icons svg.i { width: 22px; height: 22px; }
+        .ui-addr { display: flex; align-items: center; gap: 6px; padding: 0 16px 10px; font-size: 12px; color: var(--ink-3); }
+        .ui-addr svg.i { width: 15px; height: 15px; color: #C4302B; }
+        .ui-addr b { color: var(--ink); font-weight: 600; }
+
+        .ui-search { margin: 0 16px; height: 44px; display: flex; align-items: center; gap: 8px; padding: 0 14px; border-radius: 999px; background: #fff; border: 1.5px solid var(--line); color: var(--ink-3); font-size: 14px; }
+        .ui-search svg.i { color: var(--forest-700); }
+
+        .ui-chips { display: flex; gap: 8px; padding: 12px 16px 0; overflow: hidden; white-space: nowrap; }
+        .ui-chip { display: flex; align-items: center; gap: 6px; padding: 5px 12px 5px 5px; border-radius: 999px; background: #fff; border: 1.5px solid var(--line); font-weight: 600; font-size: 13px; color: var(--ink-2); }
+        .ui-chip svg { width: 26px; height: 26px; padding: 3px; border-radius: 9px; background: linear-gradient(160deg, #fff, #EEF1EA); box-shadow: 0 1px 2px rgba(16,38,31,.1); }
+        .ui-chip.on { background: var(--forest-800); border-color: var(--forest-800); color: #fff; }
+        .ui-chip.on svg { box-shadow: 0 0 0 2px var(--lime); }
+
+        .ui-h { padding: 18px 16px 2px; font-family: var(--font-display); font-weight: 800; font-size: 22px; letter-spacing: -.02em; }
+        .ui-h em { font-family: var(--font-serif); font-style: italic; font-weight: 400; letter-spacing: 0; }
+        .ui-sub { padding: 0 16px; font-size: 12px; color: var(--ink-3); }
+
+        .ui-stores { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; padding: 12px 16px 0; }
+        .ui-store { position: relative; display: flex; gap: 9px; align-items: center; padding: 12px 10px; border-radius: 16px; border: 1.5px solid; min-height: 82px; }
+        .ui-store svg { width: 40px; height: 40px; flex-shrink: 0; }
+        .ui-store b { display: block; font-size: 13px; line-height: 1.2; }
+        .ui-store small { display: block; font-size: 11px; color: var(--ink-3); margin-top: 2px; }
+        .ui-store .open { display: flex; align-items: center; gap: 4px; font-size: 11px; font-weight: 600; color: var(--forest-700); margin-top: 3px; }
+        .ui-store .open::before { content: ""; width: 7px; height: 7px; border-radius: 50%; background: var(--forest-500); box-shadow: 0 0 0 3px rgba(19, 154, 107, .18); }
+        .ui-store.sel { box-shadow: 0 0 0 2.5px var(--forest-800), 0 6px 16px rgba(16,38,31,.12); }
+        .ui-store .flag { position: absolute; top: -9px; left: 10px; padding: 2px 8px; border-radius: 999px; background: var(--sun); color: var(--forest-900); font-size: 10px; font-weight: 700; }
+
+        .ui-track { margin: 14px 16px 0; padding: 14px; border-radius: 18px; background: #fff; box-shadow: 0 1px 2px rgba(16,38,31,.04), 0 6px 18px rgba(16,38,31,.08); }
+        .ui-track-top { display: flex; gap: 10px; align-items: center; }
+        .ui-track-top svg { width: 40px; height: 40px; }
+        .ui-track-top b { display: block; font-size: 14px; }
+        .ui-track-top small { display: block; font-size: 12px; color: var(--ink-3); }
+        .ui-track-top .eta { margin-left: auto; text-align: right; font-family: var(--font-display); font-weight: 800; font-size: 20px; color: var(--forest-700); line-height: 1; }
+        .ui-track-top .eta small { font-family: var(--font-body); font-weight: 600; font-size: 10px; color: var(--ink-3); text-transform: uppercase; letter-spacing: .06em; }
+        .ui-steps { display: grid; grid-template-columns: repeat(4, 1fr); gap: 4px; margin-top: 12px; }
+        .ui-steps span { height: 6px; border-radius: 3px; background: var(--line); }
+        .ui-steps span.done { background: linear-gradient(90deg, var(--forest-500), var(--mint)); }
+        .ui-steps-l { display: grid; grid-template-columns: repeat(4, 1fr); gap: 4px; margin-top: 6px; font-size: 10.5px; color: var(--ink-3); }
+        .ui-steps-l .now { color: var(--forest-700); font-weight: 700; }
+
+        .ui-nav { position: absolute; left: 10px; right: 10px; bottom: 26px; height: 64px; display: grid; grid-template-columns: repeat(6, 1fr); align-items: center; padding: 0 6px; border-radius: 22px; background: rgba(255,255,255,.94); box-shadow: 0 -1px 0 var(--line), 0 10px 30px rgba(16,38,31,.16); }
+        .ui-nav span { display: grid; justify-items: center; gap: 2px; font-size: 10px; font-weight: 600; color: var(--ink-2); padding: 6px 0; border-radius: 14px; }
+        .ui-nav span.on { background: var(--forest-50); color: var(--forest-800); }
+        .ui-nav span.rx { color: var(--rx-blue); }
+        .ui-nav span.rx svg.i { background: #E3ECFF; border-radius: 10px; padding: 2px; width: 28px; height: 22px; }
+        .ui-home { position: absolute; left: 50%; bottom: 8px; width: 134px; height: 5px; margin-left: -67px; border-radius: 3px; background: #10261F; }
+
+        /* ── TARJETAS FLOTANTES ── */
+        .float {
+            position: absolute; z-index: 3;
+            display: flex; align-items: center; gap: 20px;
+            padding: 22px 30px 22px 22px; border-radius: 30px;
+            background: rgba(255, 255, 255, .97); color: var(--ink);
+            box-shadow: 0 2px 0 rgba(255,255,255,.7) inset, 0 30px 60px rgba(0, 0, 0, .35), 0 6px 14px rgba(0, 0, 0, .16);
+        }
+        .float-ico { width: 76px; height: 76px; flex-shrink: 0; display: grid; place-items: center; border-radius: 22px; background: radial-gradient(120% 80% at 30% 0%, #fff 0%, rgba(255,255,255,0) 60%), linear-gradient(160deg, #fff 0%, #EEF1EA 100%); box-shadow: 0 1px 2px rgba(16,38,31,.1), inset 0 0 0 1.5px rgba(16,38,31,.05); }
+        .float-ico svg { width: 50px; height: 50px; }
+        .float b { display: block; font-family: var(--font-display); font-weight: 800; font-size: 32px; letter-spacing: -.02em; line-height: 1.05; }
+        .float small { display: block; font-size: 22px; font-weight: 500; color: var(--ink-3); margin-top: 4px; line-height: 1.2; }
+        .float.stack { flex-direction: column; align-items: flex-start; gap: 16px; width: 318px; padding: 24px 26px 26px; }
+        .float.stack b { font-size: 31px; }
+        .float .marks { display: flex; }
+        .float .marks svg { width: 46px; height: 46px; margin-right: -12px; }
+        .float .marks svg:last-child { margin-right: 0; }
+
+        /* Mensaje de WhatsApp de la farmacia */
+        .wa {
+            position: absolute; z-index: 3;
+            padding: 22px 26px 16px; border-radius: 30px 30px 30px 8px;
+            background: #fff; color: var(--ink);
+            box-shadow: 0 30px 60px rgba(0, 0, 0, .35), 0 6px 14px rgba(0, 0, 0, .16);
+        }
+        .wa-from { display: flex; align-items: center; gap: 8px; font-size: 18px; white-space: nowrap; font-weight: 700; color: var(--forest-700); }
+        .wa-from svg { width: 28px; height: 28px; flex-shrink: 0; }
+        .wa p { font-size: 25px; line-height: 1.3; margin-top: 8px; }
+        .wa-meta { display: flex; justify-content: flex-end; align-items: center; gap: 6px; margin-top: 6px; font-size: 18px; color: var(--ink-3); }
+        .wa-meta svg { width: 26px; height: 18px; fill: none; stroke: #34B7F1; stroke-width: 2.4; stroke-linecap: round; stroke-linejoin: round; }
+        .wa-photo { display: flex; align-items: center; gap: 12px; margin-top: 12px; padding: 10px 14px; border-radius: 16px; background: var(--forest-50); font-size: 20px; font-weight: 600; color: var(--forest-800); }
+        .wa-photo svg { width: 34px; height: 34px; }
+
+        /* Llamado a la acción */
+        .cta-hint { position: absolute; left: 0; right: 0; text-align: center; font-size: 28px; font-weight: 600; letter-spacing: .01em; color: rgba(246, 244, 236, .85); z-index: 4; }
+        .cta-hint svg { width: 30px; height: 30px; vertical-align: -8px; margin-left: 6px; fill: none; stroke: var(--lime); stroke-width: 2.6; stroke-linecap: round; stroke-linejoin: round; }
+        .cta-btn {
+            display: inline-flex; align-items: center; gap: 14px;
+            padding: 22px 36px; border-radius: 999px;
+            background: linear-gradient(135deg, #FFE16B 0%, var(--sun) 50%, var(--sun-deep) 100%);
+            color: var(--forest-900); font-family: var(--font-display); font-weight: 800; font-size: 34px; letter-spacing: -.01em;
+            box-shadow: inset 0 2px 0 rgba(255,255,255,.5), 0 16px 34px rgba(0, 0, 0, .35);
+        }
+        .cta-btn svg { width: 34px; height: 34px; fill: none; stroke: currentColor; stroke-width: 2.6; stroke-linecap: round; stroke-linejoin: round; }
+
+        /* ================= STORY 1080 × 1920 ================= */
+        #story { height: 1920px; }
+        #story .brand { top: 200px; }
+        #story .headline { top: 316px; }
+        #story .headline h1 { font-size: 118px; }
+        #story .headline h1 em { font-size: 150px; }
+        #story .underline { width: 470px; }
+        #story .lede { margin-top: 26px; }
+        #story .phone { --s: .96; left: 339px; top: 836px; }
+        #story .phone-clip {
+            position: absolute; inset: 0; z-index: 1; pointer-events: none;
+            -webkit-mask: linear-gradient(180deg, #000 0, #000 1480px, transparent 1610px);
+                    mask: linear-gradient(180deg, #000 0, #000 1480px, transparent 1610px);
+        }
+        #story .wa     { left: 26px;  top: 884px;  width: 318px; transform: rotate(-3deg); }
+        #story .f-2h   { right: 26px; top: 1012px; transform: rotate(3deg); }
+        #story .f-net  { left: 26px;  top: 1200px; transform: rotate(-2deg); }
+        #story .f-live { right: 26px; top: 1336px; transform: rotate(2.5deg); }
+        #story .cta-hint { top: 1650px; }
+
+        /* ================= PUBLICACIÓN 1080 × 1350 ================= */
+        #post { height: 1350px; }
+        #post .brand { top: 64px; }
+        #post .logo-icon { width: 72px; height: 72px; border-radius: 22px; }
+        #post .logo-icon svg { width: 40px; height: 40px; }
+        #post .logo-text { font-size: 50px; }
+        #post .headline { top: 180px; }
+        #post .headline h1 { font-size: 112px; }
+        #post .headline h1 em { font-size: 112px; }
+        #post .underline { width: 780px; }
+        #post .phone { --s: 1; left: 622px; top: 596px; transform: rotate(7deg); }
+        #post .steps { position: absolute; left: 72px; top: 636px; width: 530px; z-index: 2; }
+        #post .step { position: relative; display: grid; grid-template-columns: 72px 1fr; gap: 22px; padding-bottom: 46px; }
+        #post .step:not(:last-child)::before { content: ""; position: absolute; left: 35px; top: 80px; bottom: 6px; border-left: 3px dashed rgba(184, 240, 74, .35); }
+        #post .step-n { width: 72px; height: 72px; border-radius: 50%; display: grid; place-items: center; background: var(--lime); color: var(--forest-900); font-family: var(--font-display); font-weight: 800; font-size: 38px; box-shadow: 0 0 0 8px rgba(184, 240, 74, .14); }
+        #post .step b { display: block; font-family: var(--font-display); font-weight: 800; font-size: 37px; letter-spacing: -.02em; line-height: 1.05; color: var(--bg); padding-top: 4px; }
+        #post .step small { display: block; font-size: 24px; line-height: 1.3; color: rgba(246, 244, 236, .78); margin-top: 8px; }
+        #post .post-cta { position: absolute; left: 72px; top: 1150px; display: flex; align-items: center; gap: 24px; z-index: 2; }
+        #post .post-cta p { font-size: 24px; font-weight: 600; color: rgba(246, 244, 236, .75); line-height: 1.3; }
+    </style>
+</head>
+<body>
+    <!-- Íconos duotono de la web -->
+    <svg width="0" height="0" style="position:absolute" aria-hidden="true">
+        <defs>
+            <linearGradient id="gd-green" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#5FE0A8"/><stop offset="1" stop-color="#0B7A55"/></linearGradient>
+            <linearGradient id="gd-lime" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#E2FF8F"/><stop offset="1" stop-color="#6FC21F"/></linearGradient>
+            <linearGradient id="gd-coral" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#FF9A7A"/><stop offset="1" stop-color="#D62F2A"/></linearGradient>
+            <linearGradient id="gd-sun" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#FFE680"/><stop offset="1" stop-color="#F29A00"/></linearGradient>
+            <linearGradient id="gd-sky" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#8FD3FF"/><stop offset="1" stop-color="#2F6FE0"/></linearGradient>
+            <linearGradient id="gd-violet" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#C6A8FF"/><stop offset="1" stop-color="#6A3FD6"/></linearGradient>
+            <linearGradient id="gd-pink" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#FFB8D9"/><stop offset="1" stop-color="#E04A8C"/></linearGradient>
+            <linearGradient id="gd-shine" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#fff" stop-opacity=".85"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></linearGradient>
+        </defs>
+        <symbol id="d-grid" viewBox="0 0 48 48">
+            <rect x="6" y="6" width="16" height="16" rx="5" fill="url(#gd-green)"/><rect x="26" y="6" width="16" height="16" rx="5" fill="url(#gd-sun)"/>
+            <rect x="6" y="26" width="16" height="16" rx="5" fill="url(#gd-sky)"/><rect x="26" y="26" width="16" height="16" rx="8" fill="url(#gd-coral)"/>
+            <rect x="9" y="9" width="10" height="4" rx="2" fill="url(#gd-shine)"/><rect x="29" y="9" width="10" height="4" rx="2" fill="url(#gd-shine)"/>
+        </symbol>
+        <symbol id="d-sparkle" viewBox="0 0 48 48">
+            <path d="M22 4c1.4 9.6 5.4 13.6 15 15-9.6 1.4-13.6 5.4-15 15-1.4-9.6-5.4-13.6-15-15 9.6-1.4 13.6-5.4 15-15z" fill="url(#gd-violet)"/>
+            <path d="M38 28c.7 4.3 2.4 6 6 6.7-3.6.7-5.3 2.4-6 6.7-.7-4.3-2.4-6-6-6.7 3.6-.7 5.3-2.4 6-6.7z" fill="url(#gd-pink)"/>
+            <path d="M22 10c.8 4.5 2.4 6.6 6 8" stroke="#fff" stroke-opacity=".8" stroke-width="2" stroke-linecap="round" fill="none"/>
+        </symbol>
+        <symbol id="d-drop" viewBox="0 0 48 48">
+            <path d="M24 4s15 15.5 15 26a15 15 0 0 1-30 0C9 19.5 24 4 24 4z" fill="url(#gd-sky)"/>
+            <ellipse cx="18" cy="28" rx="4" ry="7" fill="url(#gd-shine)" transform="rotate(-15 18 28)"/>
+            <path d="M29 34a7 7 0 0 1-5 4" stroke="#fff" stroke-width="2.5" stroke-linecap="round" fill="none" opacity=".8"/>
+        </symbol>
+        <symbol id="d-baby" viewBox="0 0 48 48">
+            <path d="M20 3h8l1.5 7h-11z" fill="url(#gd-sun)"/>
+            <rect x="15" y="10" width="18" height="6" rx="3" fill="url(#gd-pink)"/>
+            <rect x="13" y="16" width="22" height="29" rx="9" fill="url(#gd-sky)"/>
+            <rect x="16" y="30" width="16" height="12" rx="5" fill="#fff" opacity=".45"/>
+            <path d="M29 22v4M29 30v3" stroke="#fff" stroke-width="2" stroke-linecap="round"/>
+            <rect x="16" y="19" width="4" height="20" rx="2" fill="url(#gd-shine)"/>
+        </symbol>
+        <symbol id="d-truck" viewBox="0 0 48 48">
+            <rect x="3" y="11" width="27" height="22" rx="4" fill="url(#gd-green)"/>
+            <path d="M30 18h8.5a3 3 0 0 1 2.4 1.2L45 25v6a2 2 0 0 1-2 2H30z" fill="url(#gd-lime)"/>
+            <rect x="6" y="14" width="21" height="4" rx="2" fill="url(#gd-shine)"/>
+            <path d="M34 21h4l3 4h-7z" fill="#fff" opacity=".7"/>
+            <circle cx="12" cy="35" r="5" fill="#10261F"/><circle cx="12" cy="35" r="2" fill="#fff"/>
+            <circle cx="36" cy="35" r="5" fill="#10261F"/><circle cx="36" cy="35" r="2" fill="#fff"/>
+        </symbol>
+        <symbol id="d-shield" viewBox="0 0 48 48">
+            <path d="M24 3 7 9v12c0 11 7.3 18.6 17 22 9.7-3.4 17-11 17-22V9z" fill="url(#gd-green)"/>
+            <path d="M24 3v40c-9.7-3.4-17-11-17-22V9z" fill="#fff" opacity=".14"/>
+            <path d="M16 23l6 6 11-12" stroke="#fff" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+        </symbol>
+        <symbol id="d-rx" viewBox="0 0 48 48">
+            <path d="M12 4h17l11 11v27a3 3 0 0 1-3 3H12a3 3 0 0 1-3-3V7a3 3 0 0 1 3-3z" fill="url(#gd-sky)"/>
+            <path d="M29 4v9a2 2 0 0 0 2 2h9z" fill="#fff" opacity=".55"/>
+            <rect x="13" y="8" width="12" height="3" rx="1.5" fill="url(#gd-shine)"/>
+            <path d="M16 22v14M16 22h5a4 4 0 0 1 0 8h-5M20 30l8 8M28 30l-8 8" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+            <circle cx="36" cy="38" r="7" fill="url(#gd-green)"/><path d="m33 38 2 2 4-4" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+        </symbol>
+        <symbol id="d-pin" viewBox="0 0 48 48">
+            <path d="M24 45s-15-13.2-15-25.5a15 15 0 0 1 30 0C39 31.8 24 45 24 45z" fill="url(#gd-coral)"/>
+            <circle cx="24" cy="19.5" r="6.5" fill="#fff"/>
+            <ellipse cx="16.5" cy="13" rx="3" ry="5.5" fill="url(#gd-shine)" transform="rotate(32 16.5 13)"/>
+        </symbol>
+        <!-- Íconos de trazo (estilo Lucide), los mismos de la web -->
+        <symbol id="i-cross" viewBox="0 0 24 24"><path d="M9 3h6v6h6v6h-6v6H9v-6H3V9h6z"/></symbol>
+        <symbol id="i-search" viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></symbol>
+        <symbol id="i-cart" viewBox="0 0 24 24"><circle cx="9" cy="20" r="1.5"/><circle cx="18" cy="20" r="1.5"/><path d="M2.5 3h2.2l2.6 12.2a2 2 0 0 0 2 1.6h8.6a2 2 0 0 0 2-1.5L21.5 8H6"/></symbol>
+        <symbol id="i-heart" viewBox="0 0 24 24"><path d="M12 20s-7.5-4.6-9.2-9.4C1.6 7.2 3.8 4 7.1 4c2 0 3.6 1.1 4.9 2.8C13.3 5.1 14.9 4 16.9 4c3.3 0 5.5 3.2 4.3 6.6C19.5 15.4 12 20 12 20z"/></symbol>
+        <symbol id="i-home" viewBox="0 0 24 24"><path d="m3 11 9-7 9 7v9a1 1 0 0 1-1 1h-5v-6h-6v6H4a1 1 0 0 1-1-1z"/></symbol>
+        <symbol id="i-grid" viewBox="0 0 24 24"><rect x="4" y="4" width="7" height="7" rx="1.5"/><rect x="13" y="4" width="7" height="7" rx="1.5"/><rect x="4" y="13" width="7" height="7" rx="1.5"/><rect x="13" y="13" width="7" height="7" rx="1.5"/></symbol>
+        <symbol id="i-user" viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/></symbol>
+        <symbol id="i-pin" viewBox="0 0 24 24"><path d="M12 21s-7-6.2-7-11.5a7 7 0 0 1 14 0C19 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></symbol>
+        <symbol id="i-camera" viewBox="0 0 24 24"><path d="M4 8.5h3.2L9 5.8h6l1.8 2.7H20a1 1 0 0 1 1 1V18a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V9.5a1 1 0 0 1 1-1z"/><circle cx="12" cy="13.5" r="3.6"/></symbol>
+        <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></symbol>
+        <symbol id="i-down" viewBox="0 0 24 24"><path d="M12 5v14M6 13l6 6 6-6"/></symbol>
+        <symbol id="i-checks" viewBox="0 0 26 18"><path d="m2 9 4.5 4.5L15 5M11 13.5l1 1L21 5"/></symbol>
+        <!-- Marcas de las 4 farmacias, con la forma y los colores de la web -->
+        <symbol id="m-centro" viewBox="0 0 48 48"><path d="M6 45V24a18 18 0 0 1 36 0v21z" fill="#14284B"/><circle cx="39" cy="9" r="6" fill="#C9A227" stroke="#FBF6EA" stroke-width="2.5"/><text x="24" y="37" text-anchor="middle" font-size="22" font-family="Georgia, serif" fill="#fff">C</text></symbol>
+        <symbol id="m-plaza" viewBox="0 0 48 48"><path d="M24 3c12 0 21 8 21 20 0 13-9 22-21 22S3 37 3 25C3 12 12 3 24 3z" fill="#C2185B"/><circle cx="39" cy="9" r="6" fill="#FFD23F" stroke="#FFF0F6" stroke-width="2.5"/><text x="24" y="32" text-anchor="middle" font-size="22" font-family="Arial Black, sans-serif" fill="#fff">P</text></symbol>
+        <symbol id="m-norte" viewBox="0 0 48 48"><path d="M24 2l19 11v22L24 46 5 35V13z" fill="#1F4FD8"/><circle cx="39" cy="9" r="6" fill="#FF7A2E" stroke="#EEF3FF" stroke-width="2.5"/><text x="24" y="32" text-anchor="middle" font-size="22" font-family="Impact, Arial Narrow, sans-serif" fill="#fff">N</text></symbol>
+        <symbol id="m-parque" viewBox="0 0 48 48"><path d="M4 44V24C4 12 12 4 24 4h20v20c0 12-8 20-20 20z" fill="#4E6B3D"/><circle cx="39" cy="9" r="6" fill="#B5532A" stroke="#F8F1E4" stroke-width="2.5"/><text x="24" y="32" text-anchor="middle" font-size="22" font-family="Verdana, sans-serif" fill="#fff">P</text></symbol>
+    </svg>
+
+    <!-- La web en el celular: se copia en las dos piezas -->
+    <template id="phone-ui">
+        <div class="ui" aria-hidden="true">
+            <div class="ui-status"><span>9:41</span><span class="sys">
+                <svg viewBox="0 0 18 12"><rect x="0" y="8" width="3" height="4" rx="1"/><rect x="5" y="5" width="3" height="7" rx="1"/><rect x="10" y="2" width="3" height="10" rx="1"/><rect x="15" y="0" width="3" height="12" rx="1"/></svg>
+                <svg viewBox="0 0 26 12"><rect x="0" y="0" width="22" height="12" rx="3.5" fill="none" stroke="#fff" stroke-opacity=".5"/><rect x="2" y="2" width="16" height="8" rx="2"/><rect x="23" y="4" width="2" height="4" rx="1" fill-opacity=".5"/></svg>
+            </span></div>
+            <div class="ui-rx"><span><b>¿Tenés una receta?</b><small>Te respondemos por WhatsApp</small></span><span class="btn"><svg class="i"><use href="#i-camera"/></svg>Enviar receta</span></div>
+            <div class="ui-head">
+                <span class="ui-logo"><svg><use href="#i-cross"/></svg></span>
+                <span class="ui-word">Farma<span>Glass</span></span>
+                <span class="icons"><svg class="i"><use href="#i-heart"/></svg><svg class="i"><use href="#i-cart"/></svg></span>
+            </div>
+            <div class="ui-addr"><svg class="i"><use href="#i-pin"/></svg>Entregar en <b>Palermo, CABA</b></div>
+            <div class="ui-search"><svg class="i"><use href="#i-search"/></svg>Buscá productos, marcas o farmacias</div>
+            <div class="ui-chips">
+                <span class="ui-chip on"><svg><use href="#d-grid"/></svg>Todo</span>
+                <span class="ui-chip"><svg><use href="#d-sparkle"/></svg>Dermocosmética</span>
+                <span class="ui-chip"><svg><use href="#d-drop"/></svg>Cuidado personal</span>
+                <span class="ui-chip"><svg><use href="#d-baby"/></svg>Bebés</span>
+            </div>
+            <p class="ui-h">Farmacias <em>de la red</em></p>
+            <p class="ui-sub">Elegí la tuya: cada una tiene su estilo.</p>
+            <div class="ui-stores">
+                <span class="ui-store sel" style="background:#FBF6EA;border-color:rgba(20,40,75,.18)"><span class="flag">Más cercana</span><svg><use href="#m-centro"/></svg><span><b>Farmacia del Centro</b><small>Recoleta</small><span class="open">Abierta</span></span></span>
+                <span class="ui-store" style="background:#FFF0F6;border-color:rgba(194,24,91,.18)"><svg><use href="#m-plaza"/></svg><span><b>Plaza Palermo</b><small>Palermo</small><span class="open">Abierta 24 h</span></span></span>
+                <span class="ui-store" style="background:#EEF3FF;border-color:rgba(31,79,216,.18)"><svg><use href="#m-norte"/></svg><span><b>Belgrano Norte</b><small>Belgrano</small><span class="open">Abierta</span></span></span>
+                <span class="ui-store" style="background:#F8F1E4;border-color:rgba(78,107,61,.2)"><svg><use href="#m-parque"/></svg><span><b>Parque Caballito</b><small>Caballito</small><span class="open">Abierta</span></span></span>
+            </div>
+            <div class="ui-track">
+                <div class="ui-track-top">
+                    <svg><use href="#d-truck"/></svg>
+                    <span><b>Tu pedido está en camino</b><small>Desde Farmacia del Centro</small></span>
+                    <span class="eta"><small>Llega en</small><br>1 h 40'</span>
+                </div>
+                <div class="ui-steps"><span class="done"></span><span class="done"></span><span class="done"></span><span></span></div>
+                <div class="ui-steps-l"><span>Confirmado</span><span>Preparado</span><span class="now">En camino</span><span>Entregado</span></div>
+            </div>
+            <div class="ui-nav">
+                <span class="on"><svg class="i"><use href="#i-home"/></svg>Inicio</span>
+                <span><svg class="i"><use href="#i-grid"/></svg>Catálogo</span>
+                <span class="rx"><svg class="i"><use href="#i-camera"/></svg>Receta</span>
+                <span><svg class="i"><use href="#i-heart"/></svg>Favoritos</span>
+                <span><svg class="i"><use href="#i-cart"/></svg>Carrito</span>
+                <span><svg class="i"><use href="#i-user"/></svg>Mi cuenta</span>
+            </div>
+            <span class="ui-home"></span>
+        </div>
+    </template>
+
+    <!-- ===================== STORY ===================== -->
+    <div class="frame frame-story">
+    <article class="art" id="story" aria-label="Story: presentamos FarmaGlass">
+        <div class="glow" style="width:620px;height:620px;left:230px;top:960px;background:rgba(95,224,168,.32)"></div>
+        <div class="glow" style="width:380px;height:380px;left:640px;top:1260px;background:rgba(255,210,63,.16)"></div>
+
+        <header class="brand">
+            <div class="logo">
+                <span class="logo-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 3h6v6h6v6h-6v6H9v-6H3V9h6z"/></svg></span>
+                <span class="logo-text">Farma<span>Glass</span></span>
+            </div>
+            <span class="pill"><i></i>Nuevo · CABA y GBA</span>
+        </header>
+
+        <div class="headline">
+            <h1><span>Tu farmacia</span><span>de siempre,</span><em>ahora online.</em></h1>
+            <svg class="underline" viewBox="0 0 470 26" aria-hidden="true"><path d="M6 18C100 6 220 4 464 12"/></svg>
+            <p class="lede">Las farmacias de tu barrio, <b>en una sola web.</b></p>
+        </div>
+
+        <div class="phone-clip"><div class="phone"><div class="screen" data-ui></div></div></div>
+
+        <div class="wa">
+            <p class="wa-from"><svg><use href="#m-centro"/></svg>Farmacia del Centro</p>
+            <p>¡Recibimos tu receta! 🙌 Te escribimos con la cobertura de tu obra social.</p>
+            <p class="wa-meta">10:24<svg viewBox="0 0 26 18"><use href="#i-checks"/></svg></p>
+        </div>
+        <div class="float stack f-2h">
+            <span class="float-ico"><svg><use href="#d-truck"/></svg></span>
+            <span><b>En tu casa<br>en 2 horas</b><small>o lo retirás en la farmacia</small></span>
+        </div>
+        <div class="float stack f-net">
+            <span class="marks"><svg><use href="#m-centro"/></svg><svg><use href="#m-plaza"/></svg><svg><use href="#m-norte"/></svg><svg><use href="#m-parque"/></svg></span>
+            <span><b>4 farmacias<br>de tu barrio</b><small>y una abre las 24 h</small></span>
+        </div>
+        <div class="float stack f-live">
+            <span class="float-ico"><svg><use href="#d-pin"/></svg></span>
+            <span><b>Seguí tu pedido<br>en vivo</b><small>hasta tu puerta</small></span>
+        </div>
+
+        <p class="cta-hint">Tocá el enlace y conocé la web<svg viewBox="0 0 24 24" aria-hidden="true"><use href="#i-down"/></svg></p>
+    </article>
+    </div>
+
+    <!-- ===================== PUBLICACIÓN ===================== -->
+    <div class="frame frame-post">
+    <article class="art" id="post" aria-label="Publicación: presentamos FarmaGlass">
+        <div class="glow" style="width:560px;height:560px;left:600px;top:700px;background:rgba(95,224,168,.3)"></div>
+
+        <header class="brand">
+            <div class="logo">
+                <span class="logo-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 3h6v6h6v6h-6v6H9v-6H3V9h6z"/></svg></span>
+                <span class="logo-text">Farma<span>Glass</span></span>
+            </div>
+            <span class="pill"><i></i>Nuevo</span>
+        </header>
+
+        <div class="headline">
+            <h1><span>Sin filas.</span><span>Sin vueltas.</span><em>Tu farmacia, online.</em></h1>
+            <svg class="underline" viewBox="0 0 780 26" aria-hidden="true"><path d="M6 18C160 6 360 4 774 12"/></svg>
+        </div>
+
+        <div class="phone"><div class="screen" data-ui></div></div>
+
+        <ol class="steps">
+            <li class="step"><span class="step-n">1</span><span><b>Elegí tu farmacia</b><small>Cuatro farmacias de tu barrio,<br>en una sola web.</small></span></li>
+            <li class="step"><span class="step-n">2</span><span><b>Pedí o mandá tu receta</b><small>Con una foto. Te respondemos<br>por WhatsApp.</small></span></li>
+            <li class="step"><span class="step-n">3</span><span><b>Recibilo en 2 horas</b><small>O retiralo en la farmacia, sin filas.</small></span></li>
+        </ol>
+
+        <div class="post-cta">
+            <span class="cta-btn">Link en la bio<svg viewBox="0 0 24 24" aria-hidden="true"><use href="#i-arrow"/></svg></span>
+            <p>Envíos en<br>CABA y GBA</p>
+        </div>
+    </article>
+    </div>
+
+    <script>
+        // La web del celular es la misma en las dos piezas
+        const ui = document.getElementById('phone-ui');
+        document.querySelectorAll('[data-ui]').forEach(el => el.append(ui.content.cloneNode(true)));
+
+        // ?export muestra las piezas a tamaño real; sin parámetros, se achican para entrar en la ventana
+        if (new URLSearchParams(location.search).has('export')) document.body.classList.add('export');
+        function fit() {
+            if (document.body.classList.contains('export')) return;
+            const k = Math.min((innerWidth * .96 - 80) / 2160, innerHeight * .96 / 1920);
+            document.documentElement.style.setProperty('--k', k);
+        }
+        fit();
+        addEventListener('resize', fit);
+    </script>
+</body>
+</html>
