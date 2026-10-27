@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="es-AR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>P3 · La cartelera de la comunidad</title>
+    <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,700;12..96,800&family=Inter:wght@400;500;600;700;800&family=Instrument+Serif:ital@1&family=DM+Serif+Display:ital@0;1&family=Libre+Caslon+Text:ital,wght@0,400;0,700;1,400&family=Unbounded:wght@700;800;900&family=Space+Mono:wght@400;700&family=Barlow+Condensed:ital,wght@0,600;0,700;0,800;1,800;1,900&family=Fredoka:wght@500;600;700&family=Caveat:wght@600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../campana-mundos/comun.css">
+    <link rel="stylesheet" href="comunidad.css">
+    <style>
+        /* Publicación 1080 × 1350: la cartelera donde cada farmacia pega un consejo con su letra. Los textos son los de sus páginas. */
+        .art { background: var(--paper); color: var(--fg-ink); }
+        .art::before { content: ""; position: absolute; inset: 0; background: radial-gradient(circle, rgba(10, 61, 46, .09) 2px, transparent 2.7px) 0 0 / 40px 40px; z-index: 0; }
+        .art > * { position: absolute; z-index: 1; }
+
+        .top { top: 56px; left: 72px; right: 72px; display: flex; justify-content: space-between; align-items: center; }
+        .top .fg-sello { font-size: 44px; }
+        .top .pildora { background: var(--forest-900); color: var(--cream); font-size: 22px; padding: 11px 22px; }
+        h1 { top: 138px; left: 72px; right: 72px; font-family: var(--f-display); font-weight: 800; font-size: 108px; line-height: .94; letter-spacing: -.045em; color: var(--forest-900); }
+        h1 em { display: inline-block; font-family: var(--f-serif); font-style: italic; font-weight: 400; font-size: 128px; letter-spacing: -.015em; color: var(--forest-500); margin-top: 2px; }
+        .sub { top: 376px; left: 72px; font-size: 29px; font-weight: 500; color: var(--ink-2); }
+
+        /* El tablero: marco de madera y fieltro verde */
+        .marco { left: 40px; top: 440px; width: 1000px; height: 706px; padding: 18px; border-radius: 30px;
+            background: repeating-linear-gradient(92deg, rgba(255,255,255,.05) 0 3px, transparent 3px 13px), linear-gradient(160deg, #8F5F38, #6E4529 55%, #4E3120);
+            box-shadow: 0 26px 60px rgba(46, 29, 18, .4), 0 6px 14px rgba(46, 29, 18, .2), inset 0 3px 0 rgba(255,255,255,.18); }
+        .fieltro { position: relative; width: 100%; height: 100%; border-radius: 16px; overflow: hidden;
+            background: radial-gradient(90% 80% at 50% 40%, #12805D 0%, #0B5D45 55%, #08442F 100%); box-shadow: inset 0 8px 24px rgba(0,0,0,.45); }
+        .fieltro.grano { --grano: .5; }
+
+        .nota { position: absolute; width: 432px; padding: 26px 26px 22px; box-shadow: 0 18px 30px rgba(0, 0, 0, .38), 0 3px 6px rgba(0,0,0,.25); }
+        .nota .firma { position: absolute; right: 22px; bottom: 14px; }
+        .pin { position: absolute; top: -13px; left: 50%; width: 30px; height: 30px; margin-left: -15px; border-radius: 50%; box-shadow: 0 8px 10px rgba(0,0,0,.4), inset -4px -5px 0 rgba(0,0,0,.18); z-index: 3;
+            background: radial-gradient(circle at 34% 30%, #fff 0 12%, var(--c, #E04A4A) 13% 100%); }
+
+        /* Centro: papel marfil, serif de diario */
+        .n-centro { left: 22px; top: 28px; height: 300px; transform: rotate(-2.2deg); background: radial-gradient(130% 90% at 50% 30%, #FFFDF7, #FBF6EA 70%, #F0E5C8); color: #1B2238; }
+        .n-centro .k { font-family: Inter, sans-serif; font-size: 14.5px; font-weight: 700; letter-spacing: .16em; color: #7A5C12; text-transform: uppercase; padding-bottom: 8px; border-bottom: 3px double #1B2238; }
+        .n-centro .q { font-family: 'DM Serif Display', Georgia, serif; font-size: 31px; line-height: 1.08; color: #14284B; margin-top: 14px; }
+        .n-centro .a { font-family: 'Libre Caslon Text', Georgia, serif; font-size: 19.5px; line-height: 1.42; margin-top: 10px; color: #3A3F52; }
+        .n-centro .firma { font-family: 'Libre Caslon Text', serif; font-style: italic; font-size: 17px; color: #5B5F6E; }
+
+        /* Plaza: carta oscura con neón */
+        .n-plaza { left: 510px; top: 20px; height: 300px; transform: rotate(1.8deg); color: #fff; border-radius: 6px; border: 2.5px solid #FF5FA2;
+            background: radial-gradient(300px 220px at 100% 0%, rgba(194, 24, 91, .55), transparent 70%), linear-gradient(170deg, #14071F, #2B1240); box-shadow: 0 0 26px rgba(255, 95, 162, .45), 0 18px 30px rgba(0,0,0,.4); }
+        .n-plaza .k { font-family: 'Space Mono', monospace; font-size: 14px; font-weight: 700; letter-spacing: .1em; color: #FFD23F; }
+        .n-plaza .t { font-family: Unbounded, sans-serif; font-weight: 900; font-size: 30px; line-height: 1.08; letter-spacing: -.04em; margin-top: 12px; color: #FFE4F0; text-shadow: 0 0 4px #fff, 0 0 14px #FF5FA2, 0 0 30px #C2185B; }
+        .n-plaza ul { list-style: none; margin-top: 16px; display: grid; gap: 9px; }
+        .n-plaza li { display: flex; align-items: baseline; gap: 12px; font-size: 19px; color: rgba(255,255,255,.88); }
+        .n-plaza li time { font-family: 'Space Mono', monospace; font-weight: 700; font-size: 16px; color: #5CF2E6; }
+        .n-plaza li b { color: #fff; font-weight: 700; }
+        .n-plaza .firma { font-family: 'Space Mono', monospace; font-size: 14px; color: #B79CFF; }
+
+        /* Norte: el cartel del club */
+        .n-norte { left: 30px; top: 350px; height: 294px; transform: rotate(1.4deg); color: #fff;
+            background: repeating-linear-gradient(-62deg, rgba(255,255,255,.07) 0 20px, transparent 20px 50px), linear-gradient(160deg, #1F4FD8, #1739A8 70%, #0B1B3F); }
+        .n-norte .k { display: inline-block; font-family: 'Barlow Condensed', sans-serif; font-style: italic; font-weight: 800; font-size: 19px; letter-spacing: .06em; text-transform: uppercase; background: #FF7A2E; color: #0B1B3F; padding: 2px 12px; transform: skewX(-10deg); }
+        .n-norte .t { font-family: 'Barlow Condensed', sans-serif; font-style: italic; font-weight: 900; font-size: 47px; line-height: .94; text-transform: uppercase; margin-top: 14px; }
+        .n-norte .t b { color: #FF7A2E; font-weight: 900; }
+        .n-norte .a { font-size: 20px; line-height: 1.38; margin-top: 10px; color: rgba(255,255,255,.9); max-width: 380px; }
+        .n-norte .led { position: absolute; right: 22px; top: 22px; padding: 5px 12px; border-radius: 6px; background: radial-gradient(rgba(255,122,46,.14) 1px, transparent 1.6px) 0 0 / 5px 5px, #060B1A; font-family: 'Barlow Condensed', sans-serif; font-weight: 800; font-size: 34px; letter-spacing: .06em; color: #FF7A2E; text-shadow: 0 0 8px rgba(255,122,46,.8); box-shadow: inset 0 0 0 2px #2A3550; }
+        .n-norte .firma { right: 24px; bottom: 12px; font-family: 'Barlow Condensed', sans-serif; font-style: italic; font-weight: 700; font-size: 18px; letter-spacing: .06em; text-transform: uppercase; color: #FFB27A; }
+
+        /* Parque: papel durazno escrito a mano */
+        .n-parque { left: 506px; top: 350px; height: 292px; transform: rotate(-2deg); color: #2E3326; border-radius: 10px;
+            background: linear-gradient(170deg, #FFE3CC, #F7C9A8); }
+        .n-parque .t { font-family: Caveat, cursive; font-weight: 700; font-size: 62px; line-height: .95; color: #B5532A; }
+        .n-parque .a { font-family: Fredoka, sans-serif; font-weight: 500; font-size: 23px; line-height: 1.35; margin-top: 12px; color: #3A5230; max-width: 340px; }
+        .n-parque .firma { font-family: Caveat, cursive; font-weight: 700; font-size: 30px; color: #4E6B3D; }
+        .n-parque svg { position: absolute; right: 18px; top: 20px; width: 92px; height: 92px; }
+        .cinta { position: absolute; top: -16px; left: 50%; width: 120px; height: 34px; margin-left: -60px; transform: rotate(-3deg); background: rgba(255, 210, 63, .85); box-shadow: 0 3px 6px rgba(0,0,0,.2); z-index: 3; }
+
+        .aviso { left: 72px; right: 72px; top: 1166px; font-size: 18px; font-weight: 500; color: var(--ink-3); }
+        .pie { left: 72px; right: 72px; bottom: 46px; display: flex; justify-content: space-between; align-items: center; }
+        .pie .entre { font-size: 56px; color: var(--forest-900); }
+        .pie .entre em { color: var(--forest-500); }
+        .pie .cta-bio { font-size: 27px; padding: 17px 28px; box-shadow: inset 0 2px 0 rgba(255,255,255,.5), 0 10px 22px rgba(6, 42, 32, .22); }
+    </style>
+</head>
+<body>
+<div class="stage">
+<article class="art" data-w="1080" data-h="1350" aria-label="La cartelera de la comunidad: un consejo de cada farmacia">
+    <header class="top"><span class="fg-sello" data-sello></span><span class="pildora"><i></i>Comunidad de farmacias</span></header>
+    <h1>La cartelera<br><em>de la comunidad.</em></h1>
+    <p class="sub">Un consejo de cada farmacia, pegado en el mostrador.</p>
+
+    <div class="marco"><div class="fieltro grano">
+        <article class="nota n-centro">
+            <span class="pin" style="--c:#E04A4A"></span>
+            <p class="k">El consultorio · Recoleta</p>
+            <p class="q">¿El agua de rosas sirve como tónico?</p>
+            <p class="a">Sí. Después de limpiar la cara, pasala con un algodón o aplicala en bruma. Si tu piel es sensible, probala antes en una zona chica.</p>
+            <p class="firma">— Farmacia del Centro</p>
+        </article>
+
+        <article class="nota n-plaza">
+            <span class="pin" style="--c:#FFD23F"></span>
+            <p class="k">RUTINA DE NOCHE · PALERMO</p>
+            <p class="t">Limpiá. Tratá. Hidratá.</p>
+            <ul>
+                <li><time>22:00</time><span><b>Limpiá</b> con agua micelar o gel</span></li>
+                <li><time>22:05</time><span><b>Tratá</b> con unas gotas de sérum</span></li>
+                <li><time>22:10</time><span><b>Hidratá</b> con una crema liviana</span></li>
+            </ul>
+            <p class="firma">— Plaza Palermo</p>
+        </article>
+
+        <article class="nota n-norte">
+            <span class="pin" style="--c:#fff"></span>
+            <span class="led">03:00</span>
+            <p class="k">Elongá en 3 minutos</p>
+            <p class="t">Seis estiramientos<br>de <b>30 segundos</b></p>
+            <p class="a">Para después de entrenar. Estirá hasta sentir tensión, nunca dolor.</p>
+            <p class="firma">— Belgrano Norte</p>
+        </article>
+
+        <article class="nota n-parque">
+            <span class="cinta"></span>
+            <svg viewBox="0 0 92 92" aria-hidden="true"><circle cx="46" cy="46" r="20" fill="#F6C760"/><g stroke="#F6C760" stroke-width="5" stroke-linecap="round"><path d="M46 8v10M46 74v10M8 46h10M74 46h10M19 19l7 7M66 66l7 7M73 19l-7 7M19 73l7-7"/></g></svg>
+            <p class="t">Baño<br>sin llanto</p>
+            <p class="a">Agua tibia, shampoo suave y baños cortos de 5 a 10 minutos.</p>
+            <p class="firma">— Parque Caballito</p>
+        </article>
+    </div></div>
+
+    <p class="aviso">Información orientativa. Ante cualquier duda, consultá a tu médico o farmacéutico.</p>
+    <footer class="pie">
+        <span class="entre">Entre <em>todas.</em></span>
+        <span class="cta-bio">Más consejos: link en la bio<svg viewBox="0 0 24 24" aria-hidden="true"><use href="#i-arrow"/></svg></span>
+    </footer>
+</article>
+</div>
+<script src="comunidad.js"></script>
+<script src="../campana-mundos/comun.js"></script>
+</body>
+</html>

@@ -217,3 +217,30 @@ sin precios. La idea es la misma de la web: cada farmacia es un mundo, y las pie
 | Domingo | F4 · Norte y Parque (11:00) | S4 · Armá tu kit (18:00) |
 | Lunes | F3 · After Hours (21:30) | S3 · ¿A qué hora lo necesitás? (23:30) |
 | Miércoles | F5 · Reel "Todo en una bolsa" (19:00) | — |
+
+## Campaña "Entre todas": la comunidad de farmacias
+
+En `marketing/campana-comunidad/` está el segundo capítulo de la presentación: **3 publicaciones, 1 reel y 4 stories**, sin precios.
+Si "4 farmacias, 4 mundos" mostró lo que hace distintas a las farmacias, esta campaña muestra lo que las une: **"Tu farmacia no está sola."**
+Cuatro farmacias de barrio que *se cubren, se cuentan lo que saben y se dan una mano*. Todo el desarrollo (idea, pruebas, tono, sistema visual,
+calendario, medición y textos para publicar) está en [`CONCEPTO.md`](marketing/campana-comunidad/CONCEPTO.md).
+
+| Pieza | Formato | Qué muestra |
+| --- | --- | --- |
+| `r1-reel-cuando-una-cierra` | Reel 9:16, 16 s | "Cuando una cierra, otra abre.": una noche con los horarios reales de la red (cierran Centro a las 21, Parque a las 22 y Norte a las 23; Plaza no cierra) hasta que a la mañana vuelven a abrir. Termina con la cruz de cuatro armándose: "Entre todas, siempre hay una abierta." |
+| `p1-manifiesto` | Post 4:5 | "Tu farmacia no está sola.": la cruz de farmacia armada por las cuatro farmacias, unidas por un hilo, y los tres verbos de la comunidad |
+| `p2-mapa` | Post 4:5 | "Una comunidad, cuatro barrios.": mapa ilustrado con las cuatro farmacias unidas por el hilo y un punto "Vos" |
+| `p3-cartelera` | Post 4:5 | "La cartelera de la comunidad.": un consejo de cada farmacia pegado en un corcho, cada uno con su estilo |
+| `s1-cobertura` | Story | "A cualquier hora, hay una abierta.": tablero con las cuatro farmacias a las 6, 12, 18, 22:30 y 3 |
+| `s2-cuatro-puertas` | Story | "Cuatro puertas. Una sola comunidad.": las cuatro fachadas abiertas, unidas por el hilo, en la hora dorada |
+| `s3-guardapolvo` | Story | "Detrás de cada farmacia hay alguien que te conoce por tu nombre.": un guardapolvo con la identificación en blanco. Invita a escribirnos ese nombre |
+| `s4-entra` | Story | "Entrá a la comunidad": decinos dónde estás, armá tu pedido, retirá o recibí, y la receta |
+
+- **Exportar**: `node marketing/campana-comunidad/exportar.js` (o, por ejemplo, `… exportar.js p1 s2` para algunas). Deja todo en `exportados/`:
+  PNG y JPG de cada pieza fija, y MP4 (H.264, 30 fps) más la portada en JPG del reel. Necesita Playwright y, para el reel, ffmpeg
+  (el reel de 16 s se graba cuadro por cuadro y tarda unos minutos).
+- **Piezas compartidas**: `comunidad.js` dibuja la cruz de cuatro (`FG.cruz`), las fachadas con persiana (`FG.fachada`), los banderines y la moto;
+  `comunidad.css` suma sus estilos. Todo se apoya en `../campana-mundos/comun.css` y `comun.js` (tokens, marcas y sello).
+- **Horarios**: los de `farmacias-red.js`. Si cambian, se actualizan `HORARIO` en `r1-reel-cuando-una-cierra.html` y `FARMACIAS` en `s1-cobertura.html`.
+- **Reel**: va sin música; el audio se agrega al publicarlo a mano. Las stories terminan en "link en la bio" porque, por API, no se puede poner el sticker de enlace.
+- **Vista general**: `exportados/bateria.jpg` muestra las 8 piezas juntas.

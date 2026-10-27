@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="es-AR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>S4 · Entrá a la comunidad</title>
+    <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,700;12..96,800&family=Inter:wght@400;500;600;700;800&family=Instrument+Serif:ital@1&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../campana-mundos/comun.css">
+    <link rel="stylesheet" href="comunidad.css">
+    <style>
+        /* Story 1080 × 1920: cómo se usa la comunidad, en tres pasos y con lo que ya hace la web.
+           Cada paso lleva el color de una farmacia; la receta, el de la cuarta. Margen seguro: y 250 a 1670. */
+        .art { background: radial-gradient(80% 45% at 30% 14%, #D6FA7E 0%, #B8F04A 55%, #A6E23C 100%); color: var(--forest-900); }
+        .art::before { content: ""; position: absolute; inset: 0; background: radial-gradient(circle, rgba(10, 61, 46, .13) 2px, transparent 2.7px) 0 0 / 44px 44px; z-index: 0; }
+        .art > * { position: absolute; z-index: 1; }
+
+        .top { top: 236px; left: 60px; right: 60px; display: flex; justify-content: space-between; align-items: center; }
+        .top .fg-sello { font-size: 44px; }
+        .top .pildora { background: var(--forest-800); color: var(--cream); font-size: 22px; padding: 11px 22px; }
+
+        h1 { top: 322px; left: 60px; right: 60px; font-family: var(--f-display); font-weight: 800; font-size: 112px; line-height: .94; letter-spacing: -.045em; color: var(--forest-900); }
+        h1 em { display: inline-block; font-family: var(--f-serif); font-style: italic; font-weight: 400; font-size: 140px; letter-spacing: -.015em; color: var(--forest-700); margin-top: 6px; white-space: nowrap; }
+
+        .pasos { left: 60px; top: 628px; width: 960px; display: grid; gap: 22px; }
+        .paso { position: relative; display: grid; grid-template-columns: 112px 1fr; gap: 30px; align-items: center; padding: 28px 34px 28px 30px; border-radius: 44px; background: var(--paper); box-shadow: 0 22px 44px rgba(6, 42, 32, .22), inset 0 3px 0 rgba(255, 255, 255, .8); }
+        .tile { position: relative; width: 112px; height: 112px; border-radius: 32px; display: grid; place-items: center; box-shadow: inset 0 4px 0 rgba(255, 255, 255, .28), inset 0 -6px 0 rgba(0, 0, 0, .18), 0 12px 22px var(--sombra); }
+        .tile svg { width: 58px; height: 58px; fill: none; stroke: #fff; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+        .tile .n { position: absolute; left: -14px; top: -14px; width: 46px; height: 46px; border-radius: 50%; background: var(--forest-900); color: var(--lime); display: grid; place-items: center; font-family: var(--f-display); font-weight: 800; font-size: 28px; box-shadow: 0 0 0 5px var(--paper); }
+        .paso h3 { font-family: var(--f-display); font-weight: 800; font-size: 46px; line-height: 1; letter-spacing: -.035em; color: var(--forest-900); }
+        .paso p { margin-top: 10px; font-size: 28px; line-height: 1.32; font-weight: 500; color: #38483f; text-wrap: balance; }
+        .paso p b { font-weight: 700; color: var(--forest-800); }
+
+        .receta { background: var(--c-navy); color: var(--c-ivory); box-shadow: 0 22px 44px rgba(6, 42, 32, .28), inset 0 3px 0 rgba(255, 255, 255, .14); }
+        .receta .tile { box-shadow: inset 0 4px 0 rgba(255, 255, 255, .45), inset 0 -6px 0 rgba(0, 0, 0, .2), 0 12px 22px rgba(0, 0, 0, .35); }
+        .receta h3 { color: var(--c-brass-hi); font-family: var(--c-serif); font-weight: 400; letter-spacing: -.01em; font-size: 46px; }
+        .receta p { color: rgba(251, 246, 234, .9); }
+        .receta p b { color: #fff; }
+
+        .pie { left: 60px; right: 60px; top: 1524px; display: flex; justify-content: space-between; align-items: center; }
+        .pie .entre { font-size: 58px; color: var(--forest-900); }
+        .pie .entre em { color: var(--forest-700); }
+        .pie .cta-bio { font-size: 28px; padding: 19px 30px; background: var(--forest-900); color: var(--lime); box-shadow: 0 14px 28px rgba(6, 42, 32, .3), inset 0 2px 0 rgba(255,255,255,.18); }
+    </style>
+</head>
+<body>
+<div class="stage">
+<article class="art" data-w="1080" data-h="1920" aria-label="Cómo entrar a la comunidad en tres pasos: decinos dónde estás, armá tu pedido con productos de cualquier farmacia de la red, retirá o recibí. Con receta, un farmacéutico de la red la revisa.">
+    <header class="top"><span class="fg-sello" data-sello></span><span class="pildora"><i></i>Comunidad de farmacias</span></header>
+
+    <h1>Entrá a la<br><em>comunidad.</em></h1>
+
+    <section class="pasos">
+        <article class="paso">
+            <div class="tile" style="background:linear-gradient(150deg,#D81B6C,#C2185B);--sombra:rgba(194,24,91,.4)"><span class="n">1</span><svg viewBox="0 0 24 24"><path d="M12 21s-7-6.2-7-11.2a7 7 0 0 1 14 0C19 14.8 12 21 12 21z"/><circle cx="12" cy="9.8" r="2.6"/></svg></div>
+            <div><h3>Decinos dónde estás</h3><p>Ingresá tu dirección y te mostramos <b>la farmacia más cercana.</b></p></div>
+        </article>
+        <article class="paso">
+            <div class="tile" style="background:linear-gradient(150deg,#3A66E8,#1F4FD8);--sombra:rgba(31,79,216,.4)"><span class="n">2</span><svg viewBox="0 0 24 24"><circle cx="9" cy="20" r="1.6"/><circle cx="18" cy="20" r="1.6"/><path d="M2.5 3.5h3l2.3 11.2a1.5 1.5 0 0 0 1.5 1.2h8.4a1.5 1.5 0 0 0 1.5-1.1L21 7.5H6.2"/></svg></div>
+            <div><h3>Armá tu pedido</h3><p>Sumá productos de <b>cualquier farmacia de la red:</b> los agrupamos por farmacia y los recibís juntos.</p></div>
+        </article>
+        <article class="paso">
+            <div class="tile" style="background:linear-gradient(150deg,#5F7F4B,#4E6B3D);--sombra:rgba(78,107,61,.4)"><span class="n">3</span><svg viewBox="0 0 24 24"><path d="M5.5 8h13l-1 12.5h-11z"/><path d="M9 8V6.5a3 3 0 0 1 6 0V8"/></svg></div>
+            <div><h3>Retirá o recibí</h3><p>Retirá en el mostrador en <b>30 minutos</b> o recibilo en tu casa en <b>2 horas</b> (CABA y GBA).</p></div>
+        </article>
+        <article class="paso receta">
+            <div class="tile" style="background:linear-gradient(150deg,#E2C25A,#C9A227)"><svg viewBox="0 0 24 24" style="stroke:#14284B"><path d="M4 8.5h3l1.5-2.5h7L17 8.5h3a1 1 0 0 1 1 1V18a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V9.5a1 1 0 0 1 1-1z"/><circle cx="12" cy="13.5" r="3.6"/></svg></div>
+            <div><h3>¿Con receta?</h3><p>Subí la foto y <b>un farmacéutico de la red</b> la revisa para cotizarla.</p></div>
+        </article>
+    </section>
+
+    <footer class="pie">
+        <span class="entre">Entre <em>todas.</em></span>
+        <span class="cta-bio">Empezá: link en la bio<svg viewBox="0 0 24 24" aria-hidden="true"><use href="#i-arrow"/></svg></span>
+    </footer>
+</article>
+</div>
+<script src="comunidad.js"></script>
+<script src="../campana-mundos/comun.js"></script>
+</body>
+</html>

@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="es-AR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>S2 · Cuatro puertas, una sola comunidad</title>
+    <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,700;12..96,800&family=Inter:wght@400;500;600;700;800&family=Instrument+Serif:ital@1&family=DM+Serif+Display:ital@0;1&family=Unbounded:wght@700;800;900&family=Space+Mono:wght@400;700&family=Barlow+Condensed:ital,wght@0,700;0,800;1,800;1,900&family=Fredoka:wght@500;600;700&family=Caveat:wght@700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../campana-mundos/comun.css">
+    <link rel="stylesheet" href="comunidad.css">
+    <style>
+        /* Story 1080 × 1920: las cuatro fachadas, abiertas, en la hora dorada. Un hilo punteado las une y en el cruce queda la cruz de la comunidad.
+           Margen seguro: y 250 a 1670. */
+        .art { background: linear-gradient(180deg, #17327E 0%, #2253AE 18%, #3A78CC 26%, #8CB6EA 30%, #F4B07A 32.4%, #FFC98A 33.4%); color: var(--cream); }
+        .art > * { position: absolute; }
+
+        .nube { border-radius: 50%; filter: blur(34px); background: rgba(255, 244, 226, .5); z-index: 0; }
+        .suelo { left: 0; top: 640px; width: 1080px; height: 1280px; z-index: 1; background: linear-gradient(180deg, #0D4D3A 0%, #093624 46%, #062A20 100%); box-shadow: inset 0 3px 0 rgba(184, 240, 74, .3); }
+
+        .top { top: 236px; left: 60px; right: 60px; z-index: 6; display: flex; justify-content: space-between; align-items: center; }
+        .top .fg-sello { font-size: 44px; }
+        .top .pildora { background: rgba(255, 255, 255, .14); border: 2px solid rgba(255, 255, 255, .24); color: var(--cream); font-size: 22px; padding: 11px 22px; }
+
+        h1 { top: 312px; left: 60px; right: 60px; z-index: 6; font-family: var(--f-display); font-weight: 800; font-size: 108px; line-height: .94; letter-spacing: -.045em; text-shadow: 0 4px 22px rgba(10, 30, 80, .35); }
+        h1 em { display: inline-block; font-family: var(--f-serif); font-style: italic; font-weight: 400; font-size: 116px; letter-spacing: -.015em; color: var(--lime); margin-top: 6px; white-space: nowrap; }
+
+        .hilos { left: 0; top: 0; width: 1080px; height: 1920px; z-index: 3; }
+        .hilos line { stroke: var(--lime); stroke-width: 6; stroke-linecap: round; stroke-dasharray: 2 15; opacity: .9; }
+
+        .tile { width: 468px; height: 372px; border-radius: 24px; overflow: hidden; z-index: 4; transform: scale(.9); transform-origin: 0 0; box-shadow: 0 0 70px rgba(255, 210, 130, .32), 0 24px 40px rgba(0, 0, 0, .35); }
+        .t-centro { left: 104px; top: 676px; } .t-parque { left: 555px; top: 676px; }
+        .t-norte { left: 104px; top: 1041px; } .t-plaza { left: 555px; top: 1041px; }
+        .t-parque .barrio, .t-plaza .barrio { left: auto; right: 16px; }
+        .barrio { position: absolute; left: 16px; bottom: 12px; z-index: 5; padding: 7px 18px; border-radius: 999px; background: var(--paper); color: var(--forest-800); font-size: 24px; font-weight: 800; letter-spacing: -.01em; box-shadow: 0 6px 14px rgba(0, 0, 0, .28); }
+
+        #guirnalda { left: -30px; top: 566px; z-index: 6; }
+
+        .hub-c { left: 496px; top: 982px; width: 88px; height: 88px; z-index: 7; border-radius: 24px; background: linear-gradient(145deg, #0E5A42, #062A20); display: grid; place-items: center; box-shadow: 0 0 0 7px var(--paper), 0 16px 30px rgba(0, 0, 0, .45); }
+        .hub-c::before { content: ""; position: absolute; inset: 9px; border-radius: 50%; border: 3px dashed rgba(184, 240, 74, .75); }
+        .hub-c svg { width: 40px; height: 40px; fill: var(--lime); }
+
+        .sub { left: 60px; right: 60px; top: 1418px; z-index: 6; font-weight: 600; font-size: 44px; line-height: 1.22; letter-spacing: -.015em; color: var(--cream); }
+        .sub em { font-family: var(--f-serif); font-style: italic; font-weight: 400; font-size: 60px; letter-spacing: -.01em; color: var(--lime); }
+
+        .pie { left: 60px; right: 60px; top: 1566px; z-index: 6; display: flex; justify-content: space-between; align-items: center; }
+        .pie .entre { font-size: 58px; color: var(--cream); }
+        .pie .entre em { color: var(--lime); }
+        .pie .cta-bio { font-size: 27px; padding: 18px 28px; }
+    </style>
+</head>
+<body>
+<div class="stage">
+<article class="art" data-w="1080" data-h="1920" aria-label="Cuatro puertas, una sola comunidad: las fachadas de Farmacia del Centro, Parque Caballito, Belgrano Norte y Plaza Palermo, unidas por un hilo, con la cruz de la comunidad en el medio">
+    <div class="nube" style="left:-120px;top:380px;width:520px;height:150px"></div>
+    <div class="nube" style="left:690px;top:520px;width:480px;height:120px;opacity:.7"></div>
+    <div class="suelo"></div>
+
+    <header class="top"><span class="fg-sello claro" data-sello></span><span class="pildora"><i></i>Comunidad de farmacias</span></header>
+    <h1>Cuatro puertas.<br><em>Una sola comunidad.</em></h1>
+
+    <svg class="hilos" viewBox="0 0 1080 1920" aria-hidden="true">
+        <line x1="540" y1="694" x2="540" y2="1362"/><line x1="112" y1="1026" x2="968" y2="1026"/>
+    </svg>
+
+    <div class="tile t-centro" id="t-centro"></div>
+    <div class="tile t-parque" id="t-parque"></div>
+    <div class="tile t-norte" id="t-norte"></div>
+    <div class="tile t-plaza" id="t-plaza"></div>
+    <div id="guirnalda"></div>
+    <div class="hub-c"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="#i-cross"/></svg></div>
+
+    <p class="sub">Entrá por la que quieras.<br><em>Adentro, la misma comunidad.</em></p>
+
+    <footer class="pie">
+        <span class="entre">Entre <em>todas.</em></span>
+        <span class="cta-bio">Elegí la tuya: link en la bio<svg viewBox="0 0 24 24" aria-hidden="true"><use href="#i-arrow"/></svg></span>
+    </footer>
+</article>
+</div>
+<script src="comunidad.js"></script>
+<script>
+    ['centro', 'parque', 'norte', 'plaza'].forEach(id => {
+        document.getElementById('t-' + id).innerHTML = FG.fachada(id) + `<span class="barrio">${FG.P[id].barrio}</span>`;
+    });
+    document.getElementById('guirnalda').innerHTML = FG.banderines({ w: 1140, n: 15, size: 54, sag: 46 });
+</script>
+<script src="../campana-mundos/comun.js"></script>
+</body>
+</html>

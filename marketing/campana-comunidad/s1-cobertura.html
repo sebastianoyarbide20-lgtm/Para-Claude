@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="es-AR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>S1 · A cualquier hora, hay una abierta</title>
+    <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,700;12..96,800&family=Inter:wght@400;500;600;700;800&family=Instrument+Serif:ital@1&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../campana-mundos/comun.css">
+    <link rel="stylesheet" href="comunidad.css">
+    <style>
+        /* Story 1080 × 1920: la cobertura de las cuatro farmacias a lo largo del día, con los horarios reales de la web.
+           Cada celda iluminada es una farmacia abierta; la persiana es una cerrada. Margen seguro: y 250 a 1670. */
+        .art { background: radial-gradient(90% 55% at 50% 18%, #0E5A42 0%, #0A3D2E 46%, #062A20 100%); color: var(--cream); }
+        .art::before { content: ""; position: absolute; inset: 0; background: radial-gradient(circle, rgba(184, 240, 74, .16) 2px, transparent 2.7px) 0 0 / 44px 44px; z-index: 0; }
+        .art > * { position: absolute; z-index: 1; }
+
+        .top { top: 236px; left: 60px; right: 60px; display: flex; justify-content: space-between; align-items: center; }
+        .top .fg-sello { font-size: 44px; }
+        .top .pildora { background: rgba(255, 255, 255, .1); border: 2px solid rgba(255, 255, 255, .18); color: var(--cream); font-size: 22px; padding: 11px 22px; }
+
+        h1 { top: 322px; left: 60px; right: 60px; font-family: var(--f-display); font-weight: 800; font-size: 108px; line-height: .94; letter-spacing: -.045em; }
+        h1 em { display: inline-block; font-family: var(--f-serif); font-style: italic; font-weight: 400; font-size: 134px; letter-spacing: -.015em; color: var(--lime); margin-top: 6px; }
+
+        /* El tablero */
+        .tablero { left: 40px; top: 626px; width: 1000px; padding: 28px 40px 30px; border-radius: 48px; background: var(--paper); color: var(--fg-ink); box-shadow: 0 30px 70px rgba(0, 0, 0, .4), inset 0 3px 0 rgba(255,255,255,.7); }
+        .fila { display: grid; grid-template-columns: 200px repeat(4, 150px) 120px; align-items: center; height: 118px; margin-bottom: 10px; }
+        .fila:last-child { margin-bottom: 0; }
+        .cab { height: 124px; margin-bottom: 14px; }
+        .cab > div { text-align: center; }
+        .cab .marca { width: 54px; height: 54px; margin: 0 auto 8px; }
+        .cab b { display: block; font-size: 21px; font-weight: 800; letter-spacing: -.01em; line-height: 1; }
+        .cab small { display: block; margin-top: 7px; font-family: 'Space Mono', monospace; font-size: 18px; font-weight: 700; color: #5a6a62; }
+        .cab .h24 { color: #0F7A55; }
+        .cab .cuenta { font-size: 20px; font-weight: 800; color: var(--forest-700); letter-spacing: .02em; text-transform: uppercase; }
+        .cab .leyenda { text-align: left; display: grid; gap: 10px; font-size: 20px; font-weight: 700; color: #445850; }
+        .cab .leyenda span { display: flex; align-items: center; gap: 12px; }
+        .mini { display: inline-block; width: 30px; height: 24px; border-radius: 8px; }
+        .mini.on { background: linear-gradient(145deg, #1F9D6E, #0B5D45); box-shadow: 0 0 0 3px rgba(11, 93, 69, .14); }
+        .mini.off { background: #E4E0D1 repeating-linear-gradient(180deg, rgba(16, 38, 31, .16) 0 2px, transparent 2px 6px); }
+
+        .hora b { display: block; font-family: 'Space Mono', monospace; font-size: 46px; font-weight: 700; letter-spacing: -.01em; line-height: 1; color: var(--forest-800); }
+        .hora small { display: block; margin-top: 8px; font-size: 20px; font-weight: 600; color: #5a6a62; }
+
+        .celda { width: 134px; height: 112px; margin: 0 auto; border-radius: 26px; position: relative; display: grid; place-items: center; }
+        .celda.on { box-shadow: inset 0 3px 0 rgba(255, 255, 255, .3), inset 0 -5px 0 rgba(0, 0, 0, .18), 0 12px 22px var(--sombra); }
+        .celda.on svg { width: 52px; height: 52px; fill: none; stroke: var(--tinta); stroke-width: 3.4; stroke-linecap: round; stroke-linejoin: round; }
+        .celda.on::after { content: ""; position: absolute; left: 14px; top: 11px; width: 38px; height: 8px; border-radius: 6px; background: rgba(255, 255, 255, .32); }
+        .celda.off { background: #E4E0D1 repeating-linear-gradient(180deg, rgba(16, 38, 31, .16) 0 2px, transparent 2px 9px); box-shadow: inset 0 0 0 2px rgba(16, 38, 31, .08); }
+
+        .cuenta-n { text-align: center; border-left: 3px dashed rgba(10, 61, 46, .2); height: 100%; display: grid; place-content: center; }
+        .cuenta-n b { font-family: var(--f-display); font-weight: 800; font-size: 78px; line-height: .9; letter-spacing: -.04em; color: var(--forest-700); }
+        .cuenta-n small { font-size: 19px; font-weight: 700; color: #5a6a62; }
+        .fila.solo .cuenta-n b { color: #C2185B; }
+
+        .nota { left: 60px; right: 60px; top: 1486px; font-size: 25px; line-height: 1.38; font-weight: 500; color: rgba(246, 244, 236, .82); }
+        .nota b { color: var(--lime); font-weight: 700; }
+
+        .pie { left: 60px; right: 60px; top: 1564px; display: flex; justify-content: space-between; align-items: center; }
+        .pie .entre { font-size: 58px; color: var(--cream); }
+        .pie .entre em { color: var(--lime); }
+        .pie .cta-bio { font-size: 27px; padding: 18px 28px; }
+    </style>
+</head>
+<body>
+<div class="stage">
+<article class="art" data-w="1080" data-h="1920" aria-label="A cualquier hora hay una farmacia de la comunidad abierta: tablero de cobertura de las cuatro farmacias a las 6, 12, 18, 22:30 y 3 de la mañana">
+    <header class="top"><span class="fg-sello claro" data-sello></span><span class="pildora"><i></i>Comunidad de farmacias</span></header>
+
+    <h1>A cualquier hora,<br><em>hay una abierta.</em></h1>
+
+    <section class="tablero" id="tablero"></section>
+
+    <p class="nota">Lunes a sábado. Domingos: <b>Plaza Palermo</b> (24 h) y <b>Belgrano Norte</b> (7 a 23 h).</p>
+
+    <footer class="pie">
+        <span class="entre">Entre <em>todas.</em></span>
+        <span class="cta-bio">Encontrá la tuya: link en la bio<svg viewBox="0 0 24 24" aria-hidden="true"><use href="#i-arrow"/></svg></span>
+    </footer>
+</article>
+</div>
+<script src="comunidad.js"></script>
+<script>
+    // Horarios de lunes a sábado, los mismos de cada página de farmacia (en horas desde las 0).
+    const FARMACIAS = [
+        { id: 'centro', corto: 'Centro', desde: 8, hasta: 21, txt: '8–21 h' },
+        { id: 'parque', corto: 'Parque', desde: 8, hasta: 22, txt: '8–22 h' },
+        { id: 'norte', corto: 'Norte', desde: 7, hasta: 23, txt: '7–23 h' },
+        { id: 'plaza', corto: 'Plaza', desde: 0, hasta: 24, txt: '24 h', h24: true },
+    ];
+    const MOMENTOS = [['06:00', 6, 'amanece'], ['12:00', 12, 'mediodía'], ['18:00', 18, 'la tardecita'], ['22:30', 22.5, 'de noche'], ['03:00', 3, 'madrugada']];
+    const tinta = { centro: '#FBF6EA', parque: '#F8F1E4', norte: '#EEF3FF', plaza: '#FFF0F6' };
+    const sombra = { centro: 'rgba(20,40,75,.42)', parque: 'rgba(78,107,61,.42)', norte: 'rgba(31,79,216,.42)', plaza: 'rgba(194,24,91,.42)' };
+    const abierta = (f, h) => h >= f.desde && h < f.hasta;
+
+    const cab = `<div class="fila cab">
+        <div class="leyenda"><span><i class="mini on"></i>Abierta</span><span><i class="mini off"></i>Cerrada</span></div>
+        ${FARMACIAS.map(f => `<div><svg class="marca" viewBox="0 0 48 48"><use href="#m-${f.id}"/></svg><b>${f.corto}</b><small class="${f.h24 ? 'h24' : ''}">${f.txt}</small></div>`).join('')}
+        <div class="cuenta">Abiertas</div>
+    </div>`;
+    const filas = MOMENTOS.map(([lbl, h, palabra]) => {
+        const n = FARMACIAS.filter(f => abierta(f, h)).length;
+        return `<div class="fila${n === 1 ? ' solo' : ''}">
+            <div class="hora"><b>${lbl}</b><small>${palabra}</small></div>
+            ${FARMACIAS.map(f => abierta(f, h)
+                ? `<div class="celda on" style="background:linear-gradient(160deg,${FG.P[f.id].fill},${FG.P[f.id].fill});--sombra:${sombra[f.id]};--tinta:${tinta[f.id]}"><svg viewBox="0 0 24 24"><path d="m5 12.5 4.6 4.6L19.5 7"/></svg></div>`
+                : '<div class="celda off"></div>').join('')}
+            <div class="cuenta-n"><b>${n}</b><small>${n === 1 ? 'abierta' : 'abiertas'}</small></div>
+        </div>`;
+    }).join('');
+    document.getElementById('tablero').innerHTML = cab + filas;
+</script>
+<script src="../campana-mundos/comun.js"></script>
+</body>
+</html>

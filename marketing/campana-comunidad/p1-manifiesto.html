@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="es-AR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>P1 · Tu farmacia no está sola</title>
+    <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,700;12..96,800&family=Inter:wght@400;500;600;700&family=Instrument+Serif:ital@1&family=DM+Serif+Display:ital@0;1&family=Unbounded:wght@700;800;900&family=Barlow+Condensed:ital,wght@0,700;0,800;1,800;1,900&family=Fredoka:wght@500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../campana-mundos/comun.css">
+    <link rel="stylesheet" href="comunidad.css">
+    <style>
+        /* Publicación 1080 × 1350: el manifiesto. La cruz de farmacia está armada por las cuatro farmacias de la comunidad. */
+        .art { background: var(--paper); color: var(--fg-ink); }
+        .art::before { content: ""; position: absolute; inset: 0; background: radial-gradient(circle, rgba(10, 61, 46, .09) 2px, transparent 2.7px) 0 0 / 40px 40px; z-index: 0; }
+        .blob { position: absolute; border-radius: 50%; filter: blur(70px); z-index: 0; }
+        .art > *:not(.blob) { position: absolute; z-index: 1; }
+
+        .top { top: 56px; left: 72px; right: 72px; display: flex; justify-content: space-between; align-items: center; }
+        .top .fg-sello { font-size: 44px; }
+        .top .pildora { background: var(--forest-900); color: var(--cream); font-size: 22px; padding: 11px 22px; }
+
+        h1 { top: 150px; left: 72px; right: 72px; font-family: var(--f-display); font-weight: 800; font-size: 132px; line-height: .93; letter-spacing: -.045em; color: var(--forest-900); }
+        h1 em { display: inline-block; font-family: var(--f-serif); font-style: italic; font-weight: 400; font-size: 158px; letter-spacing: -.015em; color: var(--forest-500); margin-top: 4px; }
+
+        .anillo { left: 0; top: 456px; width: 1080px; height: 640px; }
+        .cruz-wrap { left: 276px; top: 484px; width: 528px; height: 528px; }
+        .cruz-wrap .cruz { width: 528px; height: 528px; }
+
+        .nombres { top: 1066px; left: 40px; right: 40px; text-align: center; font-size: 22px; font-weight: 600; color: var(--ink-2); display: flex; justify-content: center; align-items: center; gap: 12px; white-space: nowrap; }
+        .nombres i { width: 10px; height: 10px; border-radius: 50%; flex-shrink: 0; }
+
+        .verbos { top: 1112px; left: 20px; right: 20px; text-align: center; font-family: var(--f-serif); font-style: italic; font-size: 47px; white-space: nowrap; line-height: 1.1; color: var(--forest-800); }
+
+        .pie { left: 72px; right: 72px; bottom: 52px; display: flex; justify-content: space-between; align-items: center; padding-top: 26px; border-top: 2.5px solid rgba(10, 61, 46, .14); }
+        .pie .entre { font-size: 60px; color: var(--forest-900); }
+        .pie .entre em { color: var(--forest-500); }
+        .pie .cta-bio { font-size: 28px; padding: 18px 28px; box-shadow: inset 0 2px 0 rgba(255,255,255,.5), 0 10px 22px rgba(6, 42, 32, .22); }
+    </style>
+</head>
+<body>
+<div class="stage">
+<article class="art" data-w="1080" data-h="1350" aria-label="Tu farmacia no está sola: cuatro farmacias de barrio, una sola comunidad">
+    <div class="blob" style="width:520px;height:520px;right:-120px;top:380px;background:rgba(184,240,74,.38)"></div>
+    <div class="blob" style="width:480px;height:480px;left:-160px;top:760px;background:rgba(95,224,168,.32)"></div>
+
+    <header class="top"><span class="fg-sello" data-sello></span><span class="pildora"><i></i>Comunidad de farmacias</span></header>
+
+    <h1>Tu farmacia<br><em class="subrayado">no está sola.<svg viewBox="0 0 400 24" preserveAspectRatio="none" aria-hidden="true"><path d="M4 16C90 4 220 2 396 11"/></svg></em></h1>
+
+    <svg class="anillo" viewBox="0 0 1080 640" aria-hidden="true">
+        <circle cx="540" cy="292" r="292" class="hilo-linea" opacity=".45"/>
+        <circle cx="540" cy="0" r="14" fill="#1F4FD8"/><circle cx="832" cy="292" r="14" fill="#14284B"/><circle cx="540" cy="584" r="14" fill="#4E6B3D"/><circle cx="248" cy="292" r="14" fill="#C2185B"/>
+        <circle cx="540" cy="0" r="5.5" fill="#FF7A2E"/><circle cx="832" cy="292" r="5.5" fill="#C9A227"/><circle cx="540" cy="584" r="5.5" fill="#B5532A"/><circle cx="248" cy="292" r="5.5" fill="#FFD23F"/>
+    </svg>
+    <div class="cruz-wrap" id="cruz"></div>
+
+    <p class="nombres">
+        <i style="background:#1F4FD8"></i>Belgrano Norte <i style="background:#14284B"></i>Farmacia del Centro <i style="background:#4E6B3D"></i>Parque Caballito <i style="background:#C2185B"></i>Plaza Palermo
+    </p>
+    <p class="verbos">Se cubren. Se cuentan lo que saben. Se dan una mano.</p>
+
+    <footer class="pie">
+        <span class="entre">Entre <em>todas.</em></span>
+        <span class="cta-bio">Conocé la comunidad: link en la bio<svg viewBox="0 0 24 24" aria-hidden="true"><use href="#i-arrow"/></svg></span>
+    </footer>
+</article>
+</div>
+<script src="comunidad.js"></script>
+<script>document.getElementById('cruz').innerHTML = FG.cruz({ s: 176, bg: '#F6F4EC' });</script>
+<script src="../campana-mundos/comun.js"></script>
+</body>
+</html>

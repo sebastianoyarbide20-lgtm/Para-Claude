@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="es-AR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>P2 · El mapa de la comunidad</title>
+    <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,700;12..96,800&family=Inter:wght@400;500;600;700;800&family=Instrument+Serif:ital@1&family=DM+Serif+Display:ital@0;1&family=Unbounded:wght@700;800;900&family=Barlow+Condensed:ital,wght@0,700;0,800;1,800;1,900&family=Fredoka:wght@500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../campana-mundos/comun.css">
+    <link rel="stylesheet" href="comunidad.css">
+    <style>
+        /* Publicación 1080 × 1350: "Una comunidad, cuatro barrios". Las farmacias están donde dice la web (PHARM_GEO) y las une un hilo. */
+        .art { background: var(--paper); color: var(--fg-ink); }
+        .art::before { content: ""; position: absolute; inset: 0; background: radial-gradient(circle, rgba(10, 61, 46, .09) 2px, transparent 2.7px) 0 0 / 40px 40px; z-index: 0; }
+        .art > * { position: absolute; z-index: 1; }
+
+        .top { top: 56px; left: 72px; right: 72px; display: flex; justify-content: space-between; align-items: center; }
+        .top .fg-sello { font-size: 44px; }
+        .top .pildora { background: var(--forest-900); color: var(--cream); font-size: 22px; padding: 11px 22px; }
+
+        h1 { top: 140px; left: 72px; right: 72px; font-family: var(--f-display); font-weight: 800; font-size: 112px; line-height: .94; letter-spacing: -.045em; color: var(--forest-900); }
+        h1 em { display: inline-block; font-family: var(--f-serif); font-style: italic; font-weight: 400; font-size: 134px; letter-spacing: -.015em; color: var(--forest-500); margin-top: 2px; }
+
+        .mapa { left: 40px; top: 408px; width: 1000px; height: 730px; border-radius: 36px; overflow: hidden; background: #EFEBDD;
+            box-shadow: 0 0 0 7px #fff, 0 26px 60px rgba(6, 42, 32, .22), 0 6px 14px rgba(6, 42, 32, .1); }
+        .mapa > svg { position: absolute; inset: 0; width: 100%; height: 100%; }
+        .mapa .nota { position: absolute; left: 24px; bottom: 16px; font-size: 16px; font-weight: 600; letter-spacing: .04em; color: #8a9a92; }
+
+        .carta { position: absolute; display: flex; align-items: center; gap: 0; padding: 12px 22px 12px 20px; border-radius: 18px; background: #fff; box-shadow: 0 12px 26px rgba(6, 42, 32, .2), 0 2px 4px rgba(6, 42, 32, .08); white-space: nowrap; }
+        .carta b { display: block; font-size: 25px; line-height: 1.1; letter-spacing: -.01em; }
+        .carta small { display: block; font-size: 19px; font-weight: 600; color: var(--ink-3); margin-top: 2px; }
+        .c-centro { border-left: 7px solid #14284B; } .c-centro b { font-family: 'DM Serif Display', Georgia, serif; font-weight: 400; font-size: 27px; }
+        .c-plaza { border-left: 7px solid #C2185B; } .c-plaza b { font-family: Unbounded, sans-serif; font-weight: 800; font-size: 21px; letter-spacing: -.02em; }
+        .c-norte { border-left: 7px solid #1F4FD8; } .c-norte b { font-family: 'Barlow Condensed', sans-serif; font-style: italic; font-weight: 900; font-size: 31px; text-transform: uppercase; }
+        .c-parque { border-left: 7px solid #4E6B3D; } .c-parque b { font-family: Fredoka, sans-serif; font-weight: 700; font-size: 26px; }
+
+        .vos { position: absolute; display: grid; place-items: center; width: 30px; height: 30px; border-radius: 50%; background: #2F6FE0; box-shadow: 0 0 0 7px #fff, 0 0 0 16px rgba(47, 111, 224, .28); }
+        .vos-et { position: absolute; padding: 8px 18px; border-radius: 999px; background: #2F6FE0; color: #fff; font-weight: 800; font-size: 22px; box-shadow: 0 8px 18px rgba(47, 111, 224, .4); white-space: nowrap; }
+        .cerca { position: absolute; padding: 7px 16px; border-radius: 999px; background: #fff; color: #2F6FE0; font-weight: 800; font-size: 19px; box-shadow: 0 8px 18px rgba(6, 42, 32, .2); border: 2.5px solid #2F6FE0; white-space: nowrap; }
+
+        .pie { left: 72px; right: 72px; bottom: 52px; display: flex; justify-content: space-between; align-items: center; }
+        .pie .q { font-family: var(--f-display); font-weight: 800; font-size: 44px; letter-spacing: -.03em; line-height: 1.02; color: var(--forest-900); }
+        .pie .q em { font-family: var(--f-serif); font-style: italic; font-weight: 400; color: var(--forest-500); letter-spacing: -.01em; }
+        .pie .q small { display: block; font-family: var(--f-body); font-size: 23px; font-weight: 500; letter-spacing: 0; color: var(--ink-2); margin-top: 8px; }
+        .pie .cta-bio { font-size: 28px; padding: 18px 30px; box-shadow: inset 0 2px 0 rgba(255,255,255,.5), 0 10px 22px rgba(6, 42, 32, .22); }
+    </style>
+</head>
+<body>
+<div class="stage">
+<article class="art" data-w="1080" data-h="1350" aria-label="Una comunidad, cuatro barrios: mapa de las cuatro farmacias de FarmaGlass unidas por un mismo hilo">
+    <header class="top"><span class="fg-sello" data-sello></span><span class="pildora"><i></i>Comunidad de farmacias</span></header>
+    <h1>Una comunidad,<br><em>cuatro barrios.</em></h1>
+
+    <div class="mapa" id="mapa">
+        <svg viewBox="0 0 1000 730" id="svg" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <defs>
+                <filter id="sombra" x="-30%" y="-30%" width="160%" height="170%"><feDropShadow dx="0" dy="8" stdDeviation="7" flood-color="#06281d" flood-opacity=".35"/></filter>
+                <pattern id="olas" width="46" height="22" patternUnits="userSpaceOnUse"><path d="M0 11Q11.5 2 23 11T46 11" fill="none" stroke="#fff" stroke-opacity=".55" stroke-width="2.5"/></pattern>
+                <clipPath id="tierra"><rect width="1000" height="730"/></clipPath>
+            </defs>
+            <rect width="1000" height="730" fill="#EFEBDD"/>
+            <g id="calles" transform="rotate(-9 500 365)" stroke="#fff" stroke-linecap="round"></g>
+            <path d="M-40 560L1040 150" stroke="#fff" stroke-width="15" stroke-linecap="round" opacity=".9"/>
+            <path d="M-40 300L1040 690" stroke="#fff" stroke-width="12" stroke-linecap="round" opacity=".9"/>
+            <path d="M120 -40L360 770" stroke="#fff" stroke-width="12" stroke-linecap="round" opacity=".9"/>
+            <g fill="#CFE3B8"><ellipse cx="548" cy="214" rx="96" ry="52" transform="rotate(-18 548 214)"/><ellipse cx="318" cy="612" rx="76" ry="44" transform="rotate(12 318 612)"/><ellipse cx="150" cy="430" rx="52" ry="34" transform="rotate(-8 150 430)"/><ellipse cx="900" cy="560" rx="40" ry="26"/></g>
+            <path d="M430 -10L452 62Q540 126 640 184T836 292Q900 350 930 440T1010 520V-10Z" fill="#CFE6F0"/>
+            <path d="M430 -10L452 62Q540 126 640 184T836 292Q900 350 930 440T1010 520V-10Z" fill="url(#olas)"/>
+            <path d="M452 62Q540 126 640 184T836 292Q900 350 930 440T1010 520" fill="none" stroke="#fff" stroke-width="6"/>
+            <text x="790" y="150" font-family="Instrument Serif, serif" font-style="italic" font-size="30" fill="#7fa9bb" transform="rotate(26 790 150)">Río de la Plata</text>
+            <path id="hilo" fill="none" stroke="#0B5D45" stroke-width="7" stroke-linecap="round" stroke-dasharray="2 15"/>
+            <path id="hilo2" fill="none" stroke="#B8F04A" stroke-width="3" stroke-linecap="round" stroke-dasharray="2 24" opacity=".0"/>
+            <line id="haciaPlaza" stroke="#2F6FE0" stroke-width="5" stroke-linecap="round" stroke-dasharray="1 11"/>
+            <g id="marcas"></g>
+        </svg>
+        <p class="nota">Mapa ilustrativo</p>
+    </div>
+
+    <footer class="pie">
+        <p class="q">¿Cuál te queda <em>más cerca?</em><small>Ingresá tu dirección en la web y te la mostramos.</small></p>
+        <span class="cta-bio">Link en la bio<svg viewBox="0 0 24 24" aria-hidden="true"><use href="#i-arrow"/></svg></span>
+    </footer>
+</article>
+</div>
+<script src="comunidad.js"></script>
+<script>
+    // Ubicación real de cada farmacia (PHARM_GEO de farmacia_v2.html) llevada al plano del mapa
+    const GEO = { centro: [-34.5947, -58.3937], plaza: [-34.5869, -58.4113], norte: [-34.5604, -58.4565], parque: [-34.6182, -58.4370] };
+    const lon0 = -58.475, lon1 = -58.380, lat0 = -34.550, lat1 = -34.630;
+    const xy = id => [80 + (GEO[id][1] - lon0) / (lon1 - lon0) * 840, 90 + (lat0 - GEO[id][0]) / (lat0 - lat1) * 550];
+    const P = Object.fromEntries(Object.keys(GEO).map(k => [k, xy(k)]));
+
+    // Cuadrícula de calles
+    let calles = '';
+    for (let x = -300; x < 1300; x += 70) calles += `<path d="M${x} -300V1100" stroke-width="${x % 280 === 0 ? 7 : 4}" opacity=".75"/>`;
+    for (let y = -300; y < 1100; y += 70) calles += `<path d="M-300 ${y}H1300" stroke-width="${y % 280 === 0 ? 7 : 4}" opacity=".75"/>`;
+    document.getElementById('calles').innerHTML = calles;
+
+    // El hilo: una curva cerrada que pasa por las cuatro farmacias
+    const orden = ['norte', 'plaza', 'centro', 'parque'].map(k => P[k]);
+    function lazo(pts, k = 1.15) {
+        const n = pts.length; let d = `M${pts[0][0].toFixed(1)} ${pts[0][1].toFixed(1)}`;
+        for (let i = 0; i < n; i++) {
+            const p0 = pts[(i - 1 + n) % n], p1 = pts[i], p2 = pts[(i + 1) % n], p3 = pts[(i + 2) % n];
+            const c1 = [p1[0] + (p2[0] - p0[0]) / 6 * k, p1[1] + (p2[1] - p0[1]) / 6 * k], c2 = [p2[0] - (p3[0] - p1[0]) / 6 * k, p2[1] - (p3[1] - p1[1]) / 6 * k];
+            d += `C${c1.map(v => v.toFixed(1))} ${c2.map(v => v.toFixed(1))} ${p2.map(v => v.toFixed(1))}`;
+        }
+        return d + 'Z';
+    }
+    document.getElementById('hilo').setAttribute('d', lazo(orden));
+
+    // Marcas
+    const marca = id => `<g filter="url(#sombra)"><use href="#m-${id}" x="${(P[id][0] - 44).toFixed(1)}" y="${(P[id][1] - 44).toFixed(1)}" width="88" height="88"/></g>`;
+    document.getElementById('marcas').innerHTML = Object.keys(P).map(marca).join('');
+
+    // Cartas con el nombre y el barrio, al lado de cada marca
+    const M = document.getElementById('mapa');
+    const carta = (id, cls, nombre, barrio, x, y) => M.insertAdjacentHTML('beforeend', `<div class="carta ${cls}" style="left:${x}px;top:${y}px"><span><b>${nombre}</b><small>${barrio}</small></span></div>`);
+    carta('norte', 'c-norte', 'Belgrano Norte', 'Belgrano', P.norte[0] + 56, P.norte[1] - 36);
+    carta('plaza', 'c-plaza', 'Plaza Palermo', 'Palermo', P.plaza[0] - 56 - 270, P.plaza[1] - 36);
+    carta('centro', 'c-centro', 'Farmacia del Centro', 'Recoleta', P.centro[0] - 138, P.centro[1] + 52);
+    carta('parque', 'c-parque', 'Parque Caballito', 'Caballito', P.parque[0] + 56, P.parque[1] - 36);
+
+    // "Vos" y la farmacia que te queda más cerca
+    const vos = [P.plaza[0] - 104, P.plaza[1] + 112];
+    const hp = document.getElementById('haciaPlaza');
+    hp.setAttribute('x1', vos[0]); hp.setAttribute('y1', vos[1]); hp.setAttribute('x2', P.plaza[0] - 22); hp.setAttribute('y2', P.plaza[1] + 36);
+    M.insertAdjacentHTML('beforeend', `<span class="vos" style="left:${vos[0] - 15}px;top:${vos[1] - 15}px"></span><span class="vos-et" style="left:${vos[0] - 102}px;top:${vos[1] - 20}px">Vos</span>`);
+    M.insertAdjacentHTML('beforeend', `<span class="cerca" style="left:${P.plaza[0] - 10}px;top:${P.plaza[1] - 112}px">La que te queda más cerca</span>`);
+</script>
+<script src="../campana-mundos/comun.js"></script>
+</body>
+</html>

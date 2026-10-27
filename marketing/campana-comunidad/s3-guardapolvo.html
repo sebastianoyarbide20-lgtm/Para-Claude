@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="es-AR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>S3 · Alguien que te conoce por tu nombre</title>
+    <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,700;12..96,800&family=Inter:wght@400;500;600;700;800&family=Instrument+Serif:ital@1&family=Caveat:wght@700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../campana-mundos/comun.css">
+    <link rel="stylesheet" href="comunidad.css">
+    <style>
+        /* Story 1080 × 1920: el homenaje. Un guardapolvo colgado con la identificación en blanco: "Hola, soy…".
+           La invitación es a escribirnos el nombre de la persona de su farmacia. Margen seguro: y 250 a 1670. */
+        .art { background: linear-gradient(180deg, #FDEFDD 0%, #F9DDBF 52%, #F2C79F 100%); color: var(--fg-ink); }
+        .art > * { position: absolute; }
+        .luz { left: 140px; top: 330px; width: 800px; height: 860px; border-radius: 50%; background: radial-gradient(closest-side, rgba(255, 255, 255, .85), rgba(255, 255, 255, 0)); z-index: 0; }
+        .mancha { border-radius: 50%; filter: blur(60px); z-index: 0; }
+
+        .top { top: 236px; left: 60px; right: 60px; z-index: 5; display: flex; justify-content: space-between; align-items: center; }
+        .top .fg-sello { font-size: 44px; }
+        .top .pildora { background: var(--forest-800); color: var(--cream); font-size: 22px; padding: 11px 22px; }
+
+        #guardapolvo { left: 240px; top: 330px; width: 600px; height: 760px; overflow: visible; z-index: 3; filter: drop-shadow(0 30px 30px rgba(120, 66, 20, .3)); }
+
+        h2 { left: 60px; right: 60px; top: 1124px; z-index: 5; font-family: var(--f-display); font-weight: 800; font-size: 72px; line-height: .98; letter-spacing: -.045em; color: var(--forest-900); }
+        h2 em { display: inline-block; font-family: var(--f-serif); font-style: italic; font-weight: 400; font-size: 112px; letter-spacing: -.015em; color: #0F7A55; margin-top: 4px; white-space: nowrap; }
+        .sub { left: 60px; right: 60px; top: 1424px; z-index: 5; font-size: 36px; line-height: 1.3; font-weight: 600; letter-spacing: -.01em; color: #3C2A18; }
+        .sub b { font-weight: 800; color: var(--forest-800); }
+
+        .pie { left: 60px; right: 60px; top: 1548px; z-index: 5; display: flex; justify-content: space-between; align-items: center; }
+        .pie .entre { font-size: 58px; color: var(--forest-900); }
+        .pie .entre em { color: #0F7A55; }
+        .envia { display: inline-flex; align-items: center; gap: 14px; padding: 18px 28px; border-radius: 999px; background: var(--forest-800); color: var(--cream); font-family: var(--f-display); font-weight: 800; font-size: 28px; letter-spacing: -.01em; white-space: nowrap; box-shadow: 0 14px 28px rgba(6, 42, 32, .3), inset 0 2px 0 rgba(255, 255, 255, .18); }
+        .envia svg { width: 1.05em; height: 1.05em; fill: none; stroke: var(--lime); stroke-width: 2.4; stroke-linecap: round; stroke-linejoin: round; }
+    </style>
+</head>
+<body>
+<div class="stage">
+<article class="art" data-w="1080" data-h="1920" aria-label="Un guardapolvo de farmacéutico colgado con la identificación en blanco: Hola, soy. Detrás de cada farmacia hay alguien que te conoce por tu nombre.">
+    <div class="luz"></div>
+    <div class="mancha" style="left:-180px;top:1180px;width:520px;height:520px;background:rgba(95,224,168,.2)"></div>
+    <div class="mancha" style="right:-200px;top:620px;width:520px;height:520px;background:rgba(255,255,255,.55)"></div>
+
+    <header class="top"><span class="fg-sello" data-sello></span><span class="pildora"><i></i>Comunidad de farmacias</span></header>
+
+    <svg id="guardapolvo" viewBox="0 0 600 760" aria-hidden="true">
+        <defs>
+            <linearGradient id="g-madera" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#B07A4A"/><stop offset="1" stop-color="#7A4A27"/></linearGradient>
+            <linearGradient id="g-tela" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#FFFFFF"/><stop offset=".6" stop-color="#F8F5EC"/><stop offset="1" stop-color="#EAE5D7"/></linearGradient>
+            <linearGradient id="g-logo" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#139A6B"/><stop offset="1" stop-color="#0A3D2E"/></linearGradient>
+        </defs>
+
+        <!-- riel de madera y percha -->
+        <rect x="-240" y="0" width="1080" height="30" fill="url(#g-madera)"/>
+        <rect x="-240" y="0" width="1080" height="6" fill="rgba(255,255,255,.28)"/>
+        <rect x="-240" y="30" width="1080" height="14" fill="rgba(90,50,20,.18)"/>
+        <path d="M300 126V84C300 60 328 66 328 42C328 18 296 12 290 30" fill="none" stroke="#9AA2AC" stroke-width="7" stroke-linecap="round"/>
+        <path d="M300 126V84C300 60 328 66 328 42C328 18 296 12 290 30" fill="none" stroke="rgba(255,255,255,.55)" stroke-width="2" stroke-linecap="round" transform="translate(-1.5 -1.5)"/>
+
+        <!-- el guardapolvo -->
+        <path id="silueta" d="M262 122C230 130 170 150 132 170C104 184 90 208 84 242L52 606Q50 640 76 646L148 656Q170 659 172 634L193 374L180 710L178 718Q177 736 198 736L402 736Q423 736 422 718L420 710L407 374L428 634Q430 659 452 656L524 646Q550 640 548 606L516 242C510 208 496 184 468 170C430 150 370 130 338 122Z" fill="url(#g-tela)" stroke="#D3CCBB" stroke-width="3.5" stroke-linejoin="round"/>
+        <!-- sombras suaves de los hombros y las mangas -->
+        <path d="M548 606L516 242C510 208 496 184 468 170L430 156L458 214L492 600Q494 640 524 646Q550 640 548 606Z" fill="rgba(120,100,60,.07)"/>
+        <path d="M136 178C158 232 176 300 191 372" fill="none" stroke="#E2DCCB" stroke-width="3.5" stroke-linecap="round"/>
+        <path d="M464 178C442 232 424 300 409 372" fill="none" stroke="#E2DCCB" stroke-width="3.5" stroke-linecap="round"/>
+        <path d="M60 584L172 606M540 584L428 606" fill="none" stroke="#E2DCCB" stroke-width="3.5" stroke-linecap="round"/>
+        <path d="M96 330C90 410 84 490 78 548M504 330C510 410 516 490 522 548" fill="none" stroke="#EFEADD" stroke-width="3" stroke-linecap="round"/>
+        <path d="M196 704L404 704" fill="none" stroke="#E2DCCB" stroke-width="3" stroke-dasharray="7 6" stroke-linecap="round"/>
+
+        <!-- cuello: interior del cuello, remera y solapas -->
+        <path d="M242 112Q300 84 358 112L338 124Q300 146 262 124Z" fill="#E4DECE" stroke="#D3CCBB" stroke-width="3" stroke-linejoin="round"/>
+        <path d="M262 124Q300 150 338 124L300 268Z" fill="#0B5D45"/>
+        <path d="M262 124Q300 150 338 124" fill="none" stroke="#139A6B" stroke-width="3"/>
+        <path d="M244 110L262 124L300 270L230 242Q234 176 244 110Z" fill="#FFFFFF" stroke="#D3CCBB" stroke-width="3.5" stroke-linejoin="round"/>
+        <path d="M356 110L338 124L300 270L370 242Q366 176 356 110Z" fill="#FBF9F3" stroke="#D3CCBB" stroke-width="3.5" stroke-linejoin="round"/>
+        <path d="M252 140L296 252M348 140L304 252" fill="none" stroke="#EAE4D4" stroke-width="3" stroke-linecap="round"/>
+
+        <!-- frente: tapeta y botones -->
+        <path d="M300 270L300 736" fill="none" stroke="#D3CCBB" stroke-width="3.5"/>
+        <path d="M318 290L318 736" fill="none" stroke="#EAE4D4" stroke-width="3"/>
+        <g fill="#FCFAF3" stroke="#CFC7B5" stroke-width="2.5">
+            <circle cx="284" cy="340" r="10"/><circle cx="284" cy="440" r="10"/><circle cx="284" cy="540" r="10"/><circle cx="284" cy="640" r="10"/>
+        </g>
+        <g fill="none" stroke="#E0D9C8" stroke-width="2"><circle cx="284" cy="340" r="4.5"/><circle cx="284" cy="440" r="4.5"/><circle cx="284" cy="540" r="4.5"/><circle cx="284" cy="640" r="4.5"/></g>
+
+        <!-- logo bordado de FarmaGlass en el pecho -->
+        <g transform="translate(208 330)">
+            <rect width="54" height="54" rx="16" fill="url(#g-logo)"/>
+            <path d="M22 10h10v12h12v10H32v12H22V32H10V22h12z" fill="none" stroke="#fff" stroke-width="3.4" stroke-linejoin="round"/>
+            <rect x="-5" y="-5" width="64" height="64" rx="20" fill="none" stroke="rgba(15,122,85,.35)" stroke-width="2" stroke-dasharray="5 5"/>
+        </g>
+
+        <!-- bolsillo del pecho con lapiceras -->
+        <g transform="translate(0 30)">
+        <rect x="342" y="396" width="10" height="52" rx="5" fill="#1F4FD8"/><rect x="342" y="396" width="10" height="14" rx="5" fill="#9BB6F5"/>
+        <rect x="366" y="404" width="10" height="46" rx="5" fill="#C2185B"/><rect x="366" y="404" width="10" height="12" rx="5" fill="#F4A3C6"/>
+        <rect x="390" y="408" width="9" height="44" rx="4.5" fill="#14284B"/><rect x="390" y="408" width="9" height="12" rx="4.5" fill="#E9CF72"/>
+        <path d="M324 430H410L406 504Q406 514 396 514H338Q328 514 328 504Z" fill="#FFFFFF" stroke="#D3CCBB" stroke-width="3.5" stroke-linejoin="round"/>
+        <path d="M330 442H404" fill="none" stroke="#E2DCCB" stroke-width="3" stroke-dasharray="6 5" stroke-linecap="round"/>
+        </g>
+        <!-- bolsillos de abajo -->
+        <path d="M178 590H268L266 664Q266 672 258 672H188Q180 672 180 664Z" fill="#FFFFFF" stroke="#D3CCBB" stroke-width="3.5" stroke-linejoin="round"/>
+        <path d="M318 590H410L408 664Q408 672 400 672H328Q320 672 320 664Z" fill="#FFFFFF" stroke="#D3CCBB" stroke-width="3.5" stroke-linejoin="round"/>
+        <path d="M186 602H260M326 602H402" fill="none" stroke="#E2DCCB" stroke-width="3" stroke-dasharray="6 5" stroke-linecap="round"/>
+
+        <!-- la identificación: en blanco -->
+        <g transform="translate(298 276) rotate(-5 75 52) scale(1.34)">
+            <rect x="3" y="6" width="112" height="78" rx="12" fill="rgba(80,60,30,.22)"/>
+            <rect width="112" height="78" rx="12" fill="#FFFFFF" stroke="#D3CCBB" stroke-width="3"/>
+            <clipPath id="cp-tag"><rect width="112" height="28" rx="12"/><rect y="12" width="112" height="16"/></clipPath>
+            <g clip-path="url(#cp-tag)"><rect width="28" height="28" fill="#1F4FD8"/><rect x="28" width="28" height="28" fill="#14284B"/><rect x="56" width="28" height="28" fill="#4E6B3D"/><rect x="84" width="28" height="28" fill="#C2185B"/></g>
+            <text x="56" y="19.5" text-anchor="middle" font-family="Inter, sans-serif" font-weight="800" font-size="14" letter-spacing="1.6" fill="#fff">HOLA, SOY</text>
+            <path d="M12 62H100" stroke="#B7AF9E" stroke-width="3" stroke-linecap="round" stroke-dasharray="1 8"/>
+            <rect x="38" y="-8" width="36" height="12" rx="4" fill="#B9BFC8" stroke="#8E95A0" stroke-width="2"/>
+        </g>
+    </svg>
+
+    <h2>Detrás de cada farmacia<br>hay alguien que te conoce<br><em>por tu nombre.</em></h2>
+    <p class="sub">¿Cómo se llama la persona de tu farmacia?<br><b>Escribinos su nombre por mensaje.</b></p>
+
+    <footer class="pie">
+        <span class="entre">Entre <em>todas.</em></span>
+        <span class="envia">Contanos su nombre<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21 3 10 14M21 3l-7 18-4-7-7-4z"/></svg></span>
+    </footer>
+</article>
+</div>
+<script src="comunidad.js"></script>
+<script src="../campana-mundos/comun.js"></script>
+</body>
+</html>
