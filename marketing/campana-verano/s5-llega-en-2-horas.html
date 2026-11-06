@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="es-AR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>S5 · Pedilo hoy, llega en 2 horas</title>
+    <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,700;12..96,800&family=Inter:wght@400;500;600;700;800&family=Instrument+Serif:ital@1&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../campana-mundos/comun.css">
+    <link rel="stylesheet" href="verano.css">
+    <style>
+        /* Story 1080 × 1920: el cierre, con cómo llega el pedido */
+        .fondo { background-image: url(img/fotos/1530053969600-caed2596d242.jpg); background-position: 50% 50%; }
+        .velo { background: linear-gradient(180deg, rgba(2, 30, 50, .55) 0%, rgba(2, 30, 50, .2) 40%, rgba(2, 20, 34, .7) 100%); }
+        h1 { top: 330px; left: 60px; right: 60px; font-size: 120px; }
+        h1 em { font-size: 132px; margin-top: 4px; }
+        .prods { left: 0; right: 0; top: 650px; height: 360px; display: flex; justify-content: center; align-items: flex-end; gap: 10px; }
+        .prods img { height: 300px; filter: drop-shadow(0 26px 26px rgba(0,0,0,.4)); }
+        .prods img:nth-child(2) { height: 350px; }
+        .beneficios { left: 60px; right: 60px; top: 1060px; display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
+        .ben { padding: 24px 26px; border-radius: 28px; background: rgba(255, 255, 255, .94); color: var(--forest-900); }
+        .ben b { display: block; font-family: var(--f-display); font-weight: 800; font-size: 44px; letter-spacing: -.035em; line-height: 1; }
+        .ben span { display: block; margin-top: 8px; font-size: 23px; font-weight: 600; color: #4B5A54; line-height: 1.25; }
+        .legal { left: 60px; right: 60px; top: 1480px; text-align: center; font-size: 19px; }
+    </style>
+</head>
+<body>
+<div class="stage">
+<article class="art" data-w="1080" data-h="1920" aria-label="Pedilo hoy, llega en 2 horas: envío gratis desde 15.000 pesos, retiro en 30 minutos, envíos en CABA y GBA">
+    <div class="fondo"></div><div class="velo"></div>
+    <header class="st-top"><span class="fg-sello claro" data-sello></span><span class="pill sol">☀ Temporada de sol</span></header>
+    <h1 class="titular">Pedilo hoy,<br><em>llega en 2 horas.</em></h1>
+    <div class="prods"><img src="img/productos/dermaglos-80.webp" alt=""><img src="img/productos/parque-22.webp" alt=""><img src="img/productos/off-extra.webp" alt=""></div>
+    <div class="beneficios">
+        <div class="ben"><b>2 horas</b><span>Envío a tu casa en CABA y GBA</span></div>
+        <div class="ben"><b>$ 15.000</b><span>Desde ahí, el envío es gratis</span></div>
+        <div class="ben"><b>30 min</b><span>Retiro en el mostrador de tu farmacia</span></div>
+        <div class="ben"><b>4 farmacias</b><span>De barrio, en una sola web</span></div>
+    </div>
+    <p class="legal">Condiciones en la web. Imagen ilustrativa.</p>
+    <div class="st-cta"><span class="cta-bio">Pedilo: link en la bio<svg viewBox="0 0 24 24" aria-hidden="true"><use href="#i-arrow"/></svg></span></div>
+</article>
+</div>
+<script src="../../productos-reales.js"></script>
+<script src="verano.js"></script>
+<script>V.init();</script>
+<script src="../campana-mundos/comun.js"></script>
+</body>
+</html>

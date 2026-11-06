@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="es-AR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>P5 · Después del sol</title>
+    <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,700;12..96,800&family=Inter:wght@400;500;600;700;800&family=Instrument+Serif:ital@1&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../campana-mundos/comun.css">
+    <link rel="stylesheet" href="verano.css">
+    <style>
+        /* Post 1080 × 1350: refrescar e hidratar después del sol */
+        .art { background: var(--arena); }
+        .fondo { left: 0; top: 0; width: 1080px; height: 610px; background-image: url(img/fotos/1505944270255-72b8c68c6a70.jpg); background-position: 50% 40%; }
+        .velo { left: 0; top: 0; width: 1080px; height: 610px; background: linear-gradient(180deg, rgba(60, 30, 0, .5) 0%, rgba(60, 30, 0, 0) 35%, rgba(255, 244, 224, 0) 72%, var(--arena) 100%); }
+        .sello-top { top: 52px; left: 60px; }
+        .tag { top: 54px; right: 60px; }
+        h1 { top: 612px; left: 60px; right: 60px; font-size: 86px; color: var(--forest-900); text-shadow: none; }
+        h1 em { font-size: 98px; color: #E0611A; }
+        .fila { left: 40px; right: 40px; bottom: 170px; display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
+        .fila .card { box-shadow: 0 14px 30px rgba(120, 70, 20, .18); }
+        .pie { left: 60px; right: 60px; bottom: 74px; display: flex; justify-content: space-between; align-items: center; color: var(--forest-900); }
+        .legal { left: 60px; right: 60px; bottom: 26px; color: #5A4A36; }
+    </style>
+</head>
+<body>
+<div class="stage">
+<article class="art" data-w="1080" data-h="1350" aria-label="Después del sol, refrescá e hidratá: bruma, agua termal, crema hidratante y protector labial con sus precios">
+    <div class="fondo"></div><div class="velo"></div>
+    <div class="sello-top"><span class="fg-sello claro" data-sello></span></div>
+    <span class="pill sol tag">☀ Temporada de sol</span>
+    <h1 class="titular">Después del sol,<br><em>refrescá e hidratá.</em></h1>
+    <div class="fila"><i data-card="bruma" class="mini"></i><i data-card="avene" class="mini"></i><i data-card="cerave" class="mini"></i><i data-card="labial" class="mini"></i></div>
+    <div class="pie">
+        <span class="envio"><svg viewBox="0 0 24 24"><path d="M3 6h11v9H3zM14 9h4l3 3v3h-7"/><circle cx="7" cy="17.5" r="1.8"/><circle cx="17.5" cy="17.5" r="1.8"/></svg>Envío gratis desde $ 15.000 · llega en 2 h</span>
+        <span class="cta-bio">Link en la bio<svg viewBox="0 0 24 24" aria-hidden="true"><use href="#i-arrow"/></svg></span>
+    </div>
+    <p class="legal">Precios de la web al 06/11/2026, pueden cambiar sin aviso. Envíos en CABA y GBA. Imagen ilustrativa.</p>
+</article>
+</div>
+<script src="../../productos-reales.js"></script>
+<script src="verano.js"></script>
+<script>V.init();</script>
+<script src="../campana-mundos/comun.js"></script>
+</body>
+</html>

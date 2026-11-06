@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="es-AR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>S4 · ¿Cuál repelente usás?</title>
+    <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,700;12..96,800&family=Inter:wght@400;500;600;700;800&family=Instrument+Serif:ital@1&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../campana-mundos/comun.css">
+    <link rel="stylesheet" href="verano.css">
+    <style>
+        /* Story 1080 × 1920: encuesta sin stickers (se responde con una letra) y los tres repelentes con precio */
+        .fondo { background-image: url(img/fotos/1507525428034-b723cf961d3e.jpg); background-position: 50% 50%; }
+        .velo { background: linear-gradient(180deg, rgba(40, 14, 30, .8) 0%, rgba(40, 14, 30, .45) 30%, rgba(20, 10, 30, .5) 60%, rgba(16, 8, 24, .85) 100%); }
+        h1 { top: 330px; left: 60px; right: 60px; font-size: 112px; }
+        h1 em { font-size: 132px; margin-top: 4px; }
+        .lista { left: 50px; right: 50px; top: 680px; display: grid; gap: 22px; }
+        .lista .fh { grid-template-columns: 70px 120px 1fr auto; }
+        .letra { width: 70px; height: 70px; border-radius: 50%; background: var(--forest-900); color: var(--sun); display: grid; place-items: center; font-family: var(--f-display); font-weight: 800; font-size: 40px; }
+        .responde { left: 60px; right: 60px; top: 1330px; text-align: center; font-size: 38px; font-weight: 700; line-height: 1.25; }
+        .responde b { color: var(--sun); }
+        .legal { left: 60px; right: 60px; top: 1470px; text-align: center; font-size: 19px; }
+    </style>
+</head>
+<body>
+<div class="stage">
+<article class="art" data-w="1080" data-h="1920" aria-label="¿Cuál repelente usás? Tres opciones con sus precios: OFF! Extra Duración, OFF! Defense Bebé y repelente con citronela">
+    <div class="fondo"></div><div class="velo"></div>
+    <header class="st-top"><span class="fg-sello claro" data-sello></span><span class="pill sol">🦟 Temporada de mosquitos</span></header>
+    <h1 class="titular">¿Cuál usás<br><em>vos?</em></h1>
+    <div class="lista" id="lista"></div>
+    <p class="responde">Respondé esta story con <b>A</b>, <b>B</b> o <b>C</b>.</p>
+    <p class="legal">Precios de la web al 06/11/2026, pueden cambiar sin aviso. Leé las indicaciones del envase.</p>
+    <div class="st-cta"><span class="cta-bio">Elegí el tuyo: link en la bio<svg viewBox="0 0 24 24" aria-hidden="true"><use href="#i-arrow"/></svg></span></div>
+</article>
+</div>
+<script src="../../productos-reales.js"></script>
+<script src="verano.js"></script>
+<script>
+    document.getElementById('lista').innerHTML = [['A', 'offextra'], ['B', 'offbebe'], ['C', 'citronela']].map(([l, k]) => V.fila(k, `<span class="letra">${l}</span>`)).join('');
+    V.init();
+</script>
+<script src="../campana-mundos/comun.js"></script>
+</body>
+</html>

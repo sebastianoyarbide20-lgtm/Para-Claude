@@ -244,3 +244,27 @@ calendario, medición y textos para publicar) está en [`CONCEPTO.md`](marketing
 - **Horarios**: los de `farmacias-red.js`. Si cambian, se actualizan `HORARIO` en `r1-reel-cuando-una-cierra.html` y `FARMACIAS` en `s1-cobertura.html`.
 - **Reel**: va sin música; el audio se agrega al publicarlo a mano. Las stories terminan en "link en la bio" porque, por API, no se puede poner el sticker de enlace.
 - **Vista general**: `exportados/bateria.jpg` muestra las 8 piezas juntas.
+
+## Campaña "Temporada de sol"
+
+En `marketing/campana-verano/` está la batería de verano: **5 publicaciones, 5 stories y 1 reel con productos de venta libre y sus precios**.
+Combina fotos reales de verano (de Unsplash, con licencia de uso comercial) con los packshots recortados de los productos y las
+tarjetas de precio de la web. Los precios salen de `productos-reales.js`, así que siempre coinciden con los de la web.
+
+| Pieza | Formato | Qué muestra |
+| --- | --- | --- |
+| `p1-temporada` | Post 4:5 | "Llegó la temporada de sol.": el flamenco en el agua y tres protectores con precio (Anthelios infantil, Dermaglós FPS 80 y Dermaglós Sport FPS 50) |
+| `p2-anthelios` | Post 4:5 | "Para los más chicos, FPS 50+.": La Roche-Posay Anthelios leche infantil, grande, con su precio y el descuento |
+| `p3-pileta` | Post 4:5 | "Pileta, plaza o running: elegí tu FPS.": los dos Dermaglós, cada uno con su uso |
+| `p4-repelentes` | Post 4:5 | "Cae el sol, salen ellos.": tres repelentes (OFF! Extra Duración, OFF! Defense Bebé y citronela) |
+| `p5-despues-del-sol` | Post 4:5 | "Después del sol, refrescá e hidratá.": bruma Caviahue, agua termal Avène, CeraVe y protector labial Acf |
+| `s1-cada-2-horas` | Story | El consejo de la página de Parque Caballito (renovar cada 2 horas, evitar el sol de 11 a 16) y dos protectores |
+| `s2-precio-que-quema` | Story | "Precio que quema": Anthelios infantil con el descuento, bien grande |
+| `s3-bolso-de-playa` | Story | "Armá tu bolso de playa": la lista con protector, labial, bruma y repelente |
+| `s4-repelente-abc` | Story | "¿Cuál usás vos?": tres repelentes; se responde la story con A, B o C |
+| `s5-llega-en-2-horas` | Story | "Pedilo hoy, llega en 2 horas": envío, envío gratis desde $ 15.000, retiro en 30 minutos y las 4 farmacias |
+| `r1-reel-checklist` | Reel 9:16, 14 s | "Checklist de verano": protector, repelente y bruma, cada uno con su foto y su precio, y el cierre "Todo en FarmaGlass" |
+
+- **Exportar**: `node marketing/campana-verano/exportar.js` (o, por ejemplo, `… exportar.js p2 s3`). Deja PNG y JPG de cada pieza fija y el MP4 del reel con su portada en `exportados/`.
+- **Precios**: si cambian en `productos-reales.js`, se vuelve a exportar y se actualizan solos. Cada pieza aclara la fecha de los precios.
+- **Fotos**: `img/fotos/` (Unsplash) y `img/productos/` (packshots recortados; las imágenes pertenecen a sus marcas). `verano.js` arma las tarjetas de producto.

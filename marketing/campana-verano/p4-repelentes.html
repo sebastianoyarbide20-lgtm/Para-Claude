@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="es-AR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>P4 · Cae el sol, salen ellos</title>
+    <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,700;12..96,800&family=Inter:wght@400;500;600;700;800&family=Instrument+Serif:ital@1&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../campana-mundos/comun.css">
+    <link rel="stylesheet" href="verano.css">
+    <style>
+        /* Post 1080 × 1350: repelentes para la tarde y la noche */
+        .fondo { background-image: url(img/fotos/1414609245224-afa02bfb3fda.jpg); background-position: 50% 30%; }
+        .velo { background: linear-gradient(180deg, rgba(40, 14, 4, .55) 0%, rgba(40, 14, 4, 0) 34%, rgba(10, 8, 20, .1) 55%, rgba(10, 8, 20, .85) 100%); }
+        .sello-top { top: 52px; left: 60px; }
+        .tag { top: 54px; right: 60px; }
+        h1 { top: 140px; left: 60px; right: 60px; font-size: 120px; }
+        h1 em { font-size: 138px; margin-top: 4px; }
+        .sub { top: 420px; left: 64px; font-size: 32px; font-weight: 600; text-shadow: 0 2px 14px rgba(0,0,0,.4); }
+        .fila { left: 40px; right: 40px; bottom: 190px; display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; }
+        .pie { left: 60px; right: 60px; bottom: 82px; display: flex; justify-content: space-between; align-items: center; }
+        .legal { left: 60px; right: 60px; bottom: 30px; }
+    </style>
+</head>
+<body>
+<div class="stage">
+<article class="art" data-w="1080" data-h="1350" aria-label="Cae el sol, salen ellos: tres repelentes con sus precios">
+    <div class="fondo"></div><div class="velo"></div>
+    <div class="sello-top"><span class="fg-sello claro" data-sello></span></div>
+    <span class="pill sol tag">🦟 Temporada de mosquitos</span>
+    <h1 class="titular">Cae el sol,<br><em>salen ellos.</em></h1>
+    <p class="sub">Repelentes para toda la familia.</p>
+    <div class="fila"><i data-card="offextra"></i><i data-card="offbebe"></i><i data-card="citronela"></i></div>
+    <div class="pie">
+        <span class="envio"><svg viewBox="0 0 24 24"><path d="M3 6h11v9H3zM14 9h4l3 3v3h-7"/><circle cx="7" cy="17.5" r="1.8"/><circle cx="17.5" cy="17.5" r="1.8"/></svg>Envío gratis desde $ 15.000 · llega en 2 h</span>
+        <span class="cta-bio">Link en la bio<svg viewBox="0 0 24 24" aria-hidden="true"><use href="#i-arrow"/></svg></span>
+    </div>
+    <p class="legal">Precios de la web al 06/11/2026, pueden cambiar sin aviso. Leé las indicaciones del envase. Imagen ilustrativa.</p>
+</article>
+</div>
+<script src="../../productos-reales.js"></script>
+<script src="verano.js"></script>
+<script>V.init();</script>
+<script src="../campana-mundos/comun.js"></script>
+</body>
+</html>

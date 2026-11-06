@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="es-AR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>S3 · Armá tu bolso de playa</title>
+    <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,700;12..96,800&family=Inter:wght@400;500;600;700;800&family=Instrument+Serif:ital@1&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../campana-mundos/comun.css">
+    <link rel="stylesheet" href="verano.css">
+    <style>
+        /* Story 1080 × 1920: la lista del bolso, con un producto de cada necesidad */
+        .fondo { background-image: url(img/fotos/1506953823976-52e1fdc0149a.jpg); background-position: 50% 50%; }
+        .velo { background: linear-gradient(180deg, rgba(3, 45, 66, .66) 0%, rgba(3, 45, 66, .05) 30%, rgba(2, 30, 42, .45) 60%, rgba(2, 30, 42, .8) 100%); }
+        h1 { top: 330px; left: 60px; right: 60px; font-size: 118px; }
+        h1 em { font-size: 138px; margin-top: 4px; }
+        .lista { left: 50px; right: 50px; top: 660px; display: grid; gap: 18px; }
+        .lista .fh { grid-template-columns: 52px 120px 1fr auto; }
+        .tilde { width: 52px; height: 52px; border-radius: 16px; background: var(--forest-500); display: grid; place-items: center; }
+        .tilde svg { width: 34px; height: 34px; fill: none; stroke: #fff; stroke-width: 3; stroke-linecap: round; stroke-linejoin: round; }
+        .rot { display: block; font-size: 19px; font-weight: 800; letter-spacing: .06em; text-transform: uppercase; color: var(--mar); margin-bottom: 4px; }
+        .legal { left: 60px; right: 60px; top: 1480px; text-align: center; font-size: 19px; }
+    </style>
+</head>
+<body>
+<div class="stage">
+<article class="art" data-w="1080" data-h="1920" aria-label="Armá tu bolso de playa: protector, protector labial, bruma y repelente con sus precios">
+    <div class="fondo"></div><div class="velo"></div>
+    <header class="st-top"><span class="fg-sello claro" data-sello></span><span class="pill sol">☀ Temporada de sol</span></header>
+    <h1 class="titular">Armá tu<br><em>bolso de playa.</em></h1>
+    <div class="lista" id="lista"></div>
+    <p class="legal">Precios de la web al 06/11/2026, pueden cambiar sin aviso. Envío gratis desde $ 15.000.</p>
+    <div class="st-cta"><span class="cta-bio">Pedilo todo junto: link en la bio<svg viewBox="0 0 24 24" aria-hidden="true"><use href="#i-arrow"/></svg></span></div>
+</article>
+</div>
+<script src="../../productos-reales.js"></script>
+<script src="verano.js"></script>
+<script>
+    const tilde = '<span class="tilde"><svg viewBox="0 0 24 24"><path d="m5 12.5 4.6 4.6L19.5 7"/></svg></span>';
+    const items = [['anthelios', 'Protector'], ['labial', 'Labios'], ['bruma', 'Para refrescar'], ['offextra', 'Repelente']];
+    document.getElementById('lista').innerHTML = items.map(([k, r]) => V.fila(k, tilde).replace('<p class="nom">', `<p class="nom"><span class="rot">${r}</span>`)).join('');
+    V.init();
+</script>
+<script src="../campana-mundos/comun.js"></script>
+</body>
+</html>

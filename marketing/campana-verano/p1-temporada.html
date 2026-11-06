@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="es-AR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>P1 · Llegó la temporada de sol</title>
+    <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,700;12..96,800&family=Inter:wght@400;500;600;700;800&family=Instrument+Serif:ital@1&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../campana-mundos/comun.css">
+    <link rel="stylesheet" href="verano.css">
+    <style>
+        /* Post 1080 × 1350: la apertura de la temporada, con los tres protectores y sus precios */
+        .fondo { background-image: url(img/fotos/1501426026826-31c667bdf23d.jpg); background-position: 50% 38%; }
+        .velo { background: linear-gradient(180deg, rgba(3, 45, 66, .62) 0%, rgba(3, 45, 66, 0) 36%, rgba(3, 45, 66, 0) 52%, rgba(2, 30, 42, .78) 100%); }
+        .sello-top { top: 52px; left: 60px; }
+        .tag { top: 54px; right: 60px; }
+        h1 { top: 136px; left: 60px; right: 60px; font-size: 116px; }
+        h1 em { font-size: 136px; margin-top: 4px; }
+        .fila { left: 40px; right: 40px; bottom: 190px; display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; }
+        .pie { left: 60px; right: 60px; bottom: 82px; display: flex; justify-content: space-between; align-items: center; }
+        .legal { left: 60px; right: 60px; bottom: 30px; }
+    </style>
+</head>
+<body>
+<div class="stage">
+<article class="art" data-w="1080" data-h="1350" aria-label="Llegó la temporada de sol: protectores solares con sus precios">
+    <div class="fondo"></div><div class="velo"></div>
+    <div class="sello-top"><span class="fg-sello claro" data-sello></span></div>
+    <span class="pill sol tag">☀ Temporada de sol</span>
+    <h1 class="titular">Llegó la<br><em>temporada de sol.</em></h1>
+    <div class="fila"><i data-card="anthelios"></i><i data-card="d80"></i><i data-card="sport"></i></div>
+    <div class="pie">
+        <span class="envio"><svg viewBox="0 0 24 24"><path d="M3 6h11v9H3zM14 9h4l3 3v3h-7"/><circle cx="7" cy="17.5" r="1.8"/><circle cx="17.5" cy="17.5" r="1.8"/></svg>Envío gratis desde $ 15.000 · llega en 2 h</span>
+        <span class="cta-bio">Link en la bio<svg viewBox="0 0 24 24" aria-hidden="true"><use href="#i-arrow"/></svg></span>
+    </div>
+    <p class="legal">Precios de la web al 06/11/2026, pueden cambiar sin aviso. Envíos en CABA y GBA. Imagen ilustrativa.</p>
+</article>
+</div>
+<script src="../../productos-reales.js"></script>
+<script src="verano.js"></script>
+<script>V.init();</script>
+<script src="../campana-mundos/comun.js"></script>
+</body>
+</html>

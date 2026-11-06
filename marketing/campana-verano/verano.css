@@ -1,0 +1,52 @@
+/* FarmaGlass · campaña "Temporada de sol". Se apoya en ../campana-mundos/comun.css (tokens, sello, vista previa y exportación). */
+:root { --mar: #0E7FA6; --mar-hondo: #08506B; --coral: #FF5A3C; --arena: #FFF4E0; }
+
+.art { color: #fff; }
+.art > * { position: absolute; }
+.fondo { inset: 0; background-size: cover; background-position: center; }
+.velo { inset: 0; }
+
+.sello-top { top: 56px; left: 64px; }
+.sello-top .fg-sello { font-size: 42px; }
+.pill { display: inline-flex; align-items: center; gap: 10px; padding: 11px 22px; border-radius: 999px; font-weight: 700; font-size: 22px; white-space: nowrap; }
+.pill.sol { background: var(--sun); color: var(--forest-900); }
+.pill.osc { background: rgba(4, 30, 40, .62); color: #fff; backdrop-filter: blur(6px); border: 2px solid rgba(255,255,255,.22); }
+
+.titular { font-family: var(--f-display); font-weight: 800; letter-spacing: -.045em; line-height: .92; text-shadow: 0 4px 30px rgba(0, 30, 50, .35); }
+.titular em { display: inline-block; font-family: var(--f-serif); font-style: italic; font-weight: 400; letter-spacing: -.015em; color: var(--sun); }
+
+/* Tarjeta de producto */
+.card { position: relative; background: #fff; color: var(--fg-ink); border-radius: 30px; padding: 18px 18px 20px; box-shadow: 0 22px 44px rgba(0, 30, 50, .28); display: flex; flex-direction: column; }
+.card .foto { height: 210px; display: grid; place-items: center; margin-bottom: 12px; border-radius: 20px; background: radial-gradient(70% 70% at 50% 60%, #FFF6DA, #FFFFFF 70%); }
+.card .foto img { max-height: 196px; max-width: 92%; object-fit: contain; filter: drop-shadow(0 12px 14px rgba(0,0,0,.18)); }
+.card .nom { font-size: 21px; line-height: 1.22; font-weight: 600; color: #3B4A44; min-height: 52px; }
+.card .nom small { font-size: 18px; color: #7A857F; font-weight: 500; }
+.card .precio { margin-top: auto; padding-top: 10px; font-family: var(--f-display); font-weight: 800; font-size: 42px; letter-spacing: -.03em; color: var(--forest-900); line-height: 1; display: flex; align-items: baseline; gap: 10px; flex-wrap: wrap; }
+.card .precio s { font-family: var(--f-body); font-size: 19px; font-weight: 500; color: #8A928E; letter-spacing: 0; }
+.card .off { position: absolute; top: -12px; right: -10px; z-index: 2; background: var(--coral); color: #fff; font-family: var(--f-display); font-weight: 800; font-size: 26px; padding: 8px 14px; border-radius: 16px; transform: rotate(5deg); box-shadow: 0 8px 16px rgba(255, 90, 60, .4); }
+
+/* Pie: envío, sello y "link en la bio" */
+.envio { display: inline-flex; align-items: center; gap: 12px; font-weight: 700; font-size: 24px; }
+.envio svg { width: 30px; height: 30px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+.legal { font-size: 16px; line-height: 1.35; font-weight: 500; opacity: .85; }
+.cta-bio { font-size: 28px; padding: 18px 28px; }
+.card.mini { padding: 14px 14px 16px; border-radius: 26px; }
+.card.mini .foto { height: 170px; }
+.card.mini .foto img { max-height: 158px; }
+.card.mini .nom { font-size: 19px; min-height: 70px; }
+.card.mini .precio { font-size: 36px; }
+.card.mini .off { font-size: 22px; }
+
+/* Stories: margen seguro de y 250 a 1670 */
+.st-top { top: 236px; left: 60px; right: 60px; display: flex; justify-content: space-between; align-items: center; }
+.st-top .fg-sello { font-size: 44px; }
+.st-cta { left: 0; right: 0; top: 1560px; display: flex; justify-content: center; }
+.st-cta .cta-bio { font-size: 32px; padding: 22px 36px; }
+/* Fila de producto horizontal */
+.fh { display: grid; grid-template-columns: 120px 1fr auto; gap: 22px; align-items: center; background: #fff; color: var(--fg-ink); border-radius: 28px; padding: 16px 24px 16px 16px; box-shadow: 0 16px 34px rgba(0, 30, 50, .25); }
+.fh .foto { width: 120px; height: 120px; border-radius: 20px; display: grid; place-items: center; background: radial-gradient(70% 70% at 50% 60%, #FFF6DA, #FFFFFF 70%); }
+.fh .foto img { max-height: 112px; max-width: 100px; object-fit: contain; filter: drop-shadow(0 8px 10px rgba(0,0,0,.18)); }
+.fh .nom { font-size: 25px; line-height: 1.22; font-weight: 600; color: #34433D; }
+.fh .pr { text-align: right; font-family: var(--f-display); font-weight: 800; font-size: 40px; letter-spacing: -.03em; color: var(--forest-900); line-height: 1; white-space: nowrap; }
+.fh .pr s { display: block; margin-top: 6px; font-family: var(--f-body); font-size: 19px; font-weight: 500; color: #8A928E; letter-spacing: 0; }
+.fh .pr i { display: inline-block; margin-bottom: 6px; font-style: normal; font-size: 19px; background: var(--coral); color: #fff; padding: 3px 9px; border-radius: 10px; }

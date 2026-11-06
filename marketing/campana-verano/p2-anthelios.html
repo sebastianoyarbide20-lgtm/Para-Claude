@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="es-AR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>P2 · Anthelios infantil FPS 50+</title>
+    <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,700;12..96,800&family=Inter:wght@400;500;600;700;800&family=Instrument+Serif:ital@1&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../campana-mundos/comun.css">
+    <link rel="stylesheet" href="verano.css">
+    <style>
+        /* Post 1080 × 1350: un producto, grande, con su precio */
+        .fondo { background-image: url(img/fotos/1519046904884-53103b34b206.jpg); background-position: 62% 50%; }
+        .velo { background: linear-gradient(90deg, rgba(3, 40, 60, .82) 0%, rgba(3, 40, 60, .45) 48%, rgba(3, 40, 60, 0) 78%), linear-gradient(0deg, rgba(2, 30, 42, .8) 0%, rgba(2, 30, 42, 0) 30%); }
+        .sello-top { top: 52px; left: 60px; }
+        .tag { top: 54px; right: 60px; }
+        .disco { right: -70px; top: 250px; width: 540px; height: 540px; border-radius: 50%; background: radial-gradient(circle at 40% 38%, #FFF3B0, #FFD23F 55%, #F5B700 100%); box-shadow: 0 0 120px rgba(255, 210, 63, .55); }
+        .prod { right: 70px; top: 210px; height: 740px; filter: drop-shadow(0 40px 40px rgba(0, 0, 0, .35)); transform: rotate(6deg); }
+        h1 { top: 150px; left: 60px; width: 560px; font-size: 100px; }
+        h1 em { font-size: 112px; margin-top: 6px; }
+        .nombre { top: 500px; left: 60px; width: 520px; font-size: 29px; line-height: 1.25; font-weight: 600; }
+        .nombre small { display: block; margin-top: 6px; font-size: 22px; opacity: .8; font-weight: 500; }
+        .precio-xl { top: 700px; left: 60px; font-family: var(--f-display); font-weight: 800; font-size: 132px; letter-spacing: -.045em; line-height: 1; color: #fff; }
+        .antes { top: 842px; left: 64px; font-size: 30px; font-weight: 500; opacity: .85; }
+        .antes s { opacity: 1; }
+        .off-xl { top: 626px; left: 60px; background: var(--coral); color: #fff; font-family: var(--f-display); font-weight: 800; font-size: 50px; padding: 10px 22px; border-radius: 22px; transform: rotate(-4deg); box-shadow: 0 14px 30px rgba(255, 90, 60, .45); font-size: 40px; padding: 8px 18px; }
+        .chips { top: 912px; left: 60px; display: flex; gap: 12px; flex-wrap: wrap; width: 560px; }
+        .pie { left: 60px; right: 60px; bottom: 82px; display: flex; justify-content: space-between; align-items: center; }
+        .legal { left: 60px; right: 60px; bottom: 30px; }
+    </style>
+</head>
+<body>
+<div class="stage">
+<article class="art" data-w="1080" data-h="1350" aria-label="La Roche-Posay Anthelios leche infantil FPS 50+ con 40 % de descuento">
+    <div class="fondo"></div><div class="velo"></div>
+    <div class="disco"></div>
+    <img class="prod" src="img/productos/parque-22.webp" alt="">
+    <div class="sello-top"><span class="fg-sello claro" data-sello></span></div>
+    <span class="pill sol tag">☀ Temporada de sol</span>
+    <h1 class="titular">Para los<br>más chicos,<br><em>FPS 50+.</em></h1>
+    <p class="nombre">La Roche-Posay Anthelios leche infantil FPS 50+<small>250 ml · Para la piel sensible de los chicos</small></p>
+    <span class="off-xl" data-off="anthelios">-40%</span>
+    <p class="precio-xl" data-precio="anthelios">$ 0</p>
+    <p class="antes">Antes <s data-precio="anthelios" data-campo="lista">$ 0</s></p>
+    <div class="chips"><span class="pill osc">Retiro en 30 min</span><span class="pill osc">Envío en 2 h</span></div>
+    <div class="pie">
+        <span class="envio"><svg viewBox="0 0 24 24"><path d="M3 6h11v9H3zM14 9h4l3 3v3h-7"/><circle cx="7" cy="17.5" r="1.8"/><circle cx="17.5" cy="17.5" r="1.8"/></svg>Envío gratis desde $ 15.000</span>
+        <span class="cta-bio">Link en la bio<svg viewBox="0 0 24 24" aria-hidden="true"><use href="#i-arrow"/></svg></span>
+    </div>
+    <p class="legal">Precio de la web al 06/11/2026, puede cambiar sin aviso. Envíos en CABA y GBA. Imagen ilustrativa.</p>
+</article>
+</div>
+<script src="../../productos-reales.js"></script>
+<script src="verano.js"></script>
+<script>V.init();</script>
+<script src="../campana-mundos/comun.js"></script>
+</body>
+</html>
