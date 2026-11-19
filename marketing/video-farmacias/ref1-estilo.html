@@ -1,0 +1,30 @@
+<!DOCTYPE html><html lang="es-AR"><head><meta charset="UTF-8"><title>Referencia 1 · Estilo</title>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,800&family=Inter:wght@500;700&family=Instrument+Serif:ital@1&family=DM+Serif+Display&family=Unbounded:wght@800&family=Barlow+Condensed:ital,wght@1,800&family=Fredoka:wght@600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../campana-mundos/comun.css"><link rel="stylesheet" href="../campana-comunidad/comunidad.css">
+<style>
+.art{background:#062A20;color:#F6F4EC}.art>*{position:absolute}
+.t{left:60px;top:70px;font:800 34px var(--f-display);letter-spacing:.02em;color:#B8F04A}
+h1{left:60px;top:140px;font:800 104px/0.95 var(--f-display);letter-spacing:-.045em}h1 em{font:italic 400 124px var(--f-serif);color:#B8F04A}
+.lbl{font:700 22px Inter;letter-spacing:.1em;color:rgba(246,244,236,.6)}
+.pal{left:60px;top:470px;right:60px;display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+.pal div{height:150px;border-radius:22px;padding:14px;display:flex;align-items:flex-end;font:700 21px Inter;border:2px solid rgba(255,255,255,.15)}
+.fam{left:60px;top:900px;right:60px;display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+.fam div{height:120px;border-radius:22px;display:grid;place-items:center;color:#fff;font-size:30px;text-align:center}
+.cruz{left:330px;top:1100px;width:420px;height:420px}
+.hilo{left:60px;top:1560px;width:960px;height:40px}
+.sello{left:60px;top:1660px}.sello .fg-sello{font-size:50px}
+.tipo{right:60px;top:1650px;text-align:right;font:500 24px/1.5 Inter;color:rgba(246,244,236,.8)}
+</style></head><body><div class="stage"><article class="art" data-w="1080" data-h="1920">
+<p class="t">REFERENCIA DE ESTILO · FARMAGLASS</p>
+<h1>Tu farmacia<br><em>no está sola.</em></h1>
+<p class="lbl" style="left:60px;top:430px">COLORES DE MARCA</p>
+<div class="pal"><div style="background:#062A20">#062A20</div><div style="background:#0A3D2E">#0A3D2E</div><div style="background:#B8F04A;color:#062A20">#B8F04A</div><div style="background:#F6F4EC;color:#062A20">#F6F4EC</div></div>
+<p class="lbl" style="left:60px;top:860px">LAS CUATRO FARMACIAS (ACENTOS)</p>
+<div class="fam"><div style="background:#1F4FD8;font-family:'Barlow Condensed';font-style:italic;font-weight:800">BELGRANO<br>NORTE</div><div style="background:#14284B;font-family:'DM Serif Display';color:#E9CF72">Farmacia<br>del Centro</div><div style="background:#4E6B3D;font-family:Fredoka">Parque<br>Caballito</div><div style="background:#C2185B;font-family:Unbounded;font-size:24px;color:#FFD23F">PLAZA<br>PALERMO</div></div>
+<div class="cruz" id="c"></div>
+<svg class="hilo" viewBox="0 0 960 40"><path d="M10 20H950" stroke="#B8F04A" stroke-width="6" stroke-linecap="round" stroke-dasharray="2 16"/></svg>
+<div class="sello"><span class="fg-sello claro" data-sello></span></div>
+<p class="tipo">Títulos: Bricolage Grotesque ExtraBold<br>Acento: <i style="font-family:'Instrument Serif'">Instrument Serif cursiva</i><br>Texto: Inter · Sol #FFD23F para botones</p>
+</article></div>
+<script src="../campana-comunidad/comunidad.js"></script><script>c.innerHTML=FG.cruz({s:140,bg:'#062A20'})</script>
+<script src="../campana-mundos/comun.js"></script></body></html>

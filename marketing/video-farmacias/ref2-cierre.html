@@ -1,0 +1,24 @@
+<!DOCTYPE html><html lang="es-AR"><head><meta charset="UTF-8"><title>Referencia 2 · Escenas</title>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,800&family=Inter:wght@500;700&family=Instrument+Serif:ital@1&family=DM+Serif+Display&family=Unbounded:wght@800&family=Space+Mono:wght@700&family=Barlow+Condensed:ital,wght@0,800;1,800&family=Fredoka:wght@600&family=Caveat:wght@700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../campana-mundos/comun.css"><link rel="stylesheet" href="../campana-comunidad/comunidad.css">
+<style>
+.art{background:radial-gradient(90% 55% at 50% 40%,#0E5A42,#0A3D2E 50%,#062A20);color:#F6F4EC}.art>*{position:absolute}
+.top{left:60px;top:250px}.top .fg-sello{font-size:46px}
+.grid{left:60px;top:360px;width:960px;display:grid;grid-template-columns:1fr 1fr;gap:24px}
+.tile{width:468px;height:372px;border-radius:24px;overflow:hidden;box-shadow:0 0 60px rgba(255,214,130,.3)}
+.tile .fx{width:468px;height:372px}
+.hub{left:496px;top:742px;width:88px;height:88px;border-radius:24px;background:#0A3D2E;box-shadow:0 0 0 7px #F6F4EC;display:grid;place-items:center}
+.hub svg{width:40px;height:40px;fill:#B8F04A}
+h1{left:0;right:0;top:1190px;text-align:center;font:800 96px/0.95 var(--f-display);letter-spacing:-.045em}h1 em{font:italic 400 112px var(--f-serif);color:#B8F04A}
+.cta{left:50%;top:1450px;transform:translateX(-50%)}.cta.cta-bio{font-size:40px;padding:24px 44px}
+.nota{left:0;right:0;top:1580px;text-align:center;font:500 26px Inter;color:rgba(246,244,236,.75)}
+</style></head><body><div class="stage"><article class="art" data-w="1080" data-h="1920">
+<div class="top"><span class="fg-sello claro" data-sello></span></div>
+<div class="grid"><div class="tile" id="t1"></div><div class="tile" id="t2"></div><div class="tile" id="t3"></div><div class="tile" id="t4"></div></div>
+<div class="hub"><svg viewBox="0 0 24 24"><use href="#i-cross"/></svg></div>
+<h1>Entre todas,<br><em>llegamos más lejos.</em></h1>
+<span class="cta cta-bio">Sumá tu farmacia</span>
+<p class="nota">Cuatro farmacias, cuatro estilos, una sola red.</p>
+</article></div>
+<script src="../campana-comunidad/comunidad.js"></script><script>['centro','parque','norte','plaza'].forEach((id,i)=>document.getElementById('t'+(i+1)).innerHTML=FG.fachada(id))</script>
+<script src="../campana-mundos/comun.js"></script></body></html>
