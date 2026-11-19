@@ -1,0 +1,222 @@
+FARMAGLASS ROSARIO
+Descripción general de la idea de negocio
+Noviembre de 2026 · borrador para discutir
+
+======================================================================
+1. LA IDEA EN UNA FRASE
+======================================================================
+
+Juntar a las farmacias de barrio de Rosario en una sola web y una sola
+app, para que compitan con las grandes cadenas con la misma tecnología,
+el mismo marketing y la misma logística, sin dejar de ser farmacias
+independientes de barrio.
+
+Cada farmacia sigue siendo dueña de su negocio, su mostrador y sus
+clientes. La plataforma les da lo que solas no pueden pagar: una tienda
+online moderna, una app, marketing profesional, envíos y datos.
+
+
+======================================================================
+2. EL PROBLEMA
+======================================================================
+
+Para la farmacia de barrio:
+- Las cadenas tienen app, web, envío a domicilio, programas de
+  descuentos y campañas en redes. Una farmacia sola no puede pagar todo
+  eso ni tiene a quién encargárselo.
+- Vende solo a quien pasa por la puerta y en su horario. Cuando cierra,
+  el cliente se va a otra.
+- Compra en volúmenes chicos y negocia peor con droguerías y marcas.
+- No tiene datos sobre qué piden sus clientes ni cómo volver a
+  venderles.
+
+Para el vecino:
+- Quiere la confianza de "su" farmacia, pero también la comodidad de
+  pedir desde el celular, mandar la receta con una foto y recibir el
+  pedido en casa.
+- Hoy tiene que elegir entre cercanía (la de barrio) y comodidad (la
+  cadena).
+
+
+======================================================================
+3. LA SOLUCIÓN
+======================================================================
+
+Una plataforma única (web + app) con:
+
+- Todas las farmacias adheridas en un solo lugar, cada una con su
+  página, su estilo y sus productos (lo que ya muestra el prototipo de
+  FarmaGlass con sus cuatro farmacias).
+- La farmacia más cercana se elige sola al poner la dirección.
+- Un solo carrito: se puede comprar en varias farmacias a la vez y el
+  pedido se agrupa por farmacia.
+- Retiro en el mostrador o envío a domicilio en el día.
+- Receta por foto: la revisa un farmacéutico de la red, que cotiza y
+  confirma por WhatsApp. Obra social y plan guardados en la cuenta.
+- Horarios combinados: siempre hay una farmacia de la red abierta, y la
+  app lo muestra.
+- Marketing en común: campañas, redes sociales, ofertas y contenido
+  hechos una vez para todas (como las campañas ya hechas para
+  Instagram).
+
+Lo que gana la farmacia:
+- Ventas nuevas (online y fuera de su horario).
+- Marketing profesional sin armar un equipo.
+- Mejor poder de compra si la red negocia en conjunto.
+- Datos de su clientela y de lo que se pide en su zona.
+
+Lo que gana el vecino:
+- Su farmacia de siempre, con la comodidad de una cadena.
+- Precios claros, envío rápido y seguimiento del pedido.
+
+
+======================================================================
+4. CÓMO GANA DINERO LA PLATAFORMA
+======================================================================
+
+Opciones a combinar (los números concretos hay que definirlos con las
+farmacias y con el costo real de operación):
+
+1. Cuota mensual por farmacia adherida (por la tienda, la app y el
+   marketing).
+2. Comisión por pedido online (un porcentaje de cada venta que entra por
+   la plataforma).
+3. Cargo de envío al cliente, gratis desde cierto monto.
+4. Espacios pagos para marcas y laboratorios: productos destacados,
+   campañas y lanzamientos dentro de la app (solo productos de venta
+   libre y dentro de lo que permite la normativa).
+5. Compras en conjunto: un margen por negociar con droguerías y marcas
+   en nombre de toda la red.
+
+Recomendación para arrancar: cuota baja o nula al principio + comisión
+por pedido. Así la farmacia solo paga cuando vende y es más fácil
+sumarla.
+
+
+======================================================================
+5. A QUIÉN LE VENDEMOS
+======================================================================
+
+Primero a las farmacias (son los socios), después al público.
+
+- Farmacias independientes de Rosario, empezando por un grupo chico de
+  barrios con mucha densidad y poder de compra (por ejemplo Centro,
+  Fisherton, Pichincha, Echesortu, Alberdi o Barrio Martin; a validar).
+- Clientes: familias, adultos mayores (y quienes compran por ellos),
+  gente que trabaja todo el día y personas con tratamientos crónicos
+  que compran todos los meses.
+
+
+======================================================================
+6. COMPETENCIA Y DIFERENCIAL
+======================================================================
+
+Competidores:
+- Cadenas con tienda online y app propia.
+- Plataformas de delivery generales que suman farmacias.
+- La propia web o WhatsApp de cada farmacia.
+
+Diferencial de la red:
+- Es "la farmacia de barrio", no una cadena: atención personal y
+  farmacéutico que conoce al cliente.
+- Cubre más horarios y más barrios que cualquier farmacia sola.
+- La plataforma es de las farmacias y trabaja para ellas (no compite
+  con ellas ni se queda con el cliente).
+- Marca común fuerte, pero cada farmacia mantiene su identidad (la
+  idea "4 farmacias, 4 mundos" y "Entre todas" de las campañas).
+
+
+======================================================================
+7. CÓMO ARRANCAR (PLAN POR ETAPAS)
+======================================================================
+
+Etapa 0 · Validación (1 a 2 meses)
+- Entrevistar a 15–20 farmacias de Rosario: qué les duele, qué pagarían,
+  qué sistema de gestión usan, si hacen envíos.
+- Consultar la normativa (ver punto 9).
+- Mostrarles el prototipo de FarmaGlass que ya existe.
+
+Etapa 1 · Piloto (3 a 4 meses)
+- 4 a 6 farmacias de barrios distintos.
+- Web + tienda (la base actual en Shopify), receta por WhatsApp, retiro
+  y envío propio o con un servicio de mensajería.
+- Campañas en Instagram con la marca común.
+- Medir: pedidos por semana, ticket promedio, clientes que repiten,
+  costo por cliente nuevo.
+
+Etapa 2 · App y crecimiento (6 a 12 meses)
+- App para iPhone y Android.
+- Sumar farmacias en más barrios hasta cubrir la ciudad y horarios de
+  todo el día.
+- Integración con el stock de cada farmacia y con obras sociales.
+
+Etapa 3 · Expansión
+- Gran Rosario (Funes, Villa Gobernador Gálvez, Granadero Baigorria,
+  Pérez) y después otras ciudades de Santa Fe.
+- Compras en conjunto y marcas propias de la red.
+
+
+======================================================================
+8. QUÉ HACE FALTA
+======================================================================
+
+Equipo mínimo:
+- Coordinación general y relación con las farmacias.
+- Producto y tecnología (web, app, integraciones).
+- Marketing y redes.
+- Operaciones (pedidos, envíos, atención al cliente).
+- Un farmacéutico/a referente para el área profesional y normativa.
+
+Tecnología:
+- Ya existe un prototipo web con 4 farmacias, carrito compartido,
+  recetas y una tienda en Shopify. Sirve para mostrar y para el piloto.
+- Para crecer hace falta la app y conectar el stock de cada farmacia.
+
+Inversión: depende del alcance del piloto. Los rubros principales son
+desarrollo de la app, marketing de lanzamiento, logística y el equipo de
+los primeros meses. Conviene presupuestarlo después de la validación.
+
+
+======================================================================
+9. RIESGOS Y PUNTOS A RESOLVER
+======================================================================
+
+- Normativa: la venta de medicamentos tiene reglas nacionales (ANMAT) y
+  provinciales (Santa Fe y el Colegio de Farmacéuticos). Hay que
+  confirmar con un abogado qué se puede vender online, cómo se manejan
+  las recetas y quién es responsable de cada dispensa. Al principio,
+  lo más seguro es vender online productos de venta libre que no son
+  medicamentos y cotizar las recetas por WhatsApp.
+- Que las farmacias se sumen: son negocios familiares y desconfían de
+  intermediarios. Hay que mostrar resultados rápido y cobrar solo por
+  venta al principio.
+- Stock y precios desactualizados: si cada farmacia carga sus datos a
+  mano, habrá errores. La integración con sus sistemas es clave.
+- Logística: envíos rápidos con buen costo en toda la ciudad.
+- Conflictos entre farmacias de la red (clientes, precios, zonas):
+  reglas claras desde el inicio.
+- Competencia de cadenas con mucho presupuesto.
+
+
+======================================================================
+10. CÓMO SABER SI FUNCIONA (INDICADORES)
+======================================================================
+
+- Farmacias adheridas y barrios cubiertos.
+- Pedidos online por semana y por farmacia.
+- Ticket promedio y porcentaje de clientes que vuelven a comprar.
+- Recetas recibidas y convertidas en venta.
+- Costo para conseguir un cliente nuevo vs. lo que compra en el año.
+- Satisfacción de farmacias y clientes.
+
+
+======================================================================
+11. PRÓXIMOS PASOS
+======================================================================
+
+1. Definir nombre y marca para Rosario (FarmaGlass u otro).
+2. Armar la lista de farmacias a visitar y una entrevista corta.
+3. Consulta legal sobre venta online y recetas en Santa Fe.
+4. Elegir las farmacias del piloto y adaptar el prototipo actual a
+   ellas.
+5. Lanzar el piloto con una campaña en redes y medir 3 meses.
