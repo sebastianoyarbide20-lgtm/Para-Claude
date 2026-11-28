@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="es-AR">
+<head>
+<meta charset="UTF-8">
+<title>Banners web · Temporada de sol</title>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,700;12..96,800&family=Inter:wght@500;600;700;800&family=Caveat:wght@600&display=swap" rel="stylesheet">
+<style>
+/* Banners para la web de la red (estilo de la home: crema, verde, lima, bordes oscuros). Sin marca: se apoyan en la página. */
+:root { --tinta: #14211B; --verde: #1A7F45; --verde-o: #0F5A33; --lima: #DDF26B; --crema: #FBF6EE; --sol: #FFD23F; --coral: #FF5A3C; }
+* { box-sizing: border-box; margin: 0; }
+body { background: var(--crema); font-family: Inter, sans-serif; color: var(--tinta); padding: 30px; display: grid; gap: 30px; justify-items: start; }
+.bn { position: relative; overflow: hidden; border: 1.5px solid var(--tinta); border-radius: 18px; }
+.bn > * { position: absolute; }
+.pill { display: inline-flex; align-items: center; gap: 6px; border: 1.5px solid var(--tinta); border-radius: 999px; font-weight: 700; background: var(--lima); white-space: nowrap; }
+.btn { display: inline-flex; align-items: center; gap: 8px; background: var(--tinta); color: var(--lima); font-weight: 800; border-radius: 999px; white-space: nowrap; }
+.btn svg { width: 1.1em; height: 1.1em; fill: none; stroke: currentColor; stroke-width: 2.6; stroke-linecap: round; stroke-linejoin: round; }
+.h { font-family: 'Bricolage Grotesque'; font-weight: 800; letter-spacing: -.035em; line-height: .95; }
+.h em { font-family: 'Caveat'; font-style: normal; font-weight: 600; letter-spacing: 0; color: var(--lima); }
+.off { background: var(--coral); color: #fff; font-family: 'Bricolage Grotesque'; font-weight: 800; border-radius: 10px; border: 1.5px solid var(--tinta); }
+
+/* ---------- Alargado 1068 × 220 ---------- */
+#largo { width: 1068px; height: 220px; background: var(--verde); }
+#largo .foto { right: 0; top: 0; width: 520px; height: 100%; background: url(img/playa.jpg) 60% 55% / cover; }
+#largo .fundido { right: 0; top: 0; width: 540px; height: 100%; background: linear-gradient(90deg, var(--verde) 0%, rgba(26,127,69,.55) 22%, rgba(26,127,69,0) 55%); }
+#largo .pill { left: 28px; top: 24px; font-size: 13px; padding: 5px 12px; }
+#largo .h { left: 28px; top: 58px; font-size: 46px; color: #fff; }
+#largo .h em { font-size: 52px; }
+#largo .txt { left: 30px; top: 168px; font-size: 14px; font-weight: 600; color: #E6F4EA; }
+#largo .txt b { color: var(--lima); }
+#largo .btn { left: 418px; top: 158px; font-size: 15px; padding: 10px 18px; border: 1.5px solid var(--tinta); box-shadow: 3px 3px 0 var(--lima); }
+#largo .disco { right: 150px; top: 18px; width: 230px; height: 230px; border-radius: 50%; background: radial-gradient(circle at 40% 38%, #FFF3B0, var(--sol) 55%, #F5B700 100%); box-shadow: 0 0 60px rgba(255,210,63,.6); }
+#largo .prod { bottom: -6px; filter: drop-shadow(0 14px 14px rgba(0,0,0,.35)); }
+#largo .p1 { right: 330px; height: 150px; transform: rotate(-8deg); bottom: 4px; }
+#largo .p2 { right: 200px; height: 205px; transform: rotate(3deg); bottom: -16px; }
+#largo .p3 { right: 96px; height: 160px; transform: rotate(10deg); bottom: -2px; }
+#largo .off { right: 292px; top: 16px; font-size: 26px; padding: 4px 12px; transform: rotate(6deg); box-shadow: 3px 3px 0 var(--tinta); }
+#largo .precio { right: 20px; top: 20px; background: var(--crema); border: 1.5px solid var(--tinta); border-radius: 14px; padding: 8px 14px; box-shadow: 3px 3px 0 var(--tinta); text-align: right; }
+#largo .precio small { display: block; font-size: 11px; font-weight: 700; }
+#largo .precio b { font-family: 'Bricolage Grotesque'; font-size: 26px; letter-spacing: -.03em; }
+#largo .precio s { font-size: 11px; opacity: .6; margin-left: 4px; }
+
+/* ---------- Muy pequeño 320 × 100 ---------- */
+#chico { width: 320px; height: 100px; background: var(--lima); border-radius: 14px; }
+#chico .disco { left: -26px; top: -18px; width: 136px; height: 136px; border-radius: 50%; background: radial-gradient(circle at 40% 38%, #FFF3B0, var(--sol) 60%, #F5B700 100%); }
+#chico .prod { left: 22px; top: 8px; height: 96px; transform: rotate(-8deg); filter: drop-shadow(0 6px 6px rgba(0,0,0,.3)); }
+#chico .off { display: none; left: 70px; top: 10px; font-size: 14px; padding: 2px 6px; border-radius: 7px; transform: rotate(8deg); }
+#chico .h { left: 118px; top: 16px; font-size: 21px; }
+#chico .h span { color: var(--verde); }
+#chico .btn { left: 118px; top: 64px; font-size: 12px; padding: 5px 11px; }
+</style>
+</head>
+<body>
+<div class="bn" id="largo" role="img" aria-label="Temporada de sol: protectores y repelentes hasta 40 % off, envío en 2 horas">
+    <div class="foto"></div><div class="fundido"></div>
+    <span class="pill">☀ Temporada de sol</span>
+    <p class="h">Protegete del sol,<br><em>sin salir del barrio.</em></p>
+    <p class="txt">Protectores y repelentes <b>hasta 40% off</b> · Llega en 2 h</p>
+    <span class="btn">Ver ofertas<svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+    <div class="disco"></div>
+    <img class="prod p1" src="img/brisasport.png" alt="">
+    <img class="prod p2" src="img/solenna.png" alt="">
+    <img class="prod p3" src="img/nopica.png" alt="">
+    <span class="off">-40%</span>
+    <div class="precio"><small>Solenna Kids FPS 50+</small><b>$ 55.994</b><s>$ 93.323</s></div>
+</div>
+
+<div class="bn" id="chico" role="img" aria-label="Protectores solares hasta 40 % off">
+    <div class="disco"></div>
+    <img class="prod" src="img/solenna.png" alt="">
+    <p class="h">Protectores<br><span>hasta 40% off</span></p>
+    <span class="btn">Ver ofertas<svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+</div>
+</body>
+</html>
